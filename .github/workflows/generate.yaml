@@ -1,0 +1,43 @@
+name: Generate Protobuf
+
+on:
+  push:
+    paths:
+      - '.github/workflows/generate.yml'
+      - 'generate.sh'
+      - 'proto/**'
+  pull_request:
+    paths:
+      - '.github/workflows/generate.yml'
+      - 'generate.sh'
+      - 'proto/**'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Install protobufjs
+        run: npm install -g protobufjs protobufjs-cli
+
+      - name: Generate TypeScript
+        run: |
+          chmod +x generate.sh
+          ./generate.sh
+
+      - name: Commit Changes
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git add --force generated/
+          git commit -m "Autogenerate protobuf" || echo "No changes"
+          git push

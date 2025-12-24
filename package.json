@@ -1,0 +1,21 @@
+{
+  "name": "altverse-proto",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Altverse-Compute/Altverse-Proto#readme",
+  "bugs": {
+    "url": "https://github.com/Altverse-Compute/Altverse-Proto/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Altverse-Compute/Altverse-Proto.git"
+  },
+  "license": "GPL-3.0-only",
+  "author": "EtherCD",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "packageManager": "yarn@4.12.0"
+}

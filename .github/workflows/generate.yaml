@@ -25,7 +25,7 @@ jobs:
           persist-credentials: false
 
       - name: Install protobufjs
-        run: npm install -g protobufjs protobufjs-cli @grpc/grpc-js
+        run: npm install -g protobufjs protobufjs-cli @grpc/grpc-js @grpc/proto-loader
 
       - name: Generate TypeScript
         run: |

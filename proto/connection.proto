@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package connection;
+
+service GameService {
+    rpc Register(RegisterRequest) returns (RegisterResponse) {}
+    rpc JoinPlayer(JoinPlayerRequest) returns (JoinPlayerResponse) {}
+}
+
+message RegisterRequest {
+    string icon = 1;
+    string name = 2;
+    string url = 3;
+}
+
+message RegisterResponse {
+    bool success = 1;
+}
+
+message JoinPlayerRequest {
+    string player_token = 1;
+}
+
+message JoinPlayerResponse {
+    string name = 1;
+    Role role = 2;
+}
+
+enum Role {
+    USER = 0;
+    MOD = 1;
+    DEV = 2;
+}

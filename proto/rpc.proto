@@ -5,6 +5,16 @@ package connection;
 service GameService {
     rpc Register(RegisterRequest) returns (RegisterResponse) {}
     rpc JoinPlayer(JoinPlayerRequest) returns (JoinPlayerResponse) {}
+    rpc Ping(Ping) returns (Pong) {}
+}
+
+message Ping {
+    uint32 online = 1;
+    bool alive = 21;
+}
+
+message Pong {
+    bool success = 1;
 }
 
 message RegisterRequest {

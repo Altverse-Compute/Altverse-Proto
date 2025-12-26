@@ -2,6 +2,16 @@ syntax = "proto3";
 
 package game;
 
+import "./rpc.proto";
+
+message Chat {
+  uint32 id = 1;
+  string content = 2;
+  string author = 3;
+  connection.Role role = 4;
+  string world = 5;
+}
+
 message PackedEntity {
   uint32 type_id = 2;
   sint32 x = 3;

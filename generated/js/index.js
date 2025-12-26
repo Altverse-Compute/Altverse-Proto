@@ -2604,6 +2604,7 @@ export const game = $root.game = (() => {
          * @property {game.IPackedPlayer|null} [myself] Package myself
          * @property {game.IUpdateEntitiesMap|null} [updateEntities] Package updateEntities
          * @property {game.IUpdatePlayersMap|null} [updatePlayers] Package updatePlayers
+         * @property {game.IChat|null} [chatMessage] Package chatMessage
          */
 
         /**
@@ -2693,17 +2694,25 @@ export const game = $root.game = (() => {
          */
         Package.prototype.updatePlayers = null;
 
+        /**
+         * Package chatMessage.
+         * @member {game.IChat|null|undefined} chatMessage
+         * @memberof game.Package
+         * @instance
+         */
+        Package.prototype.chatMessage = null;
+
         // OneOf field names bound to virtual getters and setters
         let $oneOfFields;
 
         /**
          * Package kind.
-         * @member {"newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|undefined} kind
+         * @member {"newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage"|undefined} kind
          * @memberof game.Package
          * @instance
          */
         Object.defineProperty(Package.prototype, "kind", {
-            get: $util.oneOfGetter($oneOfFields = ["newPlayer", "closePlayer", "players", "newEntities", "closeEntities", "areaInit", "myself", "updateEntities", "updatePlayers"]),
+            get: $util.oneOfGetter($oneOfFields = ["newPlayer", "closePlayer", "players", "newEntities", "closeEntities", "areaInit", "myself", "updateEntities", "updatePlayers", "chatMessage"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -2749,6 +2758,8 @@ export const game = $root.game = (() => {
                 $root.game.UpdateEntitiesMap.encode(message.updateEntities, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
             if (message.updatePlayers != null && Object.hasOwnProperty.call(message, "updatePlayers"))
                 $root.game.UpdatePlayersMap.encode(message.updatePlayers, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+            if (message.chatMessage != null && Object.hasOwnProperty.call(message, "chatMessage"))
+                $root.game.Chat.encode(message.chatMessage, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
             return writer;
         };
 
@@ -2819,6 +2830,10 @@ export const game = $root.game = (() => {
                     }
                 case 9: {
                         message.updatePlayers = $root.game.UpdatePlayersMap.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 10: {
+                        message.chatMessage = $root.game.Chat.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2942,6 +2957,16 @@ export const game = $root.game = (() => {
                         return "updatePlayers." + error;
                 }
             }
+            if (message.chatMessage != null && message.hasOwnProperty("chatMessage")) {
+                if (properties.kind === 1)
+                    return "kind: multiple values";
+                properties.kind = 1;
+                {
+                    let error = $root.game.Chat.verify(message.chatMessage);
+                    if (error)
+                        return "chatMessage." + error;
+                }
+            }
             return null;
         };
 
@@ -3006,6 +3031,11 @@ export const game = $root.game = (() => {
                     throw TypeError(".game.Package.updatePlayers: object expected");
                 message.updatePlayers = $root.game.UpdatePlayersMap.fromObject(object.updatePlayers);
             }
+            if (object.chatMessage != null) {
+                if (typeof object.chatMessage !== "object")
+                    throw TypeError(".game.Package.chatMessage: object expected");
+                message.chatMessage = $root.game.Chat.fromObject(object.chatMessage);
+            }
             return message;
         };
 
@@ -3069,6 +3099,11 @@ export const game = $root.game = (() => {
                 object.updatePlayers = $root.game.UpdatePlayersMap.toObject(message.updatePlayers, options);
                 if (options.oneofs)
                     object.kind = "updatePlayers";
+            }
+            if (message.chatMessage != null && message.hasOwnProperty("chatMessage")) {
+                object.chatMessage = $root.game.Chat.toObject(message.chatMessage, options);
+                if (options.oneofs)
+                    object.kind = "chatMessage";
             }
             return object;
         };

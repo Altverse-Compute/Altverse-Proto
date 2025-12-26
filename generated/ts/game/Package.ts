@@ -7,6 +7,7 @@ import type { CloseEntities as _game_CloseEntities, CloseEntities__Output as _ga
 import type { PackedArea as _game_PackedArea, PackedArea__Output as _game_PackedArea__Output } from '../game/PackedArea';
 import type { UpdateEntitiesMap as _game_UpdateEntitiesMap, UpdateEntitiesMap__Output as _game_UpdateEntitiesMap__Output } from '../game/UpdateEntitiesMap';
 import type { UpdatePlayersMap as _game_UpdatePlayersMap, UpdatePlayersMap__Output as _game_UpdatePlayersMap__Output } from '../game/UpdatePlayersMap';
+import type { Chat as _game_Chat, Chat__Output as _game_Chat__Output } from '../game/Chat';
 import type { Long } from '@grpc/proto-loader';
 
 export interface Package {
@@ -19,7 +20,8 @@ export interface Package {
   'myself'?: (_game_PackedPlayer | null);
   'updateEntities'?: (_game_UpdateEntitiesMap | null);
   'updatePlayers'?: (_game_UpdatePlayersMap | null);
-  'kind'?: "newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers";
+  'chatMessage'?: (_game_Chat | null);
+  'kind'?: "newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage";
 }
 
 export interface Package__Output {
@@ -32,5 +34,6 @@ export interface Package__Output {
   'myself'?: (_game_PackedPlayer__Output);
   'updateEntities'?: (_game_UpdateEntitiesMap__Output);
   'updatePlayers'?: (_game_UpdatePlayersMap__Output);
-  'kind'?: "newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers";
+  'chatMessage'?: (_game_Chat__Output);
+  'kind'?: "newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage";
 }

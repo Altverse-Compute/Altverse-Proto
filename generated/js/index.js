@@ -16,6 +16,22 @@ export const game = $root.game = (() => {
      */
     const game = {};
 
+    /**
+     * Role enum.
+     * @name game.Role
+     * @enum {number}
+     * @property {number} USER=0 USER value
+     * @property {number} MOD=1 MOD value
+     * @property {number} DEV=2 DEV value
+     */
+    game.Role = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "USER"] = 0;
+        values[valuesById[1] = "MOD"] = 1;
+        values[valuesById[2] = "DEV"] = 2;
+        return values;
+    })();
+
     game.Chat = (function() {
 
         /**
@@ -25,7 +41,7 @@ export const game = $root.game = (() => {
          * @property {number|null} [id] Chat id
          * @property {string|null} [content] Chat content
          * @property {string|null} [author] Chat author
-         * @property {connection.Role|null} [role] Chat role
+         * @property {game.Role|null} [role] Chat role
          * @property {string|null} [world] Chat world
          */
 
@@ -70,7 +86,7 @@ export const game = $root.game = (() => {
 
         /**
          * Chat role.
-         * @member {connection.Role} role
+         * @member {game.Role} role
          * @memberof game.Chat
          * @instance
          */
@@ -303,7 +319,7 @@ export const game = $root.game = (() => {
             if (message.author != null && message.hasOwnProperty("author"))
                 object.author = message.author;
             if (message.role != null && message.hasOwnProperty("role"))
-                object.role = options.enums === String ? $root.connection.Role[message.role] === undefined ? message.role : $root.connection.Role[message.role] : message.role;
+                object.role = options.enums === String ? $root.game.Role[message.role] === undefined ? message.role : $root.game.Role[message.role] : message.role;
             if (message.world != null && message.hasOwnProperty("world"))
                 object.world = message.world;
             return object;

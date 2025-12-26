@@ -3,6 +3,13 @@ import Long = require("long");
 /** Namespace game. */
 export namespace game {
 
+    /** Role enum. */
+    enum Role {
+        USER = 0,
+        MOD = 1,
+        DEV = 2
+    }
+
     /** Properties of a Chat. */
     interface IChat {
 
@@ -16,7 +23,7 @@ export namespace game {
         author?: (string|null);
 
         /** Chat role */
-        role?: (connection.Role|null);
+        role?: (game.Role|null);
 
         /** Chat world */
         world?: (string|null);
@@ -41,7 +48,7 @@ export namespace game {
         public author: string;
 
         /** Chat role. */
-        public role: connection.Role;
+        public role: game.Role;
 
         /** Chat world. */
         public world: string;

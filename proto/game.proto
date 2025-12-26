@@ -86,6 +86,7 @@ message Package {
     PackedPlayer myself = 7;
     UpdateEntitiesMap update_entities = 8;
     UpdatePlayersMap update_players = 9;
+    Chat chat_message = 10;
   }
 }
 

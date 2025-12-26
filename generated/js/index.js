@@ -16,6 +16,328 @@ export const game = $root.game = (() => {
      */
     const game = {};
 
+    game.Chat = (function() {
+
+        /**
+         * Properties of a Chat.
+         * @memberof game
+         * @interface IChat
+         * @property {number|null} [id] Chat id
+         * @property {string|null} [content] Chat content
+         * @property {string|null} [author] Chat author
+         * @property {connection.Role|null} [role] Chat role
+         * @property {string|null} [world] Chat world
+         */
+
+        /**
+         * Constructs a new Chat.
+         * @memberof game
+         * @classdesc Represents a Chat.
+         * @implements IChat
+         * @constructor
+         * @param {game.IChat=} [properties] Properties to set
+         */
+        function Chat(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Chat id.
+         * @member {number} id
+         * @memberof game.Chat
+         * @instance
+         */
+        Chat.prototype.id = 0;
+
+        /**
+         * Chat content.
+         * @member {string} content
+         * @memberof game.Chat
+         * @instance
+         */
+        Chat.prototype.content = "";
+
+        /**
+         * Chat author.
+         * @member {string} author
+         * @memberof game.Chat
+         * @instance
+         */
+        Chat.prototype.author = "";
+
+        /**
+         * Chat role.
+         * @member {connection.Role} role
+         * @memberof game.Chat
+         * @instance
+         */
+        Chat.prototype.role = 0;
+
+        /**
+         * Chat world.
+         * @member {string} world
+         * @memberof game.Chat
+         * @instance
+         */
+        Chat.prototype.world = "";
+
+        /**
+         * Creates a new Chat instance using the specified properties.
+         * @function create
+         * @memberof game.Chat
+         * @static
+         * @param {game.IChat=} [properties] Properties to set
+         * @returns {game.Chat} Chat instance
+         */
+        Chat.create = function create(properties) {
+            return new Chat(properties);
+        };
+
+        /**
+         * Encodes the specified Chat message. Does not implicitly {@link game.Chat.verify|verify} messages.
+         * @function encode
+         * @memberof game.Chat
+         * @static
+         * @param {game.IChat} message Chat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Chat.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
+            if (message.content != null && Object.hasOwnProperty.call(message, "content"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
+            if (message.author != null && Object.hasOwnProperty.call(message, "author"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.author);
+            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.role);
+            if (message.world != null && Object.hasOwnProperty.call(message, "world"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.world);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Chat message, length delimited. Does not implicitly {@link game.Chat.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.Chat
+         * @static
+         * @param {game.IChat} message Chat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Chat.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.Chat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.Chat} Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Chat.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.Chat();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.content = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.author = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.role = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.world = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.Chat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.Chat} Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Chat.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Chat message.
+         * @function verify
+         * @memberof game.Chat
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Chat.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id))
+                    return "id: integer expected";
+            if (message.content != null && message.hasOwnProperty("content"))
+                if (!$util.isString(message.content))
+                    return "content: string expected";
+            if (message.author != null && message.hasOwnProperty("author"))
+                if (!$util.isString(message.author))
+                    return "author: string expected";
+            if (message.role != null && message.hasOwnProperty("role"))
+                switch (message.role) {
+                default:
+                    return "role: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.world != null && message.hasOwnProperty("world"))
+                if (!$util.isString(message.world))
+                    return "world: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a Chat message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.Chat
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.Chat} Chat
+         */
+        Chat.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.Chat)
+                return object;
+            let message = new $root.game.Chat();
+            if (object.id != null)
+                message.id = object.id >>> 0;
+            if (object.content != null)
+                message.content = String(object.content);
+            if (object.author != null)
+                message.author = String(object.author);
+            switch (object.role) {
+            default:
+                if (typeof object.role === "number") {
+                    message.role = object.role;
+                    break;
+                }
+                break;
+            case "USER":
+            case 0:
+                message.role = 0;
+                break;
+            case "MOD":
+            case 1:
+                message.role = 1;
+                break;
+            case "DEV":
+            case 2:
+                message.role = 2;
+                break;
+            }
+            if (object.world != null)
+                message.world = String(object.world);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Chat message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.Chat
+         * @static
+         * @param {game.Chat} message Chat
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Chat.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.id = 0;
+                object.content = "";
+                object.author = "";
+                object.role = options.enums === String ? "USER" : 0;
+                object.world = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.content != null && message.hasOwnProperty("content"))
+                object.content = message.content;
+            if (message.author != null && message.hasOwnProperty("author"))
+                object.author = message.author;
+            if (message.role != null && message.hasOwnProperty("role"))
+                object.role = options.enums === String ? $root.connection.Role[message.role] === undefined ? message.role : $root.connection.Role[message.role] : message.role;
+            if (message.world != null && message.hasOwnProperty("world"))
+                object.world = message.world;
+            return object;
+        };
+
+        /**
+         * Converts this Chat to JSON.
+         * @function toJSON
+         * @memberof game.Chat
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Chat.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Chat
+         * @function getTypeUrl
+         * @memberof game.Chat
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Chat.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/game.Chat";
+        };
+
+        return Chat;
+    })();
+
     game.PackedEntity = (function() {
 
         /**

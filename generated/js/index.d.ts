@@ -890,6 +890,9 @@ export namespace game {
 
         /** Package updatePlayers */
         updatePlayers?: (game.IUpdatePlayersMap|null);
+
+        /** Package chatMessage */
+        chatMessage?: (game.IChat|null);
     }
 
     /** Represents a Package. */
@@ -928,8 +931,11 @@ export namespace game {
         /** Package updatePlayers. */
         public updatePlayers?: (game.IUpdatePlayersMap|null);
 
+        /** Package chatMessage. */
+        public chatMessage?: (game.IChat|null);
+
         /** Package kind. */
-        public kind?: ("newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers");
+        public kind?: ("newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage");
 
         /**
          * Creates a new Package instance using the specified properties.

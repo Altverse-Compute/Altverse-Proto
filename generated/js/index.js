@@ -4722,7 +4722,474 @@ export const connection = $root.connection = (() => {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link connection.GameService#ping}.
+         * @memberof connection.GameService
+         * @typedef PingCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {connection.Pong} [response] Pong
+         */
+
+        /**
+         * Calls Ping.
+         * @function ping
+         * @memberof connection.GameService
+         * @instance
+         * @param {connection.IPing} request Ping message or plain object
+         * @param {connection.GameService.PingCallback} callback Node-style callback called with the error, if any, and Pong
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(GameService.prototype.ping = function ping(request, callback) {
+            return this.rpcCall(ping, $root.connection.Ping, $root.connection.Pong, request, callback);
+        }, "name", { value: "Ping" });
+
+        /**
+         * Calls Ping.
+         * @function ping
+         * @memberof connection.GameService
+         * @instance
+         * @param {connection.IPing} request Ping message or plain object
+         * @returns {Promise<connection.Pong>} Promise
+         * @variation 2
+         */
+
         return GameService;
+    })();
+
+    connection.Ping = (function() {
+
+        /**
+         * Properties of a Ping.
+         * @memberof connection
+         * @interface IPing
+         * @property {number|null} [online] Ping online
+         * @property {boolean|null} [alive] Ping alive
+         */
+
+        /**
+         * Constructs a new Ping.
+         * @memberof connection
+         * @classdesc Represents a Ping.
+         * @implements IPing
+         * @constructor
+         * @param {connection.IPing=} [properties] Properties to set
+         */
+        function Ping(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Ping online.
+         * @member {number} online
+         * @memberof connection.Ping
+         * @instance
+         */
+        Ping.prototype.online = 0;
+
+        /**
+         * Ping alive.
+         * @member {boolean} alive
+         * @memberof connection.Ping
+         * @instance
+         */
+        Ping.prototype.alive = false;
+
+        /**
+         * Creates a new Ping instance using the specified properties.
+         * @function create
+         * @memberof connection.Ping
+         * @static
+         * @param {connection.IPing=} [properties] Properties to set
+         * @returns {connection.Ping} Ping instance
+         */
+        Ping.create = function create(properties) {
+            return new Ping(properties);
+        };
+
+        /**
+         * Encodes the specified Ping message. Does not implicitly {@link connection.Ping.verify|verify} messages.
+         * @function encode
+         * @memberof connection.Ping
+         * @static
+         * @param {connection.IPing} message Ping message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Ping.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.online != null && Object.hasOwnProperty.call(message, "online"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.online);
+            if (message.alive != null && Object.hasOwnProperty.call(message, "alive"))
+                writer.uint32(/* id 21, wireType 0 =*/168).bool(message.alive);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Ping message, length delimited. Does not implicitly {@link connection.Ping.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.Ping
+         * @static
+         * @param {connection.IPing} message Ping message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Ping.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Ping message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.Ping
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.Ping} Ping
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Ping.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.Ping();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.online = reader.uint32();
+                        break;
+                    }
+                case 21: {
+                        message.alive = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Ping message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.Ping
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.Ping} Ping
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Ping.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Ping message.
+         * @function verify
+         * @memberof connection.Ping
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Ping.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.online != null && message.hasOwnProperty("online"))
+                if (!$util.isInteger(message.online))
+                    return "online: integer expected";
+            if (message.alive != null && message.hasOwnProperty("alive"))
+                if (typeof message.alive !== "boolean")
+                    return "alive: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a Ping message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.Ping
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.Ping} Ping
+         */
+        Ping.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.Ping)
+                return object;
+            let message = new $root.connection.Ping();
+            if (object.online != null)
+                message.online = object.online >>> 0;
+            if (object.alive != null)
+                message.alive = Boolean(object.alive);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Ping message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.Ping
+         * @static
+         * @param {connection.Ping} message Ping
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Ping.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.online = 0;
+                object.alive = false;
+            }
+            if (message.online != null && message.hasOwnProperty("online"))
+                object.online = message.online;
+            if (message.alive != null && message.hasOwnProperty("alive"))
+                object.alive = message.alive;
+            return object;
+        };
+
+        /**
+         * Converts this Ping to JSON.
+         * @function toJSON
+         * @memberof connection.Ping
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Ping.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Ping
+         * @function getTypeUrl
+         * @memberof connection.Ping
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Ping.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.Ping";
+        };
+
+        return Ping;
+    })();
+
+    connection.Pong = (function() {
+
+        /**
+         * Properties of a Pong.
+         * @memberof connection
+         * @interface IPong
+         * @property {boolean|null} [success] Pong success
+         */
+
+        /**
+         * Constructs a new Pong.
+         * @memberof connection
+         * @classdesc Represents a Pong.
+         * @implements IPong
+         * @constructor
+         * @param {connection.IPong=} [properties] Properties to set
+         */
+        function Pong(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Pong success.
+         * @member {boolean} success
+         * @memberof connection.Pong
+         * @instance
+         */
+        Pong.prototype.success = false;
+
+        /**
+         * Creates a new Pong instance using the specified properties.
+         * @function create
+         * @memberof connection.Pong
+         * @static
+         * @param {connection.IPong=} [properties] Properties to set
+         * @returns {connection.Pong} Pong instance
+         */
+        Pong.create = function create(properties) {
+            return new Pong(properties);
+        };
+
+        /**
+         * Encodes the specified Pong message. Does not implicitly {@link connection.Pong.verify|verify} messages.
+         * @function encode
+         * @memberof connection.Pong
+         * @static
+         * @param {connection.IPong} message Pong message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Pong.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.success != null && Object.hasOwnProperty.call(message, "success"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Pong message, length delimited. Does not implicitly {@link connection.Pong.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.Pong
+         * @static
+         * @param {connection.IPong} message Pong message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Pong.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Pong message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.Pong
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.Pong} Pong
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Pong.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.Pong();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.success = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Pong message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.Pong
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.Pong} Pong
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Pong.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Pong message.
+         * @function verify
+         * @memberof connection.Pong
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Pong.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.success != null && message.hasOwnProperty("success"))
+                if (typeof message.success !== "boolean")
+                    return "success: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a Pong message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.Pong
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.Pong} Pong
+         */
+        Pong.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.Pong)
+                return object;
+            let message = new $root.connection.Pong();
+            if (object.success != null)
+                message.success = Boolean(object.success);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pong message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.Pong
+         * @static
+         * @param {connection.Pong} message Pong
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pong.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.success = false;
+            if (message.success != null && message.hasOwnProperty("success"))
+                object.success = message.success;
+            return object;
+        };
+
+        /**
+         * Converts this Pong to JSON.
+         * @function toJSON
+         * @memberof connection.Pong
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pong.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Pong
+         * @function getTypeUrl
+         * @memberof connection.Pong
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Pong.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.Pong";
+        };
+
+        return Pong;
     })();
 
     connection.RegisterRequest = (function() {

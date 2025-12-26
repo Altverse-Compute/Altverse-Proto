@@ -4,6 +4,8 @@ import type { EnumTypeDefinition, MessageTypeDefinition } from '@grpc/proto-load
 import type { GameServiceClient as _connection_GameServiceClient, GameServiceDefinition as _connection_GameServiceDefinition } from './connection/GameService';
 import type { JoinPlayerRequest as _connection_JoinPlayerRequest, JoinPlayerRequest__Output as _connection_JoinPlayerRequest__Output } from './connection/JoinPlayerRequest';
 import type { JoinPlayerResponse as _connection_JoinPlayerResponse, JoinPlayerResponse__Output as _connection_JoinPlayerResponse__Output } from './connection/JoinPlayerResponse';
+import type { Ping as _connection_Ping, Ping__Output as _connection_Ping__Output } from './connection/Ping';
+import type { Pong as _connection_Pong, Pong__Output as _connection_Pong__Output } from './connection/Pong';
 import type { RegisterRequest as _connection_RegisterRequest, RegisterRequest__Output as _connection_RegisterRequest__Output } from './connection/RegisterRequest';
 import type { RegisterResponse as _connection_RegisterResponse, RegisterResponse__Output as _connection_RegisterResponse__Output } from './connection/RegisterResponse';
 
@@ -16,6 +18,8 @@ export interface ProtoGrpcType {
     GameService: SubtypeConstructor<typeof grpc.Client, _connection_GameServiceClient> & { service: _connection_GameServiceDefinition }
     JoinPlayerRequest: MessageTypeDefinition<_connection_JoinPlayerRequest, _connection_JoinPlayerRequest__Output>
     JoinPlayerResponse: MessageTypeDefinition<_connection_JoinPlayerResponse, _connection_JoinPlayerResponse__Output>
+    Ping: MessageTypeDefinition<_connection_Ping, _connection_Ping__Output>
+    Pong: MessageTypeDefinition<_connection_Pong, _connection_Pong__Output>
     RegisterRequest: MessageTypeDefinition<_connection_RegisterRequest, _connection_RegisterRequest__Output>
     RegisterResponse: MessageTypeDefinition<_connection_RegisterResponse, _connection_RegisterResponse__Output>
     Role: EnumTypeDefinition

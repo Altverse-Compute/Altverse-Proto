@@ -2,13 +2,17 @@ syntax = "proto3";
 
 package game;
 
-import "./rpc.proto";
+enum Role {
+    USER = 0;
+    MOD = 1;
+    DEV = 2;
+}
 
 message Chat {
   uint32 id = 1;
   string content = 2;
   string author = 3;
-  connection.Role role = 4;
+  Role role = 4;
   string world = 5;
 }
 

@@ -1,10 +1,10 @@
 // Original file: proto/rpc.proto
 
 
-export interface RegisterResponse {
+export interface AwardResponse {
   'success'?: (boolean);
 }
 
-export interface RegisterResponse__Output {
+export interface AwardResponse__Output {
   'success'?: (boolean);
 }

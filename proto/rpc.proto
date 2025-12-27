@@ -3,9 +3,10 @@ syntax = "proto3";
 package connection;
 
 service GameService {
-    rpc Register(RegisterRequest) returns (RegisterResponse) {}
+    rpc Authentication(AuthenticationRequest) returns (AuthenticationResponse) {}
     rpc JoinPlayer(JoinPlayerRequest) returns (JoinPlayerResponse) {}
     rpc Ping(Ping) returns (Pong) {}
+    rpc AwardPlayer(AwardRequest) returns (AwardResponse) {}
 }
 
 message Ping {
@@ -17,14 +18,12 @@ message Pong {
     bool success = 1;
 }
 
-message RegisterRequest {
-    string icon = 1;
-    string name = 2;
-    string url = 3;
+message AuthenticationRequest {
+    string token = 1;
 }
 
-message RegisterResponse {
-    bool success = 1;
+message AuthenticationResponse {
+    string session = 1;
 }
 
 message JoinPlayerRequest {
@@ -34,6 +33,16 @@ message JoinPlayerRequest {
 message JoinPlayerResponse {
     string name = 1;
     Role role = 2;
+}
+
+message AwardRequest {
+    string id = 1;
+    optional uint32 vp = 2;
+    optional string accessory = 3; 
+}
+
+message AwardResponse {
+    bool success = 1;
 }
 
 enum Role {

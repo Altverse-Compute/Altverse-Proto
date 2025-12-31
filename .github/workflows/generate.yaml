@@ -27,9 +27,6 @@ jobs:
       - name: Install protobufjs
         run: npm install -g protobufjs protobufjs-cli grpc-tools @grpc/grpc-js @grpc/proto-loader
 
-      - name: Install node_modules
-        run: npm install
-
       - name: Generate JS TS code
         run: |
           chmod +x generate.sh

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package connection;
 
-service GameService {
+service Game {
     rpc Authentication(AuthenticationRequest) returns (AuthenticationResponse) {}
     rpc JoinPlayer(JoinPlayerRequest) returns (JoinPlayerResponse) {}
     rpc Ping(PingRequest) returns (PongResponse) {}

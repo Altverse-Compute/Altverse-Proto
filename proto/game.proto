@@ -8,6 +8,8 @@ enum Role {
     DEV = 2;
 }
 
+// Change just for build
+
 message Chat {
   uint32 id = 1;
   string content = 2;

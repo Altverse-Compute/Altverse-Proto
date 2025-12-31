@@ -4615,4 +4615,1981 @@ export const game = $root.game = (() => {
     return game;
 })();
 
+export const connection = $root.connection = (() => {
+
+    /**
+     * Namespace connection.
+     * @exports connection
+     * @namespace
+     */
+    const connection = {};
+
+    connection.Game = (function() {
+
+        /**
+         * Constructs a new Game service.
+         * @memberof connection
+         * @classdesc Represents a Game
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function Game(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (Game.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Game;
+
+        /**
+         * Creates new Game service using the specified rpc implementation.
+         * @function create
+         * @memberof connection.Game
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {Game} RPC service. Useful where requests and/or responses are streamed.
+         */
+        Game.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link connection.Game#authentication}.
+         * @memberof connection.Game
+         * @typedef AuthenticationCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {connection.AuthenticationResponse} [response] AuthenticationResponse
+         */
+
+        /**
+         * Calls Authentication.
+         * @function authentication
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IAuthenticationRequest} request AuthenticationRequest message or plain object
+         * @param {connection.Game.AuthenticationCallback} callback Node-style callback called with the error, if any, and AuthenticationResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Game.prototype.authentication = function authentication(request, callback) {
+            return this.rpcCall(authentication, $root.connection.AuthenticationRequest, $root.connection.AuthenticationResponse, request, callback);
+        }, "name", { value: "Authentication" });
+
+        /**
+         * Calls Authentication.
+         * @function authentication
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IAuthenticationRequest} request AuthenticationRequest message or plain object
+         * @returns {Promise<connection.AuthenticationResponse>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link connection.Game#joinPlayer}.
+         * @memberof connection.Game
+         * @typedef JoinPlayerCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {connection.JoinPlayerResponse} [response] JoinPlayerResponse
+         */
+
+        /**
+         * Calls JoinPlayer.
+         * @function joinPlayer
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IJoinPlayerRequest} request JoinPlayerRequest message or plain object
+         * @param {connection.Game.JoinPlayerCallback} callback Node-style callback called with the error, if any, and JoinPlayerResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Game.prototype.joinPlayer = function joinPlayer(request, callback) {
+            return this.rpcCall(joinPlayer, $root.connection.JoinPlayerRequest, $root.connection.JoinPlayerResponse, request, callback);
+        }, "name", { value: "JoinPlayer" });
+
+        /**
+         * Calls JoinPlayer.
+         * @function joinPlayer
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IJoinPlayerRequest} request JoinPlayerRequest message or plain object
+         * @returns {Promise<connection.JoinPlayerResponse>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link connection.Game#ping}.
+         * @memberof connection.Game
+         * @typedef PingCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {connection.PongResponse} [response] PongResponse
+         */
+
+        /**
+         * Calls Ping.
+         * @function ping
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IPingRequest} request PingRequest message or plain object
+         * @param {connection.Game.PingCallback} callback Node-style callback called with the error, if any, and PongResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Game.prototype.ping = function ping(request, callback) {
+            return this.rpcCall(ping, $root.connection.PingRequest, $root.connection.PongResponse, request, callback);
+        }, "name", { value: "Ping" });
+
+        /**
+         * Calls Ping.
+         * @function ping
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IPingRequest} request PingRequest message or plain object
+         * @returns {Promise<connection.PongResponse>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link connection.Game#awardPlayer}.
+         * @memberof connection.Game
+         * @typedef AwardPlayerCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {connection.AwardResponse} [response] AwardResponse
+         */
+
+        /**
+         * Calls AwardPlayer.
+         * @function awardPlayer
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IAwardRequest} request AwardRequest message or plain object
+         * @param {connection.Game.AwardPlayerCallback} callback Node-style callback called with the error, if any, and AwardResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(Game.prototype.awardPlayer = function awardPlayer(request, callback) {
+            return this.rpcCall(awardPlayer, $root.connection.AwardRequest, $root.connection.AwardResponse, request, callback);
+        }, "name", { value: "AwardPlayer" });
+
+        /**
+         * Calls AwardPlayer.
+         * @function awardPlayer
+         * @memberof connection.Game
+         * @instance
+         * @param {connection.IAwardRequest} request AwardRequest message or plain object
+         * @returns {Promise<connection.AwardResponse>} Promise
+         * @variation 2
+         */
+
+        return Game;
+    })();
+
+    connection.PingRequest = (function() {
+
+        /**
+         * Properties of a PingRequest.
+         * @memberof connection
+         * @interface IPingRequest
+         * @property {number|null} [online] PingRequest online
+         * @property {boolean|null} [alive] PingRequest alive
+         */
+
+        /**
+         * Constructs a new PingRequest.
+         * @memberof connection
+         * @classdesc Represents a PingRequest.
+         * @implements IPingRequest
+         * @constructor
+         * @param {connection.IPingRequest=} [properties] Properties to set
+         */
+        function PingRequest(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PingRequest online.
+         * @member {number} online
+         * @memberof connection.PingRequest
+         * @instance
+         */
+        PingRequest.prototype.online = 0;
+
+        /**
+         * PingRequest alive.
+         * @member {boolean} alive
+         * @memberof connection.PingRequest
+         * @instance
+         */
+        PingRequest.prototype.alive = false;
+
+        /**
+         * Creates a new PingRequest instance using the specified properties.
+         * @function create
+         * @memberof connection.PingRequest
+         * @static
+         * @param {connection.IPingRequest=} [properties] Properties to set
+         * @returns {connection.PingRequest} PingRequest instance
+         */
+        PingRequest.create = function create(properties) {
+            return new PingRequest(properties);
+        };
+
+        /**
+         * Encodes the specified PingRequest message. Does not implicitly {@link connection.PingRequest.verify|verify} messages.
+         * @function encode
+         * @memberof connection.PingRequest
+         * @static
+         * @param {connection.IPingRequest} message PingRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PingRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.online != null && Object.hasOwnProperty.call(message, "online"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.online);
+            if (message.alive != null && Object.hasOwnProperty.call(message, "alive"))
+                writer.uint32(/* id 21, wireType 0 =*/168).bool(message.alive);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PingRequest message, length delimited. Does not implicitly {@link connection.PingRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.PingRequest
+         * @static
+         * @param {connection.IPingRequest} message PingRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PingRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PingRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.PingRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.PingRequest} PingRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PingRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.PingRequest();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.online = reader.uint32();
+                        break;
+                    }
+                case 21: {
+                        message.alive = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PingRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.PingRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.PingRequest} PingRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PingRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PingRequest message.
+         * @function verify
+         * @memberof connection.PingRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PingRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.online != null && message.hasOwnProperty("online"))
+                if (!$util.isInteger(message.online))
+                    return "online: integer expected";
+            if (message.alive != null && message.hasOwnProperty("alive"))
+                if (typeof message.alive !== "boolean")
+                    return "alive: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a PingRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.PingRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.PingRequest} PingRequest
+         */
+        PingRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.PingRequest)
+                return object;
+            let message = new $root.connection.PingRequest();
+            if (object.online != null)
+                message.online = object.online >>> 0;
+            if (object.alive != null)
+                message.alive = Boolean(object.alive);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PingRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.PingRequest
+         * @static
+         * @param {connection.PingRequest} message PingRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PingRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.online = 0;
+                object.alive = false;
+            }
+            if (message.online != null && message.hasOwnProperty("online"))
+                object.online = message.online;
+            if (message.alive != null && message.hasOwnProperty("alive"))
+                object.alive = message.alive;
+            return object;
+        };
+
+        /**
+         * Converts this PingRequest to JSON.
+         * @function toJSON
+         * @memberof connection.PingRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PingRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PingRequest
+         * @function getTypeUrl
+         * @memberof connection.PingRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PingRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.PingRequest";
+        };
+
+        return PingRequest;
+    })();
+
+    connection.PongResponse = (function() {
+
+        /**
+         * Properties of a PongResponse.
+         * @memberof connection
+         * @interface IPongResponse
+         * @property {boolean|null} [success] PongResponse success
+         */
+
+        /**
+         * Constructs a new PongResponse.
+         * @memberof connection
+         * @classdesc Represents a PongResponse.
+         * @implements IPongResponse
+         * @constructor
+         * @param {connection.IPongResponse=} [properties] Properties to set
+         */
+        function PongResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PongResponse success.
+         * @member {boolean} success
+         * @memberof connection.PongResponse
+         * @instance
+         */
+        PongResponse.prototype.success = false;
+
+        /**
+         * Creates a new PongResponse instance using the specified properties.
+         * @function create
+         * @memberof connection.PongResponse
+         * @static
+         * @param {connection.IPongResponse=} [properties] Properties to set
+         * @returns {connection.PongResponse} PongResponse instance
+         */
+        PongResponse.create = function create(properties) {
+            return new PongResponse(properties);
+        };
+
+        /**
+         * Encodes the specified PongResponse message. Does not implicitly {@link connection.PongResponse.verify|verify} messages.
+         * @function encode
+         * @memberof connection.PongResponse
+         * @static
+         * @param {connection.IPongResponse} message PongResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PongResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.success != null && Object.hasOwnProperty.call(message, "success"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PongResponse message, length delimited. Does not implicitly {@link connection.PongResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.PongResponse
+         * @static
+         * @param {connection.IPongResponse} message PongResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PongResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PongResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.PongResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.PongResponse} PongResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PongResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.PongResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.success = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PongResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.PongResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.PongResponse} PongResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PongResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PongResponse message.
+         * @function verify
+         * @memberof connection.PongResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PongResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.success != null && message.hasOwnProperty("success"))
+                if (typeof message.success !== "boolean")
+                    return "success: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a PongResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.PongResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.PongResponse} PongResponse
+         */
+        PongResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.PongResponse)
+                return object;
+            let message = new $root.connection.PongResponse();
+            if (object.success != null)
+                message.success = Boolean(object.success);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PongResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.PongResponse
+         * @static
+         * @param {connection.PongResponse} message PongResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PongResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.success = false;
+            if (message.success != null && message.hasOwnProperty("success"))
+                object.success = message.success;
+            return object;
+        };
+
+        /**
+         * Converts this PongResponse to JSON.
+         * @function toJSON
+         * @memberof connection.PongResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PongResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PongResponse
+         * @function getTypeUrl
+         * @memberof connection.PongResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PongResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.PongResponse";
+        };
+
+        return PongResponse;
+    })();
+
+    connection.AuthenticationRequest = (function() {
+
+        /**
+         * Properties of an AuthenticationRequest.
+         * @memberof connection
+         * @interface IAuthenticationRequest
+         * @property {string|null} [token] AuthenticationRequest token
+         */
+
+        /**
+         * Constructs a new AuthenticationRequest.
+         * @memberof connection
+         * @classdesc Represents an AuthenticationRequest.
+         * @implements IAuthenticationRequest
+         * @constructor
+         * @param {connection.IAuthenticationRequest=} [properties] Properties to set
+         */
+        function AuthenticationRequest(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AuthenticationRequest token.
+         * @member {string} token
+         * @memberof connection.AuthenticationRequest
+         * @instance
+         */
+        AuthenticationRequest.prototype.token = "";
+
+        /**
+         * Creates a new AuthenticationRequest instance using the specified properties.
+         * @function create
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {connection.IAuthenticationRequest=} [properties] Properties to set
+         * @returns {connection.AuthenticationRequest} AuthenticationRequest instance
+         */
+        AuthenticationRequest.create = function create(properties) {
+            return new AuthenticationRequest(properties);
+        };
+
+        /**
+         * Encodes the specified AuthenticationRequest message. Does not implicitly {@link connection.AuthenticationRequest.verify|verify} messages.
+         * @function encode
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {connection.IAuthenticationRequest} message AuthenticationRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthenticationRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AuthenticationRequest message, length delimited. Does not implicitly {@link connection.AuthenticationRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {connection.IAuthenticationRequest} message AuthenticationRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthenticationRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AuthenticationRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.AuthenticationRequest} AuthenticationRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthenticationRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AuthenticationRequest();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.token = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AuthenticationRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.AuthenticationRequest} AuthenticationRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthenticationRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AuthenticationRequest message.
+         * @function verify
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AuthenticationRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.token != null && message.hasOwnProperty("token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an AuthenticationRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.AuthenticationRequest} AuthenticationRequest
+         */
+        AuthenticationRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.AuthenticationRequest)
+                return object;
+            let message = new $root.connection.AuthenticationRequest();
+            if (object.token != null)
+                message.token = String(object.token);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AuthenticationRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {connection.AuthenticationRequest} message AuthenticationRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AuthenticationRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.token = "";
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
+            return object;
+        };
+
+        /**
+         * Converts this AuthenticationRequest to JSON.
+         * @function toJSON
+         * @memberof connection.AuthenticationRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AuthenticationRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AuthenticationRequest
+         * @function getTypeUrl
+         * @memberof connection.AuthenticationRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AuthenticationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.AuthenticationRequest";
+        };
+
+        return AuthenticationRequest;
+    })();
+
+    connection.AuthenticationResponse = (function() {
+
+        /**
+         * Properties of an AuthenticationResponse.
+         * @memberof connection
+         * @interface IAuthenticationResponse
+         * @property {string|null} [session] AuthenticationResponse session
+         */
+
+        /**
+         * Constructs a new AuthenticationResponse.
+         * @memberof connection
+         * @classdesc Represents an AuthenticationResponse.
+         * @implements IAuthenticationResponse
+         * @constructor
+         * @param {connection.IAuthenticationResponse=} [properties] Properties to set
+         */
+        function AuthenticationResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AuthenticationResponse session.
+         * @member {string} session
+         * @memberof connection.AuthenticationResponse
+         * @instance
+         */
+        AuthenticationResponse.prototype.session = "";
+
+        /**
+         * Creates a new AuthenticationResponse instance using the specified properties.
+         * @function create
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {connection.IAuthenticationResponse=} [properties] Properties to set
+         * @returns {connection.AuthenticationResponse} AuthenticationResponse instance
+         */
+        AuthenticationResponse.create = function create(properties) {
+            return new AuthenticationResponse(properties);
+        };
+
+        /**
+         * Encodes the specified AuthenticationResponse message. Does not implicitly {@link connection.AuthenticationResponse.verify|verify} messages.
+         * @function encode
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {connection.IAuthenticationResponse} message AuthenticationResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthenticationResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.session != null && Object.hasOwnProperty.call(message, "session"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.session);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AuthenticationResponse message, length delimited. Does not implicitly {@link connection.AuthenticationResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {connection.IAuthenticationResponse} message AuthenticationResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthenticationResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AuthenticationResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.AuthenticationResponse} AuthenticationResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthenticationResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AuthenticationResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.session = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AuthenticationResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.AuthenticationResponse} AuthenticationResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthenticationResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AuthenticationResponse message.
+         * @function verify
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AuthenticationResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.session != null && message.hasOwnProperty("session"))
+                if (!$util.isString(message.session))
+                    return "session: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an AuthenticationResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.AuthenticationResponse} AuthenticationResponse
+         */
+        AuthenticationResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.AuthenticationResponse)
+                return object;
+            let message = new $root.connection.AuthenticationResponse();
+            if (object.session != null)
+                message.session = String(object.session);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AuthenticationResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {connection.AuthenticationResponse} message AuthenticationResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AuthenticationResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.session = "";
+            if (message.session != null && message.hasOwnProperty("session"))
+                object.session = message.session;
+            return object;
+        };
+
+        /**
+         * Converts this AuthenticationResponse to JSON.
+         * @function toJSON
+         * @memberof connection.AuthenticationResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AuthenticationResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AuthenticationResponse
+         * @function getTypeUrl
+         * @memberof connection.AuthenticationResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AuthenticationResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.AuthenticationResponse";
+        };
+
+        return AuthenticationResponse;
+    })();
+
+    connection.JoinPlayerRequest = (function() {
+
+        /**
+         * Properties of a JoinPlayerRequest.
+         * @memberof connection
+         * @interface IJoinPlayerRequest
+         * @property {string|null} [token] JoinPlayerRequest token
+         */
+
+        /**
+         * Constructs a new JoinPlayerRequest.
+         * @memberof connection
+         * @classdesc Represents a JoinPlayerRequest.
+         * @implements IJoinPlayerRequest
+         * @constructor
+         * @param {connection.IJoinPlayerRequest=} [properties] Properties to set
+         */
+        function JoinPlayerRequest(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * JoinPlayerRequest token.
+         * @member {string} token
+         * @memberof connection.JoinPlayerRequest
+         * @instance
+         */
+        JoinPlayerRequest.prototype.token = "";
+
+        /**
+         * Creates a new JoinPlayerRequest instance using the specified properties.
+         * @function create
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {connection.IJoinPlayerRequest=} [properties] Properties to set
+         * @returns {connection.JoinPlayerRequest} JoinPlayerRequest instance
+         */
+        JoinPlayerRequest.create = function create(properties) {
+            return new JoinPlayerRequest(properties);
+        };
+
+        /**
+         * Encodes the specified JoinPlayerRequest message. Does not implicitly {@link connection.JoinPlayerRequest.verify|verify} messages.
+         * @function encode
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {connection.IJoinPlayerRequest} message JoinPlayerRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinPlayerRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified JoinPlayerRequest message, length delimited. Does not implicitly {@link connection.JoinPlayerRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {connection.IJoinPlayerRequest} message JoinPlayerRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinPlayerRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a JoinPlayerRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.JoinPlayerRequest} JoinPlayerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinPlayerRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.JoinPlayerRequest();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.token = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a JoinPlayerRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.JoinPlayerRequest} JoinPlayerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinPlayerRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a JoinPlayerRequest message.
+         * @function verify
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        JoinPlayerRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.token != null && message.hasOwnProperty("token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a JoinPlayerRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.JoinPlayerRequest} JoinPlayerRequest
+         */
+        JoinPlayerRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.JoinPlayerRequest)
+                return object;
+            let message = new $root.connection.JoinPlayerRequest();
+            if (object.token != null)
+                message.token = String(object.token);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a JoinPlayerRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {connection.JoinPlayerRequest} message JoinPlayerRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        JoinPlayerRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.token = "";
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
+            return object;
+        };
+
+        /**
+         * Converts this JoinPlayerRequest to JSON.
+         * @function toJSON
+         * @memberof connection.JoinPlayerRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        JoinPlayerRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for JoinPlayerRequest
+         * @function getTypeUrl
+         * @memberof connection.JoinPlayerRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        JoinPlayerRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.JoinPlayerRequest";
+        };
+
+        return JoinPlayerRequest;
+    })();
+
+    connection.JoinPlayerResponse = (function() {
+
+        /**
+         * Properties of a JoinPlayerResponse.
+         * @memberof connection
+         * @interface IJoinPlayerResponse
+         * @property {string|null} [name] JoinPlayerResponse name
+         * @property {connection.Role|null} [role] JoinPlayerResponse role
+         */
+
+        /**
+         * Constructs a new JoinPlayerResponse.
+         * @memberof connection
+         * @classdesc Represents a JoinPlayerResponse.
+         * @implements IJoinPlayerResponse
+         * @constructor
+         * @param {connection.IJoinPlayerResponse=} [properties] Properties to set
+         */
+        function JoinPlayerResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * JoinPlayerResponse name.
+         * @member {string} name
+         * @memberof connection.JoinPlayerResponse
+         * @instance
+         */
+        JoinPlayerResponse.prototype.name = "";
+
+        /**
+         * JoinPlayerResponse role.
+         * @member {connection.Role} role
+         * @memberof connection.JoinPlayerResponse
+         * @instance
+         */
+        JoinPlayerResponse.prototype.role = 0;
+
+        /**
+         * Creates a new JoinPlayerResponse instance using the specified properties.
+         * @function create
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {connection.IJoinPlayerResponse=} [properties] Properties to set
+         * @returns {connection.JoinPlayerResponse} JoinPlayerResponse instance
+         */
+        JoinPlayerResponse.create = function create(properties) {
+            return new JoinPlayerResponse(properties);
+        };
+
+        /**
+         * Encodes the specified JoinPlayerResponse message. Does not implicitly {@link connection.JoinPlayerResponse.verify|verify} messages.
+         * @function encode
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {connection.IJoinPlayerResponse} message JoinPlayerResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinPlayerResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.role);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified JoinPlayerResponse message, length delimited. Does not implicitly {@link connection.JoinPlayerResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {connection.IJoinPlayerResponse} message JoinPlayerResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        JoinPlayerResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a JoinPlayerResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.JoinPlayerResponse} JoinPlayerResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinPlayerResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.JoinPlayerResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.role = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a JoinPlayerResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.JoinPlayerResponse} JoinPlayerResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        JoinPlayerResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a JoinPlayerResponse message.
+         * @function verify
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        JoinPlayerResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.role != null && message.hasOwnProperty("role"))
+                switch (message.role) {
+                default:
+                    return "role: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a JoinPlayerResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.JoinPlayerResponse} JoinPlayerResponse
+         */
+        JoinPlayerResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.JoinPlayerResponse)
+                return object;
+            let message = new $root.connection.JoinPlayerResponse();
+            if (object.name != null)
+                message.name = String(object.name);
+            switch (object.role) {
+            default:
+                if (typeof object.role === "number") {
+                    message.role = object.role;
+                    break;
+                }
+                break;
+            case "USER":
+            case 0:
+                message.role = 0;
+                break;
+            case "MOD":
+            case 1:
+                message.role = 1;
+                break;
+            case "DEV":
+            case 2:
+                message.role = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a JoinPlayerResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {connection.JoinPlayerResponse} message JoinPlayerResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        JoinPlayerResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.name = "";
+                object.role = options.enums === String ? "USER" : 0;
+            }
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.role != null && message.hasOwnProperty("role"))
+                object.role = options.enums === String ? $root.connection.Role[message.role] === undefined ? message.role : $root.connection.Role[message.role] : message.role;
+            return object;
+        };
+
+        /**
+         * Converts this JoinPlayerResponse to JSON.
+         * @function toJSON
+         * @memberof connection.JoinPlayerResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        JoinPlayerResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for JoinPlayerResponse
+         * @function getTypeUrl
+         * @memberof connection.JoinPlayerResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        JoinPlayerResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.JoinPlayerResponse";
+        };
+
+        return JoinPlayerResponse;
+    })();
+
+    connection.AwardRequest = (function() {
+
+        /**
+         * Properties of an AwardRequest.
+         * @memberof connection
+         * @interface IAwardRequest
+         * @property {string|null} [id] AwardRequest id
+         * @property {number|null} [vp] AwardRequest vp
+         * @property {string|null} [accessory] AwardRequest accessory
+         */
+
+        /**
+         * Constructs a new AwardRequest.
+         * @memberof connection
+         * @classdesc Represents an AwardRequest.
+         * @implements IAwardRequest
+         * @constructor
+         * @param {connection.IAwardRequest=} [properties] Properties to set
+         */
+        function AwardRequest(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AwardRequest id.
+         * @member {string} id
+         * @memberof connection.AwardRequest
+         * @instance
+         */
+        AwardRequest.prototype.id = "";
+
+        /**
+         * AwardRequest vp.
+         * @member {number|null|undefined} vp
+         * @memberof connection.AwardRequest
+         * @instance
+         */
+        AwardRequest.prototype.vp = null;
+
+        /**
+         * AwardRequest accessory.
+         * @member {string|null|undefined} accessory
+         * @memberof connection.AwardRequest
+         * @instance
+         */
+        AwardRequest.prototype.accessory = null;
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(AwardRequest.prototype, "_vp", {
+            get: $util.oneOfGetter($oneOfFields = ["vp"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(AwardRequest.prototype, "_accessory", {
+            get: $util.oneOfGetter($oneOfFields = ["accessory"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new AwardRequest instance using the specified properties.
+         * @function create
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {connection.IAwardRequest=} [properties] Properties to set
+         * @returns {connection.AwardRequest} AwardRequest instance
+         */
+        AwardRequest.create = function create(properties) {
+            return new AwardRequest(properties);
+        };
+
+        /**
+         * Encodes the specified AwardRequest message. Does not implicitly {@link connection.AwardRequest.verify|verify} messages.
+         * @function encode
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {connection.IAwardRequest} message AwardRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AwardRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+            if (message.vp != null && Object.hasOwnProperty.call(message, "vp"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.vp);
+            if (message.accessory != null && Object.hasOwnProperty.call(message, "accessory"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.accessory);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AwardRequest message, length delimited. Does not implicitly {@link connection.AwardRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {connection.IAwardRequest} message AwardRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AwardRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AwardRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.AwardRequest} AwardRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AwardRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AwardRequest();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.vp = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.accessory = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AwardRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.AwardRequest} AwardRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AwardRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AwardRequest message.
+         * @function verify
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AwardRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            let properties = {};
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.vp != null && message.hasOwnProperty("vp")) {
+                properties._vp = 1;
+                if (!$util.isInteger(message.vp))
+                    return "vp: integer expected";
+            }
+            if (message.accessory != null && message.hasOwnProperty("accessory")) {
+                properties._accessory = 1;
+                if (!$util.isString(message.accessory))
+                    return "accessory: string expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates an AwardRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.AwardRequest} AwardRequest
+         */
+        AwardRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.AwardRequest)
+                return object;
+            let message = new $root.connection.AwardRequest();
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.vp != null)
+                message.vp = object.vp >>> 0;
+            if (object.accessory != null)
+                message.accessory = String(object.accessory);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AwardRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {connection.AwardRequest} message AwardRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AwardRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.id = "";
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.vp != null && message.hasOwnProperty("vp")) {
+                object.vp = message.vp;
+                if (options.oneofs)
+                    object._vp = "vp";
+            }
+            if (message.accessory != null && message.hasOwnProperty("accessory")) {
+                object.accessory = message.accessory;
+                if (options.oneofs)
+                    object._accessory = "accessory";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this AwardRequest to JSON.
+         * @function toJSON
+         * @memberof connection.AwardRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AwardRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AwardRequest
+         * @function getTypeUrl
+         * @memberof connection.AwardRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AwardRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.AwardRequest";
+        };
+
+        return AwardRequest;
+    })();
+
+    connection.AwardResponse = (function() {
+
+        /**
+         * Properties of an AwardResponse.
+         * @memberof connection
+         * @interface IAwardResponse
+         * @property {boolean|null} [success] AwardResponse success
+         */
+
+        /**
+         * Constructs a new AwardResponse.
+         * @memberof connection
+         * @classdesc Represents an AwardResponse.
+         * @implements IAwardResponse
+         * @constructor
+         * @param {connection.IAwardResponse=} [properties] Properties to set
+         */
+        function AwardResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AwardResponse success.
+         * @member {boolean} success
+         * @memberof connection.AwardResponse
+         * @instance
+         */
+        AwardResponse.prototype.success = false;
+
+        /**
+         * Creates a new AwardResponse instance using the specified properties.
+         * @function create
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {connection.IAwardResponse=} [properties] Properties to set
+         * @returns {connection.AwardResponse} AwardResponse instance
+         */
+        AwardResponse.create = function create(properties) {
+            return new AwardResponse(properties);
+        };
+
+        /**
+         * Encodes the specified AwardResponse message. Does not implicitly {@link connection.AwardResponse.verify|verify} messages.
+         * @function encode
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {connection.IAwardResponse} message AwardResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AwardResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.success != null && Object.hasOwnProperty.call(message, "success"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AwardResponse message, length delimited. Does not implicitly {@link connection.AwardResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {connection.IAwardResponse} message AwardResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AwardResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AwardResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {connection.AwardResponse} AwardResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AwardResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AwardResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.success = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AwardResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {connection.AwardResponse} AwardResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AwardResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AwardResponse message.
+         * @function verify
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AwardResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.success != null && message.hasOwnProperty("success"))
+                if (typeof message.success !== "boolean")
+                    return "success: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates an AwardResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {connection.AwardResponse} AwardResponse
+         */
+        AwardResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.connection.AwardResponse)
+                return object;
+            let message = new $root.connection.AwardResponse();
+            if (object.success != null)
+                message.success = Boolean(object.success);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AwardResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {connection.AwardResponse} message AwardResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AwardResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.success = false;
+            if (message.success != null && message.hasOwnProperty("success"))
+                object.success = message.success;
+            return object;
+        };
+
+        /**
+         * Converts this AwardResponse to JSON.
+         * @function toJSON
+         * @memberof connection.AwardResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AwardResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AwardResponse
+         * @function getTypeUrl
+         * @memberof connection.AwardResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AwardResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/connection.AwardResponse";
+        };
+
+        return AwardResponse;
+    })();
+
+    /**
+     * Role enum.
+     * @name connection.Role
+     * @enum {number}
+     * @property {number} USER=0 USER value
+     * @property {number} MOD=1 MOD value
+     * @property {number} DEV=2 DEV value
+     */
+    connection.Role = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "USER"] = 0;
+        values[valuesById[1] = "MOD"] = 1;
+        values[valuesById[2] = "DEV"] = 2;
+        return values;
+    })();
+
+    return connection;
+})();
+
 export { $root as default };

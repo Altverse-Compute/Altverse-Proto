@@ -1604,3 +1604,922 @@ export namespace game {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }
+
+/** Namespace connection. */
+export namespace connection {
+
+    /** Represents a Game */
+    class Game extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new Game service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new Game service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): Game;
+
+        /**
+         * Calls Authentication.
+         * @param request AuthenticationRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and AuthenticationResponse
+         */
+        public authentication(request: connection.IAuthenticationRequest, callback: connection.Game.AuthenticationCallback): void;
+
+        /**
+         * Calls Authentication.
+         * @param request AuthenticationRequest message or plain object
+         * @returns Promise
+         */
+        public authentication(request: connection.IAuthenticationRequest): Promise<connection.AuthenticationResponse>;
+
+        /**
+         * Calls JoinPlayer.
+         * @param request JoinPlayerRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and JoinPlayerResponse
+         */
+        public joinPlayer(request: connection.IJoinPlayerRequest, callback: connection.Game.JoinPlayerCallback): void;
+
+        /**
+         * Calls JoinPlayer.
+         * @param request JoinPlayerRequest message or plain object
+         * @returns Promise
+         */
+        public joinPlayer(request: connection.IJoinPlayerRequest): Promise<connection.JoinPlayerResponse>;
+
+        /**
+         * Calls Ping.
+         * @param request PingRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and PongResponse
+         */
+        public ping(request: connection.IPingRequest, callback: connection.Game.PingCallback): void;
+
+        /**
+         * Calls Ping.
+         * @param request PingRequest message or plain object
+         * @returns Promise
+         */
+        public ping(request: connection.IPingRequest): Promise<connection.PongResponse>;
+
+        /**
+         * Calls AwardPlayer.
+         * @param request AwardRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and AwardResponse
+         */
+        public awardPlayer(request: connection.IAwardRequest, callback: connection.Game.AwardPlayerCallback): void;
+
+        /**
+         * Calls AwardPlayer.
+         * @param request AwardRequest message or plain object
+         * @returns Promise
+         */
+        public awardPlayer(request: connection.IAwardRequest): Promise<connection.AwardResponse>;
+    }
+
+    namespace Game {
+
+        /**
+         * Callback as used by {@link connection.Game#authentication}.
+         * @param error Error, if any
+         * @param [response] AuthenticationResponse
+         */
+        type AuthenticationCallback = (error: (Error|null), response?: connection.AuthenticationResponse) => void;
+
+        /**
+         * Callback as used by {@link connection.Game#joinPlayer}.
+         * @param error Error, if any
+         * @param [response] JoinPlayerResponse
+         */
+        type JoinPlayerCallback = (error: (Error|null), response?: connection.JoinPlayerResponse) => void;
+
+        /**
+         * Callback as used by {@link connection.Game#ping}.
+         * @param error Error, if any
+         * @param [response] PongResponse
+         */
+        type PingCallback = (error: (Error|null), response?: connection.PongResponse) => void;
+
+        /**
+         * Callback as used by {@link connection.Game#awardPlayer}.
+         * @param error Error, if any
+         * @param [response] AwardResponse
+         */
+        type AwardPlayerCallback = (error: (Error|null), response?: connection.AwardResponse) => void;
+    }
+
+    /** Properties of a PingRequest. */
+    interface IPingRequest {
+
+        /** PingRequest online */
+        online?: (number|null);
+
+        /** PingRequest alive */
+        alive?: (boolean|null);
+    }
+
+    /** Represents a PingRequest. */
+    class PingRequest implements IPingRequest {
+
+        /**
+         * Constructs a new PingRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IPingRequest);
+
+        /** PingRequest online. */
+        public online: number;
+
+        /** PingRequest alive. */
+        public alive: boolean;
+
+        /**
+         * Creates a new PingRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PingRequest instance
+         */
+        public static create(properties?: connection.IPingRequest): connection.PingRequest;
+
+        /**
+         * Encodes the specified PingRequest message. Does not implicitly {@link connection.PingRequest.verify|verify} messages.
+         * @param message PingRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IPingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PingRequest message, length delimited. Does not implicitly {@link connection.PingRequest.verify|verify} messages.
+         * @param message PingRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IPingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PingRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PingRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.PingRequest;
+
+        /**
+         * Decodes a PingRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PingRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.PingRequest;
+
+        /**
+         * Verifies a PingRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PingRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PingRequest
+         */
+        public static fromObject(object: { [k: string]: any }): connection.PingRequest;
+
+        /**
+         * Creates a plain object from a PingRequest message. Also converts values to other types if specified.
+         * @param message PingRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.PingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PingRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PingRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PongResponse. */
+    interface IPongResponse {
+
+        /** PongResponse success */
+        success?: (boolean|null);
+    }
+
+    /** Represents a PongResponse. */
+    class PongResponse implements IPongResponse {
+
+        /**
+         * Constructs a new PongResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IPongResponse);
+
+        /** PongResponse success. */
+        public success: boolean;
+
+        /**
+         * Creates a new PongResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PongResponse instance
+         */
+        public static create(properties?: connection.IPongResponse): connection.PongResponse;
+
+        /**
+         * Encodes the specified PongResponse message. Does not implicitly {@link connection.PongResponse.verify|verify} messages.
+         * @param message PongResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IPongResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PongResponse message, length delimited. Does not implicitly {@link connection.PongResponse.verify|verify} messages.
+         * @param message PongResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IPongResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PongResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PongResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.PongResponse;
+
+        /**
+         * Decodes a PongResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PongResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.PongResponse;
+
+        /**
+         * Verifies a PongResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PongResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PongResponse
+         */
+        public static fromObject(object: { [k: string]: any }): connection.PongResponse;
+
+        /**
+         * Creates a plain object from a PongResponse message. Also converts values to other types if specified.
+         * @param message PongResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.PongResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PongResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PongResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an AuthenticationRequest. */
+    interface IAuthenticationRequest {
+
+        /** AuthenticationRequest token */
+        token?: (string|null);
+    }
+
+    /** Represents an AuthenticationRequest. */
+    class AuthenticationRequest implements IAuthenticationRequest {
+
+        /**
+         * Constructs a new AuthenticationRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IAuthenticationRequest);
+
+        /** AuthenticationRequest token. */
+        public token: string;
+
+        /**
+         * Creates a new AuthenticationRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AuthenticationRequest instance
+         */
+        public static create(properties?: connection.IAuthenticationRequest): connection.AuthenticationRequest;
+
+        /**
+         * Encodes the specified AuthenticationRequest message. Does not implicitly {@link connection.AuthenticationRequest.verify|verify} messages.
+         * @param message AuthenticationRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IAuthenticationRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AuthenticationRequest message, length delimited. Does not implicitly {@link connection.AuthenticationRequest.verify|verify} messages.
+         * @param message AuthenticationRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IAuthenticationRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AuthenticationRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AuthenticationRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AuthenticationRequest;
+
+        /**
+         * Decodes an AuthenticationRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AuthenticationRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AuthenticationRequest;
+
+        /**
+         * Verifies an AuthenticationRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AuthenticationRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AuthenticationRequest
+         */
+        public static fromObject(object: { [k: string]: any }): connection.AuthenticationRequest;
+
+        /**
+         * Creates a plain object from an AuthenticationRequest message. Also converts values to other types if specified.
+         * @param message AuthenticationRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.AuthenticationRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AuthenticationRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AuthenticationRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an AuthenticationResponse. */
+    interface IAuthenticationResponse {
+
+        /** AuthenticationResponse session */
+        session?: (string|null);
+    }
+
+    /** Represents an AuthenticationResponse. */
+    class AuthenticationResponse implements IAuthenticationResponse {
+
+        /**
+         * Constructs a new AuthenticationResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IAuthenticationResponse);
+
+        /** AuthenticationResponse session. */
+        public session: string;
+
+        /**
+         * Creates a new AuthenticationResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AuthenticationResponse instance
+         */
+        public static create(properties?: connection.IAuthenticationResponse): connection.AuthenticationResponse;
+
+        /**
+         * Encodes the specified AuthenticationResponse message. Does not implicitly {@link connection.AuthenticationResponse.verify|verify} messages.
+         * @param message AuthenticationResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IAuthenticationResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AuthenticationResponse message, length delimited. Does not implicitly {@link connection.AuthenticationResponse.verify|verify} messages.
+         * @param message AuthenticationResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IAuthenticationResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AuthenticationResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AuthenticationResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AuthenticationResponse;
+
+        /**
+         * Decodes an AuthenticationResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AuthenticationResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AuthenticationResponse;
+
+        /**
+         * Verifies an AuthenticationResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AuthenticationResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AuthenticationResponse
+         */
+        public static fromObject(object: { [k: string]: any }): connection.AuthenticationResponse;
+
+        /**
+         * Creates a plain object from an AuthenticationResponse message. Also converts values to other types if specified.
+         * @param message AuthenticationResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.AuthenticationResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AuthenticationResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AuthenticationResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a JoinPlayerRequest. */
+    interface IJoinPlayerRequest {
+
+        /** JoinPlayerRequest token */
+        token?: (string|null);
+    }
+
+    /** Represents a JoinPlayerRequest. */
+    class JoinPlayerRequest implements IJoinPlayerRequest {
+
+        /**
+         * Constructs a new JoinPlayerRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IJoinPlayerRequest);
+
+        /** JoinPlayerRequest token. */
+        public token: string;
+
+        /**
+         * Creates a new JoinPlayerRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns JoinPlayerRequest instance
+         */
+        public static create(properties?: connection.IJoinPlayerRequest): connection.JoinPlayerRequest;
+
+        /**
+         * Encodes the specified JoinPlayerRequest message. Does not implicitly {@link connection.JoinPlayerRequest.verify|verify} messages.
+         * @param message JoinPlayerRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IJoinPlayerRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified JoinPlayerRequest message, length delimited. Does not implicitly {@link connection.JoinPlayerRequest.verify|verify} messages.
+         * @param message JoinPlayerRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IJoinPlayerRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a JoinPlayerRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns JoinPlayerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.JoinPlayerRequest;
+
+        /**
+         * Decodes a JoinPlayerRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns JoinPlayerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.JoinPlayerRequest;
+
+        /**
+         * Verifies a JoinPlayerRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a JoinPlayerRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns JoinPlayerRequest
+         */
+        public static fromObject(object: { [k: string]: any }): connection.JoinPlayerRequest;
+
+        /**
+         * Creates a plain object from a JoinPlayerRequest message. Also converts values to other types if specified.
+         * @param message JoinPlayerRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.JoinPlayerRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this JoinPlayerRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for JoinPlayerRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a JoinPlayerResponse. */
+    interface IJoinPlayerResponse {
+
+        /** JoinPlayerResponse name */
+        name?: (string|null);
+
+        /** JoinPlayerResponse role */
+        role?: (connection.Role|null);
+    }
+
+    /** Represents a JoinPlayerResponse. */
+    class JoinPlayerResponse implements IJoinPlayerResponse {
+
+        /**
+         * Constructs a new JoinPlayerResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IJoinPlayerResponse);
+
+        /** JoinPlayerResponse name. */
+        public name: string;
+
+        /** JoinPlayerResponse role. */
+        public role: connection.Role;
+
+        /**
+         * Creates a new JoinPlayerResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns JoinPlayerResponse instance
+         */
+        public static create(properties?: connection.IJoinPlayerResponse): connection.JoinPlayerResponse;
+
+        /**
+         * Encodes the specified JoinPlayerResponse message. Does not implicitly {@link connection.JoinPlayerResponse.verify|verify} messages.
+         * @param message JoinPlayerResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IJoinPlayerResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified JoinPlayerResponse message, length delimited. Does not implicitly {@link connection.JoinPlayerResponse.verify|verify} messages.
+         * @param message JoinPlayerResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IJoinPlayerResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a JoinPlayerResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns JoinPlayerResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.JoinPlayerResponse;
+
+        /**
+         * Decodes a JoinPlayerResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns JoinPlayerResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.JoinPlayerResponse;
+
+        /**
+         * Verifies a JoinPlayerResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a JoinPlayerResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns JoinPlayerResponse
+         */
+        public static fromObject(object: { [k: string]: any }): connection.JoinPlayerResponse;
+
+        /**
+         * Creates a plain object from a JoinPlayerResponse message. Also converts values to other types if specified.
+         * @param message JoinPlayerResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.JoinPlayerResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this JoinPlayerResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for JoinPlayerResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an AwardRequest. */
+    interface IAwardRequest {
+
+        /** AwardRequest id */
+        id?: (string|null);
+
+        /** AwardRequest vp */
+        vp?: (number|null);
+
+        /** AwardRequest accessory */
+        accessory?: (string|null);
+    }
+
+    /** Represents an AwardRequest. */
+    class AwardRequest implements IAwardRequest {
+
+        /**
+         * Constructs a new AwardRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IAwardRequest);
+
+        /** AwardRequest id. */
+        public id: string;
+
+        /** AwardRequest vp. */
+        public vp?: (number|null);
+
+        /** AwardRequest accessory. */
+        public accessory?: (string|null);
+
+        /**
+         * Creates a new AwardRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AwardRequest instance
+         */
+        public static create(properties?: connection.IAwardRequest): connection.AwardRequest;
+
+        /**
+         * Encodes the specified AwardRequest message. Does not implicitly {@link connection.AwardRequest.verify|verify} messages.
+         * @param message AwardRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IAwardRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AwardRequest message, length delimited. Does not implicitly {@link connection.AwardRequest.verify|verify} messages.
+         * @param message AwardRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IAwardRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AwardRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AwardRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AwardRequest;
+
+        /**
+         * Decodes an AwardRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AwardRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AwardRequest;
+
+        /**
+         * Verifies an AwardRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AwardRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AwardRequest
+         */
+        public static fromObject(object: { [k: string]: any }): connection.AwardRequest;
+
+        /**
+         * Creates a plain object from an AwardRequest message. Also converts values to other types if specified.
+         * @param message AwardRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.AwardRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AwardRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AwardRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an AwardResponse. */
+    interface IAwardResponse {
+
+        /** AwardResponse success */
+        success?: (boolean|null);
+    }
+
+    /** Represents an AwardResponse. */
+    class AwardResponse implements IAwardResponse {
+
+        /**
+         * Constructs a new AwardResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: connection.IAwardResponse);
+
+        /** AwardResponse success. */
+        public success: boolean;
+
+        /**
+         * Creates a new AwardResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AwardResponse instance
+         */
+        public static create(properties?: connection.IAwardResponse): connection.AwardResponse;
+
+        /**
+         * Encodes the specified AwardResponse message. Does not implicitly {@link connection.AwardResponse.verify|verify} messages.
+         * @param message AwardResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: connection.IAwardResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AwardResponse message, length delimited. Does not implicitly {@link connection.AwardResponse.verify|verify} messages.
+         * @param message AwardResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: connection.IAwardResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AwardResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AwardResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AwardResponse;
+
+        /**
+         * Decodes an AwardResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AwardResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AwardResponse;
+
+        /**
+         * Verifies an AwardResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AwardResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AwardResponse
+         */
+        public static fromObject(object: { [k: string]: any }): connection.AwardResponse;
+
+        /**
+         * Creates a plain object from an AwardResponse message. Also converts values to other types if specified.
+         * @param message AwardResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: connection.AwardResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AwardResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AwardResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Role enum. */
+    enum Role {
+        USER = 0,
+        MOD = 1,
+        DEV = 2
+    }
+}

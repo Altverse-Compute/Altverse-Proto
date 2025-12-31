@@ -6,23 +6,23 @@
 import * as proto_rpc_pb from "../proto/rpc_pb";
 import * as grpc from "@grpc/grpc-js";
 
-interface IGameServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+interface IGameService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   authentication: grpc.MethodDefinition<proto_rpc_pb.AuthenticationRequest, proto_rpc_pb.AuthenticationResponse>;
   joinPlayer: grpc.MethodDefinition<proto_rpc_pb.JoinPlayerRequest, proto_rpc_pb.JoinPlayerResponse>;
   ping: grpc.MethodDefinition<proto_rpc_pb.PingRequest, proto_rpc_pb.PongResponse>;
   awardPlayer: grpc.MethodDefinition<proto_rpc_pb.AwardRequest, proto_rpc_pb.AwardResponse>;
 }
 
-export const GameServiceService: IGameServiceService;
+export const GameService: IGameService;
 
-export interface IGameServiceServer extends grpc.UntypedServiceImplementation {
+export interface IGameServer extends grpc.UntypedServiceImplementation {
   authentication: grpc.handleUnaryCall<proto_rpc_pb.AuthenticationRequest, proto_rpc_pb.AuthenticationResponse>;
   joinPlayer: grpc.handleUnaryCall<proto_rpc_pb.JoinPlayerRequest, proto_rpc_pb.JoinPlayerResponse>;
   ping: grpc.handleUnaryCall<proto_rpc_pb.PingRequest, proto_rpc_pb.PongResponse>;
   awardPlayer: grpc.handleUnaryCall<proto_rpc_pb.AwardRequest, proto_rpc_pb.AwardResponse>;
 }
 
-export class GameServiceClient extends grpc.Client {
+export class GameClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
   authentication(argument: proto_rpc_pb.AuthenticationRequest, callback: grpc.requestCallback<proto_rpc_pb.AuthenticationResponse>): grpc.ClientUnaryCall;
   authentication(argument: proto_rpc_pb.AuthenticationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<proto_rpc_pb.AuthenticationResponse>): grpc.ClientUnaryCall;

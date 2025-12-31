@@ -93,9 +93,9 @@ function deserialize_connection_PongResponse(buffer_arg) {
 }
 
 
-var GameServiceService = exports.GameServiceService = {
+var GameService = exports.GameService = {
   authentication: {
-    path: '/connection.GameService/Authentication',
+    path: '/connection.Game/Authentication',
     requestStream: false,
     responseStream: false,
     requestType: proto_rpc_pb.AuthenticationRequest,
@@ -106,7 +106,7 @@ var GameServiceService = exports.GameServiceService = {
     responseDeserialize: deserialize_connection_AuthenticationResponse,
   },
   joinPlayer: {
-    path: '/connection.GameService/JoinPlayer',
+    path: '/connection.Game/JoinPlayer',
     requestStream: false,
     responseStream: false,
     requestType: proto_rpc_pb.JoinPlayerRequest,
@@ -117,7 +117,7 @@ var GameServiceService = exports.GameServiceService = {
     responseDeserialize: deserialize_connection_JoinPlayerResponse,
   },
   ping: {
-    path: '/connection.GameService/Ping',
+    path: '/connection.Game/Ping',
     requestStream: false,
     responseStream: false,
     requestType: proto_rpc_pb.PingRequest,
@@ -128,7 +128,7 @@ var GameServiceService = exports.GameServiceService = {
     responseDeserialize: deserialize_connection_PongResponse,
   },
   awardPlayer: {
-    path: '/connection.GameService/AwardPlayer',
+    path: '/connection.Game/AwardPlayer',
     requestStream: false,
     responseStream: false,
     requestType: proto_rpc_pb.AwardRequest,
@@ -140,4 +140,4 @@ var GameServiceService = exports.GameServiceService = {
   },
 };
 
-exports.GameServiceClient = grpc.makeGenericClientConstructor(GameServiceService, 'GameService');
+exports.GameClient = grpc.makeGenericClientConstructor(GameService, 'Game');

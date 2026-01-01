@@ -33,6 +33,7 @@ message JoinPlayerRequest {
 message JoinPlayerResponse {
     string name = 1;
     Role role = 2;
+    string id = 3;
 }
 
 message AwardRequest {

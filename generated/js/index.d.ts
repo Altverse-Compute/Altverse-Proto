@@ -2215,6 +2215,9 @@ export namespace connection {
 
         /** JoinPlayerResponse role */
         role?: (connection.Role|null);
+
+        /** JoinPlayerResponse id */
+        id?: (string|null);
     }
 
     /** Represents a JoinPlayerResponse. */
@@ -2231,6 +2234,9 @@ export namespace connection {
 
         /** JoinPlayerResponse role. */
         public role: connection.Role;
+
+        /** JoinPlayerResponse id. */
+        public id: string;
 
         /**
          * Creates a new JoinPlayerResponse instance using the specified properties.

@@ -5848,6 +5848,7 @@ export const connection = $root.connection = (() => {
          * @interface IJoinPlayerResponse
          * @property {string|null} [name] JoinPlayerResponse name
          * @property {connection.Role|null} [role] JoinPlayerResponse role
+         * @property {string|null} [id] JoinPlayerResponse id
          */
 
         /**
@@ -5882,6 +5883,14 @@ export const connection = $root.connection = (() => {
         JoinPlayerResponse.prototype.role = 0;
 
         /**
+         * JoinPlayerResponse id.
+         * @member {string} id
+         * @memberof connection.JoinPlayerResponse
+         * @instance
+         */
+        JoinPlayerResponse.prototype.id = "";
+
+        /**
          * Creates a new JoinPlayerResponse instance using the specified properties.
          * @function create
          * @memberof connection.JoinPlayerResponse
@@ -5909,6 +5918,8 @@ export const connection = $root.connection = (() => {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
             if (message.role != null && Object.hasOwnProperty.call(message, "role"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.role);
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
             return writer;
         };
 
@@ -5951,6 +5962,10 @@ export const connection = $root.connection = (() => {
                     }
                 case 2: {
                         message.role = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.id = reader.string();
                         break;
                     }
                 default:
@@ -6000,6 +6015,9 @@ export const connection = $root.connection = (() => {
                 case 2:
                     break;
                 }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
             return null;
         };
 
@@ -6037,6 +6055,8 @@ export const connection = $root.connection = (() => {
                 message.role = 2;
                 break;
             }
+            if (object.id != null)
+                message.id = String(object.id);
             return message;
         };
 
@@ -6056,11 +6076,14 @@ export const connection = $root.connection = (() => {
             if (options.defaults) {
                 object.name = "";
                 object.role = options.enums === String ? "USER" : 0;
+                object.id = "";
             }
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
             if (message.role != null && message.hasOwnProperty("role"))
                 object.role = options.enums === String ? $root.connection.Role[message.role] === undefined ? message.role : $root.connection.Role[message.role] : message.role;
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
             return object;
         };
 

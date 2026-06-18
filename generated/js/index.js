@@ -1,8 +1,9 @@
-/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
-import * as $protobuf from "protobufjs/minimal";
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-mixed-operators, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars, default-case, jsdoc/require-param*/
+import $protobuf from "protobufjs/minimal.js";
 
 // Common aliases
 const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+const $Object = $util.global.Object, $undefined = $util.global.undefined, $Error = $util.global.Error, $TypeError = $util.global.TypeError, $Number = $util.global.Number, $String = $util.global.String, $Boolean = $util.global.Boolean, $parseInt = $util.global.parseInt, $BigInt = $util.global.BigInt, $isFinite = $util.global.isFinite, $Array = $util.global.Array;
 
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
@@ -25,7 +26,7 @@ export const game = $root.game = (() => {
      * @property {number} DEV=2 DEV value
      */
     game.Role = (function() {
-        const valuesById = {}, values = Object.create(valuesById);
+        const valuesById = {}, values = $Object.create(valuesById);
         values[valuesById[0] = "USER"] = 0;
         values[valuesById[1] = "MOD"] = 1;
         values[valuesById[2] = "DEV"] = 2;
@@ -36,29 +37,42 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a Chat.
-         * @memberof game
-         * @interface IChat
+         * @typedef {Object} game.Chat.$Properties
          * @property {number|null} [id] Chat id
          * @property {string|null} [content] Chat content
          * @property {string|null} [author] Chat author
          * @property {game.Role|null} [role] Chat role
          * @property {string|null} [world] Chat world
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a Chat.
+         * @memberof game
+         * @interface IChat
+         * @augments game.Chat.$Properties
+         * @deprecated Use game.Chat.$Properties instead.
+         */
+
+        /**
+         * Shape of a Chat.
+         * @typedef {game.Chat.$Properties} game.Chat.$Shape
          */
 
         /**
          * Constructs a new Chat.
          * @memberof game
          * @classdesc Represents a Chat.
-         * @implements IChat
          * @constructor
-         * @param {game.IChat=} [properties] Properties to set
+         * @param {game.Chat.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function Chat(properties) {
+        const Chat = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * Chat id.
@@ -105,10 +119,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.Chat
          * @static
-         * @param {game.IChat=} [properties] Properties to set
+         * @param {game.Chat.$Properties=} [properties] Properties to set
          * @returns {game.Chat} Chat instance
+         * @type {{
+         *   (properties: game.Chat.$Shape): game.Chat & game.Chat.$Shape;
+         *   (properties?: game.Chat.$Properties): game.Chat;
+         * }}
          */
-        Chat.create = function create(properties) {
+        Chat.create = function(properties) {
             return new Chat(properties);
         };
 
@@ -117,23 +135,30 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.Chat
          * @static
-         * @param {game.IChat} message Chat message or plain object to encode
+         * @param {game.Chat.$Properties} message Chat message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Chat.encode = function encode(message, writer) {
+        Chat.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
-            if (message.content != null && Object.hasOwnProperty.call(message, "content"))
+            if (message.content != null && $Object.hasOwnProperty.call(message, "content"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
-            if (message.author != null && Object.hasOwnProperty.call(message, "author"))
+            if (message.author != null && $Object.hasOwnProperty.call(message, "author"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.author);
-            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
                 writer.uint32(/* id 4, wireType 0 =*/32).int32(message.role);
-            if (message.world != null && Object.hasOwnProperty.call(message, "world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.world);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -142,12 +167,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.Chat
          * @static
-         * @param {game.IChat} message Chat message or plain object to encode
+         * @param {game.Chat.$Properties} message Chat message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Chat.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        Chat.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -157,44 +182,81 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.Chat} Chat
+         * @returns {game.Chat & game.Chat.$Shape} Chat
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Chat.decode = function decode(reader, length, error) {
+        Chat.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.Chat();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.Chat(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.id = reader.uint32();
-                        break;
-                    }
-                case 2: {
-                        message.content = reader.string();
-                        break;
-                    }
-                case 3: {
-                        message.author = reader.string();
-                        break;
-                    }
-                case 4: {
-                        message.role = reader.int32();
-                        break;
-                    }
-                case 5: {
-                        message.world = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.id = value;
+                        else
+                            delete message.id;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.content = value;
+                        else
+                            delete message.content;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.author = value;
+                        else
+                            delete message.author;
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.int32())
+                            message.role = value;
+                        else
+                            delete message.role;
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.world = value;
+                        else
+                            delete message.world;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -204,11 +266,11 @@ export const game = $root.game = (() => {
          * @memberof game.Chat
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.Chat} Chat
+         * @returns {game.Chat & game.Chat.$Shape} Chat
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Chat.decodeDelimited = function decodeDelimited(reader) {
+        Chat.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -222,19 +284,23 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        Chat.verify = function verify(message) {
+        Chat.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
-            if (message.content != null && message.hasOwnProperty("content"))
+            if (message.content != null && $Object.hasOwnProperty.call(message, "content"))
                 if (!$util.isString(message.content))
                     return "content: string expected";
-            if (message.author != null && message.hasOwnProperty("author"))
+            if (message.author != null && $Object.hasOwnProperty.call(message, "author"))
                 if (!$util.isString(message.author))
                     return "author: string expected";
-            if (message.role != null && message.hasOwnProperty("role"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
                 switch (message.role) {
                 default:
                     return "role: enum value expected";
@@ -243,7 +309,7 @@ export const game = $root.game = (() => {
                 case 2:
                     break;
                 }
-            if (message.world != null && message.hasOwnProperty("world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 if (!$util.isString(message.world))
                     return "world: string expected";
             return null;
@@ -257,38 +323,49 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.Chat} Chat
          */
-        Chat.fromObject = function fromObject(object) {
+        Chat.fromObject = function (object, _depth) {
             if (object instanceof $root.game.Chat)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.Chat: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.Chat();
             if (object.id != null)
-                message.id = object.id >>> 0;
+                if ($Number(object.id) !== 0)
+                    message.id = object.id >>> 0;
             if (object.content != null)
-                message.content = String(object.content);
+                if (typeof object.content !== "string" || object.content.length)
+                    message.content = $String(object.content);
             if (object.author != null)
-                message.author = String(object.author);
-            switch (object.role) {
-            default:
-                if (typeof object.role === "number") {
-                    message.role = object.role;
+                if (typeof object.author !== "string" || object.author.length)
+                    message.author = $String(object.author);
+            if (object.role !== 0 && (typeof object.role !== "string" || $root.game.Role[object.role] !== 0))
+                switch (object.role) {
+                default:
+                    if (typeof object.role === "number") {
+                        message.role = object.role;
+                        break;
+                    }
+                    break;
+                case "USER":
+                case 0:
+                    message.role = 0;
+                    break;
+                case "MOD":
+                case 1:
+                    message.role = 1;
+                    break;
+                case "DEV":
+                case 2:
+                    message.role = 2;
                     break;
                 }
-                break;
-            case "USER":
-            case 0:
-                message.role = 0;
-                break;
-            case "MOD":
-            case 1:
-                message.role = 1;
-                break;
-            case "DEV":
-            case 2:
-                message.role = 2;
-                break;
-            }
             if (object.world != null)
-                message.world = String(object.world);
+                if (typeof object.world !== "string" || object.world.length)
+                    message.world = $String(object.world);
             return message;
         };
 
@@ -301,26 +378,30 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Chat.toObject = function toObject(message, options) {
+        Chat.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults) {
                 object.id = 0;
                 object.content = "";
                 object.author = "";
-                object.role = options.enums === String ? "USER" : 0;
+                object.role = options.enums === $String ? "USER" : 0;
                 object.world = "";
             }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.content != null && message.hasOwnProperty("content"))
+            if (message.content != null && $Object.hasOwnProperty.call(message, "content"))
                 object.content = message.content;
-            if (message.author != null && message.hasOwnProperty("author"))
+            if (message.author != null && $Object.hasOwnProperty.call(message, "author"))
                 object.author = message.author;
-            if (message.role != null && message.hasOwnProperty("role"))
-                object.role = options.enums === String ? $root.game.Role[message.role] === undefined ? message.role : $root.game.Role[message.role] : message.role;
-            if (message.world != null && message.hasOwnProperty("world"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
+                object.role = options.enums === $String ? $root.game.Role[message.role] === $undefined ? message.role : $root.game.Role[message.role] : message.role;
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 object.world = message.world;
             return object;
         };
@@ -332,23 +413,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        Chat.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        Chat.prototype.toJSON = function() {
+            return Chat.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for Chat
+         * Gets the type url for Chat
          * @function getTypeUrl
          * @memberof game.Chat
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        Chat.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.Chat";
+        Chat.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.Chat";
         };
 
         return Chat;
@@ -358,8 +438,7 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a PackedEntity.
-         * @memberof game
-         * @interface IPackedEntity
+         * @typedef {Object} game.PackedEntity.$Properties
          * @property {number|null} [typeId] PackedEntity typeId
          * @property {number|null} [x] PackedEntity x
          * @property {number|null} [y] PackedEntity y
@@ -368,22 +447,36 @@ export const game = $root.game = (() => {
          * @property {number|null} [state] PackedEntity state
          * @property {number|null} [stateMetadata] PackedEntity stateMetadata
          * @property {number|null} [alpha] PackedEntity alpha
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a PackedEntity.
+         * @memberof game
+         * @interface IPackedEntity
+         * @augments game.PackedEntity.$Properties
+         * @deprecated Use game.PackedEntity.$Properties instead.
+         */
+
+        /**
+         * Shape of a PackedEntity.
+         * @typedef {game.PackedEntity.$Properties} game.PackedEntity.$Shape
          */
 
         /**
          * Constructs a new PackedEntity.
          * @memberof game
          * @classdesc Represents a PackedEntity.
-         * @implements IPackedEntity
          * @constructor
-         * @param {game.IPackedEntity=} [properties] Properties to set
+         * @param {game.PackedEntity.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function PackedEntity(properties) {
+        const PackedEntity = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * PackedEntity typeId.
@@ -454,10 +547,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.PackedEntity
          * @static
-         * @param {game.IPackedEntity=} [properties] Properties to set
+         * @param {game.PackedEntity.$Properties=} [properties] Properties to set
          * @returns {game.PackedEntity} PackedEntity instance
+         * @type {{
+         *   (properties: game.PackedEntity.$Shape): game.PackedEntity & game.PackedEntity.$Shape;
+         *   (properties?: game.PackedEntity.$Properties): game.PackedEntity;
+         * }}
          */
-        PackedEntity.create = function create(properties) {
+        PackedEntity.create = function(properties) {
             return new PackedEntity(properties);
         };
 
@@ -466,29 +563,36 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.PackedEntity
          * @static
-         * @param {game.IPackedEntity} message PackedEntity message or plain object to encode
+         * @param {game.PackedEntity.$Properties} message PackedEntity message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PackedEntity.encode = function encode(message, writer) {
+        PackedEntity.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.typeId != null && Object.hasOwnProperty.call(message, "typeId"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.typeId != null && $Object.hasOwnProperty.call(message, "typeId"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.typeId);
-            if (message.x != null && Object.hasOwnProperty.call(message, "x"))
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 writer.uint32(/* id 3, wireType 0 =*/24).sint32(message.x);
-            if (message.y != null && Object.hasOwnProperty.call(message, "y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 writer.uint32(/* id 4, wireType 0 =*/32).sint32(message.y);
-            if (message.radius != null && Object.hasOwnProperty.call(message, "radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.radius);
-            if (message.harmless != null && Object.hasOwnProperty.call(message, "harmless"))
+            if (message.harmless != null && $Object.hasOwnProperty.call(message, "harmless"))
                 writer.uint32(/* id 6, wireType 0 =*/48).bool(message.harmless);
-            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.state);
-            if (message.stateMetadata != null && Object.hasOwnProperty.call(message, "stateMetadata"))
+            if (message.stateMetadata != null && $Object.hasOwnProperty.call(message, "stateMetadata"))
                 writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.stateMetadata);
-            if (message.alpha != null && Object.hasOwnProperty.call(message, "alpha"))
+            if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                 writer.uint32(/* id 9, wireType 0 =*/72).uint32(message.alpha);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -497,12 +601,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.PackedEntity
          * @static
-         * @param {game.IPackedEntity} message PackedEntity message or plain object to encode
+         * @param {game.PackedEntity.$Properties} message PackedEntity message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PackedEntity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        PackedEntity.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -512,56 +616,108 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.PackedEntity} PackedEntity
+         * @returns {game.PackedEntity & game.PackedEntity.$Shape} PackedEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PackedEntity.decode = function decode(reader, length, error) {
+        PackedEntity.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.PackedEntity();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.PackedEntity(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 2: {
-                        message.typeId = reader.uint32();
-                        break;
-                    }
-                case 3: {
-                        message.x = reader.sint32();
-                        break;
-                    }
-                case 4: {
-                        message.y = reader.sint32();
-                        break;
-                    }
-                case 5: {
-                        message.radius = reader.uint32();
-                        break;
-                    }
-                case 6: {
-                        message.harmless = reader.bool();
-                        break;
-                    }
-                case 7: {
-                        message.state = reader.uint32();
-                        break;
-                    }
-                case 8: {
-                        message.stateMetadata = reader.uint32();
-                        break;
-                    }
-                case 9: {
-                        message.alpha = reader.uint32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.typeId = value;
+                        else
+                            delete message.typeId;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.sint32())
+                            message.x = value;
+                        else
+                            delete message.x;
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.sint32())
+                            message.y = value;
+                        else
+                            delete message.y;
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.radius = value;
+                        else
+                            delete message.radius;
+                        continue;
+                    }
+                case 6: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.bool())
+                            message.harmless = value;
+                        else
+                            delete message.harmless;
+                        continue;
+                    }
+                case 7: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.state = value;
+                        else
+                            delete message.state;
+                        continue;
+                    }
+                case 8: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.stateMetadata = value;
+                        else
+                            delete message.stateMetadata;
+                        continue;
+                    }
+                case 9: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.alpha = value;
+                        else
+                            delete message.alpha;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -571,11 +727,11 @@ export const game = $root.game = (() => {
          * @memberof game.PackedEntity
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.PackedEntity} PackedEntity
+         * @returns {game.PackedEntity & game.PackedEntity.$Shape} PackedEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PackedEntity.decodeDelimited = function decodeDelimited(reader) {
+        PackedEntity.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -589,31 +745,35 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PackedEntity.verify = function verify(message) {
+        PackedEntity.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.typeId != null && message.hasOwnProperty("typeId"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.typeId != null && $Object.hasOwnProperty.call(message, "typeId"))
                 if (!$util.isInteger(message.typeId))
                     return "typeId: integer expected";
-            if (message.x != null && message.hasOwnProperty("x"))
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 if (!$util.isInteger(message.x))
                     return "x: integer expected";
-            if (message.y != null && message.hasOwnProperty("y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 if (!$util.isInteger(message.y))
                     return "y: integer expected";
-            if (message.radius != null && message.hasOwnProperty("radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 if (!$util.isInteger(message.radius))
                     return "radius: integer expected";
-            if (message.harmless != null && message.hasOwnProperty("harmless"))
+            if (message.harmless != null && $Object.hasOwnProperty.call(message, "harmless"))
                 if (typeof message.harmless !== "boolean")
                     return "harmless: boolean expected";
-            if (message.state != null && message.hasOwnProperty("state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 if (!$util.isInteger(message.state))
                     return "state: integer expected";
-            if (message.stateMetadata != null && message.hasOwnProperty("stateMetadata"))
+            if (message.stateMetadata != null && $Object.hasOwnProperty.call(message, "stateMetadata"))
                 if (!$util.isInteger(message.stateMetadata))
                     return "stateMetadata: integer expected";
-            if (message.alpha != null && message.hasOwnProperty("alpha"))
+            if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                 if (!$util.isInteger(message.alpha))
                     return "alpha: integer expected";
             return null;
@@ -627,26 +787,40 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.PackedEntity} PackedEntity
          */
-        PackedEntity.fromObject = function fromObject(object) {
+        PackedEntity.fromObject = function (object, _depth) {
             if (object instanceof $root.game.PackedEntity)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.PackedEntity: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.PackedEntity();
             if (object.typeId != null)
-                message.typeId = object.typeId >>> 0;
+                if ($Number(object.typeId) !== 0)
+                    message.typeId = object.typeId >>> 0;
             if (object.x != null)
-                message.x = object.x | 0;
+                if ($Number(object.x) !== 0)
+                    message.x = object.x | 0;
             if (object.y != null)
-                message.y = object.y | 0;
+                if ($Number(object.y) !== 0)
+                    message.y = object.y | 0;
             if (object.radius != null)
-                message.radius = object.radius >>> 0;
+                if ($Number(object.radius) !== 0)
+                    message.radius = object.radius >>> 0;
             if (object.harmless != null)
-                message.harmless = Boolean(object.harmless);
+                if (object.harmless)
+                    message.harmless = $Boolean(object.harmless);
             if (object.state != null)
-                message.state = object.state >>> 0;
+                if ($Number(object.state) !== 0)
+                    message.state = object.state >>> 0;
             if (object.stateMetadata != null)
-                message.stateMetadata = object.stateMetadata >>> 0;
+                if ($Number(object.stateMetadata) !== 0)
+                    message.stateMetadata = object.stateMetadata >>> 0;
             if (object.alpha != null)
-                message.alpha = object.alpha >>> 0;
+                if ($Number(object.alpha) !== 0)
+                    message.alpha = object.alpha >>> 0;
             return message;
         };
 
@@ -659,9 +833,13 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PackedEntity.toObject = function toObject(message, options) {
+        PackedEntity.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults) {
                 object.typeId = 0;
@@ -673,21 +851,21 @@ export const game = $root.game = (() => {
                 object.stateMetadata = 0;
                 object.alpha = 0;
             }
-            if (message.typeId != null && message.hasOwnProperty("typeId"))
+            if (message.typeId != null && $Object.hasOwnProperty.call(message, "typeId"))
                 object.typeId = message.typeId;
-            if (message.x != null && message.hasOwnProperty("x"))
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 object.x = message.x;
-            if (message.y != null && message.hasOwnProperty("y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 object.y = message.y;
-            if (message.radius != null && message.hasOwnProperty("radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 object.radius = message.radius;
-            if (message.harmless != null && message.hasOwnProperty("harmless"))
+            if (message.harmless != null && $Object.hasOwnProperty.call(message, "harmless"))
                 object.harmless = message.harmless;
-            if (message.state != null && message.hasOwnProperty("state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 object.state = message.state;
-            if (message.stateMetadata != null && message.hasOwnProperty("stateMetadata"))
+            if (message.stateMetadata != null && $Object.hasOwnProperty.call(message, "stateMetadata"))
                 object.stateMetadata = message.stateMetadata;
-            if (message.alpha != null && message.hasOwnProperty("alpha"))
+            if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                 object.alpha = message.alpha;
             return object;
         };
@@ -699,23 +877,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        PackedEntity.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        PackedEntity.prototype.toJSON = function() {
+            return PackedEntity.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for PackedEntity
+         * Gets the type url for PackedEntity
          * @function getTypeUrl
          * @memberof game.PackedEntity
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        PackedEntity.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.PackedEntity";
+        PackedEntity.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.PackedEntity";
         };
 
         return PackedEntity;
@@ -725,8 +902,7 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a PackedPlayer.
-         * @memberof game
-         * @interface IPackedPlayer
+         * @typedef {Object} game.PackedPlayer.$Properties
          * @property {string|null} [name] PackedPlayer name
          * @property {number|null} [id] PackedPlayer id
          * @property {number|null} [x] PackedPlayer x
@@ -742,22 +918,36 @@ export const game = $root.game = (() => {
          * @property {string|null} [world] PackedPlayer world
          * @property {boolean|null} [died] PackedPlayer died
          * @property {number|null} [hero] PackedPlayer hero
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a PackedPlayer.
+         * @memberof game
+         * @interface IPackedPlayer
+         * @augments game.PackedPlayer.$Properties
+         * @deprecated Use game.PackedPlayer.$Properties instead.
+         */
+
+        /**
+         * Shape of a PackedPlayer.
+         * @typedef {game.PackedPlayer.$Properties} game.PackedPlayer.$Shape
          */
 
         /**
          * Constructs a new PackedPlayer.
          * @memberof game
          * @classdesc Represents a PackedPlayer.
-         * @implements IPackedPlayer
          * @constructor
-         * @param {game.IPackedPlayer=} [properties] Properties to set
+         * @param {game.PackedPlayer.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function PackedPlayer(properties) {
+        const PackedPlayer = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * PackedPlayer name.
@@ -884,10 +1074,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.PackedPlayer
          * @static
-         * @param {game.IPackedPlayer=} [properties] Properties to set
+         * @param {game.PackedPlayer.$Properties=} [properties] Properties to set
          * @returns {game.PackedPlayer} PackedPlayer instance
+         * @type {{
+         *   (properties: game.PackedPlayer.$Shape): game.PackedPlayer & game.PackedPlayer.$Shape;
+         *   (properties?: game.PackedPlayer.$Properties): game.PackedPlayer;
+         * }}
          */
-        PackedPlayer.create = function create(properties) {
+        PackedPlayer.create = function(properties) {
             return new PackedPlayer(properties);
         };
 
@@ -896,43 +1090,50 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.PackedPlayer
          * @static
-         * @param {game.IPackedPlayer} message PackedPlayer message or plain object to encode
+         * @param {game.PackedPlayer.$Properties} message PackedPlayer message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PackedPlayer.encode = function encode(message, writer) {
+        PackedPlayer.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.id);
-            if (message.x != null && Object.hasOwnProperty.call(message, "x"))
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 writer.uint32(/* id 3, wireType 0 =*/24).sint32(message.x);
-            if (message.y != null && Object.hasOwnProperty.call(message, "y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 writer.uint32(/* id 4, wireType 0 =*/32).sint32(message.y);
-            if (message.radius != null && Object.hasOwnProperty.call(message, "radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.radius);
-            if (message.speed != null && Object.hasOwnProperty.call(message, "speed"))
+            if (message.speed != null && $Object.hasOwnProperty.call(message, "speed"))
                 writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.speed);
-            if (message.energy != null && Object.hasOwnProperty.call(message, "energy"))
+            if (message.energy != null && $Object.hasOwnProperty.call(message, "energy"))
                 writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.energy);
-            if (message.maxEnergy != null && Object.hasOwnProperty.call(message, "maxEnergy"))
+            if (message.maxEnergy != null && $Object.hasOwnProperty.call(message, "maxEnergy"))
                 writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.maxEnergy);
-            if (message.deathTimer != null && Object.hasOwnProperty.call(message, "deathTimer"))
+            if (message.deathTimer != null && $Object.hasOwnProperty.call(message, "deathTimer"))
                 writer.uint32(/* id 9, wireType 0 =*/72).uint32(message.deathTimer);
-            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.state);
-            if (message.stateMeta != null && Object.hasOwnProperty.call(message, "stateMeta"))
+            if (message.stateMeta != null && $Object.hasOwnProperty.call(message, "stateMeta"))
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.stateMeta);
-            if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
                 writer.uint32(/* id 12, wireType 0 =*/96).uint32(message.area);
-            if (message.world != null && Object.hasOwnProperty.call(message, "world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 writer.uint32(/* id 13, wireType 2 =*/106).string(message.world);
-            if (message.died != null && Object.hasOwnProperty.call(message, "died"))
+            if (message.died != null && $Object.hasOwnProperty.call(message, "died"))
                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.died);
-            if (message.hero != null && Object.hasOwnProperty.call(message, "hero"))
+            if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
                 writer.uint32(/* id 15, wireType 0 =*/120).uint32(message.hero);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -941,12 +1142,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.PackedPlayer
          * @static
-         * @param {game.IPackedPlayer} message PackedPlayer message or plain object to encode
+         * @param {game.PackedPlayer.$Properties} message PackedPlayer message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PackedPlayer.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        PackedPlayer.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -956,84 +1157,171 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.PackedPlayer} PackedPlayer
+         * @returns {game.PackedPlayer & game.PackedPlayer.$Shape} PackedPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PackedPlayer.decode = function decode(reader, length, error) {
+        PackedPlayer.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.PackedPlayer();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.PackedPlayer(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.name = reader.string();
-                        break;
-                    }
-                case 2: {
-                        message.id = reader.uint32();
-                        break;
-                    }
-                case 3: {
-                        message.x = reader.sint32();
-                        break;
-                    }
-                case 4: {
-                        message.y = reader.sint32();
-                        break;
-                    }
-                case 5: {
-                        message.radius = reader.uint32();
-                        break;
-                    }
-                case 6: {
-                        message.speed = reader.uint32();
-                        break;
-                    }
-                case 7: {
-                        message.energy = reader.uint32();
-                        break;
-                    }
-                case 8: {
-                        message.maxEnergy = reader.uint32();
-                        break;
-                    }
-                case 9: {
-                        message.deathTimer = reader.uint32();
-                        break;
-                    }
-                case 10: {
-                        message.state = reader.uint32();
-                        break;
-                    }
-                case 11: {
-                        message.stateMeta = reader.uint32();
-                        break;
-                    }
-                case 12: {
-                        message.area = reader.uint32();
-                        break;
-                    }
-                case 13: {
-                        message.world = reader.string();
-                        break;
-                    }
-                case 14: {
-                        message.died = reader.bool();
-                        break;
-                    }
-                case 15: {
-                        message.hero = reader.uint32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.name = value;
+                        else
+                            delete message.name;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.id = value;
+                        else
+                            delete message.id;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.sint32())
+                            message.x = value;
+                        else
+                            delete message.x;
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.sint32())
+                            message.y = value;
+                        else
+                            delete message.y;
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.radius = value;
+                        else
+                            delete message.radius;
+                        continue;
+                    }
+                case 6: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.speed = value;
+                        else
+                            delete message.speed;
+                        continue;
+                    }
+                case 7: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.energy = value;
+                        else
+                            delete message.energy;
+                        continue;
+                    }
+                case 8: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.maxEnergy = value;
+                        else
+                            delete message.maxEnergy;
+                        continue;
+                    }
+                case 9: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.deathTimer = value;
+                        else
+                            delete message.deathTimer;
+                        continue;
+                    }
+                case 10: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.state = value;
+                        else
+                            delete message.state;
+                        continue;
+                    }
+                case 11: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.stateMeta = value;
+                        else
+                            delete message.stateMeta;
+                        continue;
+                    }
+                case 12: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.area = value;
+                        else
+                            delete message.area;
+                        continue;
+                    }
+                case 13: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.world = value;
+                        else
+                            delete message.world;
+                        continue;
+                    }
+                case 14: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.bool())
+                            message.died = value;
+                        else
+                            delete message.died;
+                        continue;
+                    }
+                case 15: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.hero = value;
+                        else
+                            delete message.hero;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -1043,11 +1331,11 @@ export const game = $root.game = (() => {
          * @memberof game.PackedPlayer
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.PackedPlayer} PackedPlayer
+         * @returns {game.PackedPlayer & game.PackedPlayer.$Shape} PackedPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PackedPlayer.decodeDelimited = function decodeDelimited(reader) {
+        PackedPlayer.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -1061,52 +1349,56 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PackedPlayer.verify = function verify(message) {
+        PackedPlayer.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
-            if (message.x != null && message.hasOwnProperty("x"))
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 if (!$util.isInteger(message.x))
                     return "x: integer expected";
-            if (message.y != null && message.hasOwnProperty("y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 if (!$util.isInteger(message.y))
                     return "y: integer expected";
-            if (message.radius != null && message.hasOwnProperty("radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 if (!$util.isInteger(message.radius))
                     return "radius: integer expected";
-            if (message.speed != null && message.hasOwnProperty("speed"))
+            if (message.speed != null && $Object.hasOwnProperty.call(message, "speed"))
                 if (!$util.isInteger(message.speed))
                     return "speed: integer expected";
-            if (message.energy != null && message.hasOwnProperty("energy"))
+            if (message.energy != null && $Object.hasOwnProperty.call(message, "energy"))
                 if (!$util.isInteger(message.energy))
                     return "energy: integer expected";
-            if (message.maxEnergy != null && message.hasOwnProperty("maxEnergy"))
+            if (message.maxEnergy != null && $Object.hasOwnProperty.call(message, "maxEnergy"))
                 if (!$util.isInteger(message.maxEnergy))
                     return "maxEnergy: integer expected";
-            if (message.deathTimer != null && message.hasOwnProperty("deathTimer"))
+            if (message.deathTimer != null && $Object.hasOwnProperty.call(message, "deathTimer"))
                 if (!$util.isInteger(message.deathTimer))
                     return "deathTimer: integer expected";
-            if (message.state != null && message.hasOwnProperty("state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 if (!$util.isInteger(message.state))
                     return "state: integer expected";
-            if (message.stateMeta != null && message.hasOwnProperty("stateMeta"))
+            if (message.stateMeta != null && $Object.hasOwnProperty.call(message, "stateMeta"))
                 if (!$util.isInteger(message.stateMeta))
                     return "stateMeta: integer expected";
-            if (message.area != null && message.hasOwnProperty("area"))
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
                 if (!$util.isInteger(message.area))
                     return "area: integer expected";
-            if (message.world != null && message.hasOwnProperty("world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 if (!$util.isString(message.world))
                     return "world: string expected";
-            if (message.died != null && message.hasOwnProperty("died"))
+            if (message.died != null && $Object.hasOwnProperty.call(message, "died"))
                 if (typeof message.died !== "boolean")
                     return "died: boolean expected";
-            if (message.hero != null && message.hasOwnProperty("hero"))
+            if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
                 if (!$util.isInteger(message.hero))
                     return "hero: integer expected";
             return null;
@@ -1120,40 +1412,61 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.PackedPlayer} PackedPlayer
          */
-        PackedPlayer.fromObject = function fromObject(object) {
+        PackedPlayer.fromObject = function (object, _depth) {
             if (object instanceof $root.game.PackedPlayer)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.PackedPlayer: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.PackedPlayer();
             if (object.name != null)
-                message.name = String(object.name);
+                if (typeof object.name !== "string" || object.name.length)
+                    message.name = $String(object.name);
             if (object.id != null)
-                message.id = object.id >>> 0;
+                if ($Number(object.id) !== 0)
+                    message.id = object.id >>> 0;
             if (object.x != null)
-                message.x = object.x | 0;
+                if ($Number(object.x) !== 0)
+                    message.x = object.x | 0;
             if (object.y != null)
-                message.y = object.y | 0;
+                if ($Number(object.y) !== 0)
+                    message.y = object.y | 0;
             if (object.radius != null)
-                message.radius = object.radius >>> 0;
+                if ($Number(object.radius) !== 0)
+                    message.radius = object.radius >>> 0;
             if (object.speed != null)
-                message.speed = object.speed >>> 0;
+                if ($Number(object.speed) !== 0)
+                    message.speed = object.speed >>> 0;
             if (object.energy != null)
-                message.energy = object.energy >>> 0;
+                if ($Number(object.energy) !== 0)
+                    message.energy = object.energy >>> 0;
             if (object.maxEnergy != null)
-                message.maxEnergy = object.maxEnergy >>> 0;
+                if ($Number(object.maxEnergy) !== 0)
+                    message.maxEnergy = object.maxEnergy >>> 0;
             if (object.deathTimer != null)
-                message.deathTimer = object.deathTimer >>> 0;
+                if ($Number(object.deathTimer) !== 0)
+                    message.deathTimer = object.deathTimer >>> 0;
             if (object.state != null)
-                message.state = object.state >>> 0;
+                if ($Number(object.state) !== 0)
+                    message.state = object.state >>> 0;
             if (object.stateMeta != null)
-                message.stateMeta = object.stateMeta >>> 0;
+                if ($Number(object.stateMeta) !== 0)
+                    message.stateMeta = object.stateMeta >>> 0;
             if (object.area != null)
-                message.area = object.area >>> 0;
+                if ($Number(object.area) !== 0)
+                    message.area = object.area >>> 0;
             if (object.world != null)
-                message.world = String(object.world);
+                if (typeof object.world !== "string" || object.world.length)
+                    message.world = $String(object.world);
             if (object.died != null)
-                message.died = Boolean(object.died);
+                if (object.died)
+                    message.died = $Boolean(object.died);
             if (object.hero != null)
-                message.hero = object.hero >>> 0;
+                if ($Number(object.hero) !== 0)
+                    message.hero = object.hero >>> 0;
             return message;
         };
 
@@ -1166,9 +1479,13 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PackedPlayer.toObject = function toObject(message, options) {
+        PackedPlayer.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults) {
                 object.name = "";
@@ -1187,35 +1504,35 @@ export const game = $root.game = (() => {
                 object.died = false;
                 object.hero = 0;
             }
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 object.name = message.name;
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.x != null && message.hasOwnProperty("x"))
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 object.x = message.x;
-            if (message.y != null && message.hasOwnProperty("y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 object.y = message.y;
-            if (message.radius != null && message.hasOwnProperty("radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 object.radius = message.radius;
-            if (message.speed != null && message.hasOwnProperty("speed"))
+            if (message.speed != null && $Object.hasOwnProperty.call(message, "speed"))
                 object.speed = message.speed;
-            if (message.energy != null && message.hasOwnProperty("energy"))
+            if (message.energy != null && $Object.hasOwnProperty.call(message, "energy"))
                 object.energy = message.energy;
-            if (message.maxEnergy != null && message.hasOwnProperty("maxEnergy"))
+            if (message.maxEnergy != null && $Object.hasOwnProperty.call(message, "maxEnergy"))
                 object.maxEnergy = message.maxEnergy;
-            if (message.deathTimer != null && message.hasOwnProperty("deathTimer"))
+            if (message.deathTimer != null && $Object.hasOwnProperty.call(message, "deathTimer"))
                 object.deathTimer = message.deathTimer;
-            if (message.state != null && message.hasOwnProperty("state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 object.state = message.state;
-            if (message.stateMeta != null && message.hasOwnProperty("stateMeta"))
+            if (message.stateMeta != null && $Object.hasOwnProperty.call(message, "stateMeta"))
                 object.stateMeta = message.stateMeta;
-            if (message.area != null && message.hasOwnProperty("area"))
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
                 object.area = message.area;
-            if (message.world != null && message.hasOwnProperty("world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 object.world = message.world;
-            if (message.died != null && message.hasOwnProperty("died"))
+            if (message.died != null && $Object.hasOwnProperty.call(message, "died"))
                 object.died = message.died;
-            if (message.hero != null && message.hasOwnProperty("hero"))
+            if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
                 object.hero = message.hero;
             return object;
         };
@@ -1227,23 +1544,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        PackedPlayer.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        PackedPlayer.prototype.toJSON = function() {
+            return PackedPlayer.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for PackedPlayer
+         * Gets the type url for PackedPlayer
          * @function getTypeUrl
          * @memberof game.PackedPlayer
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        PackedPlayer.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.PackedPlayer";
+        PackedPlayer.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.PackedPlayer";
         };
 
         return PackedPlayer;
@@ -1253,8 +1569,7 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a PartialEntity.
-         * @memberof game
-         * @interface IPartialEntity
+         * @typedef {Object} game.PartialEntity.$Properties
          * @property {number|null} [x] PartialEntity x
          * @property {number|null} [y] PartialEntity y
          * @property {number|null} [radius] PartialEntity radius
@@ -1262,22 +1577,36 @@ export const game = $root.game = (() => {
          * @property {number|null} [state] PartialEntity state
          * @property {number|null} [stateMetadata] PartialEntity stateMetadata
          * @property {number|null} [alpha] PartialEntity alpha
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a PartialEntity.
+         * @memberof game
+         * @interface IPartialEntity
+         * @augments game.PartialEntity.$Properties
+         * @deprecated Use game.PartialEntity.$Properties instead.
+         */
+
+        /**
+         * Shape of a PartialEntity.
+         * @typedef {game.PartialEntity.$Properties} game.PartialEntity.$Shape
          */
 
         /**
          * Constructs a new PartialEntity.
          * @memberof game
          * @classdesc Represents a PartialEntity.
-         * @implements IPartialEntity
          * @constructor
-         * @param {game.IPartialEntity=} [properties] Properties to set
+         * @param {game.PartialEntity.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function PartialEntity(properties) {
+        const PartialEntity = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * PartialEntity x.
@@ -1339,43 +1668,43 @@ export const game = $root.game = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialEntity.prototype, "_x", {
+        $Object.defineProperty(PartialEntity.prototype, "_x", {
             get: $util.oneOfGetter($oneOfFields = ["x"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialEntity.prototype, "_y", {
+        $Object.defineProperty(PartialEntity.prototype, "_y", {
             get: $util.oneOfGetter($oneOfFields = ["y"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialEntity.prototype, "_radius", {
+        $Object.defineProperty(PartialEntity.prototype, "_radius", {
             get: $util.oneOfGetter($oneOfFields = ["radius"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialEntity.prototype, "_harmless", {
+        $Object.defineProperty(PartialEntity.prototype, "_harmless", {
             get: $util.oneOfGetter($oneOfFields = ["harmless"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialEntity.prototype, "_state", {
+        $Object.defineProperty(PartialEntity.prototype, "_state", {
             get: $util.oneOfGetter($oneOfFields = ["state"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialEntity.prototype, "_stateMetadata", {
+        $Object.defineProperty(PartialEntity.prototype, "_stateMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["stateMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialEntity.prototype, "_alpha", {
+        $Object.defineProperty(PartialEntity.prototype, "_alpha", {
             get: $util.oneOfGetter($oneOfFields = ["alpha"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -1385,10 +1714,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.PartialEntity
          * @static
-         * @param {game.IPartialEntity=} [properties] Properties to set
+         * @param {game.PartialEntity.$Properties=} [properties] Properties to set
          * @returns {game.PartialEntity} PartialEntity instance
+         * @type {{
+         *   (properties: game.PartialEntity.$Shape): game.PartialEntity & game.PartialEntity.$Shape;
+         *   (properties?: game.PartialEntity.$Properties): game.PartialEntity;
+         * }}
          */
-        PartialEntity.create = function create(properties) {
+        PartialEntity.create = function(properties) {
             return new PartialEntity(properties);
         };
 
@@ -1397,27 +1730,34 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.PartialEntity
          * @static
-         * @param {game.IPartialEntity} message PartialEntity message or plain object to encode
+         * @param {game.PartialEntity.$Properties} message PartialEntity message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PartialEntity.encode = function encode(message, writer) {
+        PartialEntity.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.x != null && Object.hasOwnProperty.call(message, "x"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 writer.uint32(/* id 2, wireType 0 =*/16).sint32(message.x);
-            if (message.y != null && Object.hasOwnProperty.call(message, "y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 writer.uint32(/* id 3, wireType 0 =*/24).sint32(message.y);
-            if (message.radius != null && Object.hasOwnProperty.call(message, "radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.radius);
-            if (message.harmless != null && Object.hasOwnProperty.call(message, "harmless"))
+            if (message.harmless != null && $Object.hasOwnProperty.call(message, "harmless"))
                 writer.uint32(/* id 5, wireType 0 =*/40).bool(message.harmless);
-            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.state);
-            if (message.stateMetadata != null && Object.hasOwnProperty.call(message, "stateMetadata"))
+            if (message.stateMetadata != null && $Object.hasOwnProperty.call(message, "stateMetadata"))
                 writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.stateMetadata);
-            if (message.alpha != null && Object.hasOwnProperty.call(message, "alpha"))
+            if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                 writer.uint32(/* id 9, wireType 0 =*/72).uint32(message.alpha);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -1426,12 +1766,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.PartialEntity
          * @static
-         * @param {game.IPartialEntity} message PartialEntity message or plain object to encode
+         * @param {game.PartialEntity.$Properties} message PartialEntity message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PartialEntity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        PartialEntity.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1441,52 +1781,85 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.PartialEntity} PartialEntity
+         * @returns {game.PartialEntity & game.PartialEntity.$Shape} PartialEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PartialEntity.decode = function decode(reader, length, error) {
+        PartialEntity.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.PartialEntity();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.PartialEntity();
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 2: {
-                        message.x = reader.sint32();
-                        break;
-                    }
-                case 3: {
-                        message.y = reader.sint32();
-                        break;
-                    }
-                case 4: {
-                        message.radius = reader.uint32();
-                        break;
-                    }
-                case 5: {
-                        message.harmless = reader.bool();
-                        break;
-                    }
-                case 7: {
-                        message.state = reader.uint32();
-                        break;
-                    }
-                case 8: {
-                        message.stateMetadata = reader.uint32();
-                        break;
-                    }
-                case 9: {
-                        message.alpha = reader.uint32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        message.x = reader.sint32();
+                        message._x = "x";
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 0)
+                            break;
+                        message.y = reader.sint32();
+                        message._y = "y";
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        message.radius = reader.uint32();
+                        message._radius = "radius";
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 0)
+                            break;
+                        message.harmless = reader.bool();
+                        message._harmless = "harmless";
+                        continue;
+                    }
+                case 7: {
+                        if (wireType !== 0)
+                            break;
+                        message.state = reader.uint32();
+                        message._state = "state";
+                        continue;
+                    }
+                case 8: {
+                        if (wireType !== 0)
+                            break;
+                        message.stateMetadata = reader.uint32();
+                        message._stateMetadata = "stateMetadata";
+                        continue;
+                    }
+                case 9: {
+                        if (wireType !== 0)
+                            break;
+                        message.alpha = reader.uint32();
+                        message._alpha = "alpha";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -1496,11 +1869,11 @@ export const game = $root.game = (() => {
          * @memberof game.PartialEntity
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.PartialEntity} PartialEntity
+         * @returns {game.PartialEntity & game.PartialEntity.$Shape} PartialEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PartialEntity.decodeDelimited = function decodeDelimited(reader) {
+        PartialEntity.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -1514,41 +1887,45 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PartialEntity.verify = function verify(message) {
+        PartialEntity.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.x != null && message.hasOwnProperty("x")) {
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
                 properties._x = 1;
                 if (!$util.isInteger(message.x))
                     return "x: integer expected";
             }
-            if (message.y != null && message.hasOwnProperty("y")) {
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
                 properties._y = 1;
                 if (!$util.isInteger(message.y))
                     return "y: integer expected";
             }
-            if (message.radius != null && message.hasOwnProperty("radius")) {
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius")) {
                 properties._radius = 1;
                 if (!$util.isInteger(message.radius))
                     return "radius: integer expected";
             }
-            if (message.harmless != null && message.hasOwnProperty("harmless")) {
+            if (message.harmless != null && $Object.hasOwnProperty.call(message, "harmless")) {
                 properties._harmless = 1;
                 if (typeof message.harmless !== "boolean")
                     return "harmless: boolean expected";
             }
-            if (message.state != null && message.hasOwnProperty("state")) {
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state")) {
                 properties._state = 1;
                 if (!$util.isInteger(message.state))
                     return "state: integer expected";
             }
-            if (message.stateMetadata != null && message.hasOwnProperty("stateMetadata")) {
+            if (message.stateMetadata != null && $Object.hasOwnProperty.call(message, "stateMetadata")) {
                 properties._stateMetadata = 1;
                 if (!$util.isInteger(message.stateMetadata))
                     return "stateMetadata: integer expected";
             }
-            if (message.alpha != null && message.hasOwnProperty("alpha")) {
+            if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha")) {
                 properties._alpha = 1;
                 if (!$util.isInteger(message.alpha))
                     return "alpha: integer expected";
@@ -1564,9 +1941,15 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.PartialEntity} PartialEntity
          */
-        PartialEntity.fromObject = function fromObject(object) {
+        PartialEntity.fromObject = function (object, _depth) {
             if (object instanceof $root.game.PartialEntity)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.PartialEntity: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.PartialEntity();
             if (object.x != null)
                 message.x = object.x | 0;
@@ -1575,7 +1958,7 @@ export const game = $root.game = (() => {
             if (object.radius != null)
                 message.radius = object.radius >>> 0;
             if (object.harmless != null)
-                message.harmless = Boolean(object.harmless);
+                message.harmless = $Boolean(object.harmless);
             if (object.state != null)
                 message.state = object.state >>> 0;
             if (object.stateMetadata != null)
@@ -1594,45 +1977,28 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PartialEntity.toObject = function toObject(message, options) {
+        PartialEntity.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
-            if (message.x != null && message.hasOwnProperty("x")) {
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 object.x = message.x;
-                if (options.oneofs)
-                    object._x = "x";
-            }
-            if (message.y != null && message.hasOwnProperty("y")) {
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 object.y = message.y;
-                if (options.oneofs)
-                    object._y = "y";
-            }
-            if (message.radius != null && message.hasOwnProperty("radius")) {
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 object.radius = message.radius;
-                if (options.oneofs)
-                    object._radius = "radius";
-            }
-            if (message.harmless != null && message.hasOwnProperty("harmless")) {
+            if (message.harmless != null && $Object.hasOwnProperty.call(message, "harmless"))
                 object.harmless = message.harmless;
-                if (options.oneofs)
-                    object._harmless = "harmless";
-            }
-            if (message.state != null && message.hasOwnProperty("state")) {
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 object.state = message.state;
-                if (options.oneofs)
-                    object._state = "state";
-            }
-            if (message.stateMetadata != null && message.hasOwnProperty("stateMetadata")) {
+            if (message.stateMetadata != null && $Object.hasOwnProperty.call(message, "stateMetadata"))
                 object.stateMetadata = message.stateMetadata;
-                if (options.oneofs)
-                    object._stateMetadata = "stateMetadata";
-            }
-            if (message.alpha != null && message.hasOwnProperty("alpha")) {
+            if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                 object.alpha = message.alpha;
-                if (options.oneofs)
-                    object._alpha = "alpha";
-            }
             return object;
         };
 
@@ -1643,23 +2009,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        PartialEntity.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        PartialEntity.prototype.toJSON = function() {
+            return PartialEntity.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for PartialEntity
+         * Gets the type url for PartialEntity
          * @function getTypeUrl
          * @memberof game.PartialEntity
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        PartialEntity.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.PartialEntity";
+        PartialEntity.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.PartialEntity";
         };
 
         return PartialEntity;
@@ -1669,8 +2034,7 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a PartialPlayer.
-         * @memberof game
-         * @interface IPartialPlayer
+         * @typedef {Object} game.PartialPlayer.$Properties
          * @property {number|null} [x] PartialPlayer x
          * @property {number|null} [y] PartialPlayer y
          * @property {number|null} [radius] PartialPlayer radius
@@ -1683,22 +2047,36 @@ export const game = $root.game = (() => {
          * @property {number|null} [area] PartialPlayer area
          * @property {string|null} [world] PartialPlayer world
          * @property {boolean|null} [died] PartialPlayer died
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a PartialPlayer.
+         * @memberof game
+         * @interface IPartialPlayer
+         * @augments game.PartialPlayer.$Properties
+         * @deprecated Use game.PartialPlayer.$Properties instead.
+         */
+
+        /**
+         * Shape of a PartialPlayer.
+         * @typedef {game.PartialPlayer.$Properties} game.PartialPlayer.$Shape
          */
 
         /**
          * Constructs a new PartialPlayer.
          * @memberof game
          * @classdesc Represents a PartialPlayer.
-         * @implements IPartialPlayer
          * @constructor
-         * @param {game.IPartialPlayer=} [properties] Properties to set
+         * @param {game.PartialPlayer.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function PartialPlayer(properties) {
+        const PartialPlayer = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * PartialPlayer x.
@@ -1800,73 +2178,73 @@ export const game = $root.game = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_x", {
+        $Object.defineProperty(PartialPlayer.prototype, "_x", {
             get: $util.oneOfGetter($oneOfFields = ["x"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_y", {
+        $Object.defineProperty(PartialPlayer.prototype, "_y", {
             get: $util.oneOfGetter($oneOfFields = ["y"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_radius", {
+        $Object.defineProperty(PartialPlayer.prototype, "_radius", {
             get: $util.oneOfGetter($oneOfFields = ["radius"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_speed", {
+        $Object.defineProperty(PartialPlayer.prototype, "_speed", {
             get: $util.oneOfGetter($oneOfFields = ["speed"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_energy", {
+        $Object.defineProperty(PartialPlayer.prototype, "_energy", {
             get: $util.oneOfGetter($oneOfFields = ["energy"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_maxEnergy", {
+        $Object.defineProperty(PartialPlayer.prototype, "_maxEnergy", {
             get: $util.oneOfGetter($oneOfFields = ["maxEnergy"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_deathTimer", {
+        $Object.defineProperty(PartialPlayer.prototype, "_deathTimer", {
             get: $util.oneOfGetter($oneOfFields = ["deathTimer"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_state", {
+        $Object.defineProperty(PartialPlayer.prototype, "_state", {
             get: $util.oneOfGetter($oneOfFields = ["state"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_stateMeta", {
+        $Object.defineProperty(PartialPlayer.prototype, "_stateMeta", {
             get: $util.oneOfGetter($oneOfFields = ["stateMeta"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_area", {
+        $Object.defineProperty(PartialPlayer.prototype, "_area", {
             get: $util.oneOfGetter($oneOfFields = ["area"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_world", {
+        $Object.defineProperty(PartialPlayer.prototype, "_world", {
             get: $util.oneOfGetter($oneOfFields = ["world"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(PartialPlayer.prototype, "_died", {
+        $Object.defineProperty(PartialPlayer.prototype, "_died", {
             get: $util.oneOfGetter($oneOfFields = ["died"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -1876,10 +2254,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.PartialPlayer
          * @static
-         * @param {game.IPartialPlayer=} [properties] Properties to set
+         * @param {game.PartialPlayer.$Properties=} [properties] Properties to set
          * @returns {game.PartialPlayer} PartialPlayer instance
+         * @type {{
+         *   (properties: game.PartialPlayer.$Shape): game.PartialPlayer & game.PartialPlayer.$Shape;
+         *   (properties?: game.PartialPlayer.$Properties): game.PartialPlayer;
+         * }}
          */
-        PartialPlayer.create = function create(properties) {
+        PartialPlayer.create = function(properties) {
             return new PartialPlayer(properties);
         };
 
@@ -1888,37 +2270,44 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.PartialPlayer
          * @static
-         * @param {game.IPartialPlayer} message PartialPlayer message or plain object to encode
+         * @param {game.PartialPlayer.$Properties} message PartialPlayer message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PartialPlayer.encode = function encode(message, writer) {
+        PartialPlayer.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.x != null && Object.hasOwnProperty.call(message, "x"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 writer.uint32(/* id 3, wireType 0 =*/24).sint32(message.x);
-            if (message.y != null && Object.hasOwnProperty.call(message, "y"))
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 writer.uint32(/* id 4, wireType 0 =*/32).sint32(message.y);
-            if (message.radius != null && Object.hasOwnProperty.call(message, "radius"))
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.radius);
-            if (message.speed != null && Object.hasOwnProperty.call(message, "speed"))
+            if (message.speed != null && $Object.hasOwnProperty.call(message, "speed"))
                 writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.speed);
-            if (message.energy != null && Object.hasOwnProperty.call(message, "energy"))
+            if (message.energy != null && $Object.hasOwnProperty.call(message, "energy"))
                 writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.energy);
-            if (message.maxEnergy != null && Object.hasOwnProperty.call(message, "maxEnergy"))
+            if (message.maxEnergy != null && $Object.hasOwnProperty.call(message, "maxEnergy"))
                 writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.maxEnergy);
-            if (message.deathTimer != null && Object.hasOwnProperty.call(message, "deathTimer"))
+            if (message.deathTimer != null && $Object.hasOwnProperty.call(message, "deathTimer"))
                 writer.uint32(/* id 9, wireType 0 =*/72).uint32(message.deathTimer);
-            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.state);
-            if (message.stateMeta != null && Object.hasOwnProperty.call(message, "stateMeta"))
+            if (message.stateMeta != null && $Object.hasOwnProperty.call(message, "stateMeta"))
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.stateMeta);
-            if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
                 writer.uint32(/* id 12, wireType 0 =*/96).uint32(message.area);
-            if (message.world != null && Object.hasOwnProperty.call(message, "world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 writer.uint32(/* id 13, wireType 2 =*/106).string(message.world);
-            if (message.died != null && Object.hasOwnProperty.call(message, "died"))
+            if (message.died != null && $Object.hasOwnProperty.call(message, "died"))
                 writer.uint32(/* id 14, wireType 0 =*/112).bool(message.died);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -1927,12 +2316,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.PartialPlayer
          * @static
-         * @param {game.IPartialPlayer} message PartialPlayer message or plain object to encode
+         * @param {game.PartialPlayer.$Properties} message PartialPlayer message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PartialPlayer.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        PartialPlayer.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1942,72 +2331,120 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.PartialPlayer} PartialPlayer
+         * @returns {game.PartialPlayer & game.PartialPlayer.$Shape} PartialPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PartialPlayer.decode = function decode(reader, length, error) {
+        PartialPlayer.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.PartialPlayer();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.PartialPlayer();
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 3: {
-                        message.x = reader.sint32();
-                        break;
-                    }
-                case 4: {
-                        message.y = reader.sint32();
-                        break;
-                    }
-                case 5: {
-                        message.radius = reader.uint32();
-                        break;
-                    }
-                case 6: {
-                        message.speed = reader.uint32();
-                        break;
-                    }
-                case 7: {
-                        message.energy = reader.uint32();
-                        break;
-                    }
-                case 8: {
-                        message.maxEnergy = reader.uint32();
-                        break;
-                    }
-                case 9: {
-                        message.deathTimer = reader.uint32();
-                        break;
-                    }
-                case 10: {
-                        message.state = reader.uint32();
-                        break;
-                    }
-                case 11: {
-                        message.stateMeta = reader.uint32();
-                        break;
-                    }
-                case 12: {
-                        message.area = reader.uint32();
-                        break;
-                    }
-                case 13: {
-                        message.world = reader.string();
-                        break;
-                    }
-                case 14: {
-                        message.died = reader.bool();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 3: {
+                        if (wireType !== 0)
+                            break;
+                        message.x = reader.sint32();
+                        message._x = "x";
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        message.y = reader.sint32();
+                        message._y = "y";
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 0)
+                            break;
+                        message.radius = reader.uint32();
+                        message._radius = "radius";
+                        continue;
+                    }
+                case 6: {
+                        if (wireType !== 0)
+                            break;
+                        message.speed = reader.uint32();
+                        message._speed = "speed";
+                        continue;
+                    }
+                case 7: {
+                        if (wireType !== 0)
+                            break;
+                        message.energy = reader.uint32();
+                        message._energy = "energy";
+                        continue;
+                    }
+                case 8: {
+                        if (wireType !== 0)
+                            break;
+                        message.maxEnergy = reader.uint32();
+                        message._maxEnergy = "maxEnergy";
+                        continue;
+                    }
+                case 9: {
+                        if (wireType !== 0)
+                            break;
+                        message.deathTimer = reader.uint32();
+                        message._deathTimer = "deathTimer";
+                        continue;
+                    }
+                case 10: {
+                        if (wireType !== 0)
+                            break;
+                        message.state = reader.uint32();
+                        message._state = "state";
+                        continue;
+                    }
+                case 11: {
+                        if (wireType !== 0)
+                            break;
+                        message.stateMeta = reader.uint32();
+                        message._stateMeta = "stateMeta";
+                        continue;
+                    }
+                case 12: {
+                        if (wireType !== 0)
+                            break;
+                        message.area = reader.uint32();
+                        message._area = "area";
+                        continue;
+                    }
+                case 13: {
+                        if (wireType !== 2)
+                            break;
+                        message.world = reader.stringVerify();
+                        message._world = "world";
+                        continue;
+                    }
+                case 14: {
+                        if (wireType !== 0)
+                            break;
+                        message.died = reader.bool();
+                        message._died = "died";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -2017,11 +2454,11 @@ export const game = $root.game = (() => {
          * @memberof game.PartialPlayer
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.PartialPlayer} PartialPlayer
+         * @returns {game.PartialPlayer & game.PartialPlayer.$Shape} PartialPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PartialPlayer.decodeDelimited = function decodeDelimited(reader) {
+        PartialPlayer.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -2035,66 +2472,70 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PartialPlayer.verify = function verify(message) {
+        PartialPlayer.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.x != null && message.hasOwnProperty("x")) {
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
                 properties._x = 1;
                 if (!$util.isInteger(message.x))
                     return "x: integer expected";
             }
-            if (message.y != null && message.hasOwnProperty("y")) {
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
                 properties._y = 1;
                 if (!$util.isInteger(message.y))
                     return "y: integer expected";
             }
-            if (message.radius != null && message.hasOwnProperty("radius")) {
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius")) {
                 properties._radius = 1;
                 if (!$util.isInteger(message.radius))
                     return "radius: integer expected";
             }
-            if (message.speed != null && message.hasOwnProperty("speed")) {
+            if (message.speed != null && $Object.hasOwnProperty.call(message, "speed")) {
                 properties._speed = 1;
                 if (!$util.isInteger(message.speed))
                     return "speed: integer expected";
             }
-            if (message.energy != null && message.hasOwnProperty("energy")) {
+            if (message.energy != null && $Object.hasOwnProperty.call(message, "energy")) {
                 properties._energy = 1;
                 if (!$util.isInteger(message.energy))
                     return "energy: integer expected";
             }
-            if (message.maxEnergy != null && message.hasOwnProperty("maxEnergy")) {
+            if (message.maxEnergy != null && $Object.hasOwnProperty.call(message, "maxEnergy")) {
                 properties._maxEnergy = 1;
                 if (!$util.isInteger(message.maxEnergy))
                     return "maxEnergy: integer expected";
             }
-            if (message.deathTimer != null && message.hasOwnProperty("deathTimer")) {
+            if (message.deathTimer != null && $Object.hasOwnProperty.call(message, "deathTimer")) {
                 properties._deathTimer = 1;
                 if (!$util.isInteger(message.deathTimer))
                     return "deathTimer: integer expected";
             }
-            if (message.state != null && message.hasOwnProperty("state")) {
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state")) {
                 properties._state = 1;
                 if (!$util.isInteger(message.state))
                     return "state: integer expected";
             }
-            if (message.stateMeta != null && message.hasOwnProperty("stateMeta")) {
+            if (message.stateMeta != null && $Object.hasOwnProperty.call(message, "stateMeta")) {
                 properties._stateMeta = 1;
                 if (!$util.isInteger(message.stateMeta))
                     return "stateMeta: integer expected";
             }
-            if (message.area != null && message.hasOwnProperty("area")) {
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area")) {
                 properties._area = 1;
                 if (!$util.isInteger(message.area))
                     return "area: integer expected";
             }
-            if (message.world != null && message.hasOwnProperty("world")) {
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world")) {
                 properties._world = 1;
                 if (!$util.isString(message.world))
                     return "world: string expected";
             }
-            if (message.died != null && message.hasOwnProperty("died")) {
+            if (message.died != null && $Object.hasOwnProperty.call(message, "died")) {
                 properties._died = 1;
                 if (typeof message.died !== "boolean")
                     return "died: boolean expected";
@@ -2110,9 +2551,15 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.PartialPlayer} PartialPlayer
          */
-        PartialPlayer.fromObject = function fromObject(object) {
+        PartialPlayer.fromObject = function (object, _depth) {
             if (object instanceof $root.game.PartialPlayer)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.PartialPlayer: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.PartialPlayer();
             if (object.x != null)
                 message.x = object.x | 0;
@@ -2135,9 +2582,9 @@ export const game = $root.game = (() => {
             if (object.area != null)
                 message.area = object.area >>> 0;
             if (object.world != null)
-                message.world = String(object.world);
+                message.world = $String(object.world);
             if (object.died != null)
-                message.died = Boolean(object.died);
+                message.died = $Boolean(object.died);
             return message;
         };
 
@@ -2150,70 +2597,38 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PartialPlayer.toObject = function toObject(message, options) {
+        PartialPlayer.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
-            if (message.x != null && message.hasOwnProperty("x")) {
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
                 object.x = message.x;
-                if (options.oneofs)
-                    object._x = "x";
-            }
-            if (message.y != null && message.hasOwnProperty("y")) {
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
                 object.y = message.y;
-                if (options.oneofs)
-                    object._y = "y";
-            }
-            if (message.radius != null && message.hasOwnProperty("radius")) {
+            if (message.radius != null && $Object.hasOwnProperty.call(message, "radius"))
                 object.radius = message.radius;
-                if (options.oneofs)
-                    object._radius = "radius";
-            }
-            if (message.speed != null && message.hasOwnProperty("speed")) {
+            if (message.speed != null && $Object.hasOwnProperty.call(message, "speed"))
                 object.speed = message.speed;
-                if (options.oneofs)
-                    object._speed = "speed";
-            }
-            if (message.energy != null && message.hasOwnProperty("energy")) {
+            if (message.energy != null && $Object.hasOwnProperty.call(message, "energy"))
                 object.energy = message.energy;
-                if (options.oneofs)
-                    object._energy = "energy";
-            }
-            if (message.maxEnergy != null && message.hasOwnProperty("maxEnergy")) {
+            if (message.maxEnergy != null && $Object.hasOwnProperty.call(message, "maxEnergy"))
                 object.maxEnergy = message.maxEnergy;
-                if (options.oneofs)
-                    object._maxEnergy = "maxEnergy";
-            }
-            if (message.deathTimer != null && message.hasOwnProperty("deathTimer")) {
+            if (message.deathTimer != null && $Object.hasOwnProperty.call(message, "deathTimer"))
                 object.deathTimer = message.deathTimer;
-                if (options.oneofs)
-                    object._deathTimer = "deathTimer";
-            }
-            if (message.state != null && message.hasOwnProperty("state")) {
+            if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
                 object.state = message.state;
-                if (options.oneofs)
-                    object._state = "state";
-            }
-            if (message.stateMeta != null && message.hasOwnProperty("stateMeta")) {
+            if (message.stateMeta != null && $Object.hasOwnProperty.call(message, "stateMeta"))
                 object.stateMeta = message.stateMeta;
-                if (options.oneofs)
-                    object._stateMeta = "stateMeta";
-            }
-            if (message.area != null && message.hasOwnProperty("area")) {
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
                 object.area = message.area;
-                if (options.oneofs)
-                    object._area = "area";
-            }
-            if (message.world != null && message.hasOwnProperty("world")) {
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 object.world = message.world;
-                if (options.oneofs)
-                    object._world = "world";
-            }
-            if (message.died != null && message.hasOwnProperty("died")) {
+            if (message.died != null && $Object.hasOwnProperty.call(message, "died"))
                 object.died = message.died;
-                if (options.oneofs)
-                    object._died = "died";
-            }
             return object;
         };
 
@@ -2224,23 +2639,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        PartialPlayer.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        PartialPlayer.prototype.toJSON = function() {
+            return PartialPlayer.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for PartialPlayer
+         * Gets the type url for PartialPlayer
          * @function getTypeUrl
          * @memberof game.PartialPlayer
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        PartialPlayer.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.PartialPlayer";
+        PartialPlayer.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.PartialPlayer";
         };
 
         return PartialPlayer;
@@ -2250,30 +2664,43 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a PackedArea.
-         * @memberof game
-         * @interface IPackedArea
+         * @typedef {Object} game.PackedArea.$Properties
          * @property {number|null} [w] PackedArea w
          * @property {number|null} [h] PackedArea h
          * @property {number|Long|null} [area] PackedArea area
          * @property {string|null} [world] PackedArea world
-         * @property {Object.<string,game.IPackedEntity>|null} [entities] PackedArea entities
+         * @property {Object.<string,game.PackedEntity.$Properties>|null} [entities] PackedArea entities
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a PackedArea.
+         * @memberof game
+         * @interface IPackedArea
+         * @augments game.PackedArea.$Properties
+         * @deprecated Use game.PackedArea.$Properties instead.
+         */
+
+        /**
+         * Shape of a PackedArea.
+         * @typedef {game.PackedArea.$Properties} game.PackedArea.$Shape
          */
 
         /**
          * Constructs a new PackedArea.
          * @memberof game
          * @classdesc Represents a PackedArea.
-         * @implements IPackedArea
          * @constructor
-         * @param {game.IPackedArea=} [properties] Properties to set
+         * @param {game.PackedArea.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function PackedArea(properties) {
+        const PackedArea = function (properties) {
             this.entities = {};
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * PackedArea w.
@@ -2309,7 +2736,7 @@ export const game = $root.game = (() => {
 
         /**
          * PackedArea entities.
-         * @member {Object.<string,game.IPackedEntity>} entities
+         * @member {Object.<string,game.PackedEntity.$Properties>} entities
          * @memberof game.PackedArea
          * @instance
          */
@@ -2320,10 +2747,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.PackedArea
          * @static
-         * @param {game.IPackedArea=} [properties] Properties to set
+         * @param {game.PackedArea.$Properties=} [properties] Properties to set
          * @returns {game.PackedArea} PackedArea instance
+         * @type {{
+         *   (properties: game.PackedArea.$Shape): game.PackedArea & game.PackedArea.$Shape;
+         *   (properties?: game.PackedArea.$Properties): game.PackedArea;
+         * }}
          */
-        PackedArea.create = function create(properties) {
+        PackedArea.create = function(properties) {
             return new PackedArea(properties);
         };
 
@@ -2332,26 +2763,33 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.PackedArea
          * @static
-         * @param {game.IPackedArea} message PackedArea message or plain object to encode
+         * @param {game.PackedArea.$Properties} message PackedArea message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PackedArea.encode = function encode(message, writer) {
+        PackedArea.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.w != null && Object.hasOwnProperty.call(message, "w"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.w != null && $Object.hasOwnProperty.call(message, "w"))
                 writer.uint32(/* id 1, wireType 5 =*/13).float(message.w);
-            if (message.h != null && Object.hasOwnProperty.call(message, "h"))
+            if (message.h != null && $Object.hasOwnProperty.call(message, "h"))
                 writer.uint32(/* id 2, wireType 5 =*/21).float(message.h);
-            if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
                 writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.area);
-            if (message.world != null && Object.hasOwnProperty.call(message, "world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.world);
-            if (message.entities != null && Object.hasOwnProperty.call(message, "entities"))
-                for (let keys = Object.keys(message.entities), i = 0; i < keys.length; ++i) {
-                    writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 0 =*/8).uint64(keys[i]);
-                    $root.game.PackedEntity.encode(message.entities[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+            if (message.entities != null && $Object.hasOwnProperty.call(message, "entities"))
+                for (let keys = $Object.keys(message.entities), i = 0; i < keys.length; ++i) {
+                    writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 0 =*/8).uint64($util.longFromKey(keys[i], true));
+                    $root.game.PackedEntity.encode(message.entities[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
                 }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -2360,12 +2798,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.PackedArea
          * @static
-         * @param {game.IPackedArea} message PackedArea message or plain object to encode
+         * @param {game.PackedArea.$Properties} message PackedArea message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PackedArea.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        PackedArea.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2375,63 +2813,100 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.PackedArea} PackedArea
+         * @returns {game.PackedArea & game.PackedArea.$Shape} PackedArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PackedArea.decode = function decode(reader, length, error) {
+        PackedArea.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.PackedArea(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.PackedArea(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
-                        message.w = reader.float();
-                        break;
+                        if (wireType !== 5)
+                            break;
+                        if ((value = reader.float()) !== 0)
+                            message.w = value;
+                        else
+                            delete message.w;
+                        continue;
                     }
                 case 2: {
-                        message.h = reader.float();
-                        break;
+                        if (wireType !== 5)
+                            break;
+                        if ((value = reader.float()) !== 0)
+                            message.h = value;
+                        else
+                            delete message.h;
+                        continue;
                     }
                 case 3: {
-                        message.area = reader.uint64();
-                        break;
+                        if (wireType !== 0)
+                            break;
+                        if (typeof (value = reader.uint64()) === "object" ? value.low || value.high : value !== 0)
+                            message.area = value;
+                        else
+                            delete message.area;
+                        continue;
                     }
                 case 4: {
-                        message.world = reader.string();
-                        break;
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.world = value;
+                        else
+                            delete message.world;
+                        continue;
                     }
                 case 5: {
+                        if (wireType !== 2)
+                            break;
                         if (message.entities === $util.emptyObject)
                             message.entities = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = 0;
                         value = null;
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
+                                if (wireType !== 0)
+                                    break;
                                 key = reader.uint64();
-                                break;
+                                continue;
                             case 2:
-                                value = $root.game.PackedEntity.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = $root.game.PackedEntity.decode(reader, reader.uint32(), $undefined, _depth + 1);
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
-                        message.entities[typeof key === "object" ? $util.longToHash(key) : key] = value;
-                        break;
+                        message.entities[typeof key === "object" ? $util.longToHash(key) : key] = value || new $root.game.PackedEntity();
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -2441,11 +2916,11 @@ export const game = $root.game = (() => {
          * @memberof game.PackedArea
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.PackedArea} PackedArea
+         * @returns {game.PackedArea & game.PackedArea.$Shape} PackedArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PackedArea.decodeDelimited = function decodeDelimited(reader) {
+        PackedArea.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -2459,30 +2934,34 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PackedArea.verify = function verify(message) {
+        PackedArea.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.w != null && message.hasOwnProperty("w"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.w != null && $Object.hasOwnProperty.call(message, "w"))
                 if (typeof message.w !== "number")
                     return "w: number expected";
-            if (message.h != null && message.hasOwnProperty("h"))
+            if (message.h != null && $Object.hasOwnProperty.call(message, "h"))
                 if (typeof message.h !== "number")
                     return "h: number expected";
-            if (message.area != null && message.hasOwnProperty("area"))
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
                 if (!$util.isInteger(message.area) && !(message.area && $util.isInteger(message.area.low) && $util.isInteger(message.area.high)))
                     return "area: integer|Long expected";
-            if (message.world != null && message.hasOwnProperty("world"))
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 if (!$util.isString(message.world))
                     return "world: string expected";
-            if (message.entities != null && message.hasOwnProperty("entities")) {
+            if (message.entities != null && $Object.hasOwnProperty.call(message, "entities")) {
                 if (!$util.isObject(message.entities))
                     return "entities: object expected";
-                let key = Object.keys(message.entities);
+                let key = $Object.keys(message.entities);
                 for (let i = 0; i < key.length; ++i) {
                     if (!$util.key64Re.test(key[i]))
                         return "entities: integer|Long key{k:uint64} expected";
                     {
-                        let error = $root.game.PackedEntity.verify(message.entities[key[i]]);
+                        let error = $root.game.PackedEntity.verify(message.entities[key[i]], _depth + 1);
                         if (error)
                             return "entities." + error;
                     }
@@ -2499,33 +2978,45 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.PackedArea} PackedArea
          */
-        PackedArea.fromObject = function fromObject(object) {
+        PackedArea.fromObject = function (object, _depth) {
             if (object instanceof $root.game.PackedArea)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.PackedArea: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.PackedArea();
             if (object.w != null)
-                message.w = Number(object.w);
+                if ($Number(object.w) !== 0)
+                    message.w = $Number(object.w);
             if (object.h != null)
-                message.h = Number(object.h);
+                if ($Number(object.h) !== 0)
+                    message.h = $Number(object.h);
             if (object.area != null)
-                if ($util.Long)
-                    (message.area = $util.Long.fromValue(object.area)).unsigned = true;
-                else if (typeof object.area === "string")
-                    message.area = parseInt(object.area, 10);
-                else if (typeof object.area === "number")
-                    message.area = object.area;
-                else if (typeof object.area === "object")
-                    message.area = new $util.LongBits(object.area.low >>> 0, object.area.high >>> 0).toNumber(true);
+                if (typeof object.area === "object" ? object.area.low || object.area.high : $Number(object.area) !== 0)
+                    if ($util.Long)
+                        message.area = $util.Long.fromValue(object.area, true);
+                    else if (typeof object.area === "string")
+                        message.area = $parseInt(object.area, 10);
+                    else if (typeof object.area === "number")
+                        message.area = object.area;
+                    else if (typeof object.area === "object")
+                        message.area = new $util.LongBits(object.area.low >>> 0, object.area.high >>> 0).toNumber(true);
             if (object.world != null)
-                message.world = String(object.world);
+                if (typeof object.world !== "string" || object.world.length)
+                    message.world = $String(object.world);
             if (object.entities) {
-                if (typeof object.entities !== "object")
-                    throw TypeError(".game.PackedArea.entities: object expected");
+                if (!$util.isObject(object.entities))
+                    throw $TypeError(".game.PackedArea.entities: object expected");
                 message.entities = {};
-                for (let keys = Object.keys(object.entities), i = 0; i < keys.length; ++i) {
-                    if (typeof object.entities[keys[i]] !== "object")
-                        throw TypeError(".game.PackedArea.entities: object expected");
-                    message.entities[keys[i]] = $root.game.PackedEntity.fromObject(object.entities[keys[i]]);
+                for (let keys = $Object.keys(object.entities), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.entities, keys[i]);
+                    if (!$util.isObject(object.entities[keys[i]]))
+                        throw $TypeError(".game.PackedArea.entities: object expected");
+                    message.entities[keys[i]] = $root.game.PackedEntity.fromObject(object.entities[keys[i]], _depth + 1);
                 }
             }
             return message;
@@ -2540,9 +3031,13 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PackedArea.toObject = function toObject(message, options) {
+        PackedArea.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.objects || options.defaults)
                 object.entities = {};
@@ -2551,27 +3046,33 @@ export const game = $root.game = (() => {
                 object.h = 0;
                 if ($util.Long) {
                     let long = new $util.Long(0, 0, true);
-                    object.area = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.area = options.longs === $String ? long.toString() : options.longs === $Number ? long.toNumber() : typeof $BigInt !== "undefined" && options.longs === $BigInt ? long.toBigInt() : long;
                 } else
-                    object.area = options.longs === String ? "0" : 0;
+                    object.area = options.longs === $String ? "0" : typeof $BigInt !== "undefined" && options.longs === $BigInt ? $BigInt("0") : 0;
                 object.world = "";
             }
-            if (message.w != null && message.hasOwnProperty("w"))
-                object.w = options.json && !isFinite(message.w) ? String(message.w) : message.w;
-            if (message.h != null && message.hasOwnProperty("h"))
-                object.h = options.json && !isFinite(message.h) ? String(message.h) : message.h;
-            if (message.area != null && message.hasOwnProperty("area"))
-                if (typeof message.area === "number")
-                    object.area = options.longs === String ? String(message.area) : message.area;
+            if (message.w != null && $Object.hasOwnProperty.call(message, "w"))
+                object.w = options.json && !$isFinite(message.w) ? $String(message.w) : message.w;
+            if (message.h != null && $Object.hasOwnProperty.call(message, "h"))
+                object.h = options.json && !$isFinite(message.h) ? $String(message.h) : message.h;
+            if (message.area != null && $Object.hasOwnProperty.call(message, "area"))
+                if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                    object.area = typeof message.area === "number" ? $BigInt(message.area) : $util.Long.fromBits(message.area.low >>> 0, message.area.high >>> 0, true).toBigInt();
+                else if (typeof message.area === "number")
+                    object.area = options.longs === $String ? $String(message.area) : message.area;
                 else
-                    object.area = options.longs === String ? $util.Long.prototype.toString.call(message.area) : options.longs === Number ? new $util.LongBits(message.area.low >>> 0, message.area.high >>> 0).toNumber(true) : message.area;
-            if (message.world != null && message.hasOwnProperty("world"))
+                    object.area = options.longs === $String ? $util.Long.prototype.toString.call(message.area) : options.longs === $Number ? new $util.LongBits(message.area.low >>> 0, message.area.high >>> 0).toNumber(true) : message.area;
+            if (message.world != null && $Object.hasOwnProperty.call(message, "world"))
                 object.world = message.world;
             let keys2;
-            if (message.entities && (keys2 = Object.keys(message.entities)).length) {
+            if (message.entities && (keys2 = $Object.keys(message.entities)).length) {
                 object.entities = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.entities[keys2[j]] = $root.game.PackedEntity.toObject(message.entities[keys2[j]], options);
+                for (let j = 0; j < keys2.length; ++j) {
+                    let k2 = $util.longFromKey(keys2[j], true).toString();
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.entities, keys2[j]);
+                    object.entities[k2] = $root.game.PackedEntity.toObject(message.entities[keys2[j]], options, _depth + 1);
+                }
             }
             return object;
         };
@@ -2583,23 +3084,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        PackedArea.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        PackedArea.prototype.toJSON = function() {
+            return PackedArea.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for PackedArea
+         * Gets the type url for PackedArea
          * @function getTypeUrl
          * @memberof game.PackedArea
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        PackedArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.PackedArea";
+        PackedArea.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.PackedArea";
         };
 
         return PackedArea;
@@ -2609,38 +3109,66 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a Package.
+         * @typedef {Object} game.Package.$Properties
+         * @property {game.PackedPlayer.$Properties|null} [newPlayer] Package newPlayer
+         * @property {number|Long|null} [closePlayer] Package closePlayer
+         * @property {game.Players.$Properties|null} [players] Package players
+         * @property {game.Entities.$Properties|null} [newEntities] Package newEntities
+         * @property {game.CloseEntities.$Properties|null} [closeEntities] Package closeEntities
+         * @property {game.PackedArea.$Properties|null} [areaInit] Package areaInit
+         * @property {game.PackedPlayer.$Properties|null} [myself] Package myself
+         * @property {game.UpdateEntitiesMap.$Properties|null} [updateEntities] Package updateEntities
+         * @property {game.UpdatePlayersMap.$Properties|null} [updatePlayers] Package updatePlayers
+         * @property {game.Chat.$Properties|null} [chatMessage] Package chatMessage
+         * @property {"newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage"} [kind] Package kind
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a Package.
          * @memberof game
          * @interface IPackage
-         * @property {game.IPackedPlayer|null} [newPlayer] Package newPlayer
-         * @property {number|Long|null} [closePlayer] Package closePlayer
-         * @property {game.IPlayers|null} [players] Package players
-         * @property {game.IEntities|null} [newEntities] Package newEntities
-         * @property {game.ICloseEntities|null} [closeEntities] Package closeEntities
-         * @property {game.IPackedArea|null} [areaInit] Package areaInit
-         * @property {game.IPackedPlayer|null} [myself] Package myself
-         * @property {game.IUpdateEntitiesMap|null} [updateEntities] Package updateEntities
-         * @property {game.IUpdatePlayersMap|null} [updatePlayers] Package updatePlayers
-         * @property {game.IChat|null} [chatMessage] Package chatMessage
+         * @augments game.Package.$Properties
+         * @deprecated Use game.Package.$Properties instead.
+         */
+
+        /**
+         * Narrowed shape of a Package.
+         * @typedef {{
+         *   newPlayer?: game.PackedPlayer.$Shape|null;
+         *   closePlayer?: number|Long|null;
+         *   players?: game.Players.$Shape|null;
+         *   newEntities?: game.Entities.$Shape|null;
+         *   closeEntities?: game.CloseEntities.$Shape|null;
+         *   areaInit?: game.PackedArea.$Shape|null;
+         *   myself?: game.PackedPlayer.$Shape|null;
+         *   updateEntities?: game.UpdateEntitiesMap.$Shape|null;
+         *   updatePlayers?: game.UpdatePlayersMap.$Shape|null;
+         *   chatMessage?: game.Chat.$Shape|null;
+         *   $unknowns?: Array.<Uint8Array>;
+         * } & (
+         *   ({ kind?: undefined; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "newPlayer"; newPlayer: game.PackedPlayer.$Shape; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "closePlayer"; newPlayer?: null; closePlayer: number|Long; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "players"; newPlayer?: null; closePlayer?: null; players: game.Players.$Shape; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "newEntities"; newPlayer?: null; closePlayer?: null; players?: null; newEntities: game.Entities.$Shape; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "closeEntities"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities: game.CloseEntities.$Shape; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "areaInit"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit: game.PackedArea.$Shape; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "myself"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself: game.PackedPlayer.$Shape; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "updateEntities"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities: game.UpdateEntitiesMap.$Shape; updatePlayers?: null; chatMessage?: null }|{ kind?: "updatePlayers"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers: game.UpdatePlayersMap.$Shape; chatMessage?: null }|{ kind?: "chatMessage"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage: game.Chat.$Shape })
+         * )} game.Package.$Shape
          */
 
         /**
          * Constructs a new Package.
          * @memberof game
          * @classdesc Represents a Package.
-         * @implements IPackage
          * @constructor
-         * @param {game.IPackage=} [properties] Properties to set
+         * @param {game.Package.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function Package(properties) {
+        const Package = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * Package newPlayer.
-         * @member {game.IPackedPlayer|null|undefined} newPlayer
+         * @member {game.PackedPlayer.$Properties|null|undefined} newPlayer
          * @memberof game.Package
          * @instance
          */
@@ -2656,7 +3184,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package players.
-         * @member {game.IPlayers|null|undefined} players
+         * @member {game.Players.$Properties|null|undefined} players
          * @memberof game.Package
          * @instance
          */
@@ -2664,7 +3192,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package newEntities.
-         * @member {game.IEntities|null|undefined} newEntities
+         * @member {game.Entities.$Properties|null|undefined} newEntities
          * @memberof game.Package
          * @instance
          */
@@ -2672,7 +3200,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package closeEntities.
-         * @member {game.ICloseEntities|null|undefined} closeEntities
+         * @member {game.CloseEntities.$Properties|null|undefined} closeEntities
          * @memberof game.Package
          * @instance
          */
@@ -2680,7 +3208,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package areaInit.
-         * @member {game.IPackedArea|null|undefined} areaInit
+         * @member {game.PackedArea.$Properties|null|undefined} areaInit
          * @memberof game.Package
          * @instance
          */
@@ -2688,7 +3216,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package myself.
-         * @member {game.IPackedPlayer|null|undefined} myself
+         * @member {game.PackedPlayer.$Properties|null|undefined} myself
          * @memberof game.Package
          * @instance
          */
@@ -2696,7 +3224,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package updateEntities.
-         * @member {game.IUpdateEntitiesMap|null|undefined} updateEntities
+         * @member {game.UpdateEntitiesMap.$Properties|null|undefined} updateEntities
          * @memberof game.Package
          * @instance
          */
@@ -2704,7 +3232,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package updatePlayers.
-         * @member {game.IUpdatePlayersMap|null|undefined} updatePlayers
+         * @member {game.UpdatePlayersMap.$Properties|null|undefined} updatePlayers
          * @memberof game.Package
          * @instance
          */
@@ -2712,7 +3240,7 @@ export const game = $root.game = (() => {
 
         /**
          * Package chatMessage.
-         * @member {game.IChat|null|undefined} chatMessage
+         * @member {game.Chat.$Properties|null|undefined} chatMessage
          * @memberof game.Package
          * @instance
          */
@@ -2727,7 +3255,7 @@ export const game = $root.game = (() => {
          * @memberof game.Package
          * @instance
          */
-        Object.defineProperty(Package.prototype, "kind", {
+        $Object.defineProperty(Package.prototype, "kind", {
             get: $util.oneOfGetter($oneOfFields = ["newPlayer", "closePlayer", "players", "newEntities", "closeEntities", "areaInit", "myself", "updateEntities", "updatePlayers", "chatMessage"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -2737,10 +3265,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.Package
          * @static
-         * @param {game.IPackage=} [properties] Properties to set
+         * @param {game.Package.$Properties=} [properties] Properties to set
          * @returns {game.Package} Package instance
+         * @type {{
+         *   (properties: game.Package.$Shape): game.Package & game.Package.$Shape;
+         *   (properties?: game.Package.$Properties): game.Package;
+         * }}
          */
-        Package.create = function create(properties) {
+        Package.create = function(properties) {
             return new Package(properties);
         };
 
@@ -2749,33 +3281,40 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.Package
          * @static
-         * @param {game.IPackage} message Package message or plain object to encode
+         * @param {game.Package.$Properties} message Package message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Package.encode = function encode(message, writer) {
+        Package.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.newPlayer != null && Object.hasOwnProperty.call(message, "newPlayer"))
-                $root.game.PackedPlayer.encode(message.newPlayer, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.closePlayer != null && Object.hasOwnProperty.call(message, "closePlayer"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.newPlayer != null && $Object.hasOwnProperty.call(message, "newPlayer"))
+                $root.game.PackedPlayer.encode(message.newPlayer, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+            if (message.closePlayer != null && $Object.hasOwnProperty.call(message, "closePlayer"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int64(message.closePlayer);
-            if (message.players != null && Object.hasOwnProperty.call(message, "players"))
-                $root.game.Players.encode(message.players, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-            if (message.newEntities != null && Object.hasOwnProperty.call(message, "newEntities"))
-                $root.game.Entities.encode(message.newEntities, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-            if (message.closeEntities != null && Object.hasOwnProperty.call(message, "closeEntities"))
-                $root.game.CloseEntities.encode(message.closeEntities, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-            if (message.areaInit != null && Object.hasOwnProperty.call(message, "areaInit"))
-                $root.game.PackedArea.encode(message.areaInit, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
-            if (message.myself != null && Object.hasOwnProperty.call(message, "myself"))
-                $root.game.PackedPlayer.encode(message.myself, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-            if (message.updateEntities != null && Object.hasOwnProperty.call(message, "updateEntities"))
-                $root.game.UpdateEntitiesMap.encode(message.updateEntities, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-            if (message.updatePlayers != null && Object.hasOwnProperty.call(message, "updatePlayers"))
-                $root.game.UpdatePlayersMap.encode(message.updatePlayers, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
-            if (message.chatMessage != null && Object.hasOwnProperty.call(message, "chatMessage"))
-                $root.game.Chat.encode(message.chatMessage, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+            if (message.players != null && $Object.hasOwnProperty.call(message, "players"))
+                $root.game.Players.encode(message.players, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+            if (message.newEntities != null && $Object.hasOwnProperty.call(message, "newEntities"))
+                $root.game.Entities.encode(message.newEntities, writer.uint32(/* id 4, wireType 2 =*/34).fork(), _depth + 1).ldelim();
+            if (message.closeEntities != null && $Object.hasOwnProperty.call(message, "closeEntities"))
+                $root.game.CloseEntities.encode(message.closeEntities, writer.uint32(/* id 5, wireType 2 =*/42).fork(), _depth + 1).ldelim();
+            if (message.areaInit != null && $Object.hasOwnProperty.call(message, "areaInit"))
+                $root.game.PackedArea.encode(message.areaInit, writer.uint32(/* id 6, wireType 2 =*/50).fork(), _depth + 1).ldelim();
+            if (message.myself != null && $Object.hasOwnProperty.call(message, "myself"))
+                $root.game.PackedPlayer.encode(message.myself, writer.uint32(/* id 7, wireType 2 =*/58).fork(), _depth + 1).ldelim();
+            if (message.updateEntities != null && $Object.hasOwnProperty.call(message, "updateEntities"))
+                $root.game.UpdateEntitiesMap.encode(message.updateEntities, writer.uint32(/* id 8, wireType 2 =*/66).fork(), _depth + 1).ldelim();
+            if (message.updatePlayers != null && $Object.hasOwnProperty.call(message, "updatePlayers"))
+                $root.game.UpdatePlayersMap.encode(message.updatePlayers, writer.uint32(/* id 9, wireType 2 =*/74).fork(), _depth + 1).ldelim();
+            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage"))
+                $root.game.Chat.encode(message.chatMessage, writer.uint32(/* id 10, wireType 2 =*/82).fork(), _depth + 1).ldelim();
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -2784,12 +3323,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.Package
          * @static
-         * @param {game.IPackage} message Package message or plain object to encode
+         * @param {game.Package.$Properties} message Package message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Package.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        Package.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2799,64 +3338,106 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.Package} Package
+         * @returns {game.Package & game.Package.$Shape} Package
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Package.decode = function decode(reader, length, error) {
+        Package.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.Package();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.Package();
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.newPlayer = $root.game.PackedPlayer.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 2: {
-                        message.closePlayer = reader.int64();
-                        break;
-                    }
-                case 3: {
-                        message.players = $root.game.Players.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 4: {
-                        message.newEntities = $root.game.Entities.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 5: {
-                        message.closeEntities = $root.game.CloseEntities.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 6: {
-                        message.areaInit = $root.game.PackedArea.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 7: {
-                        message.myself = $root.game.PackedPlayer.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 8: {
-                        message.updateEntities = $root.game.UpdateEntitiesMap.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 9: {
-                        message.updatePlayers = $root.game.UpdatePlayersMap.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 10: {
-                        message.chatMessage = $root.game.Chat.decode(reader, reader.uint32());
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        message.newPlayer = $root.game.PackedPlayer.decode(reader, reader.uint32(), $undefined, _depth + 1, message.newPlayer);
+                        message.kind = "newPlayer";
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        message.closePlayer = reader.int64();
+                        message.kind = "closePlayer";
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        message.players = $root.game.Players.decode(reader, reader.uint32(), $undefined, _depth + 1, message.players);
+                        message.kind = "players";
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 2)
+                            break;
+                        message.newEntities = $root.game.Entities.decode(reader, reader.uint32(), $undefined, _depth + 1, message.newEntities);
+                        message.kind = "newEntities";
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 2)
+                            break;
+                        message.closeEntities = $root.game.CloseEntities.decode(reader, reader.uint32(), $undefined, _depth + 1, message.closeEntities);
+                        message.kind = "closeEntities";
+                        continue;
+                    }
+                case 6: {
+                        if (wireType !== 2)
+                            break;
+                        message.areaInit = $root.game.PackedArea.decode(reader, reader.uint32(), $undefined, _depth + 1, message.areaInit);
+                        message.kind = "areaInit";
+                        continue;
+                    }
+                case 7: {
+                        if (wireType !== 2)
+                            break;
+                        message.myself = $root.game.PackedPlayer.decode(reader, reader.uint32(), $undefined, _depth + 1, message.myself);
+                        message.kind = "myself";
+                        continue;
+                    }
+                case 8: {
+                        if (wireType !== 2)
+                            break;
+                        message.updateEntities = $root.game.UpdateEntitiesMap.decode(reader, reader.uint32(), $undefined, _depth + 1, message.updateEntities);
+                        message.kind = "updateEntities";
+                        continue;
+                    }
+                case 9: {
+                        if (wireType !== 2)
+                            break;
+                        message.updatePlayers = $root.game.UpdatePlayersMap.decode(reader, reader.uint32(), $undefined, _depth + 1, message.updatePlayers);
+                        message.kind = "updatePlayers";
+                        continue;
+                    }
+                case 10: {
+                        if (wireType !== 2)
+                            break;
+                        message.chatMessage = $root.game.Chat.decode(reader, reader.uint32(), $undefined, _depth + 1, message.chatMessage);
+                        message.kind = "chatMessage";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -2866,11 +3447,11 @@ export const game = $root.game = (() => {
          * @memberof game.Package
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.Package} Package
+         * @returns {game.Package & game.Package.$Shape} Package
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Package.decodeDelimited = function decodeDelimited(reader) {
+        Package.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -2884,101 +3465,105 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        Package.verify = function verify(message) {
+        Package.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.newPlayer != null && message.hasOwnProperty("newPlayer")) {
+            if (message.newPlayer != null && $Object.hasOwnProperty.call(message, "newPlayer")) {
                 properties.kind = 1;
                 {
-                    let error = $root.game.PackedPlayer.verify(message.newPlayer);
+                    let error = $root.game.PackedPlayer.verify(message.newPlayer, _depth + 1);
                     if (error)
                         return "newPlayer." + error;
                 }
             }
-            if (message.closePlayer != null && message.hasOwnProperty("closePlayer")) {
+            if (message.closePlayer != null && $Object.hasOwnProperty.call(message, "closePlayer")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 if (!$util.isInteger(message.closePlayer) && !(message.closePlayer && $util.isInteger(message.closePlayer.low) && $util.isInteger(message.closePlayer.high)))
                     return "closePlayer: integer|Long expected";
             }
-            if (message.players != null && message.hasOwnProperty("players")) {
+            if (message.players != null && $Object.hasOwnProperty.call(message, "players")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.Players.verify(message.players);
+                    let error = $root.game.Players.verify(message.players, _depth + 1);
                     if (error)
                         return "players." + error;
                 }
             }
-            if (message.newEntities != null && message.hasOwnProperty("newEntities")) {
+            if (message.newEntities != null && $Object.hasOwnProperty.call(message, "newEntities")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.Entities.verify(message.newEntities);
+                    let error = $root.game.Entities.verify(message.newEntities, _depth + 1);
                     if (error)
                         return "newEntities." + error;
                 }
             }
-            if (message.closeEntities != null && message.hasOwnProperty("closeEntities")) {
+            if (message.closeEntities != null && $Object.hasOwnProperty.call(message, "closeEntities")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.CloseEntities.verify(message.closeEntities);
+                    let error = $root.game.CloseEntities.verify(message.closeEntities, _depth + 1);
                     if (error)
                         return "closeEntities." + error;
                 }
             }
-            if (message.areaInit != null && message.hasOwnProperty("areaInit")) {
+            if (message.areaInit != null && $Object.hasOwnProperty.call(message, "areaInit")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.PackedArea.verify(message.areaInit);
+                    let error = $root.game.PackedArea.verify(message.areaInit, _depth + 1);
                     if (error)
                         return "areaInit." + error;
                 }
             }
-            if (message.myself != null && message.hasOwnProperty("myself")) {
+            if (message.myself != null && $Object.hasOwnProperty.call(message, "myself")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.PackedPlayer.verify(message.myself);
+                    let error = $root.game.PackedPlayer.verify(message.myself, _depth + 1);
                     if (error)
                         return "myself." + error;
                 }
             }
-            if (message.updateEntities != null && message.hasOwnProperty("updateEntities")) {
+            if (message.updateEntities != null && $Object.hasOwnProperty.call(message, "updateEntities")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.UpdateEntitiesMap.verify(message.updateEntities);
+                    let error = $root.game.UpdateEntitiesMap.verify(message.updateEntities, _depth + 1);
                     if (error)
                         return "updateEntities." + error;
                 }
             }
-            if (message.updatePlayers != null && message.hasOwnProperty("updatePlayers")) {
+            if (message.updatePlayers != null && $Object.hasOwnProperty.call(message, "updatePlayers")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.UpdatePlayersMap.verify(message.updatePlayers);
+                    let error = $root.game.UpdatePlayersMap.verify(message.updatePlayers, _depth + 1);
                     if (error)
                         return "updatePlayers." + error;
                 }
             }
-            if (message.chatMessage != null && message.hasOwnProperty("chatMessage")) {
+            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage")) {
                 if (properties.kind === 1)
                     return "kind: multiple values";
                 properties.kind = 1;
                 {
-                    let error = $root.game.Chat.verify(message.chatMessage);
+                    let error = $root.game.Chat.verify(message.chatMessage, _depth + 1);
                     if (error)
                         return "chatMessage." + error;
                 }
@@ -2994,63 +3579,69 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.Package} Package
          */
-        Package.fromObject = function fromObject(object) {
+        Package.fromObject = function (object, _depth) {
             if (object instanceof $root.game.Package)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.Package: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.Package();
             if (object.newPlayer != null) {
-                if (typeof object.newPlayer !== "object")
-                    throw TypeError(".game.Package.newPlayer: object expected");
-                message.newPlayer = $root.game.PackedPlayer.fromObject(object.newPlayer);
+                if (!$util.isObject(object.newPlayer))
+                    throw $TypeError(".game.Package.newPlayer: object expected");
+                message.newPlayer = $root.game.PackedPlayer.fromObject(object.newPlayer, _depth + 1);
             }
             if (object.closePlayer != null)
                 if ($util.Long)
-                    (message.closePlayer = $util.Long.fromValue(object.closePlayer)).unsigned = false;
+                    message.closePlayer = $util.Long.fromValue(object.closePlayer, false);
                 else if (typeof object.closePlayer === "string")
-                    message.closePlayer = parseInt(object.closePlayer, 10);
+                    message.closePlayer = $parseInt(object.closePlayer, 10);
                 else if (typeof object.closePlayer === "number")
                     message.closePlayer = object.closePlayer;
                 else if (typeof object.closePlayer === "object")
                     message.closePlayer = new $util.LongBits(object.closePlayer.low >>> 0, object.closePlayer.high >>> 0).toNumber();
             if (object.players != null) {
-                if (typeof object.players !== "object")
-                    throw TypeError(".game.Package.players: object expected");
-                message.players = $root.game.Players.fromObject(object.players);
+                if (!$util.isObject(object.players))
+                    throw $TypeError(".game.Package.players: object expected");
+                message.players = $root.game.Players.fromObject(object.players, _depth + 1);
             }
             if (object.newEntities != null) {
-                if (typeof object.newEntities !== "object")
-                    throw TypeError(".game.Package.newEntities: object expected");
-                message.newEntities = $root.game.Entities.fromObject(object.newEntities);
+                if (!$util.isObject(object.newEntities))
+                    throw $TypeError(".game.Package.newEntities: object expected");
+                message.newEntities = $root.game.Entities.fromObject(object.newEntities, _depth + 1);
             }
             if (object.closeEntities != null) {
-                if (typeof object.closeEntities !== "object")
-                    throw TypeError(".game.Package.closeEntities: object expected");
-                message.closeEntities = $root.game.CloseEntities.fromObject(object.closeEntities);
+                if (!$util.isObject(object.closeEntities))
+                    throw $TypeError(".game.Package.closeEntities: object expected");
+                message.closeEntities = $root.game.CloseEntities.fromObject(object.closeEntities, _depth + 1);
             }
             if (object.areaInit != null) {
-                if (typeof object.areaInit !== "object")
-                    throw TypeError(".game.Package.areaInit: object expected");
-                message.areaInit = $root.game.PackedArea.fromObject(object.areaInit);
+                if (!$util.isObject(object.areaInit))
+                    throw $TypeError(".game.Package.areaInit: object expected");
+                message.areaInit = $root.game.PackedArea.fromObject(object.areaInit, _depth + 1);
             }
             if (object.myself != null) {
-                if (typeof object.myself !== "object")
-                    throw TypeError(".game.Package.myself: object expected");
-                message.myself = $root.game.PackedPlayer.fromObject(object.myself);
+                if (!$util.isObject(object.myself))
+                    throw $TypeError(".game.Package.myself: object expected");
+                message.myself = $root.game.PackedPlayer.fromObject(object.myself, _depth + 1);
             }
             if (object.updateEntities != null) {
-                if (typeof object.updateEntities !== "object")
-                    throw TypeError(".game.Package.updateEntities: object expected");
-                message.updateEntities = $root.game.UpdateEntitiesMap.fromObject(object.updateEntities);
+                if (!$util.isObject(object.updateEntities))
+                    throw $TypeError(".game.Package.updateEntities: object expected");
+                message.updateEntities = $root.game.UpdateEntitiesMap.fromObject(object.updateEntities, _depth + 1);
             }
             if (object.updatePlayers != null) {
-                if (typeof object.updatePlayers !== "object")
-                    throw TypeError(".game.Package.updatePlayers: object expected");
-                message.updatePlayers = $root.game.UpdatePlayersMap.fromObject(object.updatePlayers);
+                if (!$util.isObject(object.updatePlayers))
+                    throw $TypeError(".game.Package.updatePlayers: object expected");
+                message.updatePlayers = $root.game.UpdatePlayersMap.fromObject(object.updatePlayers, _depth + 1);
             }
             if (object.chatMessage != null) {
-                if (typeof object.chatMessage !== "object")
-                    throw TypeError(".game.Package.chatMessage: object expected");
-                message.chatMessage = $root.game.Chat.fromObject(object.chatMessage);
+                if (!$util.isObject(object.chatMessage))
+                    throw $TypeError(".game.Package.chatMessage: object expected");
+                message.chatMessage = $root.game.Chat.fromObject(object.chatMessage, _depth + 1);
             }
             return message;
         };
@@ -3064,60 +3655,66 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Package.toObject = function toObject(message, options) {
+        Package.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
-            if (message.newPlayer != null && message.hasOwnProperty("newPlayer")) {
-                object.newPlayer = $root.game.PackedPlayer.toObject(message.newPlayer, options);
+            if (message.newPlayer != null && $Object.hasOwnProperty.call(message, "newPlayer")) {
+                object.newPlayer = $root.game.PackedPlayer.toObject(message.newPlayer, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "newPlayer";
             }
-            if (message.closePlayer != null && message.hasOwnProperty("closePlayer")) {
-                if (typeof message.closePlayer === "number")
-                    object.closePlayer = options.longs === String ? String(message.closePlayer) : message.closePlayer;
+            if (message.closePlayer != null && $Object.hasOwnProperty.call(message, "closePlayer")) {
+                if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                    object.closePlayer = typeof message.closePlayer === "number" ? $BigInt(message.closePlayer) : $util.Long.fromBits(message.closePlayer.low >>> 0, message.closePlayer.high >>> 0, false).toBigInt();
+                else if (typeof message.closePlayer === "number")
+                    object.closePlayer = options.longs === $String ? $String(message.closePlayer) : message.closePlayer;
                 else
-                    object.closePlayer = options.longs === String ? $util.Long.prototype.toString.call(message.closePlayer) : options.longs === Number ? new $util.LongBits(message.closePlayer.low >>> 0, message.closePlayer.high >>> 0).toNumber() : message.closePlayer;
+                    object.closePlayer = options.longs === $String ? $util.Long.prototype.toString.call(message.closePlayer) : options.longs === $Number ? new $util.LongBits(message.closePlayer.low >>> 0, message.closePlayer.high >>> 0).toNumber() : message.closePlayer;
                 if (options.oneofs)
                     object.kind = "closePlayer";
             }
-            if (message.players != null && message.hasOwnProperty("players")) {
-                object.players = $root.game.Players.toObject(message.players, options);
+            if (message.players != null && $Object.hasOwnProperty.call(message, "players")) {
+                object.players = $root.game.Players.toObject(message.players, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "players";
             }
-            if (message.newEntities != null && message.hasOwnProperty("newEntities")) {
-                object.newEntities = $root.game.Entities.toObject(message.newEntities, options);
+            if (message.newEntities != null && $Object.hasOwnProperty.call(message, "newEntities")) {
+                object.newEntities = $root.game.Entities.toObject(message.newEntities, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "newEntities";
             }
-            if (message.closeEntities != null && message.hasOwnProperty("closeEntities")) {
-                object.closeEntities = $root.game.CloseEntities.toObject(message.closeEntities, options);
+            if (message.closeEntities != null && $Object.hasOwnProperty.call(message, "closeEntities")) {
+                object.closeEntities = $root.game.CloseEntities.toObject(message.closeEntities, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "closeEntities";
             }
-            if (message.areaInit != null && message.hasOwnProperty("areaInit")) {
-                object.areaInit = $root.game.PackedArea.toObject(message.areaInit, options);
+            if (message.areaInit != null && $Object.hasOwnProperty.call(message, "areaInit")) {
+                object.areaInit = $root.game.PackedArea.toObject(message.areaInit, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "areaInit";
             }
-            if (message.myself != null && message.hasOwnProperty("myself")) {
-                object.myself = $root.game.PackedPlayer.toObject(message.myself, options);
+            if (message.myself != null && $Object.hasOwnProperty.call(message, "myself")) {
+                object.myself = $root.game.PackedPlayer.toObject(message.myself, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "myself";
             }
-            if (message.updateEntities != null && message.hasOwnProperty("updateEntities")) {
-                object.updateEntities = $root.game.UpdateEntitiesMap.toObject(message.updateEntities, options);
+            if (message.updateEntities != null && $Object.hasOwnProperty.call(message, "updateEntities")) {
+                object.updateEntities = $root.game.UpdateEntitiesMap.toObject(message.updateEntities, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "updateEntities";
             }
-            if (message.updatePlayers != null && message.hasOwnProperty("updatePlayers")) {
-                object.updatePlayers = $root.game.UpdatePlayersMap.toObject(message.updatePlayers, options);
+            if (message.updatePlayers != null && $Object.hasOwnProperty.call(message, "updatePlayers")) {
+                object.updatePlayers = $root.game.UpdatePlayersMap.toObject(message.updatePlayers, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "updatePlayers";
             }
-            if (message.chatMessage != null && message.hasOwnProperty("chatMessage")) {
-                object.chatMessage = $root.game.Chat.toObject(message.chatMessage, options);
+            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage")) {
+                object.chatMessage = $root.game.Chat.toObject(message.chatMessage, options, _depth + 1);
                 if (options.oneofs)
                     object.kind = "chatMessage";
             }
@@ -3131,23 +3728,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        Package.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        Package.prototype.toJSON = function() {
+            return Package.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for Package
+         * Gets the type url for Package
          * @function getTypeUrl
          * @memberof game.Package
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        Package.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.Package";
+        Package.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.Package";
         };
 
         return Package;
@@ -3157,30 +3753,46 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a Packages.
+         * @typedef {Object} game.Packages.$Properties
+         * @property {Array.<game.Package.$Properties>|null} [items] Packages items
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a Packages.
          * @memberof game
          * @interface IPackages
-         * @property {Array.<game.IPackage>|null} [items] Packages items
+         * @augments game.Packages.$Properties
+         * @deprecated Use game.Packages.$Properties instead.
+         */
+
+        /**
+         * Shape of a Packages.
+         * @typedef {{
+         *   items?: Array.<game.Package.$Shape>|null;
+         *   $unknowns?: Array.<Uint8Array>;
+         * }} game.Packages.$Shape
          */
 
         /**
          * Constructs a new Packages.
          * @memberof game
          * @classdesc Represents a Packages.
-         * @implements IPackages
          * @constructor
-         * @param {game.IPackages=} [properties] Properties to set
+         * @param {game.Packages.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function Packages(properties) {
+        const Packages = function (properties) {
             this.items = [];
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * Packages items.
-         * @member {Array.<game.IPackage>} items
+         * @member {Array.<game.Package.$Properties>} items
          * @memberof game.Packages
          * @instance
          */
@@ -3191,10 +3803,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.Packages
          * @static
-         * @param {game.IPackages=} [properties] Properties to set
+         * @param {game.Packages.$Properties=} [properties] Properties to set
          * @returns {game.Packages} Packages instance
+         * @type {{
+         *   (properties: game.Packages.$Shape): game.Packages & game.Packages.$Shape;
+         *   (properties?: game.Packages.$Properties): game.Packages;
+         * }}
          */
-        Packages.create = function create(properties) {
+        Packages.create = function(properties) {
             return new Packages(properties);
         };
 
@@ -3203,16 +3819,23 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.Packages
          * @static
-         * @param {game.IPackages} message Packages message or plain object to encode
+         * @param {game.Packages.$Properties} message Packages message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Packages.encode = function encode(message, writer) {
+        Packages.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             if (message.items != null && message.items.length)
                 for (let i = 0; i < message.items.length; ++i)
-                    $root.game.Package.encode(message.items[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.game.Package.encode(message.items[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -3221,12 +3844,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.Packages
          * @static
-         * @param {game.IPackages} message Packages message or plain object to encode
+         * @param {game.Packages.$Properties} message Packages message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Packages.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        Packages.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3236,30 +3859,44 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.Packages} Packages
+         * @returns {game.Packages & game.Packages.$Shape} Packages
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Packages.decode = function decode(reader, length, error) {
+        Packages.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.Packages();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.Packages();
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        if (!(message.items && message.items.length))
-                            message.items = [];
-                        message.items.push($root.game.Package.decode(reader, reader.uint32()));
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if (!(message.items && message.items.length))
+                            message.items = [];
+                        message.items.push($root.game.Package.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -3269,11 +3906,11 @@ export const game = $root.game = (() => {
          * @memberof game.Packages
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.Packages} Packages
+         * @returns {game.Packages & game.Packages.$Shape} Packages
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Packages.decodeDelimited = function decodeDelimited(reader) {
+        Packages.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -3287,14 +3924,18 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        Packages.verify = function verify(message) {
+        Packages.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.items != null && message.hasOwnProperty("items")) {
-                if (!Array.isArray(message.items))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.items != null && $Object.hasOwnProperty.call(message, "items")) {
+                if (!$Array.isArray(message.items))
                     return "items: array expected";
                 for (let i = 0; i < message.items.length; ++i) {
-                    let error = $root.game.Package.verify(message.items[i]);
+                    let error = $root.game.Package.verify(message.items[i], _depth + 1);
                     if (error)
                         return "items." + error;
                 }
@@ -3310,18 +3951,24 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.Packages} Packages
          */
-        Packages.fromObject = function fromObject(object) {
+        Packages.fromObject = function (object, _depth) {
             if (object instanceof $root.game.Packages)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.Packages: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.Packages();
             if (object.items) {
-                if (!Array.isArray(object.items))
-                    throw TypeError(".game.Packages.items: array expected");
-                message.items = [];
+                if (!$Array.isArray(object.items))
+                    throw $TypeError(".game.Packages.items: array expected");
+                message.items = $Array(object.items.length);
                 for (let i = 0; i < object.items.length; ++i) {
-                    if (typeof object.items[i] !== "object")
-                        throw TypeError(".game.Packages.items: object expected");
-                    message.items[i] = $root.game.Package.fromObject(object.items[i]);
+                    if (!$util.isObject(object.items[i]))
+                        throw $TypeError(".game.Packages.items: object expected");
+                    message.items[i] = $root.game.Package.fromObject(object.items[i], _depth + 1);
                 }
             }
             return message;
@@ -3336,16 +3983,20 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Packages.toObject = function toObject(message, options) {
+        Packages.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.arrays || options.defaults)
                 object.items = [];
             if (message.items && message.items.length) {
-                object.items = [];
+                object.items = $Array(message.items.length);
                 for (let j = 0; j < message.items.length; ++j)
-                    object.items[j] = $root.game.Package.toObject(message.items[j], options);
+                    object.items[j] = $root.game.Package.toObject(message.items[j], options, _depth + 1);
             }
             return object;
         };
@@ -3357,23 +4008,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        Packages.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        Packages.prototype.toJSON = function() {
+            return Packages.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for Packages
+         * Gets the type url for Packages
          * @function getTypeUrl
          * @memberof game.Packages
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        Packages.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.Packages";
+        Packages.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.Packages";
         };
 
         return Packages;
@@ -3383,30 +4033,43 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a Players.
+         * @typedef {Object} game.Players.$Properties
+         * @property {Object.<string,game.PackedPlayer.$Properties>|null} [players] Players players
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a Players.
          * @memberof game
          * @interface IPlayers
-         * @property {Object.<string,game.IPackedPlayer>|null} [players] Players players
+         * @augments game.Players.$Properties
+         * @deprecated Use game.Players.$Properties instead.
+         */
+
+        /**
+         * Shape of a Players.
+         * @typedef {game.Players.$Properties} game.Players.$Shape
          */
 
         /**
          * Constructs a new Players.
          * @memberof game
          * @classdesc Represents a Players.
-         * @implements IPlayers
          * @constructor
-         * @param {game.IPlayers=} [properties] Properties to set
+         * @param {game.Players.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function Players(properties) {
+        const Players = function (properties) {
             this.players = {};
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * Players players.
-         * @member {Object.<string,game.IPackedPlayer>} players
+         * @member {Object.<string,game.PackedPlayer.$Properties>} players
          * @memberof game.Players
          * @instance
          */
@@ -3417,10 +4080,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.Players
          * @static
-         * @param {game.IPlayers=} [properties] Properties to set
+         * @param {game.Players.$Properties=} [properties] Properties to set
          * @returns {game.Players} Players instance
+         * @type {{
+         *   (properties: game.Players.$Shape): game.Players & game.Players.$Shape;
+         *   (properties?: game.Players.$Properties): game.Players;
+         * }}
          */
-        Players.create = function create(properties) {
+        Players.create = function(properties) {
             return new Players(properties);
         };
 
@@ -3429,18 +4096,25 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.Players
          * @static
-         * @param {game.IPlayers} message Players message or plain object to encode
+         * @param {game.Players.$Properties} message Players message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Players.encode = function encode(message, writer) {
+        Players.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.players != null && Object.hasOwnProperty.call(message, "players"))
-                for (let keys = Object.keys(message.players), i = 0; i < keys.length; ++i) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.players != null && $Object.hasOwnProperty.call(message, "players"))
+                for (let keys = $Object.keys(message.players), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).uint32(keys[i]);
-                    $root.game.PackedPlayer.encode(message.players[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.game.PackedPlayer.encode(message.players[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
                 }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -3449,12 +4123,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.Players
          * @static
-         * @param {game.IPlayers} message Players message or plain object to encode
+         * @param {game.Players.$Properties} message Players message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Players.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        Players.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3464,47 +4138,64 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.Players} Players
+         * @returns {game.Players & game.Players.$Shape} Players
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Players.decode = function decode(reader, length, error) {
+        Players.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.Players(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.Players(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
+                        if (wireType !== 2)
+                            break;
                         if (message.players === $util.emptyObject)
                             message.players = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = 0;
                         value = null;
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
+                                if (wireType !== 0)
+                                    break;
                                 key = reader.uint32();
-                                break;
+                                continue;
                             case 2:
-                                value = $root.game.PackedPlayer.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = $root.game.PackedPlayer.decode(reader, reader.uint32(), $undefined, _depth + 1);
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
-                        message.players[key] = value;
-                        break;
+                        message.players[key] = value || new $root.game.PackedPlayer();
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -3514,11 +4205,11 @@ export const game = $root.game = (() => {
          * @memberof game.Players
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.Players} Players
+         * @returns {game.Players & game.Players.$Shape} Players
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Players.decodeDelimited = function decodeDelimited(reader) {
+        Players.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -3532,18 +4223,22 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        Players.verify = function verify(message) {
+        Players.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.players != null && message.hasOwnProperty("players")) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.players != null && $Object.hasOwnProperty.call(message, "players")) {
                 if (!$util.isObject(message.players))
                     return "players: object expected";
-                let key = Object.keys(message.players);
+                let key = $Object.keys(message.players);
                 for (let i = 0; i < key.length; ++i) {
                     if (!$util.key32Re.test(key[i]))
                         return "players: integer key{k:uint32} expected";
                     {
-                        let error = $root.game.PackedPlayer.verify(message.players[key[i]]);
+                        let error = $root.game.PackedPlayer.verify(message.players[key[i]], _depth + 1);
                         if (error)
                             return "players." + error;
                     }
@@ -3560,18 +4255,26 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.Players} Players
          */
-        Players.fromObject = function fromObject(object) {
+        Players.fromObject = function (object, _depth) {
             if (object instanceof $root.game.Players)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.Players: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.Players();
             if (object.players) {
-                if (typeof object.players !== "object")
-                    throw TypeError(".game.Players.players: object expected");
+                if (!$util.isObject(object.players))
+                    throw $TypeError(".game.Players.players: object expected");
                 message.players = {};
-                for (let keys = Object.keys(object.players), i = 0; i < keys.length; ++i) {
-                    if (typeof object.players[keys[i]] !== "object")
-                        throw TypeError(".game.Players.players: object expected");
-                    message.players[keys[i]] = $root.game.PackedPlayer.fromObject(object.players[keys[i]]);
+                for (let keys = $Object.keys(object.players), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.players, keys[i]);
+                    if (!$util.isObject(object.players[keys[i]]))
+                        throw $TypeError(".game.Players.players: object expected");
+                    message.players[keys[i]] = $root.game.PackedPlayer.fromObject(object.players[keys[i]], _depth + 1);
                 }
             }
             return message;
@@ -3586,17 +4289,24 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Players.toObject = function toObject(message, options) {
+        Players.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.objects || options.defaults)
                 object.players = {};
             let keys2;
-            if (message.players && (keys2 = Object.keys(message.players)).length) {
+            if (message.players && (keys2 = $Object.keys(message.players)).length) {
                 object.players = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.players[keys2[j]] = $root.game.PackedPlayer.toObject(message.players[keys2[j]], options);
+                for (let j = 0; j < keys2.length; ++j) {
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.players, keys2[j]);
+                    object.players[keys2[j]] = $root.game.PackedPlayer.toObject(message.players[keys2[j]], options, _depth + 1);
+                }
             }
             return object;
         };
@@ -3608,23 +4318,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        Players.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        Players.prototype.toJSON = function() {
+            return Players.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for Players
+         * Gets the type url for Players
          * @function getTypeUrl
          * @memberof game.Players
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        Players.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.Players";
+        Players.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.Players";
         };
 
         return Players;
@@ -3634,30 +4343,43 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of an Entities.
+         * @typedef {Object} game.Entities.$Properties
+         * @property {Object.<string,game.PackedEntity.$Properties>|null} [entities] Entities entities
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an Entities.
          * @memberof game
          * @interface IEntities
-         * @property {Object.<string,game.IPackedEntity>|null} [entities] Entities entities
+         * @augments game.Entities.$Properties
+         * @deprecated Use game.Entities.$Properties instead.
+         */
+
+        /**
+         * Shape of an Entities.
+         * @typedef {game.Entities.$Properties} game.Entities.$Shape
          */
 
         /**
          * Constructs a new Entities.
          * @memberof game
          * @classdesc Represents an Entities.
-         * @implements IEntities
          * @constructor
-         * @param {game.IEntities=} [properties] Properties to set
+         * @param {game.Entities.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function Entities(properties) {
+        const Entities = function (properties) {
             this.entities = {};
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * Entities entities.
-         * @member {Object.<string,game.IPackedEntity>} entities
+         * @member {Object.<string,game.PackedEntity.$Properties>} entities
          * @memberof game.Entities
          * @instance
          */
@@ -3668,10 +4390,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.Entities
          * @static
-         * @param {game.IEntities=} [properties] Properties to set
+         * @param {game.Entities.$Properties=} [properties] Properties to set
          * @returns {game.Entities} Entities instance
+         * @type {{
+         *   (properties: game.Entities.$Shape): game.Entities & game.Entities.$Shape;
+         *   (properties?: game.Entities.$Properties): game.Entities;
+         * }}
          */
-        Entities.create = function create(properties) {
+        Entities.create = function(properties) {
             return new Entities(properties);
         };
 
@@ -3680,18 +4406,25 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.Entities
          * @static
-         * @param {game.IEntities} message Entities message or plain object to encode
+         * @param {game.Entities.$Properties} message Entities message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Entities.encode = function encode(message, writer) {
+        Entities.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.entities != null && Object.hasOwnProperty.call(message, "entities"))
-                for (let keys = Object.keys(message.entities), i = 0; i < keys.length; ++i) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.entities != null && $Object.hasOwnProperty.call(message, "entities"))
+                for (let keys = $Object.keys(message.entities), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).uint32(keys[i]);
-                    $root.game.PackedEntity.encode(message.entities[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.game.PackedEntity.encode(message.entities[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
                 }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -3700,12 +4433,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.Entities
          * @static
-         * @param {game.IEntities} message Entities message or plain object to encode
+         * @param {game.Entities.$Properties} message Entities message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Entities.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        Entities.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3715,47 +4448,64 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.Entities} Entities
+         * @returns {game.Entities & game.Entities.$Shape} Entities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Entities.decode = function decode(reader, length, error) {
+        Entities.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.Entities(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.Entities(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
+                        if (wireType !== 2)
+                            break;
                         if (message.entities === $util.emptyObject)
                             message.entities = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = 0;
                         value = null;
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
+                                if (wireType !== 0)
+                                    break;
                                 key = reader.uint32();
-                                break;
+                                continue;
                             case 2:
-                                value = $root.game.PackedEntity.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = $root.game.PackedEntity.decode(reader, reader.uint32(), $undefined, _depth + 1);
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
-                        message.entities[key] = value;
-                        break;
+                        message.entities[key] = value || new $root.game.PackedEntity();
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -3765,11 +4515,11 @@ export const game = $root.game = (() => {
          * @memberof game.Entities
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.Entities} Entities
+         * @returns {game.Entities & game.Entities.$Shape} Entities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Entities.decodeDelimited = function decodeDelimited(reader) {
+        Entities.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -3783,18 +4533,22 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        Entities.verify = function verify(message) {
+        Entities.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.entities != null && message.hasOwnProperty("entities")) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.entities != null && $Object.hasOwnProperty.call(message, "entities")) {
                 if (!$util.isObject(message.entities))
                     return "entities: object expected";
-                let key = Object.keys(message.entities);
+                let key = $Object.keys(message.entities);
                 for (let i = 0; i < key.length; ++i) {
                     if (!$util.key32Re.test(key[i]))
                         return "entities: integer key{k:uint32} expected";
                     {
-                        let error = $root.game.PackedEntity.verify(message.entities[key[i]]);
+                        let error = $root.game.PackedEntity.verify(message.entities[key[i]], _depth + 1);
                         if (error)
                             return "entities." + error;
                     }
@@ -3811,18 +4565,26 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.Entities} Entities
          */
-        Entities.fromObject = function fromObject(object) {
+        Entities.fromObject = function (object, _depth) {
             if (object instanceof $root.game.Entities)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.Entities: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.Entities();
             if (object.entities) {
-                if (typeof object.entities !== "object")
-                    throw TypeError(".game.Entities.entities: object expected");
+                if (!$util.isObject(object.entities))
+                    throw $TypeError(".game.Entities.entities: object expected");
                 message.entities = {};
-                for (let keys = Object.keys(object.entities), i = 0; i < keys.length; ++i) {
-                    if (typeof object.entities[keys[i]] !== "object")
-                        throw TypeError(".game.Entities.entities: object expected");
-                    message.entities[keys[i]] = $root.game.PackedEntity.fromObject(object.entities[keys[i]]);
+                for (let keys = $Object.keys(object.entities), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.entities, keys[i]);
+                    if (!$util.isObject(object.entities[keys[i]]))
+                        throw $TypeError(".game.Entities.entities: object expected");
+                    message.entities[keys[i]] = $root.game.PackedEntity.fromObject(object.entities[keys[i]], _depth + 1);
                 }
             }
             return message;
@@ -3837,17 +4599,24 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Entities.toObject = function toObject(message, options) {
+        Entities.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.objects || options.defaults)
                 object.entities = {};
             let keys2;
-            if (message.entities && (keys2 = Object.keys(message.entities)).length) {
+            if (message.entities && (keys2 = $Object.keys(message.entities)).length) {
                 object.entities = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.entities[keys2[j]] = $root.game.PackedEntity.toObject(message.entities[keys2[j]], options);
+                for (let j = 0; j < keys2.length; ++j) {
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.entities, keys2[j]);
+                    object.entities[keys2[j]] = $root.game.PackedEntity.toObject(message.entities[keys2[j]], options, _depth + 1);
+                }
             }
             return object;
         };
@@ -3859,23 +4628,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        Entities.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        Entities.prototype.toJSON = function() {
+            return Entities.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for Entities
+         * Gets the type url for Entities
          * @function getTypeUrl
          * @memberof game.Entities
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        Entities.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.Entities";
+        Entities.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.Entities";
         };
 
         return Entities;
@@ -3885,26 +4653,39 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of a CloseEntities.
+         * @typedef {Object} game.CloseEntities.$Properties
+         * @property {Array.<number>|null} [ids] CloseEntities ids
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a CloseEntities.
          * @memberof game
          * @interface ICloseEntities
-         * @property {Array.<number>|null} [ids] CloseEntities ids
+         * @augments game.CloseEntities.$Properties
+         * @deprecated Use game.CloseEntities.$Properties instead.
+         */
+
+        /**
+         * Shape of a CloseEntities.
+         * @typedef {game.CloseEntities.$Properties} game.CloseEntities.$Shape
          */
 
         /**
          * Constructs a new CloseEntities.
          * @memberof game
          * @classdesc Represents a CloseEntities.
-         * @implements ICloseEntities
          * @constructor
-         * @param {game.ICloseEntities=} [properties] Properties to set
+         * @param {game.CloseEntities.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function CloseEntities(properties) {
+        const CloseEntities = function (properties) {
             this.ids = [];
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * CloseEntities ids.
@@ -3919,10 +4700,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.CloseEntities
          * @static
-         * @param {game.ICloseEntities=} [properties] Properties to set
+         * @param {game.CloseEntities.$Properties=} [properties] Properties to set
          * @returns {game.CloseEntities} CloseEntities instance
+         * @type {{
+         *   (properties: game.CloseEntities.$Shape): game.CloseEntities & game.CloseEntities.$Shape;
+         *   (properties?: game.CloseEntities.$Properties): game.CloseEntities;
+         * }}
          */
-        CloseEntities.create = function create(properties) {
+        CloseEntities.create = function(properties) {
             return new CloseEntities(properties);
         };
 
@@ -3931,19 +4716,26 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.CloseEntities
          * @static
-         * @param {game.ICloseEntities} message CloseEntities message or plain object to encode
+         * @param {game.CloseEntities.$Properties} message CloseEntities message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        CloseEntities.encode = function encode(message, writer) {
+        CloseEntities.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             if (message.ids != null && message.ids.length) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork();
                 for (let i = 0; i < message.ids.length; ++i)
                     writer.uint32(message.ids[i]);
                 writer.ldelim();
             }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -3952,12 +4744,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.CloseEntities
          * @static
-         * @param {game.ICloseEntities} message CloseEntities message or plain object to encode
+         * @param {game.CloseEntities.$Properties} message CloseEntities message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        CloseEntities.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        CloseEntities.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3967,35 +4759,52 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.CloseEntities} CloseEntities
+         * @returns {game.CloseEntities & game.CloseEntities.$Shape} CloseEntities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CloseEntities.decode = function decode(reader, length, error) {
+        CloseEntities.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.CloseEntities();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.CloseEntities();
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
-                        if (!(message.ids && message.ids.length))
-                            message.ids = [];
-                        if ((tag & 7) === 2) {
+                        if (wireType === 2) {
+                            if (!(message.ids && message.ids.length))
+                                message.ids = [];
                             let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.ids.push(reader.uint32());
-                        } else
-                            message.ids.push(reader.uint32());
-                        break;
+                            continue;
+                        }
+                        if (wireType !== 0)
+                            break;
+                        if (!(message.ids && message.ids.length))
+                            message.ids = [];
+                        message.ids.push(reader.uint32());
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -4005,11 +4814,11 @@ export const game = $root.game = (() => {
          * @memberof game.CloseEntities
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.CloseEntities} CloseEntities
+         * @returns {game.CloseEntities & game.CloseEntities.$Shape} CloseEntities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CloseEntities.decodeDelimited = function decodeDelimited(reader) {
+        CloseEntities.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -4023,11 +4832,15 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        CloseEntities.verify = function verify(message) {
+        CloseEntities.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.ids != null && message.hasOwnProperty("ids")) {
-                if (!Array.isArray(message.ids))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.ids != null && $Object.hasOwnProperty.call(message, "ids")) {
+                if (!$Array.isArray(message.ids))
                     return "ids: array expected";
                 for (let i = 0; i < message.ids.length; ++i)
                     if (!$util.isInteger(message.ids[i]))
@@ -4044,14 +4857,20 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.CloseEntities} CloseEntities
          */
-        CloseEntities.fromObject = function fromObject(object) {
+        CloseEntities.fromObject = function (object, _depth) {
             if (object instanceof $root.game.CloseEntities)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.CloseEntities: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.CloseEntities();
             if (object.ids) {
-                if (!Array.isArray(object.ids))
-                    throw TypeError(".game.CloseEntities.ids: array expected");
-                message.ids = [];
+                if (!$Array.isArray(object.ids))
+                    throw $TypeError(".game.CloseEntities.ids: array expected");
+                message.ids = $Array(object.ids.length);
                 for (let i = 0; i < object.ids.length; ++i)
                     message.ids[i] = object.ids[i] >>> 0;
             }
@@ -4067,14 +4886,18 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        CloseEntities.toObject = function toObject(message, options) {
+        CloseEntities.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.arrays || options.defaults)
                 object.ids = [];
             if (message.ids && message.ids.length) {
-                object.ids = [];
+                object.ids = $Array(message.ids.length);
                 for (let j = 0; j < message.ids.length; ++j)
                     object.ids[j] = message.ids[j];
             }
@@ -4088,23 +4911,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        CloseEntities.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        CloseEntities.prototype.toJSON = function() {
+            return CloseEntities.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for CloseEntities
+         * Gets the type url for CloseEntities
          * @function getTypeUrl
          * @memberof game.CloseEntities
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        CloseEntities.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.CloseEntities";
+        CloseEntities.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.CloseEntities";
         };
 
         return CloseEntities;
@@ -4114,30 +4936,43 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of an UpdateEntitiesMap.
+         * @typedef {Object} game.UpdateEntitiesMap.$Properties
+         * @property {Object.<string,game.PartialEntity.$Properties>|null} [items] UpdateEntitiesMap items
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an UpdateEntitiesMap.
          * @memberof game
          * @interface IUpdateEntitiesMap
-         * @property {Object.<string,game.IPartialEntity>|null} [items] UpdateEntitiesMap items
+         * @augments game.UpdateEntitiesMap.$Properties
+         * @deprecated Use game.UpdateEntitiesMap.$Properties instead.
+         */
+
+        /**
+         * Shape of an UpdateEntitiesMap.
+         * @typedef {game.UpdateEntitiesMap.$Properties} game.UpdateEntitiesMap.$Shape
          */
 
         /**
          * Constructs a new UpdateEntitiesMap.
          * @memberof game
          * @classdesc Represents an UpdateEntitiesMap.
-         * @implements IUpdateEntitiesMap
          * @constructor
-         * @param {game.IUpdateEntitiesMap=} [properties] Properties to set
+         * @param {game.UpdateEntitiesMap.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function UpdateEntitiesMap(properties) {
+        const UpdateEntitiesMap = function (properties) {
             this.items = {};
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * UpdateEntitiesMap items.
-         * @member {Object.<string,game.IPartialEntity>} items
+         * @member {Object.<string,game.PartialEntity.$Properties>} items
          * @memberof game.UpdateEntitiesMap
          * @instance
          */
@@ -4148,10 +4983,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.UpdateEntitiesMap
          * @static
-         * @param {game.IUpdateEntitiesMap=} [properties] Properties to set
+         * @param {game.UpdateEntitiesMap.$Properties=} [properties] Properties to set
          * @returns {game.UpdateEntitiesMap} UpdateEntitiesMap instance
+         * @type {{
+         *   (properties: game.UpdateEntitiesMap.$Shape): game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape;
+         *   (properties?: game.UpdateEntitiesMap.$Properties): game.UpdateEntitiesMap;
+         * }}
          */
-        UpdateEntitiesMap.create = function create(properties) {
+        UpdateEntitiesMap.create = function(properties) {
             return new UpdateEntitiesMap(properties);
         };
 
@@ -4160,18 +4999,25 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.UpdateEntitiesMap
          * @static
-         * @param {game.IUpdateEntitiesMap} message UpdateEntitiesMap message or plain object to encode
+         * @param {game.UpdateEntitiesMap.$Properties} message UpdateEntitiesMap message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UpdateEntitiesMap.encode = function encode(message, writer) {
+        UpdateEntitiesMap.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.items != null && Object.hasOwnProperty.call(message, "items"))
-                for (let keys = Object.keys(message.items), i = 0; i < keys.length; ++i) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.items != null && $Object.hasOwnProperty.call(message, "items"))
+                for (let keys = $Object.keys(message.items), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).uint32(keys[i]);
-                    $root.game.PartialEntity.encode(message.items[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.game.PartialEntity.encode(message.items[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
                 }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -4180,12 +5026,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.UpdateEntitiesMap
          * @static
-         * @param {game.IUpdateEntitiesMap} message UpdateEntitiesMap message or plain object to encode
+         * @param {game.UpdateEntitiesMap.$Properties} message UpdateEntitiesMap message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UpdateEntitiesMap.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        UpdateEntitiesMap.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4195,47 +5041,64 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.UpdateEntitiesMap} UpdateEntitiesMap
+         * @returns {game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape} UpdateEntitiesMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UpdateEntitiesMap.decode = function decode(reader, length, error) {
+        UpdateEntitiesMap.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.UpdateEntitiesMap(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.UpdateEntitiesMap(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
+                        if (wireType !== 2)
+                            break;
                         if (message.items === $util.emptyObject)
                             message.items = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = 0;
                         value = null;
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
+                                if (wireType !== 0)
+                                    break;
                                 key = reader.uint32();
-                                break;
+                                continue;
                             case 2:
-                                value = $root.game.PartialEntity.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = $root.game.PartialEntity.decode(reader, reader.uint32(), $undefined, _depth + 1);
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
-                        message.items[key] = value;
-                        break;
+                        message.items[key] = value || new $root.game.PartialEntity();
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -4245,11 +5108,11 @@ export const game = $root.game = (() => {
          * @memberof game.UpdateEntitiesMap
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.UpdateEntitiesMap} UpdateEntitiesMap
+         * @returns {game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape} UpdateEntitiesMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UpdateEntitiesMap.decodeDelimited = function decodeDelimited(reader) {
+        UpdateEntitiesMap.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -4263,18 +5126,22 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UpdateEntitiesMap.verify = function verify(message) {
+        UpdateEntitiesMap.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.items != null && message.hasOwnProperty("items")) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.items != null && $Object.hasOwnProperty.call(message, "items")) {
                 if (!$util.isObject(message.items))
                     return "items: object expected";
-                let key = Object.keys(message.items);
+                let key = $Object.keys(message.items);
                 for (let i = 0; i < key.length; ++i) {
                     if (!$util.key32Re.test(key[i]))
                         return "items: integer key{k:uint32} expected";
                     {
-                        let error = $root.game.PartialEntity.verify(message.items[key[i]]);
+                        let error = $root.game.PartialEntity.verify(message.items[key[i]], _depth + 1);
                         if (error)
                             return "items." + error;
                     }
@@ -4291,18 +5158,26 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.UpdateEntitiesMap} UpdateEntitiesMap
          */
-        UpdateEntitiesMap.fromObject = function fromObject(object) {
+        UpdateEntitiesMap.fromObject = function (object, _depth) {
             if (object instanceof $root.game.UpdateEntitiesMap)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.UpdateEntitiesMap: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.UpdateEntitiesMap();
             if (object.items) {
-                if (typeof object.items !== "object")
-                    throw TypeError(".game.UpdateEntitiesMap.items: object expected");
+                if (!$util.isObject(object.items))
+                    throw $TypeError(".game.UpdateEntitiesMap.items: object expected");
                 message.items = {};
-                for (let keys = Object.keys(object.items), i = 0; i < keys.length; ++i) {
-                    if (typeof object.items[keys[i]] !== "object")
-                        throw TypeError(".game.UpdateEntitiesMap.items: object expected");
-                    message.items[keys[i]] = $root.game.PartialEntity.fromObject(object.items[keys[i]]);
+                for (let keys = $Object.keys(object.items), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.items, keys[i]);
+                    if (!$util.isObject(object.items[keys[i]]))
+                        throw $TypeError(".game.UpdateEntitiesMap.items: object expected");
+                    message.items[keys[i]] = $root.game.PartialEntity.fromObject(object.items[keys[i]], _depth + 1);
                 }
             }
             return message;
@@ -4317,17 +5192,24 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UpdateEntitiesMap.toObject = function toObject(message, options) {
+        UpdateEntitiesMap.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.objects || options.defaults)
                 object.items = {};
             let keys2;
-            if (message.items && (keys2 = Object.keys(message.items)).length) {
+            if (message.items && (keys2 = $Object.keys(message.items)).length) {
                 object.items = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.items[keys2[j]] = $root.game.PartialEntity.toObject(message.items[keys2[j]], options);
+                for (let j = 0; j < keys2.length; ++j) {
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.items, keys2[j]);
+                    object.items[keys2[j]] = $root.game.PartialEntity.toObject(message.items[keys2[j]], options, _depth + 1);
+                }
             }
             return object;
         };
@@ -4339,23 +5221,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UpdateEntitiesMap.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        UpdateEntitiesMap.prototype.toJSON = function() {
+            return UpdateEntitiesMap.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for UpdateEntitiesMap
+         * Gets the type url for UpdateEntitiesMap
          * @function getTypeUrl
          * @memberof game.UpdateEntitiesMap
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        UpdateEntitiesMap.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.UpdateEntitiesMap";
+        UpdateEntitiesMap.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.UpdateEntitiesMap";
         };
 
         return UpdateEntitiesMap;
@@ -4365,30 +5246,43 @@ export const game = $root.game = (() => {
 
         /**
          * Properties of an UpdatePlayersMap.
+         * @typedef {Object} game.UpdatePlayersMap.$Properties
+         * @property {Object.<string,game.PartialPlayer.$Properties>|null} [items] UpdatePlayersMap items
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an UpdatePlayersMap.
          * @memberof game
          * @interface IUpdatePlayersMap
-         * @property {Object.<string,game.IPartialPlayer>|null} [items] UpdatePlayersMap items
+         * @augments game.UpdatePlayersMap.$Properties
+         * @deprecated Use game.UpdatePlayersMap.$Properties instead.
+         */
+
+        /**
+         * Shape of an UpdatePlayersMap.
+         * @typedef {game.UpdatePlayersMap.$Properties} game.UpdatePlayersMap.$Shape
          */
 
         /**
          * Constructs a new UpdatePlayersMap.
          * @memberof game
          * @classdesc Represents an UpdatePlayersMap.
-         * @implements IUpdatePlayersMap
          * @constructor
-         * @param {game.IUpdatePlayersMap=} [properties] Properties to set
+         * @param {game.UpdatePlayersMap.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function UpdatePlayersMap(properties) {
+        const UpdatePlayersMap = function (properties) {
             this.items = {};
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * UpdatePlayersMap items.
-         * @member {Object.<string,game.IPartialPlayer>} items
+         * @member {Object.<string,game.PartialPlayer.$Properties>} items
          * @memberof game.UpdatePlayersMap
          * @instance
          */
@@ -4399,10 +5293,14 @@ export const game = $root.game = (() => {
          * @function create
          * @memberof game.UpdatePlayersMap
          * @static
-         * @param {game.IUpdatePlayersMap=} [properties] Properties to set
+         * @param {game.UpdatePlayersMap.$Properties=} [properties] Properties to set
          * @returns {game.UpdatePlayersMap} UpdatePlayersMap instance
+         * @type {{
+         *   (properties: game.UpdatePlayersMap.$Shape): game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape;
+         *   (properties?: game.UpdatePlayersMap.$Properties): game.UpdatePlayersMap;
+         * }}
          */
-        UpdatePlayersMap.create = function create(properties) {
+        UpdatePlayersMap.create = function(properties) {
             return new UpdatePlayersMap(properties);
         };
 
@@ -4411,18 +5309,25 @@ export const game = $root.game = (() => {
          * @function encode
          * @memberof game.UpdatePlayersMap
          * @static
-         * @param {game.IUpdatePlayersMap} message UpdatePlayersMap message or plain object to encode
+         * @param {game.UpdatePlayersMap.$Properties} message UpdatePlayersMap message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UpdatePlayersMap.encode = function encode(message, writer) {
+        UpdatePlayersMap.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.items != null && Object.hasOwnProperty.call(message, "items"))
-                for (let keys = Object.keys(message.items), i = 0; i < keys.length; ++i) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.items != null && $Object.hasOwnProperty.call(message, "items"))
+                for (let keys = $Object.keys(message.items), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).uint32(keys[i]);
-                    $root.game.PartialPlayer.encode(message.items[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.game.PartialPlayer.encode(message.items[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
                 }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -4431,12 +5336,12 @@ export const game = $root.game = (() => {
          * @function encodeDelimited
          * @memberof game.UpdatePlayersMap
          * @static
-         * @param {game.IUpdatePlayersMap} message UpdatePlayersMap message or plain object to encode
+         * @param {game.UpdatePlayersMap.$Properties} message UpdatePlayersMap message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UpdatePlayersMap.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        UpdatePlayersMap.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4446,47 +5351,64 @@ export const game = $root.game = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {game.UpdatePlayersMap} UpdatePlayersMap
+         * @returns {game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape} UpdatePlayersMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UpdatePlayersMap.decode = function decode(reader, length, error) {
+        UpdatePlayersMap.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.UpdatePlayersMap(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.UpdatePlayersMap(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
+                        if (wireType !== 2)
+                            break;
                         if (message.items === $util.emptyObject)
                             message.items = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = 0;
                         value = null;
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
+                                if (wireType !== 0)
+                                    break;
                                 key = reader.uint32();
-                                break;
+                                continue;
                             case 2:
-                                value = $root.game.PartialPlayer.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = $root.game.PartialPlayer.decode(reader, reader.uint32(), $undefined, _depth + 1);
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
-                        message.items[key] = value;
-                        break;
+                        message.items[key] = value || new $root.game.PartialPlayer();
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -4496,11 +5418,11 @@ export const game = $root.game = (() => {
          * @memberof game.UpdatePlayersMap
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {game.UpdatePlayersMap} UpdatePlayersMap
+         * @returns {game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape} UpdatePlayersMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UpdatePlayersMap.decodeDelimited = function decodeDelimited(reader) {
+        UpdatePlayersMap.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -4514,18 +5436,22 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UpdatePlayersMap.verify = function verify(message) {
+        UpdatePlayersMap.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.items != null && message.hasOwnProperty("items")) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.items != null && $Object.hasOwnProperty.call(message, "items")) {
                 if (!$util.isObject(message.items))
                     return "items: object expected";
-                let key = Object.keys(message.items);
+                let key = $Object.keys(message.items);
                 for (let i = 0; i < key.length; ++i) {
                     if (!$util.key32Re.test(key[i]))
                         return "items: integer key{k:uint32} expected";
                     {
-                        let error = $root.game.PartialPlayer.verify(message.items[key[i]]);
+                        let error = $root.game.PartialPlayer.verify(message.items[key[i]], _depth + 1);
                         if (error)
                             return "items." + error;
                     }
@@ -4542,18 +5468,26 @@ export const game = $root.game = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {game.UpdatePlayersMap} UpdatePlayersMap
          */
-        UpdatePlayersMap.fromObject = function fromObject(object) {
+        UpdatePlayersMap.fromObject = function (object, _depth) {
             if (object instanceof $root.game.UpdatePlayersMap)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.UpdatePlayersMap: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.game.UpdatePlayersMap();
             if (object.items) {
-                if (typeof object.items !== "object")
-                    throw TypeError(".game.UpdatePlayersMap.items: object expected");
+                if (!$util.isObject(object.items))
+                    throw $TypeError(".game.UpdatePlayersMap.items: object expected");
                 message.items = {};
-                for (let keys = Object.keys(object.items), i = 0; i < keys.length; ++i) {
-                    if (typeof object.items[keys[i]] !== "object")
-                        throw TypeError(".game.UpdatePlayersMap.items: object expected");
-                    message.items[keys[i]] = $root.game.PartialPlayer.fromObject(object.items[keys[i]]);
+                for (let keys = $Object.keys(object.items), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.items, keys[i]);
+                    if (!$util.isObject(object.items[keys[i]]))
+                        throw $TypeError(".game.UpdatePlayersMap.items: object expected");
+                    message.items[keys[i]] = $root.game.PartialPlayer.fromObject(object.items[keys[i]], _depth + 1);
                 }
             }
             return message;
@@ -4568,17 +5502,24 @@ export const game = $root.game = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UpdatePlayersMap.toObject = function toObject(message, options) {
+        UpdatePlayersMap.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.objects || options.defaults)
                 object.items = {};
             let keys2;
-            if (message.items && (keys2 = Object.keys(message.items)).length) {
+            if (message.items && (keys2 = $Object.keys(message.items)).length) {
                 object.items = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.items[keys2[j]] = $root.game.PartialPlayer.toObject(message.items[keys2[j]], options);
+                for (let j = 0; j < keys2.length; ++j) {
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.items, keys2[j]);
+                    object.items[keys2[j]] = $root.game.PartialPlayer.toObject(message.items[keys2[j]], options, _depth + 1);
+                }
             }
             return object;
         };
@@ -4590,23 +5531,22 @@ export const game = $root.game = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        UpdatePlayersMap.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        UpdatePlayersMap.prototype.toJSON = function() {
+            return UpdatePlayersMap.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for UpdatePlayersMap
+         * Gets the type url for UpdatePlayersMap
          * @function getTypeUrl
          * @memberof game.UpdatePlayersMap
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        UpdatePlayersMap.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/game.UpdatePlayersMap";
+        UpdatePlayersMap.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.UpdatePlayersMap";
         };
 
         return UpdatePlayersMap;
@@ -4633,7 +5573,7 @@ export const http = $root.http = (() => {
      * @property {number} DEV=2 DEV value
      */
     http.AccountRole = (function() {
-        const valuesById = {}, values = Object.create(valuesById);
+        const valuesById = {}, values = $Object.create(valuesById);
         values[valuesById[0] = "USER"] = 0;
         values[valuesById[1] = "MOD"] = 1;
         values[valuesById[2] = "DEV"] = 2;
@@ -4655,7 +5595,7 @@ export const http = $root.http = (() => {
      * @property {number} WrongPassword=9 WrongPassword value
      */
     http.ResponseStatus = (function() {
-        const valuesById = {}, values = Object.create(valuesById);
+        const valuesById = {}, values = $Object.create(valuesById);
         values[valuesById[1] = "Ok"] = 1;
         values[valuesById[2] = "AccountExists"] = 2;
         values[valuesById[3] = "AccountNotExists"] = 3;
@@ -4672,31 +5612,44 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a Profile.
-         * @memberof http
-         * @interface IProfile
+         * @typedef {Object} http.Profile.$Properties
          * @property {number|null} [vp] Profile vp
          * @property {string|null} [username] Profile username
          * @property {Object.<string,string>|null} [highest] Profile highest
          * @property {Array.<string>|null} [accessories] Profile accessories
          * @property {http.AccountRole|null} [role] Profile role
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a Profile.
+         * @memberof http
+         * @interface IProfile
+         * @augments http.Profile.$Properties
+         * @deprecated Use http.Profile.$Properties instead.
+         */
+
+        /**
+         * Shape of a Profile.
+         * @typedef {http.Profile.$Properties} http.Profile.$Shape
          */
 
         /**
          * Constructs a new Profile.
          * @memberof http
          * @classdesc Represents a Profile.
-         * @implements IProfile
          * @constructor
-         * @param {http.IProfile=} [properties] Properties to set
+         * @param {http.Profile.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function Profile(properties) {
+        const Profile = function (properties) {
             this.highest = {};
             this.accessories = [];
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * Profile vp.
@@ -4743,10 +5696,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.Profile
          * @static
-         * @param {http.IProfile=} [properties] Properties to set
+         * @param {http.Profile.$Properties=} [properties] Properties to set
          * @returns {http.Profile} Profile instance
+         * @type {{
+         *   (properties: http.Profile.$Shape): http.Profile & http.Profile.$Shape;
+         *   (properties?: http.Profile.$Properties): http.Profile;
+         * }}
          */
-        Profile.create = function create(properties) {
+        Profile.create = function(properties) {
             return new Profile(properties);
         };
 
@@ -4755,25 +5712,32 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.Profile
          * @static
-         * @param {http.IProfile} message Profile message or plain object to encode
+         * @param {http.Profile.$Properties} message Profile message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Profile.encode = function encode(message, writer) {
+        Profile.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.vp != null && Object.hasOwnProperty.call(message, "vp"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.vp);
-            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.username);
-            if (message.highest != null && Object.hasOwnProperty.call(message, "highest"))
-                for (let keys = Object.keys(message.highest), i = 0; i < keys.length; ++i)
+            if (message.highest != null && $Object.hasOwnProperty.call(message, "highest"))
+                for (let keys = $Object.keys(message.highest), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.highest[keys[i]]).ldelim();
             if (message.accessories != null && message.accessories.length)
                 for (let i = 0; i < message.accessories.length; ++i)
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.accessories[i]);
-            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.role);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -4782,12 +5746,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.Profile
          * @static
-         * @param {http.IProfile} message Profile message or plain object to encode
+         * @param {http.Profile.$Properties} message Profile message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Profile.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        Profile.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4797,65 +5761,101 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.Profile} Profile
+         * @returns {http.Profile & http.Profile.$Shape} Profile
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Profile.decode = function decode(reader, length, error) {
+        Profile.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.Profile(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.Profile(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
-                        message.vp = reader.uint32();
-                        break;
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.vp = value;
+                        else
+                            delete message.vp;
+                        continue;
                     }
                 case 2: {
-                        message.username = reader.string();
-                        break;
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.username = value;
+                        else
+                            delete message.username;
+                        continue;
                     }
                 case 3: {
+                        if (wireType !== 2)
+                            break;
                         if (message.highest === $util.emptyObject)
                             message.highest = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = "";
                         value = "";
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
-                                key = reader.string();
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                key = reader.stringVerify();
+                                continue;
                             case 2:
-                                value = reader.string();
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = reader.stringVerify();
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
+                        if (key === "__proto__")
+                            $util.makeProp(message.highest, key);
                         message.highest[key] = value;
-                        break;
+                        continue;
                     }
                 case 4: {
+                        if (wireType !== 2)
+                            break;
                         if (!(message.accessories && message.accessories.length))
                             message.accessories = [];
-                        message.accessories.push(reader.string());
-                        break;
+                        message.accessories.push(reader.stringVerify());
+                        continue;
                     }
                 case 5: {
-                        message.role = reader.int32();
-                        break;
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.int32())
+                            message.role = value;
+                        else
+                            delete message.role;
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -4865,11 +5865,11 @@ export const http = $root.http = (() => {
          * @memberof http.Profile
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.Profile} Profile
+         * @returns {http.Profile & http.Profile.$Shape} Profile
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Profile.decodeDelimited = function decodeDelimited(reader) {
+        Profile.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -4883,31 +5883,35 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        Profile.verify = function verify(message) {
+        Profile.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.vp != null && message.hasOwnProperty("vp"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp"))
                 if (!$util.isInteger(message.vp))
                     return "vp: integer expected";
-            if (message.username != null && message.hasOwnProperty("username"))
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
                 if (!$util.isString(message.username))
                     return "username: string expected";
-            if (message.highest != null && message.hasOwnProperty("highest")) {
+            if (message.highest != null && $Object.hasOwnProperty.call(message, "highest")) {
                 if (!$util.isObject(message.highest))
                     return "highest: object expected";
-                let key = Object.keys(message.highest);
+                let key = $Object.keys(message.highest);
                 for (let i = 0; i < key.length; ++i)
                     if (!$util.isString(message.highest[key[i]]))
                         return "highest: string{k:string} expected";
             }
-            if (message.accessories != null && message.hasOwnProperty("accessories")) {
-                if (!Array.isArray(message.accessories))
+            if (message.accessories != null && $Object.hasOwnProperty.call(message, "accessories")) {
+                if (!$Array.isArray(message.accessories))
                     return "accessories: array expected";
                 for (let i = 0; i < message.accessories.length; ++i)
                     if (!$util.isString(message.accessories[i]))
                         return "accessories: string[] expected";
             }
-            if (message.role != null && message.hasOwnProperty("role"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
                 switch (message.role) {
                 default:
                     return "role: enum value expected";
@@ -4927,48 +5931,60 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.Profile} Profile
          */
-        Profile.fromObject = function fromObject(object) {
+        Profile.fromObject = function (object, _depth) {
             if (object instanceof $root.http.Profile)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.Profile: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.Profile();
             if (object.vp != null)
-                message.vp = object.vp >>> 0;
+                if ($Number(object.vp) !== 0)
+                    message.vp = object.vp >>> 0;
             if (object.username != null)
-                message.username = String(object.username);
+                if (typeof object.username !== "string" || object.username.length)
+                    message.username = $String(object.username);
             if (object.highest) {
-                if (typeof object.highest !== "object")
-                    throw TypeError(".http.Profile.highest: object expected");
+                if (!$util.isObject(object.highest))
+                    throw $TypeError(".http.Profile.highest: object expected");
                 message.highest = {};
-                for (let keys = Object.keys(object.highest), i = 0; i < keys.length; ++i)
-                    message.highest[keys[i]] = String(object.highest[keys[i]]);
+                for (let keys = $Object.keys(object.highest), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.highest, keys[i]);
+                    message.highest[keys[i]] = $String(object.highest[keys[i]]);
+                }
             }
             if (object.accessories) {
-                if (!Array.isArray(object.accessories))
-                    throw TypeError(".http.Profile.accessories: array expected");
-                message.accessories = [];
+                if (!$Array.isArray(object.accessories))
+                    throw $TypeError(".http.Profile.accessories: array expected");
+                message.accessories = $Array(object.accessories.length);
                 for (let i = 0; i < object.accessories.length; ++i)
-                    message.accessories[i] = String(object.accessories[i]);
+                    message.accessories[i] = $String(object.accessories[i]);
             }
-            switch (object.role) {
-            default:
-                if (typeof object.role === "number") {
-                    message.role = object.role;
+            if (object.role !== 0 && (typeof object.role !== "string" || $root.http.AccountRole[object.role] !== 0))
+                switch (object.role) {
+                default:
+                    if (typeof object.role === "number") {
+                        message.role = object.role;
+                        break;
+                    }
+                    break;
+                case "USER":
+                case 0:
+                    message.role = 0;
+                    break;
+                case "MOD":
+                case 1:
+                    message.role = 1;
+                    break;
+                case "DEV":
+                case 2:
+                    message.role = 2;
                     break;
                 }
-                break;
-            case "USER":
-            case 0:
-                message.role = 0;
-                break;
-            case "MOD":
-            case 1:
-                message.role = 1;
-                break;
-            case "DEV":
-            case 2:
-                message.role = 2;
-                break;
-            }
             return message;
         };
 
@@ -4981,9 +5997,13 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Profile.toObject = function toObject(message, options) {
+        Profile.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.arrays || options.defaults)
                 object.accessories = [];
@@ -4992,25 +6012,28 @@ export const http = $root.http = (() => {
             if (options.defaults) {
                 object.vp = 0;
                 object.username = "";
-                object.role = options.enums === String ? "USER" : 0;
+                object.role = options.enums === $String ? "USER" : 0;
             }
-            if (message.vp != null && message.hasOwnProperty("vp"))
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp"))
                 object.vp = message.vp;
-            if (message.username != null && message.hasOwnProperty("username"))
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
                 object.username = message.username;
             let keys2;
-            if (message.highest && (keys2 = Object.keys(message.highest)).length) {
+            if (message.highest && (keys2 = $Object.keys(message.highest)).length) {
                 object.highest = {};
-                for (let j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j) {
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.highest, keys2[j]);
                     object.highest[keys2[j]] = message.highest[keys2[j]];
+                }
             }
             if (message.accessories && message.accessories.length) {
-                object.accessories = [];
+                object.accessories = $Array(message.accessories.length);
                 for (let j = 0; j < message.accessories.length; ++j)
                     object.accessories[j] = message.accessories[j];
             }
-            if (message.role != null && message.hasOwnProperty("role"))
-                object.role = options.enums === String ? $root.http.AccountRole[message.role] === undefined ? message.role : $root.http.AccountRole[message.role] : message.role;
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
+                object.role = options.enums === $String ? $root.http.AccountRole[message.role] === $undefined ? message.role : $root.http.AccountRole[message.role] : message.role;
             return object;
         };
 
@@ -5021,23 +6044,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        Profile.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        Profile.prototype.toJSON = function() {
+            return Profile.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for Profile
+         * Gets the type url for Profile
          * @function getTypeUrl
          * @memberof http.Profile
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        Profile.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.Profile";
+        Profile.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.Profile";
         };
 
         return Profile;
@@ -5047,27 +6069,40 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a LoginAndRegisterResponse.
-         * @memberof http
-         * @interface ILoginAndRegisterResponse
+         * @typedef {Object} http.LoginAndRegisterResponse.$Properties
          * @property {http.ResponseStatus|null} [status] LoginAndRegisterResponse status
          * @property {string|null} [token] LoginAndRegisterResponse token
-         * @property {http.IProfile|null} [profile] LoginAndRegisterResponse profile
+         * @property {http.Profile.$Properties|null} [profile] LoginAndRegisterResponse profile
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a LoginAndRegisterResponse.
+         * @memberof http
+         * @interface ILoginAndRegisterResponse
+         * @augments http.LoginAndRegisterResponse.$Properties
+         * @deprecated Use http.LoginAndRegisterResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a LoginAndRegisterResponse.
+         * @typedef {http.LoginAndRegisterResponse.$Properties} http.LoginAndRegisterResponse.$Shape
          */
 
         /**
          * Constructs a new LoginAndRegisterResponse.
          * @memberof http
          * @classdesc Represents a LoginAndRegisterResponse.
-         * @implements ILoginAndRegisterResponse
          * @constructor
-         * @param {http.ILoginAndRegisterResponse=} [properties] Properties to set
+         * @param {http.LoginAndRegisterResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function LoginAndRegisterResponse(properties) {
+        const LoginAndRegisterResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * LoginAndRegisterResponse status.
@@ -5087,7 +6122,7 @@ export const http = $root.http = (() => {
 
         /**
          * LoginAndRegisterResponse profile.
-         * @member {http.IProfile|null|undefined} profile
+         * @member {http.Profile.$Properties|null|undefined} profile
          * @memberof http.LoginAndRegisterResponse
          * @instance
          */
@@ -5097,13 +6132,13 @@ export const http = $root.http = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(LoginAndRegisterResponse.prototype, "_token", {
+        $Object.defineProperty(LoginAndRegisterResponse.prototype, "_token", {
             get: $util.oneOfGetter($oneOfFields = ["token"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(LoginAndRegisterResponse.prototype, "_profile", {
+        $Object.defineProperty(LoginAndRegisterResponse.prototype, "_profile", {
             get: $util.oneOfGetter($oneOfFields = ["profile"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -5113,10 +6148,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.LoginAndRegisterResponse
          * @static
-         * @param {http.ILoginAndRegisterResponse=} [properties] Properties to set
+         * @param {http.LoginAndRegisterResponse.$Properties=} [properties] Properties to set
          * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse instance
+         * @type {{
+         *   (properties: http.LoginAndRegisterResponse.$Shape): http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape;
+         *   (properties?: http.LoginAndRegisterResponse.$Properties): http.LoginAndRegisterResponse;
+         * }}
          */
-        LoginAndRegisterResponse.create = function create(properties) {
+        LoginAndRegisterResponse.create = function(properties) {
             return new LoginAndRegisterResponse(properties);
         };
 
@@ -5125,19 +6164,26 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.LoginAndRegisterResponse
          * @static
-         * @param {http.ILoginAndRegisterResponse} message LoginAndRegisterResponse message or plain object to encode
+         * @param {http.LoginAndRegisterResponse.$Properties} message LoginAndRegisterResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LoginAndRegisterResponse.encode = function encode(message, writer) {
+        LoginAndRegisterResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
-            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
-            if (message.profile != null && Object.hasOwnProperty.call(message, "profile"))
-                $root.http.Profile.encode(message.profile, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
+                $root.http.Profile.encode(message.profile, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -5146,12 +6192,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.LoginAndRegisterResponse
          * @static
-         * @param {http.ILoginAndRegisterResponse} message LoginAndRegisterResponse message or plain object to encode
+         * @param {http.LoginAndRegisterResponse.$Properties} message LoginAndRegisterResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LoginAndRegisterResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        LoginAndRegisterResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5161,36 +6207,59 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse
+         * @returns {http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape} LoginAndRegisterResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LoginAndRegisterResponse.decode = function decode(reader, length, error) {
+        LoginAndRegisterResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.LoginAndRegisterResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.LoginAndRegisterResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.status = reader.int32();
-                        break;
-                    }
-                case 2: {
-                        message.token = reader.string();
-                        break;
-                    }
-                case 3: {
-                        message.profile = $root.http.Profile.decode(reader, reader.uint32());
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if ((value = reader.int32()) !== 1)
+                            message.status = value;
+                        else
+                            delete message.status;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        message.token = reader.stringVerify();
+                        message._token = "token";
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        message.profile = $root.http.Profile.decode(reader, reader.uint32(), $undefined, _depth + 1, message.profile);
+                        message._profile = "profile";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -5200,11 +6269,11 @@ export const http = $root.http = (() => {
          * @memberof http.LoginAndRegisterResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse
+         * @returns {http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape} LoginAndRegisterResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LoginAndRegisterResponse.decodeDelimited = function decodeDelimited(reader) {
+        LoginAndRegisterResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -5218,11 +6287,15 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LoginAndRegisterResponse.verify = function verify(message) {
+        LoginAndRegisterResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.status != null && message.hasOwnProperty("status"))
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
@@ -5237,15 +6310,15 @@ export const http = $root.http = (() => {
                 case 9:
                     break;
                 }
-            if (message.token != null && message.hasOwnProperty("token")) {
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
                 properties._token = 1;
                 if (!$util.isString(message.token))
                     return "token: string expected";
             }
-            if (message.profile != null && message.hasOwnProperty("profile")) {
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile")) {
                 properties._profile = 1;
                 {
-                    let error = $root.http.Profile.verify(message.profile);
+                    let error = $root.http.Profile.verify(message.profile, _depth + 1);
                     if (error)
                         return "profile." + error;
                 }
@@ -5261,60 +6334,67 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse
          */
-        LoginAndRegisterResponse.fromObject = function fromObject(object) {
+        LoginAndRegisterResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.LoginAndRegisterResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.LoginAndRegisterResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.LoginAndRegisterResponse();
-            switch (object.status) {
-            default:
-                if (typeof object.status === "number") {
-                    message.status = object.status;
+            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "Ok":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "AccountExists":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "AccountNotExists":
+                case 3:
+                    message.status = 3;
+                    break;
+                case "InternalError":
+                case 4:
+                    message.status = 4;
+                    break;
+                case "InvalidBody":
+                case 5:
+                    message.status = 5;
+                    break;
+                case "NotFound":
+                case 6:
+                    message.status = 6;
+                    break;
+                case "VerificationFailure":
+                case 7:
+                    message.status = 7;
+                    break;
+                case "NotAuthenticated":
+                case 8:
+                    message.status = 8;
+                    break;
+                case "WrongPassword":
+                case 9:
+                    message.status = 9;
                     break;
                 }
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "AccountExists":
-            case 2:
-                message.status = 2;
-                break;
-            case "AccountNotExists":
-            case 3:
-                message.status = 3;
-                break;
-            case "InternalError":
-            case 4:
-                message.status = 4;
-                break;
-            case "InvalidBody":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotFound":
-            case 6:
-                message.status = 6;
-                break;
-            case "VerificationFailure":
-            case 7:
-                message.status = 7;
-                break;
-            case "NotAuthenticated":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
             if (object.token != null)
-                message.token = String(object.token);
+                message.token = $String(object.token);
             if (object.profile != null) {
-                if (typeof object.profile !== "object")
-                    throw TypeError(".http.LoginAndRegisterResponse.profile: object expected");
-                message.profile = $root.http.Profile.fromObject(object.profile);
+                if (!$util.isObject(object.profile))
+                    throw $TypeError(".http.LoginAndRegisterResponse.profile: object expected");
+                message.profile = $root.http.Profile.fromObject(object.profile, _depth + 1);
             }
             return message;
         };
@@ -5328,24 +6408,22 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        LoginAndRegisterResponse.toObject = function toObject(message, options) {
+        LoginAndRegisterResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
-                object.status = options.enums === String ? "Ok" : 1;
-            if (message.status != null && message.hasOwnProperty("status"))
-                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
-            if (message.token != null && message.hasOwnProperty("token")) {
+                object.status = options.enums === $String ? "Ok" : 1;
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 object.token = message.token;
-                if (options.oneofs)
-                    object._token = "token";
-            }
-            if (message.profile != null && message.hasOwnProperty("profile")) {
-                object.profile = $root.http.Profile.toObject(message.profile, options);
-                if (options.oneofs)
-                    object._profile = "profile";
-            }
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
+                object.profile = $root.http.Profile.toObject(message.profile, options, _depth + 1);
             return object;
         };
 
@@ -5356,23 +6434,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        LoginAndRegisterResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        LoginAndRegisterResponse.prototype.toJSON = function() {
+            return LoginAndRegisterResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for LoginAndRegisterResponse
+         * Gets the type url for LoginAndRegisterResponse
          * @function getTypeUrl
          * @memberof http.LoginAndRegisterResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        LoginAndRegisterResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.LoginAndRegisterResponse";
+        LoginAndRegisterResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.LoginAndRegisterResponse";
         };
 
         return LoginAndRegisterResponse;
@@ -5382,26 +6459,39 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a ProfileResponse.
+         * @typedef {Object} http.ProfileResponse.$Properties
+         * @property {http.ResponseStatus|null} [status] ProfileResponse status
+         * @property {http.Profile.$Properties|null} [profile] ProfileResponse profile
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a ProfileResponse.
          * @memberof http
          * @interface IProfileResponse
-         * @property {http.ResponseStatus|null} [status] ProfileResponse status
-         * @property {http.IProfile|null} [profile] ProfileResponse profile
+         * @augments http.ProfileResponse.$Properties
+         * @deprecated Use http.ProfileResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a ProfileResponse.
+         * @typedef {http.ProfileResponse.$Properties} http.ProfileResponse.$Shape
          */
 
         /**
          * Constructs a new ProfileResponse.
          * @memberof http
          * @classdesc Represents a ProfileResponse.
-         * @implements IProfileResponse
          * @constructor
-         * @param {http.IProfileResponse=} [properties] Properties to set
+         * @param {http.ProfileResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function ProfileResponse(properties) {
+        const ProfileResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * ProfileResponse status.
@@ -5413,7 +6503,7 @@ export const http = $root.http = (() => {
 
         /**
          * ProfileResponse profile.
-         * @member {http.IProfile|null|undefined} profile
+         * @member {http.Profile.$Properties|null|undefined} profile
          * @memberof http.ProfileResponse
          * @instance
          */
@@ -5423,7 +6513,7 @@ export const http = $root.http = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(ProfileResponse.prototype, "_profile", {
+        $Object.defineProperty(ProfileResponse.prototype, "_profile", {
             get: $util.oneOfGetter($oneOfFields = ["profile"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -5433,10 +6523,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.ProfileResponse
          * @static
-         * @param {http.IProfileResponse=} [properties] Properties to set
+         * @param {http.ProfileResponse.$Properties=} [properties] Properties to set
          * @returns {http.ProfileResponse} ProfileResponse instance
+         * @type {{
+         *   (properties: http.ProfileResponse.$Shape): http.ProfileResponse & http.ProfileResponse.$Shape;
+         *   (properties?: http.ProfileResponse.$Properties): http.ProfileResponse;
+         * }}
          */
-        ProfileResponse.create = function create(properties) {
+        ProfileResponse.create = function(properties) {
             return new ProfileResponse(properties);
         };
 
@@ -5445,17 +6539,24 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.ProfileResponse
          * @static
-         * @param {http.IProfileResponse} message ProfileResponse message or plain object to encode
+         * @param {http.ProfileResponse.$Properties} message ProfileResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ProfileResponse.encode = function encode(message, writer) {
+        ProfileResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
-            if (message.profile != null && Object.hasOwnProperty.call(message, "profile"))
-                $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
+                $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -5464,12 +6565,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.ProfileResponse
          * @static
-         * @param {http.IProfileResponse} message ProfileResponse message or plain object to encode
+         * @param {http.ProfileResponse.$Properties} message ProfileResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ProfileResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        ProfileResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5479,32 +6580,52 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.ProfileResponse} ProfileResponse
+         * @returns {http.ProfileResponse & http.ProfileResponse.$Shape} ProfileResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ProfileResponse.decode = function decode(reader, length, error) {
+        ProfileResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.ProfileResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.ProfileResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.status = reader.int32();
-                        break;
-                    }
-                case 2: {
-                        message.profile = $root.http.Profile.decode(reader, reader.uint32());
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if ((value = reader.int32()) !== 1)
+                            message.status = value;
+                        else
+                            delete message.status;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        message.profile = $root.http.Profile.decode(reader, reader.uint32(), $undefined, _depth + 1, message.profile);
+                        message._profile = "profile";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -5514,11 +6635,11 @@ export const http = $root.http = (() => {
          * @memberof http.ProfileResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.ProfileResponse} ProfileResponse
+         * @returns {http.ProfileResponse & http.ProfileResponse.$Shape} ProfileResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ProfileResponse.decodeDelimited = function decodeDelimited(reader) {
+        ProfileResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -5532,11 +6653,15 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ProfileResponse.verify = function verify(message) {
+        ProfileResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.status != null && message.hasOwnProperty("status"))
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
@@ -5551,10 +6676,10 @@ export const http = $root.http = (() => {
                 case 9:
                     break;
                 }
-            if (message.profile != null && message.hasOwnProperty("profile")) {
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile")) {
                 properties._profile = 1;
                 {
-                    let error = $root.http.Profile.verify(message.profile);
+                    let error = $root.http.Profile.verify(message.profile, _depth + 1);
                     if (error)
                         return "profile." + error;
                 }
@@ -5570,58 +6695,65 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.ProfileResponse} ProfileResponse
          */
-        ProfileResponse.fromObject = function fromObject(object) {
+        ProfileResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.ProfileResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.ProfileResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.ProfileResponse();
-            switch (object.status) {
-            default:
-                if (typeof object.status === "number") {
-                    message.status = object.status;
+            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "Ok":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "AccountExists":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "AccountNotExists":
+                case 3:
+                    message.status = 3;
+                    break;
+                case "InternalError":
+                case 4:
+                    message.status = 4;
+                    break;
+                case "InvalidBody":
+                case 5:
+                    message.status = 5;
+                    break;
+                case "NotFound":
+                case 6:
+                    message.status = 6;
+                    break;
+                case "VerificationFailure":
+                case 7:
+                    message.status = 7;
+                    break;
+                case "NotAuthenticated":
+                case 8:
+                    message.status = 8;
+                    break;
+                case "WrongPassword":
+                case 9:
+                    message.status = 9;
                     break;
                 }
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "AccountExists":
-            case 2:
-                message.status = 2;
-                break;
-            case "AccountNotExists":
-            case 3:
-                message.status = 3;
-                break;
-            case "InternalError":
-            case 4:
-                message.status = 4;
-                break;
-            case "InvalidBody":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotFound":
-            case 6:
-                message.status = 6;
-                break;
-            case "VerificationFailure":
-            case 7:
-                message.status = 7;
-                break;
-            case "NotAuthenticated":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
             if (object.profile != null) {
-                if (typeof object.profile !== "object")
-                    throw TypeError(".http.ProfileResponse.profile: object expected");
-                message.profile = $root.http.Profile.fromObject(object.profile);
+                if (!$util.isObject(object.profile))
+                    throw $TypeError(".http.ProfileResponse.profile: object expected");
+                message.profile = $root.http.Profile.fromObject(object.profile, _depth + 1);
             }
             return message;
         };
@@ -5635,19 +6767,20 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ProfileResponse.toObject = function toObject(message, options) {
+        ProfileResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
-                object.status = options.enums === String ? "Ok" : 1;
-            if (message.status != null && message.hasOwnProperty("status"))
-                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
-            if (message.profile != null && message.hasOwnProperty("profile")) {
-                object.profile = $root.http.Profile.toObject(message.profile, options);
-                if (options.oneofs)
-                    object._profile = "profile";
-            }
+                object.status = options.enums === $String ? "Ok" : 1;
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
+                object.profile = $root.http.Profile.toObject(message.profile, options, _depth + 1);
             return object;
         };
 
@@ -5658,23 +6791,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        ProfileResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        ProfileResponse.prototype.toJSON = function() {
+            return ProfileResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for ProfileResponse
+         * Gets the type url for ProfileResponse
          * @function getTypeUrl
          * @memberof http.ProfileResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        ProfileResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.ProfileResponse";
+        ProfileResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.ProfileResponse";
         };
 
         return ProfileResponse;
@@ -5684,26 +6816,39 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of an AuthResponse.
+         * @typedef {Object} http.AuthResponse.$Properties
+         * @property {http.ResponseStatus|null} [status] AuthResponse status
+         * @property {http.Profile.$Properties|null} [profile] AuthResponse profile
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AuthResponse.
          * @memberof http
          * @interface IAuthResponse
-         * @property {http.ResponseStatus|null} [status] AuthResponse status
-         * @property {http.IProfile|null} [profile] AuthResponse profile
+         * @augments http.AuthResponse.$Properties
+         * @deprecated Use http.AuthResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of an AuthResponse.
+         * @typedef {http.AuthResponse.$Properties} http.AuthResponse.$Shape
          */
 
         /**
          * Constructs a new AuthResponse.
          * @memberof http
          * @classdesc Represents an AuthResponse.
-         * @implements IAuthResponse
          * @constructor
-         * @param {http.IAuthResponse=} [properties] Properties to set
+         * @param {http.AuthResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function AuthResponse(properties) {
+        const AuthResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * AuthResponse status.
@@ -5715,7 +6860,7 @@ export const http = $root.http = (() => {
 
         /**
          * AuthResponse profile.
-         * @member {http.IProfile|null|undefined} profile
+         * @member {http.Profile.$Properties|null|undefined} profile
          * @memberof http.AuthResponse
          * @instance
          */
@@ -5725,7 +6870,7 @@ export const http = $root.http = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(AuthResponse.prototype, "_profile", {
+        $Object.defineProperty(AuthResponse.prototype, "_profile", {
             get: $util.oneOfGetter($oneOfFields = ["profile"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -5735,10 +6880,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.AuthResponse
          * @static
-         * @param {http.IAuthResponse=} [properties] Properties to set
+         * @param {http.AuthResponse.$Properties=} [properties] Properties to set
          * @returns {http.AuthResponse} AuthResponse instance
+         * @type {{
+         *   (properties: http.AuthResponse.$Shape): http.AuthResponse & http.AuthResponse.$Shape;
+         *   (properties?: http.AuthResponse.$Properties): http.AuthResponse;
+         * }}
          */
-        AuthResponse.create = function create(properties) {
+        AuthResponse.create = function(properties) {
             return new AuthResponse(properties);
         };
 
@@ -5747,17 +6896,24 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.AuthResponse
          * @static
-         * @param {http.IAuthResponse} message AuthResponse message or plain object to encode
+         * @param {http.AuthResponse.$Properties} message AuthResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AuthResponse.encode = function encode(message, writer) {
+        AuthResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
-            if (message.profile != null && Object.hasOwnProperty.call(message, "profile"))
-                $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
+                $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -5766,12 +6922,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.AuthResponse
          * @static
-         * @param {http.IAuthResponse} message AuthResponse message or plain object to encode
+         * @param {http.AuthResponse.$Properties} message AuthResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AuthResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        AuthResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5781,32 +6937,52 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.AuthResponse} AuthResponse
+         * @returns {http.AuthResponse & http.AuthResponse.$Shape} AuthResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AuthResponse.decode = function decode(reader, length, error) {
+        AuthResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.AuthResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.AuthResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.status = reader.int32();
-                        break;
-                    }
-                case 2: {
-                        message.profile = $root.http.Profile.decode(reader, reader.uint32());
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if ((value = reader.int32()) !== 1)
+                            message.status = value;
+                        else
+                            delete message.status;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        message.profile = $root.http.Profile.decode(reader, reader.uint32(), $undefined, _depth + 1, message.profile);
+                        message._profile = "profile";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -5816,11 +6992,11 @@ export const http = $root.http = (() => {
          * @memberof http.AuthResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.AuthResponse} AuthResponse
+         * @returns {http.AuthResponse & http.AuthResponse.$Shape} AuthResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AuthResponse.decodeDelimited = function decodeDelimited(reader) {
+        AuthResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -5834,11 +7010,15 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AuthResponse.verify = function verify(message) {
+        AuthResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.status != null && message.hasOwnProperty("status"))
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
@@ -5853,10 +7033,10 @@ export const http = $root.http = (() => {
                 case 9:
                     break;
                 }
-            if (message.profile != null && message.hasOwnProperty("profile")) {
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile")) {
                 properties._profile = 1;
                 {
-                    let error = $root.http.Profile.verify(message.profile);
+                    let error = $root.http.Profile.verify(message.profile, _depth + 1);
                     if (error)
                         return "profile." + error;
                 }
@@ -5872,58 +7052,65 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.AuthResponse} AuthResponse
          */
-        AuthResponse.fromObject = function fromObject(object) {
+        AuthResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.AuthResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.AuthResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.AuthResponse();
-            switch (object.status) {
-            default:
-                if (typeof object.status === "number") {
-                    message.status = object.status;
+            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "Ok":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "AccountExists":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "AccountNotExists":
+                case 3:
+                    message.status = 3;
+                    break;
+                case "InternalError":
+                case 4:
+                    message.status = 4;
+                    break;
+                case "InvalidBody":
+                case 5:
+                    message.status = 5;
+                    break;
+                case "NotFound":
+                case 6:
+                    message.status = 6;
+                    break;
+                case "VerificationFailure":
+                case 7:
+                    message.status = 7;
+                    break;
+                case "NotAuthenticated":
+                case 8:
+                    message.status = 8;
+                    break;
+                case "WrongPassword":
+                case 9:
+                    message.status = 9;
                     break;
                 }
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "AccountExists":
-            case 2:
-                message.status = 2;
-                break;
-            case "AccountNotExists":
-            case 3:
-                message.status = 3;
-                break;
-            case "InternalError":
-            case 4:
-                message.status = 4;
-                break;
-            case "InvalidBody":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotFound":
-            case 6:
-                message.status = 6;
-                break;
-            case "VerificationFailure":
-            case 7:
-                message.status = 7;
-                break;
-            case "NotAuthenticated":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
             if (object.profile != null) {
-                if (typeof object.profile !== "object")
-                    throw TypeError(".http.AuthResponse.profile: object expected");
-                message.profile = $root.http.Profile.fromObject(object.profile);
+                if (!$util.isObject(object.profile))
+                    throw $TypeError(".http.AuthResponse.profile: object expected");
+                message.profile = $root.http.Profile.fromObject(object.profile, _depth + 1);
             }
             return message;
         };
@@ -5937,19 +7124,20 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AuthResponse.toObject = function toObject(message, options) {
+        AuthResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
-                object.status = options.enums === String ? "Ok" : 1;
-            if (message.status != null && message.hasOwnProperty("status"))
-                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
-            if (message.profile != null && message.hasOwnProperty("profile")) {
-                object.profile = $root.http.Profile.toObject(message.profile, options);
-                if (options.oneofs)
-                    object._profile = "profile";
-            }
+                object.status = options.enums === $String ? "Ok" : 1;
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
+                object.profile = $root.http.Profile.toObject(message.profile, options, _depth + 1);
             return object;
         };
 
@@ -5960,23 +7148,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AuthResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        AuthResponse.prototype.toJSON = function() {
+            return AuthResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for AuthResponse
+         * Gets the type url for AuthResponse
          * @function getTypeUrl
          * @memberof http.AuthResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        AuthResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.AuthResponse";
+        AuthResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.AuthResponse";
         };
 
         return AuthResponse;
@@ -5986,25 +7173,38 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a LogoutResponse.
+         * @typedef {Object} http.LogoutResponse.$Properties
+         * @property {http.ResponseStatus|null} [status] LogoutResponse status
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a LogoutResponse.
          * @memberof http
          * @interface ILogoutResponse
-         * @property {http.ResponseStatus|null} [status] LogoutResponse status
+         * @augments http.LogoutResponse.$Properties
+         * @deprecated Use http.LogoutResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a LogoutResponse.
+         * @typedef {http.LogoutResponse.$Properties} http.LogoutResponse.$Shape
          */
 
         /**
          * Constructs a new LogoutResponse.
          * @memberof http
          * @classdesc Represents a LogoutResponse.
-         * @implements ILogoutResponse
          * @constructor
-         * @param {http.ILogoutResponse=} [properties] Properties to set
+         * @param {http.LogoutResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function LogoutResponse(properties) {
+        const LogoutResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * LogoutResponse status.
@@ -6019,10 +7219,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.LogoutResponse
          * @static
-         * @param {http.ILogoutResponse=} [properties] Properties to set
+         * @param {http.LogoutResponse.$Properties=} [properties] Properties to set
          * @returns {http.LogoutResponse} LogoutResponse instance
+         * @type {{
+         *   (properties: http.LogoutResponse.$Shape): http.LogoutResponse & http.LogoutResponse.$Shape;
+         *   (properties?: http.LogoutResponse.$Properties): http.LogoutResponse;
+         * }}
          */
-        LogoutResponse.create = function create(properties) {
+        LogoutResponse.create = function(properties) {
             return new LogoutResponse(properties);
         };
 
@@ -6031,15 +7235,22 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.LogoutResponse
          * @static
-         * @param {http.ILogoutResponse} message LogoutResponse message or plain object to encode
+         * @param {http.LogoutResponse.$Properties} message LogoutResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LogoutResponse.encode = function encode(message, writer) {
+        LogoutResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -6048,12 +7259,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.LogoutResponse
          * @static
-         * @param {http.ILogoutResponse} message LogoutResponse message or plain object to encode
+         * @param {http.LogoutResponse.$Properties} message LogoutResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LogoutResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        LogoutResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6063,28 +7274,45 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.LogoutResponse} LogoutResponse
+         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LogoutResponse.decode = function decode(reader, length, error) {
+        LogoutResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.LogoutResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.LogoutResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.status = reader.int32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if ((value = reader.int32()) !== 1)
+                            message.status = value;
+                        else
+                            delete message.status;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -6094,11 +7322,11 @@ export const http = $root.http = (() => {
          * @memberof http.LogoutResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.LogoutResponse} LogoutResponse
+         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LogoutResponse.decodeDelimited = function decodeDelimited(reader) {
+        LogoutResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -6112,10 +7340,14 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LogoutResponse.verify = function verify(message) {
+        LogoutResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.status != null && message.hasOwnProperty("status"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
@@ -6141,54 +7373,61 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.LogoutResponse} LogoutResponse
          */
-        LogoutResponse.fromObject = function fromObject(object) {
+        LogoutResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.LogoutResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.LogoutResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.LogoutResponse();
-            switch (object.status) {
-            default:
-                if (typeof object.status === "number") {
-                    message.status = object.status;
+            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "Ok":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "AccountExists":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "AccountNotExists":
+                case 3:
+                    message.status = 3;
+                    break;
+                case "InternalError":
+                case 4:
+                    message.status = 4;
+                    break;
+                case "InvalidBody":
+                case 5:
+                    message.status = 5;
+                    break;
+                case "NotFound":
+                case 6:
+                    message.status = 6;
+                    break;
+                case "VerificationFailure":
+                case 7:
+                    message.status = 7;
+                    break;
+                case "NotAuthenticated":
+                case 8:
+                    message.status = 8;
+                    break;
+                case "WrongPassword":
+                case 9:
+                    message.status = 9;
                     break;
                 }
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "AccountExists":
-            case 2:
-                message.status = 2;
-                break;
-            case "AccountNotExists":
-            case 3:
-                message.status = 3;
-                break;
-            case "InternalError":
-            case 4:
-                message.status = 4;
-                break;
-            case "InvalidBody":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotFound":
-            case 6:
-                message.status = 6;
-                break;
-            case "VerificationFailure":
-            case 7:
-                message.status = 7;
-                break;
-            case "NotAuthenticated":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
             return message;
         };
 
@@ -6201,14 +7440,18 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        LogoutResponse.toObject = function toObject(message, options) {
+        LogoutResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
-                object.status = options.enums === String ? "Ok" : 1;
-            if (message.status != null && message.hasOwnProperty("status"))
-                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+                object.status = options.enums === $String ? "Ok" : 1;
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
             return object;
         };
 
@@ -6219,23 +7462,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        LogoutResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        LogoutResponse.prototype.toJSON = function() {
+            return LogoutResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for LogoutResponse
+         * Gets the type url for LogoutResponse
          * @function getTypeUrl
          * @memberof http.LogoutResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        LogoutResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.LogoutResponse";
+        LogoutResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.LogoutResponse";
         };
 
         return LogoutResponse;
@@ -6245,28 +7487,41 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a ServerElement.
-         * @memberof http
-         * @interface IServerElement
+         * @typedef {Object} http.ServerElement.$Properties
          * @property {string|null} [icon] ServerElement icon
          * @property {string|null} [name] ServerElement name
          * @property {string|null} [domain] ServerElement domain
          * @property {number|null} [online] ServerElement online
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a ServerElement.
+         * @memberof http
+         * @interface IServerElement
+         * @augments http.ServerElement.$Properties
+         * @deprecated Use http.ServerElement.$Properties instead.
+         */
+
+        /**
+         * Shape of a ServerElement.
+         * @typedef {http.ServerElement.$Properties} http.ServerElement.$Shape
          */
 
         /**
          * Constructs a new ServerElement.
          * @memberof http
          * @classdesc Represents a ServerElement.
-         * @implements IServerElement
          * @constructor
-         * @param {http.IServerElement=} [properties] Properties to set
+         * @param {http.ServerElement.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function ServerElement(properties) {
+        const ServerElement = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * ServerElement icon.
@@ -6305,10 +7560,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.ServerElement
          * @static
-         * @param {http.IServerElement=} [properties] Properties to set
+         * @param {http.ServerElement.$Properties=} [properties] Properties to set
          * @returns {http.ServerElement} ServerElement instance
+         * @type {{
+         *   (properties: http.ServerElement.$Shape): http.ServerElement & http.ServerElement.$Shape;
+         *   (properties?: http.ServerElement.$Properties): http.ServerElement;
+         * }}
          */
-        ServerElement.create = function create(properties) {
+        ServerElement.create = function(properties) {
             return new ServerElement(properties);
         };
 
@@ -6317,21 +7576,28 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.ServerElement
          * @static
-         * @param {http.IServerElement} message ServerElement message or plain object to encode
+         * @param {http.ServerElement.$Properties} message ServerElement message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ServerElement.encode = function encode(message, writer) {
+        ServerElement.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.icon != null && Object.hasOwnProperty.call(message, "icon"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.icon);
-            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
-            if (message.domain != null && Object.hasOwnProperty.call(message, "domain"))
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.domain);
-            if (message.online != null && Object.hasOwnProperty.call(message, "online"))
+            if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
                 writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.online);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -6340,12 +7606,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.ServerElement
          * @static
-         * @param {http.IServerElement} message ServerElement message or plain object to encode
+         * @param {http.ServerElement.$Properties} message ServerElement message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ServerElement.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        ServerElement.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6355,40 +7621,72 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.ServerElement} ServerElement
+         * @returns {http.ServerElement & http.ServerElement.$Shape} ServerElement
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ServerElement.decode = function decode(reader, length, error) {
+        ServerElement.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.ServerElement();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.ServerElement(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.icon = reader.string();
-                        break;
-                    }
-                case 2: {
-                        message.name = reader.string();
-                        break;
-                    }
-                case 3: {
-                        message.domain = reader.string();
-                        break;
-                    }
-                case 4: {
-                        message.online = reader.uint32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.icon = value;
+                        else
+                            delete message.icon;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.name = value;
+                        else
+                            delete message.name;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.domain = value;
+                        else
+                            delete message.domain;
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.online = value;
+                        else
+                            delete message.online;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -6398,11 +7696,11 @@ export const http = $root.http = (() => {
          * @memberof http.ServerElement
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.ServerElement} ServerElement
+         * @returns {http.ServerElement & http.ServerElement.$Shape} ServerElement
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ServerElement.decodeDelimited = function decodeDelimited(reader) {
+        ServerElement.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -6416,19 +7714,23 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ServerElement.verify = function verify(message) {
+        ServerElement.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.icon != null && message.hasOwnProperty("icon"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
                 if (!$util.isString(message.icon))
                     return "icon: string expected";
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
-            if (message.domain != null && message.hasOwnProperty("domain"))
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
                 if (!$util.isString(message.domain))
                     return "domain: string expected";
-            if (message.online != null && message.hasOwnProperty("online"))
+            if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
                 if (!$util.isInteger(message.online))
                     return "online: integer expected";
             return null;
@@ -6442,18 +7744,28 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.ServerElement} ServerElement
          */
-        ServerElement.fromObject = function fromObject(object) {
+        ServerElement.fromObject = function (object, _depth) {
             if (object instanceof $root.http.ServerElement)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.ServerElement: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.ServerElement();
             if (object.icon != null)
-                message.icon = String(object.icon);
+                if (typeof object.icon !== "string" || object.icon.length)
+                    message.icon = $String(object.icon);
             if (object.name != null)
-                message.name = String(object.name);
+                if (typeof object.name !== "string" || object.name.length)
+                    message.name = $String(object.name);
             if (object.domain != null)
-                message.domain = String(object.domain);
+                if (typeof object.domain !== "string" || object.domain.length)
+                    message.domain = $String(object.domain);
             if (object.online != null)
-                message.online = object.online >>> 0;
+                if ($Number(object.online) !== 0)
+                    message.online = object.online >>> 0;
             return message;
         };
 
@@ -6466,9 +7778,13 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ServerElement.toObject = function toObject(message, options) {
+        ServerElement.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults) {
                 object.icon = "";
@@ -6476,13 +7792,13 @@ export const http = $root.http = (() => {
                 object.domain = "";
                 object.online = 0;
             }
-            if (message.icon != null && message.hasOwnProperty("icon"))
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
                 object.icon = message.icon;
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 object.name = message.name;
-            if (message.domain != null && message.hasOwnProperty("domain"))
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
                 object.domain = message.domain;
-            if (message.online != null && message.hasOwnProperty("online"))
+            if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
                 object.online = message.online;
             return object;
         };
@@ -6494,23 +7810,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        ServerElement.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        ServerElement.prototype.toJSON = function() {
+            return ServerElement.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for ServerElement
+         * Gets the type url for ServerElement
          * @function getTypeUrl
          * @memberof http.ServerElement
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        ServerElement.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.ServerElement";
+        ServerElement.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.ServerElement";
         };
 
         return ServerElement;
@@ -6520,27 +7835,40 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a ServersResponse.
+         * @typedef {Object} http.ServersResponse.$Properties
+         * @property {http.ResponseStatus|null} [status] ServersResponse status
+         * @property {Array.<http.ServerElement.$Properties>|null} [servers] ServersResponse servers
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a ServersResponse.
          * @memberof http
          * @interface IServersResponse
-         * @property {http.ResponseStatus|null} [status] ServersResponse status
-         * @property {Array.<http.IServerElement>|null} [servers] ServersResponse servers
+         * @augments http.ServersResponse.$Properties
+         * @deprecated Use http.ServersResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a ServersResponse.
+         * @typedef {http.ServersResponse.$Properties} http.ServersResponse.$Shape
          */
 
         /**
          * Constructs a new ServersResponse.
          * @memberof http
          * @classdesc Represents a ServersResponse.
-         * @implements IServersResponse
          * @constructor
-         * @param {http.IServersResponse=} [properties] Properties to set
+         * @param {http.ServersResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function ServersResponse(properties) {
+        const ServersResponse = function (properties) {
             this.servers = [];
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * ServersResponse status.
@@ -6552,7 +7880,7 @@ export const http = $root.http = (() => {
 
         /**
          * ServersResponse servers.
-         * @member {Array.<http.IServerElement>} servers
+         * @member {Array.<http.ServerElement.$Properties>} servers
          * @memberof http.ServersResponse
          * @instance
          */
@@ -6563,10 +7891,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.ServersResponse
          * @static
-         * @param {http.IServersResponse=} [properties] Properties to set
+         * @param {http.ServersResponse.$Properties=} [properties] Properties to set
          * @returns {http.ServersResponse} ServersResponse instance
+         * @type {{
+         *   (properties: http.ServersResponse.$Shape): http.ServersResponse & http.ServersResponse.$Shape;
+         *   (properties?: http.ServersResponse.$Properties): http.ServersResponse;
+         * }}
          */
-        ServersResponse.create = function create(properties) {
+        ServersResponse.create = function(properties) {
             return new ServersResponse(properties);
         };
 
@@ -6575,18 +7907,25 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.ServersResponse
          * @static
-         * @param {http.IServersResponse} message ServersResponse message or plain object to encode
+         * @param {http.ServersResponse.$Properties} message ServersResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ServersResponse.encode = function encode(message, writer) {
+        ServersResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
             if (message.servers != null && message.servers.length)
                 for (let i = 0; i < message.servers.length; ++i)
-                    $root.http.ServerElement.encode(message.servers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.http.ServerElement.encode(message.servers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -6595,12 +7934,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.ServersResponse
          * @static
-         * @param {http.IServersResponse} message ServersResponse message or plain object to encode
+         * @param {http.ServersResponse.$Properties} message ServersResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ServersResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        ServersResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6610,34 +7949,53 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.ServersResponse} ServersResponse
+         * @returns {http.ServersResponse & http.ServersResponse.$Shape} ServersResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ServersResponse.decode = function decode(reader, length, error) {
+        ServersResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.ServersResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.ServersResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.status = reader.int32();
-                        break;
-                    }
-                case 2: {
-                        if (!(message.servers && message.servers.length))
-                            message.servers = [];
-                        message.servers.push($root.http.ServerElement.decode(reader, reader.uint32()));
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if ((value = reader.int32()) !== 1)
+                            message.status = value;
+                        else
+                            delete message.status;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if (!(message.servers && message.servers.length))
+                            message.servers = [];
+                        message.servers.push($root.http.ServerElement.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -6647,11 +8005,11 @@ export const http = $root.http = (() => {
          * @memberof http.ServersResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.ServersResponse} ServersResponse
+         * @returns {http.ServersResponse & http.ServersResponse.$Shape} ServersResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ServersResponse.decodeDelimited = function decodeDelimited(reader) {
+        ServersResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -6665,10 +8023,14 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ServersResponse.verify = function verify(message) {
+        ServersResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.status != null && message.hasOwnProperty("status"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
@@ -6683,11 +8045,11 @@ export const http = $root.http = (() => {
                 case 9:
                     break;
                 }
-            if (message.servers != null && message.hasOwnProperty("servers")) {
-                if (!Array.isArray(message.servers))
+            if (message.servers != null && $Object.hasOwnProperty.call(message, "servers")) {
+                if (!$Array.isArray(message.servers))
                     return "servers: array expected";
                 for (let i = 0; i < message.servers.length; ++i) {
-                    let error = $root.http.ServerElement.verify(message.servers[i]);
+                    let error = $root.http.ServerElement.verify(message.servers[i], _depth + 1);
                     if (error)
                         return "servers." + error;
                 }
@@ -6703,62 +8065,69 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.ServersResponse} ServersResponse
          */
-        ServersResponse.fromObject = function fromObject(object) {
+        ServersResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.ServersResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.ServersResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.ServersResponse();
-            switch (object.status) {
-            default:
-                if (typeof object.status === "number") {
-                    message.status = object.status;
+            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "Ok":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "AccountExists":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "AccountNotExists":
+                case 3:
+                    message.status = 3;
+                    break;
+                case "InternalError":
+                case 4:
+                    message.status = 4;
+                    break;
+                case "InvalidBody":
+                case 5:
+                    message.status = 5;
+                    break;
+                case "NotFound":
+                case 6:
+                    message.status = 6;
+                    break;
+                case "VerificationFailure":
+                case 7:
+                    message.status = 7;
+                    break;
+                case "NotAuthenticated":
+                case 8:
+                    message.status = 8;
+                    break;
+                case "WrongPassword":
+                case 9:
+                    message.status = 9;
                     break;
                 }
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "AccountExists":
-            case 2:
-                message.status = 2;
-                break;
-            case "AccountNotExists":
-            case 3:
-                message.status = 3;
-                break;
-            case "InternalError":
-            case 4:
-                message.status = 4;
-                break;
-            case "InvalidBody":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotFound":
-            case 6:
-                message.status = 6;
-                break;
-            case "VerificationFailure":
-            case 7:
-                message.status = 7;
-                break;
-            case "NotAuthenticated":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
             if (object.servers) {
-                if (!Array.isArray(object.servers))
-                    throw TypeError(".http.ServersResponse.servers: array expected");
-                message.servers = [];
+                if (!$Array.isArray(object.servers))
+                    throw $TypeError(".http.ServersResponse.servers: array expected");
+                message.servers = $Array(object.servers.length);
                 for (let i = 0; i < object.servers.length; ++i) {
-                    if (typeof object.servers[i] !== "object")
-                        throw TypeError(".http.ServersResponse.servers: object expected");
-                    message.servers[i] = $root.http.ServerElement.fromObject(object.servers[i]);
+                    if (!$util.isObject(object.servers[i]))
+                        throw $TypeError(".http.ServersResponse.servers: object expected");
+                    message.servers[i] = $root.http.ServerElement.fromObject(object.servers[i], _depth + 1);
                 }
             }
             return message;
@@ -6773,20 +8142,24 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ServersResponse.toObject = function toObject(message, options) {
+        ServersResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.arrays || options.defaults)
                 object.servers = [];
             if (options.defaults)
-                object.status = options.enums === String ? "Ok" : 1;
-            if (message.status != null && message.hasOwnProperty("status"))
-                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+                object.status = options.enums === $String ? "Ok" : 1;
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
             if (message.servers && message.servers.length) {
-                object.servers = [];
+                object.servers = $Array(message.servers.length);
                 for (let j = 0; j < message.servers.length; ++j)
-                    object.servers[j] = $root.http.ServerElement.toObject(message.servers[j], options);
+                    object.servers[j] = $root.http.ServerElement.toObject(message.servers[j], options, _depth + 1);
             }
             return object;
         };
@@ -6798,23 +8171,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        ServersResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        ServersResponse.prototype.toJSON = function() {
+            return ServersResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for ServersResponse
+         * Gets the type url for ServersResponse
          * @function getTypeUrl
          * @memberof http.ServersResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        ServersResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.ServersResponse";
+        ServersResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.ServersResponse";
         };
 
         return ServersResponse;
@@ -6844,11 +8216,11 @@ export const connection = $root.connection = (() => {
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-        function Game(rpcImpl, requestDelimited, responseDelimited) {
+        const Game = function(rpcImpl, requestDelimited, responseDelimited) {
             $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
-        }
+        };
 
-        (Game.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Game;
+        (Game.prototype = $Object.create($protobuf.rpc.Service.prototype)).constructor = Game;
 
         /**
          * Creates new Game service using the specified rpc implementation.
@@ -6860,7 +8232,7 @@ export const connection = $root.connection = (() => {
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          * @returns {Game} RPC service. Useful where requests and/or responses are streamed.
          */
-        Game.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+        Game.create = function(rpcImpl, requestDelimited, responseDelimited) {
             return new this(rpcImpl, requestDelimited, responseDelimited);
         };
 
@@ -6875,27 +8247,35 @@ export const connection = $root.connection = (() => {
 
         /**
          * Calls Authentication.
-         * @function authentication
          * @memberof connection.Game
-         * @instance
-         * @param {connection.IAuthenticationRequest} request AuthenticationRequest message or plain object
-         * @param {connection.Game.AuthenticationCallback} callback Node-style callback called with the error, if any, and AuthenticationResponse
-         * @returns {undefined}
-         * @variation 1
+         * @typedef Authentication
+         * @type {{
+         *   (request: connection.IAuthenticationRequest, callback: connection.Game.AuthenticationCallback): void;
+         *   (request: connection.IAuthenticationRequest): Promise<connection.AuthenticationResponse>;
+         *   readonly name: "Authentication";
+         *   readonly path: "/connection.Game/Authentication";
+         *   readonly requestType: "AuthenticationRequest";
+         *   readonly responseType: "AuthenticationResponse";
+         *   readonly requestStream: undefined;
+         *   readonly responseStream: undefined;
+         * }}
          */
-        Object.defineProperty(Game.prototype.authentication = function authentication(request, callback) {
-            return this.rpcCall(authentication, $root.connection.AuthenticationRequest, $root.connection.AuthenticationResponse, request, callback);
-        }, "name", { value: "Authentication" });
 
         /**
          * Calls Authentication.
-         * @function authentication
-         * @memberof connection.Game
-         * @instance
-         * @param {connection.IAuthenticationRequest} request AuthenticationRequest message or plain object
-         * @returns {Promise<connection.AuthenticationResponse>} Promise
-         * @variation 2
+         * @name connection.Game#authentication
+         * @type {connection.Game.Authentication}
          */
+        $Object.defineProperties(Game.prototype.authentication = function(request, callback) {
+            return $protobuf.rpc.Service.prototype.rpcCall.call(this, Game.prototype.authentication, $root.connection.AuthenticationRequest, $root.connection.AuthenticationResponse, request, callback);
+        }, {
+            name: { value: "Authentication" },
+            path: { value: "/connection.Game/Authentication" },
+            requestType: { value: "AuthenticationRequest" },
+            responseType: { value: "AuthenticationResponse" },
+            requestStream: { value: $undefined },
+            responseStream: { value: $undefined }
+        });
 
         /**
          * Callback as used by {@link connection.Game#joinPlayer}.
@@ -6908,27 +8288,35 @@ export const connection = $root.connection = (() => {
 
         /**
          * Calls JoinPlayer.
-         * @function joinPlayer
          * @memberof connection.Game
-         * @instance
-         * @param {connection.IJoinPlayerRequest} request JoinPlayerRequest message or plain object
-         * @param {connection.Game.JoinPlayerCallback} callback Node-style callback called with the error, if any, and JoinPlayerResponse
-         * @returns {undefined}
-         * @variation 1
+         * @typedef JoinPlayer
+         * @type {{
+         *   (request: connection.IJoinPlayerRequest, callback: connection.Game.JoinPlayerCallback): void;
+         *   (request: connection.IJoinPlayerRequest): Promise<connection.JoinPlayerResponse>;
+         *   readonly name: "JoinPlayer";
+         *   readonly path: "/connection.Game/JoinPlayer";
+         *   readonly requestType: "JoinPlayerRequest";
+         *   readonly responseType: "JoinPlayerResponse";
+         *   readonly requestStream: undefined;
+         *   readonly responseStream: undefined;
+         * }}
          */
-        Object.defineProperty(Game.prototype.joinPlayer = function joinPlayer(request, callback) {
-            return this.rpcCall(joinPlayer, $root.connection.JoinPlayerRequest, $root.connection.JoinPlayerResponse, request, callback);
-        }, "name", { value: "JoinPlayer" });
 
         /**
          * Calls JoinPlayer.
-         * @function joinPlayer
-         * @memberof connection.Game
-         * @instance
-         * @param {connection.IJoinPlayerRequest} request JoinPlayerRequest message or plain object
-         * @returns {Promise<connection.JoinPlayerResponse>} Promise
-         * @variation 2
+         * @name connection.Game#joinPlayer
+         * @type {connection.Game.JoinPlayer}
          */
+        $Object.defineProperties(Game.prototype.joinPlayer = function(request, callback) {
+            return $protobuf.rpc.Service.prototype.rpcCall.call(this, Game.prototype.joinPlayer, $root.connection.JoinPlayerRequest, $root.connection.JoinPlayerResponse, request, callback);
+        }, {
+            name: { value: "JoinPlayer" },
+            path: { value: "/connection.Game/JoinPlayer" },
+            requestType: { value: "JoinPlayerRequest" },
+            responseType: { value: "JoinPlayerResponse" },
+            requestStream: { value: $undefined },
+            responseStream: { value: $undefined }
+        });
 
         /**
          * Callback as used by {@link connection.Game#ping}.
@@ -6941,27 +8329,35 @@ export const connection = $root.connection = (() => {
 
         /**
          * Calls Ping.
-         * @function ping
          * @memberof connection.Game
-         * @instance
-         * @param {connection.IPingRequest} request PingRequest message or plain object
-         * @param {connection.Game.PingCallback} callback Node-style callback called with the error, if any, and PongResponse
-         * @returns {undefined}
-         * @variation 1
+         * @typedef Ping
+         * @type {{
+         *   (request: connection.IPingRequest, callback: connection.Game.PingCallback): void;
+         *   (request: connection.IPingRequest): Promise<connection.PongResponse>;
+         *   readonly name: "Ping";
+         *   readonly path: "/connection.Game/Ping";
+         *   readonly requestType: "PingRequest";
+         *   readonly responseType: "PongResponse";
+         *   readonly requestStream: undefined;
+         *   readonly responseStream: undefined;
+         * }}
          */
-        Object.defineProperty(Game.prototype.ping = function ping(request, callback) {
-            return this.rpcCall(ping, $root.connection.PingRequest, $root.connection.PongResponse, request, callback);
-        }, "name", { value: "Ping" });
 
         /**
          * Calls Ping.
-         * @function ping
-         * @memberof connection.Game
-         * @instance
-         * @param {connection.IPingRequest} request PingRequest message or plain object
-         * @returns {Promise<connection.PongResponse>} Promise
-         * @variation 2
+         * @name connection.Game#ping
+         * @type {connection.Game.Ping}
          */
+        $Object.defineProperties(Game.prototype.ping = function(request, callback) {
+            return $protobuf.rpc.Service.prototype.rpcCall.call(this, Game.prototype.ping, $root.connection.PingRequest, $root.connection.PongResponse, request, callback);
+        }, {
+            name: { value: "Ping" },
+            path: { value: "/connection.Game/Ping" },
+            requestType: { value: "PingRequest" },
+            responseType: { value: "PongResponse" },
+            requestStream: { value: $undefined },
+            responseStream: { value: $undefined }
+        });
 
         /**
          * Callback as used by {@link connection.Game#awardPlayer}.
@@ -6974,27 +8370,35 @@ export const connection = $root.connection = (() => {
 
         /**
          * Calls AwardPlayer.
-         * @function awardPlayer
          * @memberof connection.Game
-         * @instance
-         * @param {connection.IAwardRequest} request AwardRequest message or plain object
-         * @param {connection.Game.AwardPlayerCallback} callback Node-style callback called with the error, if any, and AwardResponse
-         * @returns {undefined}
-         * @variation 1
+         * @typedef AwardPlayer
+         * @type {{
+         *   (request: connection.IAwardRequest, callback: connection.Game.AwardPlayerCallback): void;
+         *   (request: connection.IAwardRequest): Promise<connection.AwardResponse>;
+         *   readonly name: "AwardPlayer";
+         *   readonly path: "/connection.Game/AwardPlayer";
+         *   readonly requestType: "AwardRequest";
+         *   readonly responseType: "AwardResponse";
+         *   readonly requestStream: undefined;
+         *   readonly responseStream: undefined;
+         * }}
          */
-        Object.defineProperty(Game.prototype.awardPlayer = function awardPlayer(request, callback) {
-            return this.rpcCall(awardPlayer, $root.connection.AwardRequest, $root.connection.AwardResponse, request, callback);
-        }, "name", { value: "AwardPlayer" });
 
         /**
          * Calls AwardPlayer.
-         * @function awardPlayer
-         * @memberof connection.Game
-         * @instance
-         * @param {connection.IAwardRequest} request AwardRequest message or plain object
-         * @returns {Promise<connection.AwardResponse>} Promise
-         * @variation 2
+         * @name connection.Game#awardPlayer
+         * @type {connection.Game.AwardPlayer}
          */
+        $Object.defineProperties(Game.prototype.awardPlayer = function(request, callback) {
+            return $protobuf.rpc.Service.prototype.rpcCall.call(this, Game.prototype.awardPlayer, $root.connection.AwardRequest, $root.connection.AwardResponse, request, callback);
+        }, {
+            name: { value: "AwardPlayer" },
+            path: { value: "/connection.Game/AwardPlayer" },
+            requestType: { value: "AwardRequest" },
+            responseType: { value: "AwardResponse" },
+            requestStream: { value: $undefined },
+            responseStream: { value: $undefined }
+        });
 
         return Game;
     })();
@@ -7003,26 +8407,39 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of a PingRequest.
-         * @memberof connection
-         * @interface IPingRequest
+         * @typedef {Object} connection.PingRequest.$Properties
          * @property {number|null} [online] PingRequest online
          * @property {boolean|null} [alive] PingRequest alive
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a PingRequest.
+         * @memberof connection
+         * @interface IPingRequest
+         * @augments connection.PingRequest.$Properties
+         * @deprecated Use connection.PingRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of a PingRequest.
+         * @typedef {connection.PingRequest.$Properties} connection.PingRequest.$Shape
          */
 
         /**
          * Constructs a new PingRequest.
          * @memberof connection
          * @classdesc Represents a PingRequest.
-         * @implements IPingRequest
          * @constructor
-         * @param {connection.IPingRequest=} [properties] Properties to set
+         * @param {connection.PingRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function PingRequest(properties) {
+        const PingRequest = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * PingRequest online.
@@ -7045,10 +8462,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.PingRequest
          * @static
-         * @param {connection.IPingRequest=} [properties] Properties to set
+         * @param {connection.PingRequest.$Properties=} [properties] Properties to set
          * @returns {connection.PingRequest} PingRequest instance
+         * @type {{
+         *   (properties: connection.PingRequest.$Shape): connection.PingRequest & connection.PingRequest.$Shape;
+         *   (properties?: connection.PingRequest.$Properties): connection.PingRequest;
+         * }}
          */
-        PingRequest.create = function create(properties) {
+        PingRequest.create = function(properties) {
             return new PingRequest(properties);
         };
 
@@ -7057,17 +8478,24 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.PingRequest
          * @static
-         * @param {connection.IPingRequest} message PingRequest message or plain object to encode
+         * @param {connection.PingRequest.$Properties} message PingRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PingRequest.encode = function encode(message, writer) {
+        PingRequest.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.online != null && Object.hasOwnProperty.call(message, "online"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.online);
-            if (message.alive != null && Object.hasOwnProperty.call(message, "alive"))
+            if (message.alive != null && $Object.hasOwnProperty.call(message, "alive"))
                 writer.uint32(/* id 21, wireType 0 =*/168).bool(message.alive);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -7076,12 +8504,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.PingRequest
          * @static
-         * @param {connection.IPingRequest} message PingRequest message or plain object to encode
+         * @param {connection.PingRequest.$Properties} message PingRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PingRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        PingRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7091,32 +8519,54 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.PingRequest} PingRequest
+         * @returns {connection.PingRequest & connection.PingRequest.$Shape} PingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PingRequest.decode = function decode(reader, length, error) {
+        PingRequest.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.PingRequest();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.PingRequest(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.online = reader.uint32();
-                        break;
-                    }
-                case 21: {
-                        message.alive = reader.bool();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.uint32())
+                            message.online = value;
+                        else
+                            delete message.online;
+                        continue;
+                    }
+                case 21: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.bool())
+                            message.alive = value;
+                        else
+                            delete message.alive;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -7126,11 +8576,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.PingRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.PingRequest} PingRequest
+         * @returns {connection.PingRequest & connection.PingRequest.$Shape} PingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PingRequest.decodeDelimited = function decodeDelimited(reader) {
+        PingRequest.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -7144,13 +8594,17 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PingRequest.verify = function verify(message) {
+        PingRequest.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.online != null && message.hasOwnProperty("online"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
                 if (!$util.isInteger(message.online))
                     return "online: integer expected";
-            if (message.alive != null && message.hasOwnProperty("alive"))
+            if (message.alive != null && $Object.hasOwnProperty.call(message, "alive"))
                 if (typeof message.alive !== "boolean")
                     return "alive: boolean expected";
             return null;
@@ -7164,14 +8618,22 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.PingRequest} PingRequest
          */
-        PingRequest.fromObject = function fromObject(object) {
+        PingRequest.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.PingRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.PingRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.PingRequest();
             if (object.online != null)
-                message.online = object.online >>> 0;
+                if ($Number(object.online) !== 0)
+                    message.online = object.online >>> 0;
             if (object.alive != null)
-                message.alive = Boolean(object.alive);
+                if (object.alive)
+                    message.alive = $Boolean(object.alive);
             return message;
         };
 
@@ -7184,17 +8646,21 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PingRequest.toObject = function toObject(message, options) {
+        PingRequest.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults) {
                 object.online = 0;
                 object.alive = false;
             }
-            if (message.online != null && message.hasOwnProperty("online"))
+            if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
                 object.online = message.online;
-            if (message.alive != null && message.hasOwnProperty("alive"))
+            if (message.alive != null && $Object.hasOwnProperty.call(message, "alive"))
                 object.alive = message.alive;
             return object;
         };
@@ -7206,23 +8672,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        PingRequest.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        PingRequest.prototype.toJSON = function() {
+            return PingRequest.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for PingRequest
+         * Gets the type url for PingRequest
          * @function getTypeUrl
          * @memberof connection.PingRequest
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        PingRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.PingRequest";
+        PingRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.PingRequest";
         };
 
         return PingRequest;
@@ -7232,25 +8697,38 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of a PongResponse.
+         * @typedef {Object} connection.PongResponse.$Properties
+         * @property {boolean|null} [success] PongResponse success
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a PongResponse.
          * @memberof connection
          * @interface IPongResponse
-         * @property {boolean|null} [success] PongResponse success
+         * @augments connection.PongResponse.$Properties
+         * @deprecated Use connection.PongResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a PongResponse.
+         * @typedef {connection.PongResponse.$Properties} connection.PongResponse.$Shape
          */
 
         /**
          * Constructs a new PongResponse.
          * @memberof connection
          * @classdesc Represents a PongResponse.
-         * @implements IPongResponse
          * @constructor
-         * @param {connection.IPongResponse=} [properties] Properties to set
+         * @param {connection.PongResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function PongResponse(properties) {
+        const PongResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * PongResponse success.
@@ -7265,10 +8743,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.PongResponse
          * @static
-         * @param {connection.IPongResponse=} [properties] Properties to set
+         * @param {connection.PongResponse.$Properties=} [properties] Properties to set
          * @returns {connection.PongResponse} PongResponse instance
+         * @type {{
+         *   (properties: connection.PongResponse.$Shape): connection.PongResponse & connection.PongResponse.$Shape;
+         *   (properties?: connection.PongResponse.$Properties): connection.PongResponse;
+         * }}
          */
-        PongResponse.create = function create(properties) {
+        PongResponse.create = function(properties) {
             return new PongResponse(properties);
         };
 
@@ -7277,15 +8759,22 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.PongResponse
          * @static
-         * @param {connection.IPongResponse} message PongResponse message or plain object to encode
+         * @param {connection.PongResponse.$Properties} message PongResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PongResponse.encode = function encode(message, writer) {
+        PongResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.success != null && Object.hasOwnProperty.call(message, "success"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -7294,12 +8783,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.PongResponse
          * @static
-         * @param {connection.IPongResponse} message PongResponse message or plain object to encode
+         * @param {connection.PongResponse.$Properties} message PongResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PongResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        PongResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7309,28 +8798,45 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.PongResponse} PongResponse
+         * @returns {connection.PongResponse & connection.PongResponse.$Shape} PongResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PongResponse.decode = function decode(reader, length, error) {
+        PongResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.PongResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.PongResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.success = reader.bool();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.bool())
+                            message.success = value;
+                        else
+                            delete message.success;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -7340,11 +8846,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.PongResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.PongResponse} PongResponse
+         * @returns {connection.PongResponse & connection.PongResponse.$Shape} PongResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PongResponse.decodeDelimited = function decodeDelimited(reader) {
+        PongResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -7358,10 +8864,14 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PongResponse.verify = function verify(message) {
+        PongResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.success != null && message.hasOwnProperty("success"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
                 if (typeof message.success !== "boolean")
                     return "success: boolean expected";
             return null;
@@ -7375,12 +8885,19 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.PongResponse} PongResponse
          */
-        PongResponse.fromObject = function fromObject(object) {
+        PongResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.PongResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.PongResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.PongResponse();
             if (object.success != null)
-                message.success = Boolean(object.success);
+                if (object.success)
+                    message.success = $Boolean(object.success);
             return message;
         };
 
@@ -7393,13 +8910,17 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PongResponse.toObject = function toObject(message, options) {
+        PongResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
                 object.success = false;
-            if (message.success != null && message.hasOwnProperty("success"))
+            if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
                 object.success = message.success;
             return object;
         };
@@ -7411,23 +8932,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        PongResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        PongResponse.prototype.toJSON = function() {
+            return PongResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for PongResponse
+         * Gets the type url for PongResponse
          * @function getTypeUrl
          * @memberof connection.PongResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        PongResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.PongResponse";
+        PongResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.PongResponse";
         };
 
         return PongResponse;
@@ -7437,25 +8957,38 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of an AuthenticationRequest.
+         * @typedef {Object} connection.AuthenticationRequest.$Properties
+         * @property {string|null} [token] AuthenticationRequest token
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AuthenticationRequest.
          * @memberof connection
          * @interface IAuthenticationRequest
-         * @property {string|null} [token] AuthenticationRequest token
+         * @augments connection.AuthenticationRequest.$Properties
+         * @deprecated Use connection.AuthenticationRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of an AuthenticationRequest.
+         * @typedef {connection.AuthenticationRequest.$Properties} connection.AuthenticationRequest.$Shape
          */
 
         /**
          * Constructs a new AuthenticationRequest.
          * @memberof connection
          * @classdesc Represents an AuthenticationRequest.
-         * @implements IAuthenticationRequest
          * @constructor
-         * @param {connection.IAuthenticationRequest=} [properties] Properties to set
+         * @param {connection.AuthenticationRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function AuthenticationRequest(properties) {
+        const AuthenticationRequest = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * AuthenticationRequest token.
@@ -7470,10 +9003,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.AuthenticationRequest
          * @static
-         * @param {connection.IAuthenticationRequest=} [properties] Properties to set
+         * @param {connection.AuthenticationRequest.$Properties=} [properties] Properties to set
          * @returns {connection.AuthenticationRequest} AuthenticationRequest instance
+         * @type {{
+         *   (properties: connection.AuthenticationRequest.$Shape): connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape;
+         *   (properties?: connection.AuthenticationRequest.$Properties): connection.AuthenticationRequest;
+         * }}
          */
-        AuthenticationRequest.create = function create(properties) {
+        AuthenticationRequest.create = function(properties) {
             return new AuthenticationRequest(properties);
         };
 
@@ -7482,15 +9019,22 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.AuthenticationRequest
          * @static
-         * @param {connection.IAuthenticationRequest} message AuthenticationRequest message or plain object to encode
+         * @param {connection.AuthenticationRequest.$Properties} message AuthenticationRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AuthenticationRequest.encode = function encode(message, writer) {
+        AuthenticationRequest.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -7499,12 +9043,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.AuthenticationRequest
          * @static
-         * @param {connection.IAuthenticationRequest} message AuthenticationRequest message or plain object to encode
+         * @param {connection.AuthenticationRequest.$Properties} message AuthenticationRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AuthenticationRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        AuthenticationRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7514,28 +9058,45 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.AuthenticationRequest} AuthenticationRequest
+         * @returns {connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape} AuthenticationRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AuthenticationRequest.decode = function decode(reader, length, error) {
+        AuthenticationRequest.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AuthenticationRequest();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.AuthenticationRequest(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.token = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.token = value;
+                        else
+                            delete message.token;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -7545,11 +9106,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.AuthenticationRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.AuthenticationRequest} AuthenticationRequest
+         * @returns {connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape} AuthenticationRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AuthenticationRequest.decodeDelimited = function decodeDelimited(reader) {
+        AuthenticationRequest.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -7563,10 +9124,14 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AuthenticationRequest.verify = function verify(message) {
+        AuthenticationRequest.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.token != null && message.hasOwnProperty("token"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 if (!$util.isString(message.token))
                     return "token: string expected";
             return null;
@@ -7580,12 +9145,19 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.AuthenticationRequest} AuthenticationRequest
          */
-        AuthenticationRequest.fromObject = function fromObject(object) {
+        AuthenticationRequest.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.AuthenticationRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.AuthenticationRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.AuthenticationRequest();
             if (object.token != null)
-                message.token = String(object.token);
+                if (typeof object.token !== "string" || object.token.length)
+                    message.token = $String(object.token);
             return message;
         };
 
@@ -7598,13 +9170,17 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AuthenticationRequest.toObject = function toObject(message, options) {
+        AuthenticationRequest.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
                 object.token = "";
-            if (message.token != null && message.hasOwnProperty("token"))
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 object.token = message.token;
             return object;
         };
@@ -7616,23 +9192,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AuthenticationRequest.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        AuthenticationRequest.prototype.toJSON = function() {
+            return AuthenticationRequest.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for AuthenticationRequest
+         * Gets the type url for AuthenticationRequest
          * @function getTypeUrl
          * @memberof connection.AuthenticationRequest
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        AuthenticationRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.AuthenticationRequest";
+        AuthenticationRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.AuthenticationRequest";
         };
 
         return AuthenticationRequest;
@@ -7642,25 +9217,38 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of an AuthenticationResponse.
+         * @typedef {Object} connection.AuthenticationResponse.$Properties
+         * @property {string|null} [session] AuthenticationResponse session
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AuthenticationResponse.
          * @memberof connection
          * @interface IAuthenticationResponse
-         * @property {string|null} [session] AuthenticationResponse session
+         * @augments connection.AuthenticationResponse.$Properties
+         * @deprecated Use connection.AuthenticationResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of an AuthenticationResponse.
+         * @typedef {connection.AuthenticationResponse.$Properties} connection.AuthenticationResponse.$Shape
          */
 
         /**
          * Constructs a new AuthenticationResponse.
          * @memberof connection
          * @classdesc Represents an AuthenticationResponse.
-         * @implements IAuthenticationResponse
          * @constructor
-         * @param {connection.IAuthenticationResponse=} [properties] Properties to set
+         * @param {connection.AuthenticationResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function AuthenticationResponse(properties) {
+        const AuthenticationResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * AuthenticationResponse session.
@@ -7675,10 +9263,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.AuthenticationResponse
          * @static
-         * @param {connection.IAuthenticationResponse=} [properties] Properties to set
+         * @param {connection.AuthenticationResponse.$Properties=} [properties] Properties to set
          * @returns {connection.AuthenticationResponse} AuthenticationResponse instance
+         * @type {{
+         *   (properties: connection.AuthenticationResponse.$Shape): connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape;
+         *   (properties?: connection.AuthenticationResponse.$Properties): connection.AuthenticationResponse;
+         * }}
          */
-        AuthenticationResponse.create = function create(properties) {
+        AuthenticationResponse.create = function(properties) {
             return new AuthenticationResponse(properties);
         };
 
@@ -7687,15 +9279,22 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.AuthenticationResponse
          * @static
-         * @param {connection.IAuthenticationResponse} message AuthenticationResponse message or plain object to encode
+         * @param {connection.AuthenticationResponse.$Properties} message AuthenticationResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AuthenticationResponse.encode = function encode(message, writer) {
+        AuthenticationResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.session != null && Object.hasOwnProperty.call(message, "session"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.session != null && $Object.hasOwnProperty.call(message, "session"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.session);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -7704,12 +9303,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.AuthenticationResponse
          * @static
-         * @param {connection.IAuthenticationResponse} message AuthenticationResponse message or plain object to encode
+         * @param {connection.AuthenticationResponse.$Properties} message AuthenticationResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AuthenticationResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        AuthenticationResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7719,28 +9318,45 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.AuthenticationResponse} AuthenticationResponse
+         * @returns {connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape} AuthenticationResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AuthenticationResponse.decode = function decode(reader, length, error) {
+        AuthenticationResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AuthenticationResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.AuthenticationResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.session = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.session = value;
+                        else
+                            delete message.session;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -7750,11 +9366,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.AuthenticationResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.AuthenticationResponse} AuthenticationResponse
+         * @returns {connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape} AuthenticationResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AuthenticationResponse.decodeDelimited = function decodeDelimited(reader) {
+        AuthenticationResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -7768,10 +9384,14 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AuthenticationResponse.verify = function verify(message) {
+        AuthenticationResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.session != null && message.hasOwnProperty("session"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.session != null && $Object.hasOwnProperty.call(message, "session"))
                 if (!$util.isString(message.session))
                     return "session: string expected";
             return null;
@@ -7785,12 +9405,19 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.AuthenticationResponse} AuthenticationResponse
          */
-        AuthenticationResponse.fromObject = function fromObject(object) {
+        AuthenticationResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.AuthenticationResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.AuthenticationResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.AuthenticationResponse();
             if (object.session != null)
-                message.session = String(object.session);
+                if (typeof object.session !== "string" || object.session.length)
+                    message.session = $String(object.session);
             return message;
         };
 
@@ -7803,13 +9430,17 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AuthenticationResponse.toObject = function toObject(message, options) {
+        AuthenticationResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
                 object.session = "";
-            if (message.session != null && message.hasOwnProperty("session"))
+            if (message.session != null && $Object.hasOwnProperty.call(message, "session"))
                 object.session = message.session;
             return object;
         };
@@ -7821,23 +9452,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AuthenticationResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        AuthenticationResponse.prototype.toJSON = function() {
+            return AuthenticationResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for AuthenticationResponse
+         * Gets the type url for AuthenticationResponse
          * @function getTypeUrl
          * @memberof connection.AuthenticationResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        AuthenticationResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.AuthenticationResponse";
+        AuthenticationResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.AuthenticationResponse";
         };
 
         return AuthenticationResponse;
@@ -7847,25 +9477,38 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of a JoinPlayerRequest.
+         * @typedef {Object} connection.JoinPlayerRequest.$Properties
+         * @property {string|null} [token] JoinPlayerRequest token
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a JoinPlayerRequest.
          * @memberof connection
          * @interface IJoinPlayerRequest
-         * @property {string|null} [token] JoinPlayerRequest token
+         * @augments connection.JoinPlayerRequest.$Properties
+         * @deprecated Use connection.JoinPlayerRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of a JoinPlayerRequest.
+         * @typedef {connection.JoinPlayerRequest.$Properties} connection.JoinPlayerRequest.$Shape
          */
 
         /**
          * Constructs a new JoinPlayerRequest.
          * @memberof connection
          * @classdesc Represents a JoinPlayerRequest.
-         * @implements IJoinPlayerRequest
          * @constructor
-         * @param {connection.IJoinPlayerRequest=} [properties] Properties to set
+         * @param {connection.JoinPlayerRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function JoinPlayerRequest(properties) {
+        const JoinPlayerRequest = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * JoinPlayerRequest token.
@@ -7880,10 +9523,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.JoinPlayerRequest
          * @static
-         * @param {connection.IJoinPlayerRequest=} [properties] Properties to set
+         * @param {connection.JoinPlayerRequest.$Properties=} [properties] Properties to set
          * @returns {connection.JoinPlayerRequest} JoinPlayerRequest instance
+         * @type {{
+         *   (properties: connection.JoinPlayerRequest.$Shape): connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape;
+         *   (properties?: connection.JoinPlayerRequest.$Properties): connection.JoinPlayerRequest;
+         * }}
          */
-        JoinPlayerRequest.create = function create(properties) {
+        JoinPlayerRequest.create = function(properties) {
             return new JoinPlayerRequest(properties);
         };
 
@@ -7892,15 +9539,22 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.JoinPlayerRequest
          * @static
-         * @param {connection.IJoinPlayerRequest} message JoinPlayerRequest message or plain object to encode
+         * @param {connection.JoinPlayerRequest.$Properties} message JoinPlayerRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        JoinPlayerRequest.encode = function encode(message, writer) {
+        JoinPlayerRequest.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -7909,12 +9563,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.JoinPlayerRequest
          * @static
-         * @param {connection.IJoinPlayerRequest} message JoinPlayerRequest message or plain object to encode
+         * @param {connection.JoinPlayerRequest.$Properties} message JoinPlayerRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        JoinPlayerRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        JoinPlayerRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7924,28 +9578,45 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.JoinPlayerRequest} JoinPlayerRequest
+         * @returns {connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape} JoinPlayerRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        JoinPlayerRequest.decode = function decode(reader, length, error) {
+        JoinPlayerRequest.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.JoinPlayerRequest();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.JoinPlayerRequest(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.token = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.token = value;
+                        else
+                            delete message.token;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -7955,11 +9626,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.JoinPlayerRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.JoinPlayerRequest} JoinPlayerRequest
+         * @returns {connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape} JoinPlayerRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        JoinPlayerRequest.decodeDelimited = function decodeDelimited(reader) {
+        JoinPlayerRequest.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -7973,10 +9644,14 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        JoinPlayerRequest.verify = function verify(message) {
+        JoinPlayerRequest.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.token != null && message.hasOwnProperty("token"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 if (!$util.isString(message.token))
                     return "token: string expected";
             return null;
@@ -7990,12 +9665,19 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.JoinPlayerRequest} JoinPlayerRequest
          */
-        JoinPlayerRequest.fromObject = function fromObject(object) {
+        JoinPlayerRequest.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.JoinPlayerRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.JoinPlayerRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.JoinPlayerRequest();
             if (object.token != null)
-                message.token = String(object.token);
+                if (typeof object.token !== "string" || object.token.length)
+                    message.token = $String(object.token);
             return message;
         };
 
@@ -8008,13 +9690,17 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        JoinPlayerRequest.toObject = function toObject(message, options) {
+        JoinPlayerRequest.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
                 object.token = "";
-            if (message.token != null && message.hasOwnProperty("token"))
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 object.token = message.token;
             return object;
         };
@@ -8026,23 +9712,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        JoinPlayerRequest.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        JoinPlayerRequest.prototype.toJSON = function() {
+            return JoinPlayerRequest.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for JoinPlayerRequest
+         * Gets the type url for JoinPlayerRequest
          * @function getTypeUrl
          * @memberof connection.JoinPlayerRequest
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        JoinPlayerRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.JoinPlayerRequest";
+        JoinPlayerRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.JoinPlayerRequest";
         };
 
         return JoinPlayerRequest;
@@ -8052,27 +9737,40 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of a JoinPlayerResponse.
-         * @memberof connection
-         * @interface IJoinPlayerResponse
+         * @typedef {Object} connection.JoinPlayerResponse.$Properties
          * @property {string|null} [name] JoinPlayerResponse name
          * @property {connection.Role|null} [role] JoinPlayerResponse role
          * @property {string|null} [id] JoinPlayerResponse id
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a JoinPlayerResponse.
+         * @memberof connection
+         * @interface IJoinPlayerResponse
+         * @augments connection.JoinPlayerResponse.$Properties
+         * @deprecated Use connection.JoinPlayerResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a JoinPlayerResponse.
+         * @typedef {connection.JoinPlayerResponse.$Properties} connection.JoinPlayerResponse.$Shape
          */
 
         /**
          * Constructs a new JoinPlayerResponse.
          * @memberof connection
          * @classdesc Represents a JoinPlayerResponse.
-         * @implements IJoinPlayerResponse
          * @constructor
-         * @param {connection.IJoinPlayerResponse=} [properties] Properties to set
+         * @param {connection.JoinPlayerResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function JoinPlayerResponse(properties) {
+        const JoinPlayerResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * JoinPlayerResponse name.
@@ -8103,10 +9801,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.JoinPlayerResponse
          * @static
-         * @param {connection.IJoinPlayerResponse=} [properties] Properties to set
+         * @param {connection.JoinPlayerResponse.$Properties=} [properties] Properties to set
          * @returns {connection.JoinPlayerResponse} JoinPlayerResponse instance
+         * @type {{
+         *   (properties: connection.JoinPlayerResponse.$Shape): connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape;
+         *   (properties?: connection.JoinPlayerResponse.$Properties): connection.JoinPlayerResponse;
+         * }}
          */
-        JoinPlayerResponse.create = function create(properties) {
+        JoinPlayerResponse.create = function(properties) {
             return new JoinPlayerResponse(properties);
         };
 
@@ -8115,19 +9817,26 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.JoinPlayerResponse
          * @static
-         * @param {connection.IJoinPlayerResponse} message JoinPlayerResponse message or plain object to encode
+         * @param {connection.JoinPlayerResponse.$Properties} message JoinPlayerResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        JoinPlayerResponse.encode = function encode(message, writer) {
+        JoinPlayerResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.role);
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -8136,12 +9845,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.JoinPlayerResponse
          * @static
-         * @param {connection.IJoinPlayerResponse} message JoinPlayerResponse message or plain object to encode
+         * @param {connection.JoinPlayerResponse.$Properties} message JoinPlayerResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        JoinPlayerResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        JoinPlayerResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -8151,36 +9860,63 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.JoinPlayerResponse} JoinPlayerResponse
+         * @returns {connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape} JoinPlayerResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        JoinPlayerResponse.decode = function decode(reader, length, error) {
+        JoinPlayerResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.JoinPlayerResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.JoinPlayerResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.name = reader.string();
-                        break;
-                    }
-                case 2: {
-                        message.role = reader.int32();
-                        break;
-                    }
-                case 3: {
-                        message.id = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.name = value;
+                        else
+                            delete message.name;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.int32())
+                            message.role = value;
+                        else
+                            delete message.role;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.id = value;
+                        else
+                            delete message.id;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -8190,11 +9926,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.JoinPlayerResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.JoinPlayerResponse} JoinPlayerResponse
+         * @returns {connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape} JoinPlayerResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        JoinPlayerResponse.decodeDelimited = function decodeDelimited(reader) {
+        JoinPlayerResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -8208,13 +9944,17 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        JoinPlayerResponse.verify = function verify(message) {
+        JoinPlayerResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
-            if (message.role != null && message.hasOwnProperty("role"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
                 switch (message.role) {
                 default:
                     return "role: enum value expected";
@@ -8223,7 +9963,7 @@ export const connection = $root.connection = (() => {
                 case 2:
                     break;
                 }
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isString(message.id))
                     return "id: string expected";
             return null;
@@ -8237,34 +9977,43 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.JoinPlayerResponse} JoinPlayerResponse
          */
-        JoinPlayerResponse.fromObject = function fromObject(object) {
+        JoinPlayerResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.JoinPlayerResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.JoinPlayerResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.JoinPlayerResponse();
             if (object.name != null)
-                message.name = String(object.name);
-            switch (object.role) {
-            default:
-                if (typeof object.role === "number") {
-                    message.role = object.role;
+                if (typeof object.name !== "string" || object.name.length)
+                    message.name = $String(object.name);
+            if (object.role !== 0 && (typeof object.role !== "string" || $root.connection.Role[object.role] !== 0))
+                switch (object.role) {
+                default:
+                    if (typeof object.role === "number") {
+                        message.role = object.role;
+                        break;
+                    }
+                    break;
+                case "USER":
+                case 0:
+                    message.role = 0;
+                    break;
+                case "MOD":
+                case 1:
+                    message.role = 1;
+                    break;
+                case "DEV":
+                case 2:
+                    message.role = 2;
                     break;
                 }
-                break;
-            case "USER":
-            case 0:
-                message.role = 0;
-                break;
-            case "MOD":
-            case 1:
-                message.role = 1;
-                break;
-            case "DEV":
-            case 2:
-                message.role = 2;
-                break;
-            }
             if (object.id != null)
-                message.id = String(object.id);
+                if (typeof object.id !== "string" || object.id.length)
+                    message.id = $String(object.id);
             return message;
         };
 
@@ -8277,20 +10026,24 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        JoinPlayerResponse.toObject = function toObject(message, options) {
+        JoinPlayerResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults) {
                 object.name = "";
-                object.role = options.enums === String ? "USER" : 0;
+                object.role = options.enums === $String ? "USER" : 0;
                 object.id = "";
             }
-            if (message.name != null && message.hasOwnProperty("name"))
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                 object.name = message.name;
-            if (message.role != null && message.hasOwnProperty("role"))
-                object.role = options.enums === String ? $root.connection.Role[message.role] === undefined ? message.role : $root.connection.Role[message.role] : message.role;
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.role != null && $Object.hasOwnProperty.call(message, "role"))
+                object.role = options.enums === $String ? $root.connection.Role[message.role] === $undefined ? message.role : $root.connection.Role[message.role] : message.role;
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
             return object;
         };
@@ -8302,23 +10055,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        JoinPlayerResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        JoinPlayerResponse.prototype.toJSON = function() {
+            return JoinPlayerResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for JoinPlayerResponse
+         * Gets the type url for JoinPlayerResponse
          * @function getTypeUrl
          * @memberof connection.JoinPlayerResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        JoinPlayerResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.JoinPlayerResponse";
+        JoinPlayerResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.JoinPlayerResponse";
         };
 
         return JoinPlayerResponse;
@@ -8328,27 +10080,40 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of an AwardRequest.
-         * @memberof connection
-         * @interface IAwardRequest
+         * @typedef {Object} connection.AwardRequest.$Properties
          * @property {string|null} [id] AwardRequest id
          * @property {number|null} [vp] AwardRequest vp
          * @property {string|null} [accessory] AwardRequest accessory
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AwardRequest.
+         * @memberof connection
+         * @interface IAwardRequest
+         * @augments connection.AwardRequest.$Properties
+         * @deprecated Use connection.AwardRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of an AwardRequest.
+         * @typedef {connection.AwardRequest.$Properties} connection.AwardRequest.$Shape
          */
 
         /**
          * Constructs a new AwardRequest.
          * @memberof connection
          * @classdesc Represents an AwardRequest.
-         * @implements IAwardRequest
          * @constructor
-         * @param {connection.IAwardRequest=} [properties] Properties to set
+         * @param {connection.AwardRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function AwardRequest(properties) {
+        const AwardRequest = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * AwardRequest id.
@@ -8378,13 +10143,13 @@ export const connection = $root.connection = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(AwardRequest.prototype, "_vp", {
+        $Object.defineProperty(AwardRequest.prototype, "_vp", {
             get: $util.oneOfGetter($oneOfFields = ["vp"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(AwardRequest.prototype, "_accessory", {
+        $Object.defineProperty(AwardRequest.prototype, "_accessory", {
             get: $util.oneOfGetter($oneOfFields = ["accessory"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -8394,10 +10159,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.AwardRequest
          * @static
-         * @param {connection.IAwardRequest=} [properties] Properties to set
+         * @param {connection.AwardRequest.$Properties=} [properties] Properties to set
          * @returns {connection.AwardRequest} AwardRequest instance
+         * @type {{
+         *   (properties: connection.AwardRequest.$Shape): connection.AwardRequest & connection.AwardRequest.$Shape;
+         *   (properties?: connection.AwardRequest.$Properties): connection.AwardRequest;
+         * }}
          */
-        AwardRequest.create = function create(properties) {
+        AwardRequest.create = function(properties) {
             return new AwardRequest(properties);
         };
 
@@ -8406,19 +10175,26 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.AwardRequest
          * @static
-         * @param {connection.IAwardRequest} message AwardRequest message or plain object to encode
+         * @param {connection.AwardRequest.$Properties} message AwardRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AwardRequest.encode = function encode(message, writer) {
+        AwardRequest.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-            if (message.vp != null && Object.hasOwnProperty.call(message, "vp"))
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.vp);
-            if (message.accessory != null && Object.hasOwnProperty.call(message, "accessory"))
+            if (message.accessory != null && $Object.hasOwnProperty.call(message, "accessory"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.accessory);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -8427,12 +10203,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.AwardRequest
          * @static
-         * @param {connection.IAwardRequest} message AwardRequest message or plain object to encode
+         * @param {connection.AwardRequest.$Properties} message AwardRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AwardRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        AwardRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -8442,36 +10218,59 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.AwardRequest} AwardRequest
+         * @returns {connection.AwardRequest & connection.AwardRequest.$Shape} AwardRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AwardRequest.decode = function decode(reader, length, error) {
+        AwardRequest.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AwardRequest();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.AwardRequest(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.id = reader.string();
-                        break;
-                    }
-                case 2: {
-                        message.vp = reader.uint32();
-                        break;
-                    }
-                case 3: {
-                        message.accessory = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.id = value;
+                        else
+                            delete message.id;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        message.vp = reader.uint32();
+                        message._vp = "vp";
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        message.accessory = reader.stringVerify();
+                        message._accessory = "accessory";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -8481,11 +10280,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.AwardRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.AwardRequest} AwardRequest
+         * @returns {connection.AwardRequest & connection.AwardRequest.$Shape} AwardRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AwardRequest.decodeDelimited = function decodeDelimited(reader) {
+        AwardRequest.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -8499,19 +10298,23 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AwardRequest.verify = function verify(message) {
+        AwardRequest.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isString(message.id))
                     return "id: string expected";
-            if (message.vp != null && message.hasOwnProperty("vp")) {
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp")) {
                 properties._vp = 1;
                 if (!$util.isInteger(message.vp))
                     return "vp: integer expected";
             }
-            if (message.accessory != null && message.hasOwnProperty("accessory")) {
+            if (message.accessory != null && $Object.hasOwnProperty.call(message, "accessory")) {
                 properties._accessory = 1;
                 if (!$util.isString(message.accessory))
                     return "accessory: string expected";
@@ -8527,16 +10330,23 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.AwardRequest} AwardRequest
          */
-        AwardRequest.fromObject = function fromObject(object) {
+        AwardRequest.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.AwardRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.AwardRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.AwardRequest();
             if (object.id != null)
-                message.id = String(object.id);
+                if (typeof object.id !== "string" || object.id.length)
+                    message.id = $String(object.id);
             if (object.vp != null)
                 message.vp = object.vp >>> 0;
             if (object.accessory != null)
-                message.accessory = String(object.accessory);
+                message.accessory = $String(object.accessory);
             return message;
         };
 
@@ -8549,24 +10359,22 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AwardRequest.toObject = function toObject(message, options) {
+        AwardRequest.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
                 object.id = "";
-            if (message.id != null && message.hasOwnProperty("id"))
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
-            if (message.vp != null && message.hasOwnProperty("vp")) {
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp"))
                 object.vp = message.vp;
-                if (options.oneofs)
-                    object._vp = "vp";
-            }
-            if (message.accessory != null && message.hasOwnProperty("accessory")) {
+            if (message.accessory != null && $Object.hasOwnProperty.call(message, "accessory"))
                 object.accessory = message.accessory;
-                if (options.oneofs)
-                    object._accessory = "accessory";
-            }
             return object;
         };
 
@@ -8577,23 +10385,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AwardRequest.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        AwardRequest.prototype.toJSON = function() {
+            return AwardRequest.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for AwardRequest
+         * Gets the type url for AwardRequest
          * @function getTypeUrl
          * @memberof connection.AwardRequest
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        AwardRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.AwardRequest";
+        AwardRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.AwardRequest";
         };
 
         return AwardRequest;
@@ -8603,25 +10410,38 @@ export const connection = $root.connection = (() => {
 
         /**
          * Properties of an AwardResponse.
+         * @typedef {Object} connection.AwardResponse.$Properties
+         * @property {boolean|null} [success] AwardResponse success
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AwardResponse.
          * @memberof connection
          * @interface IAwardResponse
-         * @property {boolean|null} [success] AwardResponse success
+         * @augments connection.AwardResponse.$Properties
+         * @deprecated Use connection.AwardResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of an AwardResponse.
+         * @typedef {connection.AwardResponse.$Properties} connection.AwardResponse.$Shape
          */
 
         /**
          * Constructs a new AwardResponse.
          * @memberof connection
          * @classdesc Represents an AwardResponse.
-         * @implements IAwardResponse
          * @constructor
-         * @param {connection.IAwardResponse=} [properties] Properties to set
+         * @param {connection.AwardResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function AwardResponse(properties) {
+        const AwardResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * AwardResponse success.
@@ -8636,10 +10456,14 @@ export const connection = $root.connection = (() => {
          * @function create
          * @memberof connection.AwardResponse
          * @static
-         * @param {connection.IAwardResponse=} [properties] Properties to set
+         * @param {connection.AwardResponse.$Properties=} [properties] Properties to set
          * @returns {connection.AwardResponse} AwardResponse instance
+         * @type {{
+         *   (properties: connection.AwardResponse.$Shape): connection.AwardResponse & connection.AwardResponse.$Shape;
+         *   (properties?: connection.AwardResponse.$Properties): connection.AwardResponse;
+         * }}
          */
-        AwardResponse.create = function create(properties) {
+        AwardResponse.create = function(properties) {
             return new AwardResponse(properties);
         };
 
@@ -8648,15 +10472,22 @@ export const connection = $root.connection = (() => {
          * @function encode
          * @memberof connection.AwardResponse
          * @static
-         * @param {connection.IAwardResponse} message AwardResponse message or plain object to encode
+         * @param {connection.AwardResponse.$Properties} message AwardResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AwardResponse.encode = function encode(message, writer) {
+        AwardResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.success != null && Object.hasOwnProperty.call(message, "success"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -8665,12 +10496,12 @@ export const connection = $root.connection = (() => {
          * @function encodeDelimited
          * @memberof connection.AwardResponse
          * @static
-         * @param {connection.IAwardResponse} message AwardResponse message or plain object to encode
+         * @param {connection.AwardResponse.$Properties} message AwardResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AwardResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        AwardResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -8680,28 +10511,45 @@ export const connection = $root.connection = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {connection.AwardResponse} AwardResponse
+         * @returns {connection.AwardResponse & connection.AwardResponse.$Shape} AwardResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AwardResponse.decode = function decode(reader, length, error) {
+        AwardResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.connection.AwardResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.connection.AwardResponse(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.success = reader.bool();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if (value = reader.bool())
+                            message.success = value;
+                        else
+                            delete message.success;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -8711,11 +10559,11 @@ export const connection = $root.connection = (() => {
          * @memberof connection.AwardResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {connection.AwardResponse} AwardResponse
+         * @returns {connection.AwardResponse & connection.AwardResponse.$Shape} AwardResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AwardResponse.decodeDelimited = function decodeDelimited(reader) {
+        AwardResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -8729,10 +10577,14 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AwardResponse.verify = function verify(message) {
+        AwardResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.success != null && message.hasOwnProperty("success"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
                 if (typeof message.success !== "boolean")
                     return "success: boolean expected";
             return null;
@@ -8746,12 +10598,19 @@ export const connection = $root.connection = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {connection.AwardResponse} AwardResponse
          */
-        AwardResponse.fromObject = function fromObject(object) {
+        AwardResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.connection.AwardResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".connection.AwardResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.connection.AwardResponse();
             if (object.success != null)
-                message.success = Boolean(object.success);
+                if (object.success)
+                    message.success = $Boolean(object.success);
             return message;
         };
 
@@ -8764,13 +10623,17 @@ export const connection = $root.connection = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AwardResponse.toObject = function toObject(message, options) {
+        AwardResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
                 object.success = false;
-            if (message.success != null && message.hasOwnProperty("success"))
+            if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
                 object.success = message.success;
             return object;
         };
@@ -8782,23 +10645,22 @@ export const connection = $root.connection = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AwardResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        AwardResponse.prototype.toJSON = function() {
+            return AwardResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for AwardResponse
+         * Gets the type url for AwardResponse
          * @function getTypeUrl
          * @memberof connection.AwardResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        AwardResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/connection.AwardResponse";
+        AwardResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/connection.AwardResponse";
         };
 
         return AwardResponse;
@@ -8813,7 +10675,7 @@ export const connection = $root.connection = (() => {
      * @property {number} DEV=2 DEV value
      */
     connection.Role = (function() {
-        const valuesById = {}, values = Object.create(valuesById);
+        const valuesById = {}, values = $Object.create(valuesById);
         values[valuesById[0] = "USER"] = 0;
         values[valuesById[1] = "MOD"] = 1;
         values[valuesById[2] = "DEV"] = 2;
@@ -8823,4 +10685,6 @@ export const connection = $root.connection = (() => {
     return connection;
 })();
 
-export { $root as default };
+export {
+  $root as default
+};

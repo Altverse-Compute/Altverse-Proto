@@ -4615,6 +4615,2214 @@ export const game = $root.game = (() => {
     return game;
 })();
 
+export const http = $root.http = (() => {
+
+    /**
+     * Namespace http.
+     * @exports http
+     * @namespace
+     */
+    const http = {};
+
+    /**
+     * AccountRole enum.
+     * @name http.AccountRole
+     * @enum {number}
+     * @property {number} USER=0 USER value
+     * @property {number} MOD=1 MOD value
+     * @property {number} DEV=2 DEV value
+     */
+    http.AccountRole = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "USER"] = 0;
+        values[valuesById[1] = "MOD"] = 1;
+        values[valuesById[2] = "DEV"] = 2;
+        return values;
+    })();
+
+    /**
+     * ResponseStatus enum.
+     * @name http.ResponseStatus
+     * @enum {number}
+     * @property {number} Ok=1 Ok value
+     * @property {number} AccountExists=2 AccountExists value
+     * @property {number} AccountNotExists=3 AccountNotExists value
+     * @property {number} InternalError=4 InternalError value
+     * @property {number} InvalidBody=5 InvalidBody value
+     * @property {number} NotFound=6 NotFound value
+     * @property {number} VerificationFailure=7 VerificationFailure value
+     * @property {number} NotAuthenticated=8 NotAuthenticated value
+     * @property {number} WrongPassword=9 WrongPassword value
+     */
+    http.ResponseStatus = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[1] = "Ok"] = 1;
+        values[valuesById[2] = "AccountExists"] = 2;
+        values[valuesById[3] = "AccountNotExists"] = 3;
+        values[valuesById[4] = "InternalError"] = 4;
+        values[valuesById[5] = "InvalidBody"] = 5;
+        values[valuesById[6] = "NotFound"] = 6;
+        values[valuesById[7] = "VerificationFailure"] = 7;
+        values[valuesById[8] = "NotAuthenticated"] = 8;
+        values[valuesById[9] = "WrongPassword"] = 9;
+        return values;
+    })();
+
+    http.Profile = (function() {
+
+        /**
+         * Properties of a Profile.
+         * @memberof http
+         * @interface IProfile
+         * @property {number|null} [vp] Profile vp
+         * @property {string|null} [username] Profile username
+         * @property {Object.<string,string>|null} [highest] Profile highest
+         * @property {Array.<string>|null} [accessories] Profile accessories
+         * @property {http.AccountRole|null} [role] Profile role
+         */
+
+        /**
+         * Constructs a new Profile.
+         * @memberof http
+         * @classdesc Represents a Profile.
+         * @implements IProfile
+         * @constructor
+         * @param {http.IProfile=} [properties] Properties to set
+         */
+        function Profile(properties) {
+            this.highest = {};
+            this.accessories = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Profile vp.
+         * @member {number} vp
+         * @memberof http.Profile
+         * @instance
+         */
+        Profile.prototype.vp = 0;
+
+        /**
+         * Profile username.
+         * @member {string} username
+         * @memberof http.Profile
+         * @instance
+         */
+        Profile.prototype.username = "";
+
+        /**
+         * Profile highest.
+         * @member {Object.<string,string>} highest
+         * @memberof http.Profile
+         * @instance
+         */
+        Profile.prototype.highest = $util.emptyObject;
+
+        /**
+         * Profile accessories.
+         * @member {Array.<string>} accessories
+         * @memberof http.Profile
+         * @instance
+         */
+        Profile.prototype.accessories = $util.emptyArray;
+
+        /**
+         * Profile role.
+         * @member {http.AccountRole} role
+         * @memberof http.Profile
+         * @instance
+         */
+        Profile.prototype.role = 0;
+
+        /**
+         * Creates a new Profile instance using the specified properties.
+         * @function create
+         * @memberof http.Profile
+         * @static
+         * @param {http.IProfile=} [properties] Properties to set
+         * @returns {http.Profile} Profile instance
+         */
+        Profile.create = function create(properties) {
+            return new Profile(properties);
+        };
+
+        /**
+         * Encodes the specified Profile message. Does not implicitly {@link http.Profile.verify|verify} messages.
+         * @function encode
+         * @memberof http.Profile
+         * @static
+         * @param {http.IProfile} message Profile message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Profile.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.vp != null && Object.hasOwnProperty.call(message, "vp"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.vp);
+            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.username);
+            if (message.highest != null && Object.hasOwnProperty.call(message, "highest"))
+                for (let keys = Object.keys(message.highest), i = 0; i < keys.length; ++i)
+                    writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.highest[keys[i]]).ldelim();
+            if (message.accessories != null && message.accessories.length)
+                for (let i = 0; i < message.accessories.length; ++i)
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.accessories[i]);
+            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.role);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Profile message, length delimited. Does not implicitly {@link http.Profile.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.Profile
+         * @static
+         * @param {http.IProfile} message Profile message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Profile.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Profile message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.Profile
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.Profile} Profile
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Profile.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.Profile(), key, value;
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.vp = reader.uint32();
+                        break;
+                    }
+                case 2: {
+                        message.username = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (message.highest === $util.emptyObject)
+                            message.highest = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = "";
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.highest[key] = value;
+                        break;
+                    }
+                case 4: {
+                        if (!(message.accessories && message.accessories.length))
+                            message.accessories = [];
+                        message.accessories.push(reader.string());
+                        break;
+                    }
+                case 5: {
+                        message.role = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Profile message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.Profile
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.Profile} Profile
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Profile.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Profile message.
+         * @function verify
+         * @memberof http.Profile
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Profile.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.vp != null && message.hasOwnProperty("vp"))
+                if (!$util.isInteger(message.vp))
+                    return "vp: integer expected";
+            if (message.username != null && message.hasOwnProperty("username"))
+                if (!$util.isString(message.username))
+                    return "username: string expected";
+            if (message.highest != null && message.hasOwnProperty("highest")) {
+                if (!$util.isObject(message.highest))
+                    return "highest: object expected";
+                let key = Object.keys(message.highest);
+                for (let i = 0; i < key.length; ++i)
+                    if (!$util.isString(message.highest[key[i]]))
+                        return "highest: string{k:string} expected";
+            }
+            if (message.accessories != null && message.hasOwnProperty("accessories")) {
+                if (!Array.isArray(message.accessories))
+                    return "accessories: array expected";
+                for (let i = 0; i < message.accessories.length; ++i)
+                    if (!$util.isString(message.accessories[i]))
+                        return "accessories: string[] expected";
+            }
+            if (message.role != null && message.hasOwnProperty("role"))
+                switch (message.role) {
+                default:
+                    return "role: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a Profile message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.Profile
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.Profile} Profile
+         */
+        Profile.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.Profile)
+                return object;
+            let message = new $root.http.Profile();
+            if (object.vp != null)
+                message.vp = object.vp >>> 0;
+            if (object.username != null)
+                message.username = String(object.username);
+            if (object.highest) {
+                if (typeof object.highest !== "object")
+                    throw TypeError(".http.Profile.highest: object expected");
+                message.highest = {};
+                for (let keys = Object.keys(object.highest), i = 0; i < keys.length; ++i)
+                    message.highest[keys[i]] = String(object.highest[keys[i]]);
+            }
+            if (object.accessories) {
+                if (!Array.isArray(object.accessories))
+                    throw TypeError(".http.Profile.accessories: array expected");
+                message.accessories = [];
+                for (let i = 0; i < object.accessories.length; ++i)
+                    message.accessories[i] = String(object.accessories[i]);
+            }
+            switch (object.role) {
+            default:
+                if (typeof object.role === "number") {
+                    message.role = object.role;
+                    break;
+                }
+                break;
+            case "USER":
+            case 0:
+                message.role = 0;
+                break;
+            case "MOD":
+            case 1:
+                message.role = 1;
+                break;
+            case "DEV":
+            case 2:
+                message.role = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Profile message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.Profile
+         * @static
+         * @param {http.Profile} message Profile
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Profile.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.accessories = [];
+            if (options.objects || options.defaults)
+                object.highest = {};
+            if (options.defaults) {
+                object.vp = 0;
+                object.username = "";
+                object.role = options.enums === String ? "USER" : 0;
+            }
+            if (message.vp != null && message.hasOwnProperty("vp"))
+                object.vp = message.vp;
+            if (message.username != null && message.hasOwnProperty("username"))
+                object.username = message.username;
+            let keys2;
+            if (message.highest && (keys2 = Object.keys(message.highest)).length) {
+                object.highest = {};
+                for (let j = 0; j < keys2.length; ++j)
+                    object.highest[keys2[j]] = message.highest[keys2[j]];
+            }
+            if (message.accessories && message.accessories.length) {
+                object.accessories = [];
+                for (let j = 0; j < message.accessories.length; ++j)
+                    object.accessories[j] = message.accessories[j];
+            }
+            if (message.role != null && message.hasOwnProperty("role"))
+                object.role = options.enums === String ? $root.http.AccountRole[message.role] === undefined ? message.role : $root.http.AccountRole[message.role] : message.role;
+            return object;
+        };
+
+        /**
+         * Converts this Profile to JSON.
+         * @function toJSON
+         * @memberof http.Profile
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Profile.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Profile
+         * @function getTypeUrl
+         * @memberof http.Profile
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Profile.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.Profile";
+        };
+
+        return Profile;
+    })();
+
+    http.LoginAndRegisterResponse = (function() {
+
+        /**
+         * Properties of a LoginAndRegisterResponse.
+         * @memberof http
+         * @interface ILoginAndRegisterResponse
+         * @property {http.ResponseStatus|null} [status] LoginAndRegisterResponse status
+         * @property {string|null} [token] LoginAndRegisterResponse token
+         * @property {http.IProfile|null} [profile] LoginAndRegisterResponse profile
+         */
+
+        /**
+         * Constructs a new LoginAndRegisterResponse.
+         * @memberof http
+         * @classdesc Represents a LoginAndRegisterResponse.
+         * @implements ILoginAndRegisterResponse
+         * @constructor
+         * @param {http.ILoginAndRegisterResponse=} [properties] Properties to set
+         */
+        function LoginAndRegisterResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LoginAndRegisterResponse status.
+         * @member {http.ResponseStatus} status
+         * @memberof http.LoginAndRegisterResponse
+         * @instance
+         */
+        LoginAndRegisterResponse.prototype.status = 1;
+
+        /**
+         * LoginAndRegisterResponse token.
+         * @member {string|null|undefined} token
+         * @memberof http.LoginAndRegisterResponse
+         * @instance
+         */
+        LoginAndRegisterResponse.prototype.token = null;
+
+        /**
+         * LoginAndRegisterResponse profile.
+         * @member {http.IProfile|null|undefined} profile
+         * @memberof http.LoginAndRegisterResponse
+         * @instance
+         */
+        LoginAndRegisterResponse.prototype.profile = null;
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(LoginAndRegisterResponse.prototype, "_token", {
+            get: $util.oneOfGetter($oneOfFields = ["token"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(LoginAndRegisterResponse.prototype, "_profile", {
+            get: $util.oneOfGetter($oneOfFields = ["profile"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new LoginAndRegisterResponse instance using the specified properties.
+         * @function create
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {http.ILoginAndRegisterResponse=} [properties] Properties to set
+         * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse instance
+         */
+        LoginAndRegisterResponse.create = function create(properties) {
+            return new LoginAndRegisterResponse(properties);
+        };
+
+        /**
+         * Encodes the specified LoginAndRegisterResponse message. Does not implicitly {@link http.LoginAndRegisterResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {http.ILoginAndRegisterResponse} message LoginAndRegisterResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginAndRegisterResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
+            if (message.profile != null && Object.hasOwnProperty.call(message, "profile"))
+                $root.http.Profile.encode(message.profile, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LoginAndRegisterResponse message, length delimited. Does not implicitly {@link http.LoginAndRegisterResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {http.ILoginAndRegisterResponse} message LoginAndRegisterResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginAndRegisterResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LoginAndRegisterResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginAndRegisterResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.LoginAndRegisterResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.token = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.profile = $root.http.Profile.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LoginAndRegisterResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginAndRegisterResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LoginAndRegisterResponse message.
+         * @function verify
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LoginAndRegisterResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            let properties = {};
+            if (message.status != null && message.hasOwnProperty("status"))
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    break;
+                }
+            if (message.token != null && message.hasOwnProperty("token")) {
+                properties._token = 1;
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            }
+            if (message.profile != null && message.hasOwnProperty("profile")) {
+                properties._profile = 1;
+                {
+                    let error = $root.http.Profile.verify(message.profile);
+                    if (error)
+                        return "profile." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a LoginAndRegisterResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.LoginAndRegisterResponse} LoginAndRegisterResponse
+         */
+        LoginAndRegisterResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.LoginAndRegisterResponse)
+                return object;
+            let message = new $root.http.LoginAndRegisterResponse();
+            switch (object.status) {
+            default:
+                if (typeof object.status === "number") {
+                    message.status = object.status;
+                    break;
+                }
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "AccountExists":
+            case 2:
+                message.status = 2;
+                break;
+            case "AccountNotExists":
+            case 3:
+                message.status = 3;
+                break;
+            case "InternalError":
+            case 4:
+                message.status = 4;
+                break;
+            case "InvalidBody":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotFound":
+            case 6:
+                message.status = 6;
+                break;
+            case "VerificationFailure":
+            case 7:
+                message.status = 7;
+                break;
+            case "NotAuthenticated":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+            if (object.token != null)
+                message.token = String(object.token);
+            if (object.profile != null) {
+                if (typeof object.profile !== "object")
+                    throw TypeError(".http.LoginAndRegisterResponse.profile: object expected");
+                message.profile = $root.http.Profile.fromObject(object.profile);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LoginAndRegisterResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {http.LoginAndRegisterResponse} message LoginAndRegisterResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LoginAndRegisterResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.status = options.enums === String ? "Ok" : 1;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            if (message.token != null && message.hasOwnProperty("token")) {
+                object.token = message.token;
+                if (options.oneofs)
+                    object._token = "token";
+            }
+            if (message.profile != null && message.hasOwnProperty("profile")) {
+                object.profile = $root.http.Profile.toObject(message.profile, options);
+                if (options.oneofs)
+                    object._profile = "profile";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this LoginAndRegisterResponse to JSON.
+         * @function toJSON
+         * @memberof http.LoginAndRegisterResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LoginAndRegisterResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LoginAndRegisterResponse
+         * @function getTypeUrl
+         * @memberof http.LoginAndRegisterResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LoginAndRegisterResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.LoginAndRegisterResponse";
+        };
+
+        return LoginAndRegisterResponse;
+    })();
+
+    http.ProfileResponse = (function() {
+
+        /**
+         * Properties of a ProfileResponse.
+         * @memberof http
+         * @interface IProfileResponse
+         * @property {http.ResponseStatus|null} [status] ProfileResponse status
+         * @property {http.IProfile|null} [profile] ProfileResponse profile
+         */
+
+        /**
+         * Constructs a new ProfileResponse.
+         * @memberof http
+         * @classdesc Represents a ProfileResponse.
+         * @implements IProfileResponse
+         * @constructor
+         * @param {http.IProfileResponse=} [properties] Properties to set
+         */
+        function ProfileResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ProfileResponse status.
+         * @member {http.ResponseStatus} status
+         * @memberof http.ProfileResponse
+         * @instance
+         */
+        ProfileResponse.prototype.status = 1;
+
+        /**
+         * ProfileResponse profile.
+         * @member {http.IProfile|null|undefined} profile
+         * @memberof http.ProfileResponse
+         * @instance
+         */
+        ProfileResponse.prototype.profile = null;
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(ProfileResponse.prototype, "_profile", {
+            get: $util.oneOfGetter($oneOfFields = ["profile"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new ProfileResponse instance using the specified properties.
+         * @function create
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {http.IProfileResponse=} [properties] Properties to set
+         * @returns {http.ProfileResponse} ProfileResponse instance
+         */
+        ProfileResponse.create = function create(properties) {
+            return new ProfileResponse(properties);
+        };
+
+        /**
+         * Encodes the specified ProfileResponse message. Does not implicitly {@link http.ProfileResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {http.IProfileResponse} message ProfileResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ProfileResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+            if (message.profile != null && Object.hasOwnProperty.call(message, "profile"))
+                $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ProfileResponse message, length delimited. Does not implicitly {@link http.ProfileResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {http.IProfileResponse} message ProfileResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ProfileResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ProfileResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.ProfileResponse} ProfileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ProfileResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.ProfileResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.profile = $root.http.Profile.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ProfileResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.ProfileResponse} ProfileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ProfileResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ProfileResponse message.
+         * @function verify
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ProfileResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            let properties = {};
+            if (message.status != null && message.hasOwnProperty("status"))
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    break;
+                }
+            if (message.profile != null && message.hasOwnProperty("profile")) {
+                properties._profile = 1;
+                {
+                    let error = $root.http.Profile.verify(message.profile);
+                    if (error)
+                        return "profile." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a ProfileResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.ProfileResponse} ProfileResponse
+         */
+        ProfileResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.ProfileResponse)
+                return object;
+            let message = new $root.http.ProfileResponse();
+            switch (object.status) {
+            default:
+                if (typeof object.status === "number") {
+                    message.status = object.status;
+                    break;
+                }
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "AccountExists":
+            case 2:
+                message.status = 2;
+                break;
+            case "AccountNotExists":
+            case 3:
+                message.status = 3;
+                break;
+            case "InternalError":
+            case 4:
+                message.status = 4;
+                break;
+            case "InvalidBody":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotFound":
+            case 6:
+                message.status = 6;
+                break;
+            case "VerificationFailure":
+            case 7:
+                message.status = 7;
+                break;
+            case "NotAuthenticated":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+            if (object.profile != null) {
+                if (typeof object.profile !== "object")
+                    throw TypeError(".http.ProfileResponse.profile: object expected");
+                message.profile = $root.http.Profile.fromObject(object.profile);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ProfileResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {http.ProfileResponse} message ProfileResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ProfileResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.status = options.enums === String ? "Ok" : 1;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            if (message.profile != null && message.hasOwnProperty("profile")) {
+                object.profile = $root.http.Profile.toObject(message.profile, options);
+                if (options.oneofs)
+                    object._profile = "profile";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this ProfileResponse to JSON.
+         * @function toJSON
+         * @memberof http.ProfileResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ProfileResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ProfileResponse
+         * @function getTypeUrl
+         * @memberof http.ProfileResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ProfileResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.ProfileResponse";
+        };
+
+        return ProfileResponse;
+    })();
+
+    http.AuthResponse = (function() {
+
+        /**
+         * Properties of an AuthResponse.
+         * @memberof http
+         * @interface IAuthResponse
+         * @property {http.ResponseStatus|null} [status] AuthResponse status
+         * @property {http.IProfile|null} [profile] AuthResponse profile
+         */
+
+        /**
+         * Constructs a new AuthResponse.
+         * @memberof http
+         * @classdesc Represents an AuthResponse.
+         * @implements IAuthResponse
+         * @constructor
+         * @param {http.IAuthResponse=} [properties] Properties to set
+         */
+        function AuthResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AuthResponse status.
+         * @member {http.ResponseStatus} status
+         * @memberof http.AuthResponse
+         * @instance
+         */
+        AuthResponse.prototype.status = 1;
+
+        /**
+         * AuthResponse profile.
+         * @member {http.IProfile|null|undefined} profile
+         * @memberof http.AuthResponse
+         * @instance
+         */
+        AuthResponse.prototype.profile = null;
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(AuthResponse.prototype, "_profile", {
+            get: $util.oneOfGetter($oneOfFields = ["profile"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new AuthResponse instance using the specified properties.
+         * @function create
+         * @memberof http.AuthResponse
+         * @static
+         * @param {http.IAuthResponse=} [properties] Properties to set
+         * @returns {http.AuthResponse} AuthResponse instance
+         */
+        AuthResponse.create = function create(properties) {
+            return new AuthResponse(properties);
+        };
+
+        /**
+         * Encodes the specified AuthResponse message. Does not implicitly {@link http.AuthResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.AuthResponse
+         * @static
+         * @param {http.IAuthResponse} message AuthResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+            if (message.profile != null && Object.hasOwnProperty.call(message, "profile"))
+                $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AuthResponse message, length delimited. Does not implicitly {@link http.AuthResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.AuthResponse
+         * @static
+         * @param {http.IAuthResponse} message AuthResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AuthResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.AuthResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.AuthResponse} AuthResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.AuthResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.profile = $root.http.Profile.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AuthResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.AuthResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.AuthResponse} AuthResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AuthResponse message.
+         * @function verify
+         * @memberof http.AuthResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AuthResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            let properties = {};
+            if (message.status != null && message.hasOwnProperty("status"))
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    break;
+                }
+            if (message.profile != null && message.hasOwnProperty("profile")) {
+                properties._profile = 1;
+                {
+                    let error = $root.http.Profile.verify(message.profile);
+                    if (error)
+                        return "profile." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates an AuthResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.AuthResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.AuthResponse} AuthResponse
+         */
+        AuthResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.AuthResponse)
+                return object;
+            let message = new $root.http.AuthResponse();
+            switch (object.status) {
+            default:
+                if (typeof object.status === "number") {
+                    message.status = object.status;
+                    break;
+                }
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "AccountExists":
+            case 2:
+                message.status = 2;
+                break;
+            case "AccountNotExists":
+            case 3:
+                message.status = 3;
+                break;
+            case "InternalError":
+            case 4:
+                message.status = 4;
+                break;
+            case "InvalidBody":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotFound":
+            case 6:
+                message.status = 6;
+                break;
+            case "VerificationFailure":
+            case 7:
+                message.status = 7;
+                break;
+            case "NotAuthenticated":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+            if (object.profile != null) {
+                if (typeof object.profile !== "object")
+                    throw TypeError(".http.AuthResponse.profile: object expected");
+                message.profile = $root.http.Profile.fromObject(object.profile);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AuthResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.AuthResponse
+         * @static
+         * @param {http.AuthResponse} message AuthResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AuthResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.status = options.enums === String ? "Ok" : 1;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            if (message.profile != null && message.hasOwnProperty("profile")) {
+                object.profile = $root.http.Profile.toObject(message.profile, options);
+                if (options.oneofs)
+                    object._profile = "profile";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this AuthResponse to JSON.
+         * @function toJSON
+         * @memberof http.AuthResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AuthResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AuthResponse
+         * @function getTypeUrl
+         * @memberof http.AuthResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AuthResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.AuthResponse";
+        };
+
+        return AuthResponse;
+    })();
+
+    http.LogoutResponse = (function() {
+
+        /**
+         * Properties of a LogoutResponse.
+         * @memberof http
+         * @interface ILogoutResponse
+         * @property {http.ResponseStatus|null} [status] LogoutResponse status
+         */
+
+        /**
+         * Constructs a new LogoutResponse.
+         * @memberof http
+         * @classdesc Represents a LogoutResponse.
+         * @implements ILogoutResponse
+         * @constructor
+         * @param {http.ILogoutResponse=} [properties] Properties to set
+         */
+        function LogoutResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LogoutResponse status.
+         * @member {http.ResponseStatus} status
+         * @memberof http.LogoutResponse
+         * @instance
+         */
+        LogoutResponse.prototype.status = 1;
+
+        /**
+         * Creates a new LogoutResponse instance using the specified properties.
+         * @function create
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.ILogoutResponse=} [properties] Properties to set
+         * @returns {http.LogoutResponse} LogoutResponse instance
+         */
+        LogoutResponse.create = function create(properties) {
+            return new LogoutResponse(properties);
+        };
+
+        /**
+         * Encodes the specified LogoutResponse message. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.ILogoutResponse} message LogoutResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LogoutResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LogoutResponse message, length delimited. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.ILogoutResponse} message LogoutResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LogoutResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.LogoutResponse} LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LogoutResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.LogoutResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.LogoutResponse} LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LogoutResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LogoutResponse message.
+         * @function verify
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LogoutResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.status != null && message.hasOwnProperty("status"))
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a LogoutResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.LogoutResponse} LogoutResponse
+         */
+        LogoutResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.LogoutResponse)
+                return object;
+            let message = new $root.http.LogoutResponse();
+            switch (object.status) {
+            default:
+                if (typeof object.status === "number") {
+                    message.status = object.status;
+                    break;
+                }
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "AccountExists":
+            case 2:
+                message.status = 2;
+                break;
+            case "AccountNotExists":
+            case 3:
+                message.status = 3;
+                break;
+            case "InternalError":
+            case 4:
+                message.status = 4;
+                break;
+            case "InvalidBody":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotFound":
+            case 6:
+                message.status = 6;
+                break;
+            case "VerificationFailure":
+            case 7:
+                message.status = 7;
+                break;
+            case "NotAuthenticated":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LogoutResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.LogoutResponse} message LogoutResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LogoutResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.status = options.enums === String ? "Ok" : 1;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            return object;
+        };
+
+        /**
+         * Converts this LogoutResponse to JSON.
+         * @function toJSON
+         * @memberof http.LogoutResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LogoutResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LogoutResponse
+         * @function getTypeUrl
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LogoutResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.LogoutResponse";
+        };
+
+        return LogoutResponse;
+    })();
+
+    http.ServerElement = (function() {
+
+        /**
+         * Properties of a ServerElement.
+         * @memberof http
+         * @interface IServerElement
+         * @property {string|null} [icon] ServerElement icon
+         * @property {string|null} [name] ServerElement name
+         * @property {string|null} [domain] ServerElement domain
+         * @property {number|null} [online] ServerElement online
+         */
+
+        /**
+         * Constructs a new ServerElement.
+         * @memberof http
+         * @classdesc Represents a ServerElement.
+         * @implements IServerElement
+         * @constructor
+         * @param {http.IServerElement=} [properties] Properties to set
+         */
+        function ServerElement(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ServerElement icon.
+         * @member {string} icon
+         * @memberof http.ServerElement
+         * @instance
+         */
+        ServerElement.prototype.icon = "";
+
+        /**
+         * ServerElement name.
+         * @member {string} name
+         * @memberof http.ServerElement
+         * @instance
+         */
+        ServerElement.prototype.name = "";
+
+        /**
+         * ServerElement domain.
+         * @member {string} domain
+         * @memberof http.ServerElement
+         * @instance
+         */
+        ServerElement.prototype.domain = "";
+
+        /**
+         * ServerElement online.
+         * @member {number} online
+         * @memberof http.ServerElement
+         * @instance
+         */
+        ServerElement.prototype.online = 0;
+
+        /**
+         * Creates a new ServerElement instance using the specified properties.
+         * @function create
+         * @memberof http.ServerElement
+         * @static
+         * @param {http.IServerElement=} [properties] Properties to set
+         * @returns {http.ServerElement} ServerElement instance
+         */
+        ServerElement.create = function create(properties) {
+            return new ServerElement(properties);
+        };
+
+        /**
+         * Encodes the specified ServerElement message. Does not implicitly {@link http.ServerElement.verify|verify} messages.
+         * @function encode
+         * @memberof http.ServerElement
+         * @static
+         * @param {http.IServerElement} message ServerElement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ServerElement.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.icon != null && Object.hasOwnProperty.call(message, "icon"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.icon);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+            if (message.domain != null && Object.hasOwnProperty.call(message, "domain"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.domain);
+            if (message.online != null && Object.hasOwnProperty.call(message, "online"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.online);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ServerElement message, length delimited. Does not implicitly {@link http.ServerElement.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.ServerElement
+         * @static
+         * @param {http.IServerElement} message ServerElement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ServerElement.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ServerElement message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.ServerElement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.ServerElement} ServerElement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ServerElement.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.ServerElement();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.icon = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.domain = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.online = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ServerElement message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.ServerElement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.ServerElement} ServerElement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ServerElement.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ServerElement message.
+         * @function verify
+         * @memberof http.ServerElement
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ServerElement.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.icon != null && message.hasOwnProperty("icon"))
+                if (!$util.isString(message.icon))
+                    return "icon: string expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.domain != null && message.hasOwnProperty("domain"))
+                if (!$util.isString(message.domain))
+                    return "domain: string expected";
+            if (message.online != null && message.hasOwnProperty("online"))
+                if (!$util.isInteger(message.online))
+                    return "online: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a ServerElement message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.ServerElement
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.ServerElement} ServerElement
+         */
+        ServerElement.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.ServerElement)
+                return object;
+            let message = new $root.http.ServerElement();
+            if (object.icon != null)
+                message.icon = String(object.icon);
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.domain != null)
+                message.domain = String(object.domain);
+            if (object.online != null)
+                message.online = object.online >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ServerElement message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.ServerElement
+         * @static
+         * @param {http.ServerElement} message ServerElement
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ServerElement.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.icon = "";
+                object.name = "";
+                object.domain = "";
+                object.online = 0;
+            }
+            if (message.icon != null && message.hasOwnProperty("icon"))
+                object.icon = message.icon;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.domain != null && message.hasOwnProperty("domain"))
+                object.domain = message.domain;
+            if (message.online != null && message.hasOwnProperty("online"))
+                object.online = message.online;
+            return object;
+        };
+
+        /**
+         * Converts this ServerElement to JSON.
+         * @function toJSON
+         * @memberof http.ServerElement
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ServerElement.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ServerElement
+         * @function getTypeUrl
+         * @memberof http.ServerElement
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ServerElement.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.ServerElement";
+        };
+
+        return ServerElement;
+    })();
+
+    http.ServersResponse = (function() {
+
+        /**
+         * Properties of a ServersResponse.
+         * @memberof http
+         * @interface IServersResponse
+         * @property {http.ResponseStatus|null} [status] ServersResponse status
+         * @property {Array.<http.IServerElement>|null} [servers] ServersResponse servers
+         */
+
+        /**
+         * Constructs a new ServersResponse.
+         * @memberof http
+         * @classdesc Represents a ServersResponse.
+         * @implements IServersResponse
+         * @constructor
+         * @param {http.IServersResponse=} [properties] Properties to set
+         */
+        function ServersResponse(properties) {
+            this.servers = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ServersResponse status.
+         * @member {http.ResponseStatus} status
+         * @memberof http.ServersResponse
+         * @instance
+         */
+        ServersResponse.prototype.status = 1;
+
+        /**
+         * ServersResponse servers.
+         * @member {Array.<http.IServerElement>} servers
+         * @memberof http.ServersResponse
+         * @instance
+         */
+        ServersResponse.prototype.servers = $util.emptyArray;
+
+        /**
+         * Creates a new ServersResponse instance using the specified properties.
+         * @function create
+         * @memberof http.ServersResponse
+         * @static
+         * @param {http.IServersResponse=} [properties] Properties to set
+         * @returns {http.ServersResponse} ServersResponse instance
+         */
+        ServersResponse.create = function create(properties) {
+            return new ServersResponse(properties);
+        };
+
+        /**
+         * Encodes the specified ServersResponse message. Does not implicitly {@link http.ServersResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.ServersResponse
+         * @static
+         * @param {http.IServersResponse} message ServersResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ServersResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+            if (message.servers != null && message.servers.length)
+                for (let i = 0; i < message.servers.length; ++i)
+                    $root.http.ServerElement.encode(message.servers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ServersResponse message, length delimited. Does not implicitly {@link http.ServersResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.ServersResponse
+         * @static
+         * @param {http.IServersResponse} message ServersResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ServersResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ServersResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.ServersResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.ServersResponse} ServersResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ServersResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.ServersResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.servers && message.servers.length))
+                            message.servers = [];
+                        message.servers.push($root.http.ServerElement.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ServersResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.ServersResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.ServersResponse} ServersResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ServersResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ServersResponse message.
+         * @function verify
+         * @memberof http.ServersResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ServersResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.status != null && message.hasOwnProperty("status"))
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    break;
+                }
+            if (message.servers != null && message.hasOwnProperty("servers")) {
+                if (!Array.isArray(message.servers))
+                    return "servers: array expected";
+                for (let i = 0; i < message.servers.length; ++i) {
+                    let error = $root.http.ServerElement.verify(message.servers[i]);
+                    if (error)
+                        return "servers." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a ServersResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.ServersResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.ServersResponse} ServersResponse
+         */
+        ServersResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.ServersResponse)
+                return object;
+            let message = new $root.http.ServersResponse();
+            switch (object.status) {
+            default:
+                if (typeof object.status === "number") {
+                    message.status = object.status;
+                    break;
+                }
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "AccountExists":
+            case 2:
+                message.status = 2;
+                break;
+            case "AccountNotExists":
+            case 3:
+                message.status = 3;
+                break;
+            case "InternalError":
+            case 4:
+                message.status = 4;
+                break;
+            case "InvalidBody":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotFound":
+            case 6:
+                message.status = 6;
+                break;
+            case "VerificationFailure":
+            case 7:
+                message.status = 7;
+                break;
+            case "NotAuthenticated":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+            if (object.servers) {
+                if (!Array.isArray(object.servers))
+                    throw TypeError(".http.ServersResponse.servers: array expected");
+                message.servers = [];
+                for (let i = 0; i < object.servers.length; ++i) {
+                    if (typeof object.servers[i] !== "object")
+                        throw TypeError(".http.ServersResponse.servers: object expected");
+                    message.servers[i] = $root.http.ServerElement.fromObject(object.servers[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ServersResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.ServersResponse
+         * @static
+         * @param {http.ServersResponse} message ServersResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ServersResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.servers = [];
+            if (options.defaults)
+                object.status = options.enums === String ? "Ok" : 1;
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = options.enums === String ? $root.http.ResponseStatus[message.status] === undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            if (message.servers && message.servers.length) {
+                object.servers = [];
+                for (let j = 0; j < message.servers.length; ++j)
+                    object.servers[j] = $root.http.ServerElement.toObject(message.servers[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this ServersResponse to JSON.
+         * @function toJSON
+         * @memberof http.ServersResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ServersResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ServersResponse
+         * @function getTypeUrl
+         * @memberof http.ServersResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ServersResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.ServersResponse";
+        };
+
+        return ServersResponse;
+    })();
+
+    return http;
+})();
+
 export const connection = $root.connection = (() => {
 
     /**

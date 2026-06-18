@@ -1605,6 +1605,781 @@ export namespace game {
     }
 }
 
+/** Namespace http. */
+export namespace http {
+
+    /** AccountRole enum. */
+    enum AccountRole {
+        USER = 0,
+        MOD = 1,
+        DEV = 2
+    }
+
+    /** ResponseStatus enum. */
+    enum ResponseStatus {
+        Ok = 1,
+        AccountExists = 2,
+        AccountNotExists = 3,
+        InternalError = 4,
+        InvalidBody = 5,
+        NotFound = 6,
+        VerificationFailure = 7,
+        NotAuthenticated = 8,
+        WrongPassword = 9
+    }
+
+    /** Properties of a Profile. */
+    interface IProfile {
+
+        /** Profile vp */
+        vp?: (number|null);
+
+        /** Profile username */
+        username?: (string|null);
+
+        /** Profile highest */
+        highest?: ({ [k: string]: string }|null);
+
+        /** Profile accessories */
+        accessories?: (string[]|null);
+
+        /** Profile role */
+        role?: (http.AccountRole|null);
+    }
+
+    /** Represents a Profile. */
+    class Profile implements IProfile {
+
+        /**
+         * Constructs a new Profile.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IProfile);
+
+        /** Profile vp. */
+        public vp: number;
+
+        /** Profile username. */
+        public username: string;
+
+        /** Profile highest. */
+        public highest: { [k: string]: string };
+
+        /** Profile accessories. */
+        public accessories: string[];
+
+        /** Profile role. */
+        public role: http.AccountRole;
+
+        /**
+         * Creates a new Profile instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Profile instance
+         */
+        public static create(properties?: http.IProfile): http.Profile;
+
+        /**
+         * Encodes the specified Profile message. Does not implicitly {@link http.Profile.verify|verify} messages.
+         * @param message Profile message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IProfile, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Profile message, length delimited. Does not implicitly {@link http.Profile.verify|verify} messages.
+         * @param message Profile message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IProfile, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Profile message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Profile
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.Profile;
+
+        /**
+         * Decodes a Profile message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Profile
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.Profile;
+
+        /**
+         * Verifies a Profile message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Profile message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Profile
+         */
+        public static fromObject(object: { [k: string]: any }): http.Profile;
+
+        /**
+         * Creates a plain object from a Profile message. Also converts values to other types if specified.
+         * @param message Profile
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.Profile, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Profile to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Profile
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a LoginAndRegisterResponse. */
+    interface ILoginAndRegisterResponse {
+
+        /** LoginAndRegisterResponse status */
+        status?: (http.ResponseStatus|null);
+
+        /** LoginAndRegisterResponse token */
+        token?: (string|null);
+
+        /** LoginAndRegisterResponse profile */
+        profile?: (http.IProfile|null);
+    }
+
+    /** Represents a LoginAndRegisterResponse. */
+    class LoginAndRegisterResponse implements ILoginAndRegisterResponse {
+
+        /**
+         * Constructs a new LoginAndRegisterResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.ILoginAndRegisterResponse);
+
+        /** LoginAndRegisterResponse status. */
+        public status: http.ResponseStatus;
+
+        /** LoginAndRegisterResponse token. */
+        public token?: (string|null);
+
+        /** LoginAndRegisterResponse profile. */
+        public profile?: (http.IProfile|null);
+
+        /**
+         * Creates a new LoginAndRegisterResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LoginAndRegisterResponse instance
+         */
+        public static create(properties?: http.ILoginAndRegisterResponse): http.LoginAndRegisterResponse;
+
+        /**
+         * Encodes the specified LoginAndRegisterResponse message. Does not implicitly {@link http.LoginAndRegisterResponse.verify|verify} messages.
+         * @param message LoginAndRegisterResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.ILoginAndRegisterResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LoginAndRegisterResponse message, length delimited. Does not implicitly {@link http.LoginAndRegisterResponse.verify|verify} messages.
+         * @param message LoginAndRegisterResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.ILoginAndRegisterResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LoginAndRegisterResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns LoginAndRegisterResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LoginAndRegisterResponse;
+
+        /**
+         * Decodes a LoginAndRegisterResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns LoginAndRegisterResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LoginAndRegisterResponse;
+
+        /**
+         * Verifies a LoginAndRegisterResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LoginAndRegisterResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LoginAndRegisterResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.LoginAndRegisterResponse;
+
+        /**
+         * Creates a plain object from a LoginAndRegisterResponse message. Also converts values to other types if specified.
+         * @param message LoginAndRegisterResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.LoginAndRegisterResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LoginAndRegisterResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for LoginAndRegisterResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ProfileResponse. */
+    interface IProfileResponse {
+
+        /** ProfileResponse status */
+        status?: (http.ResponseStatus|null);
+
+        /** ProfileResponse profile */
+        profile?: (http.IProfile|null);
+    }
+
+    /** Represents a ProfileResponse. */
+    class ProfileResponse implements IProfileResponse {
+
+        /**
+         * Constructs a new ProfileResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IProfileResponse);
+
+        /** ProfileResponse status. */
+        public status: http.ResponseStatus;
+
+        /** ProfileResponse profile. */
+        public profile?: (http.IProfile|null);
+
+        /**
+         * Creates a new ProfileResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ProfileResponse instance
+         */
+        public static create(properties?: http.IProfileResponse): http.ProfileResponse;
+
+        /**
+         * Encodes the specified ProfileResponse message. Does not implicitly {@link http.ProfileResponse.verify|verify} messages.
+         * @param message ProfileResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IProfileResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ProfileResponse message, length delimited. Does not implicitly {@link http.ProfileResponse.verify|verify} messages.
+         * @param message ProfileResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IProfileResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ProfileResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ProfileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ProfileResponse;
+
+        /**
+         * Decodes a ProfileResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ProfileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ProfileResponse;
+
+        /**
+         * Verifies a ProfileResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ProfileResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ProfileResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.ProfileResponse;
+
+        /**
+         * Creates a plain object from a ProfileResponse message. Also converts values to other types if specified.
+         * @param message ProfileResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.ProfileResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ProfileResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ProfileResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an AuthResponse. */
+    interface IAuthResponse {
+
+        /** AuthResponse status */
+        status?: (http.ResponseStatus|null);
+
+        /** AuthResponse profile */
+        profile?: (http.IProfile|null);
+    }
+
+    /** Represents an AuthResponse. */
+    class AuthResponse implements IAuthResponse {
+
+        /**
+         * Constructs a new AuthResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IAuthResponse);
+
+        /** AuthResponse status. */
+        public status: http.ResponseStatus;
+
+        /** AuthResponse profile. */
+        public profile?: (http.IProfile|null);
+
+        /**
+         * Creates a new AuthResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AuthResponse instance
+         */
+        public static create(properties?: http.IAuthResponse): http.AuthResponse;
+
+        /**
+         * Encodes the specified AuthResponse message. Does not implicitly {@link http.AuthResponse.verify|verify} messages.
+         * @param message AuthResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IAuthResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AuthResponse message, length delimited. Does not implicitly {@link http.AuthResponse.verify|verify} messages.
+         * @param message AuthResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IAuthResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AuthResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AuthResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AuthResponse;
+
+        /**
+         * Decodes an AuthResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AuthResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AuthResponse;
+
+        /**
+         * Verifies an AuthResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AuthResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AuthResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.AuthResponse;
+
+        /**
+         * Creates a plain object from an AuthResponse message. Also converts values to other types if specified.
+         * @param message AuthResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.AuthResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AuthResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AuthResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a LogoutResponse. */
+    interface ILogoutResponse {
+
+        /** LogoutResponse status */
+        status?: (http.ResponseStatus|null);
+    }
+
+    /** Represents a LogoutResponse. */
+    class LogoutResponse implements ILogoutResponse {
+
+        /**
+         * Constructs a new LogoutResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.ILogoutResponse);
+
+        /** LogoutResponse status. */
+        public status: http.ResponseStatus;
+
+        /**
+         * Creates a new LogoutResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LogoutResponse instance
+         */
+        public static create(properties?: http.ILogoutResponse): http.LogoutResponse;
+
+        /**
+         * Encodes the specified LogoutResponse message. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @param message LogoutResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.ILogoutResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LogoutResponse message, length delimited. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @param message LogoutResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.ILogoutResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LogoutResponse;
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LogoutResponse;
+
+        /**
+         * Verifies a LogoutResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LogoutResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LogoutResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.LogoutResponse;
+
+        /**
+         * Creates a plain object from a LogoutResponse message. Also converts values to other types if specified.
+         * @param message LogoutResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.LogoutResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LogoutResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for LogoutResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ServerElement. */
+    interface IServerElement {
+
+        /** ServerElement icon */
+        icon?: (string|null);
+
+        /** ServerElement name */
+        name?: (string|null);
+
+        /** ServerElement domain */
+        domain?: (string|null);
+
+        /** ServerElement online */
+        online?: (number|null);
+    }
+
+    /** Represents a ServerElement. */
+    class ServerElement implements IServerElement {
+
+        /**
+         * Constructs a new ServerElement.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IServerElement);
+
+        /** ServerElement icon. */
+        public icon: string;
+
+        /** ServerElement name. */
+        public name: string;
+
+        /** ServerElement domain. */
+        public domain: string;
+
+        /** ServerElement online. */
+        public online: number;
+
+        /**
+         * Creates a new ServerElement instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ServerElement instance
+         */
+        public static create(properties?: http.IServerElement): http.ServerElement;
+
+        /**
+         * Encodes the specified ServerElement message. Does not implicitly {@link http.ServerElement.verify|verify} messages.
+         * @param message ServerElement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IServerElement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ServerElement message, length delimited. Does not implicitly {@link http.ServerElement.verify|verify} messages.
+         * @param message ServerElement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IServerElement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ServerElement message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ServerElement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ServerElement;
+
+        /**
+         * Decodes a ServerElement message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ServerElement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ServerElement;
+
+        /**
+         * Verifies a ServerElement message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ServerElement message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ServerElement
+         */
+        public static fromObject(object: { [k: string]: any }): http.ServerElement;
+
+        /**
+         * Creates a plain object from a ServerElement message. Also converts values to other types if specified.
+         * @param message ServerElement
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.ServerElement, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ServerElement to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ServerElement
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ServersResponse. */
+    interface IServersResponse {
+
+        /** ServersResponse status */
+        status?: (http.ResponseStatus|null);
+
+        /** ServersResponse servers */
+        servers?: (http.IServerElement[]|null);
+    }
+
+    /** Represents a ServersResponse. */
+    class ServersResponse implements IServersResponse {
+
+        /**
+         * Constructs a new ServersResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IServersResponse);
+
+        /** ServersResponse status. */
+        public status: http.ResponseStatus;
+
+        /** ServersResponse servers. */
+        public servers: http.IServerElement[];
+
+        /**
+         * Creates a new ServersResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ServersResponse instance
+         */
+        public static create(properties?: http.IServersResponse): http.ServersResponse;
+
+        /**
+         * Encodes the specified ServersResponse message. Does not implicitly {@link http.ServersResponse.verify|verify} messages.
+         * @param message ServersResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IServersResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ServersResponse message, length delimited. Does not implicitly {@link http.ServersResponse.verify|verify} messages.
+         * @param message ServersResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IServersResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ServersResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ServersResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ServersResponse;
+
+        /**
+         * Decodes a ServersResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ServersResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ServersResponse;
+
+        /**
+         * Verifies a ServersResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ServersResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ServersResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.ServersResponse;
+
+        /**
+         * Creates a plain object from a ServersResponse message. Also converts values to other types if specified.
+         * @param message ServersResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.ServersResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ServersResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ServersResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+}
+
 /** Namespace connection. */
 export namespace connection {
 

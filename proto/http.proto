@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package http;
+
+enum AccountRole {
+    USER = 0;
+    MOD = 1;
+    DEV = 2;
+}
+
+enum ResponseStatus {
+    Ok = 1;
+    AccountExists = 2;
+    AccountNotExists = 3;
+    InternalError = 4;
+    InvalidBody = 5;
+    NotFound = 6;
+    VerificationFailure = 7;
+    NotAuthenticated = 8;
+    WrongPassword = 9;
+}
+
+message Profile {
+    uint32 vp = 1;
+    string username = 2;
+    map<string, string> highest = 3;
+    repeated string accessories = 4;
+    AccountRole role = 5;
+}
+
+message LoginAndRegisterResponse {
+    ResponseStatus status = 1;
+    optional string token = 2;
+    optional Profile profile = 3;
+}
+
+message ProfileResponse {
+    ResponseStatus status = 1;
+    optional Profile profile = 2;
+}
+
+message AuthResponse {
+    ResponseStatus status = 1;
+    optional Profile profile = 2;
+}
+
+message LogoutResponse {
+    ResponseStatus status = 1;
+}
+
+message ServerElement {
+    string icon = 1;
+    string name = 2;
+    string domain = 3;
+    uint32 online = 4;
+}
+
+message ServersResponse {
+    ResponseStatus status = 1;
+    repeated ServerElement servers = 2;
+}

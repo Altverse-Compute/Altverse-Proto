@@ -119,3 +119,37 @@ message UpdateEntitiesMap {
 message UpdatePlayersMap {
   map<uint32, PartialPlayer> items = 1;
 }
+
+// Client
+
+enum ClientKey {
+  UP = 1;
+  DOWN = 2;
+  LEFT = 3;
+  RIGHT = 4;
+  SHIFT = 5;
+}
+
+enum ClientAbility {
+  FIRST = 1;
+  SECOND = 2;
+}
+
+message ClientInit {
+  string hero = 1;
+}
+
+message ClientMousePos {
+  float x = 1;
+  float y = 2;
+}
+
+message ClientMessage {
+  optional string chatMessage = 1;
+  optional ClientKey keyUp = 2;
+  optional ClientKey keyDown = 3;
+  optional bool mouseEnable = 4;
+  optional ClientMousePos mousePos = 5;
+  optional ClientInit init = 6;
+  optional ClientAbility ability = 7; 
+}

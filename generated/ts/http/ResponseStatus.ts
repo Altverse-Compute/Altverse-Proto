@@ -2,32 +2,32 @@
 
 export const ResponseStatus = {
   Ok: 'Ok',
-  AccountExists: 'AccountExists',
-  AccountNotExists: 'AccountNotExists',
   InternalError: 'InternalError',
   InvalidBody: 'InvalidBody',
   NotFound: 'NotFound',
   VerificationFailure: 'VerificationFailure',
   NotAuthenticated: 'NotAuthenticated',
+  AccountExists: 'AccountExists',
+  AccountNotExists: 'AccountNotExists',
   WrongPassword: 'WrongPassword',
 } as const;
 
 export type ResponseStatus =
   | 'Ok'
   | 1
-  | 'AccountExists'
-  | 2
-  | 'AccountNotExists'
-  | 3
   | 'InternalError'
-  | 4
+  | 2
   | 'InvalidBody'
-  | 5
+  | 3
   | 'NotFound'
-  | 6
+  | 4
   | 'VerificationFailure'
-  | 7
+  | 5
   | 'NotAuthenticated'
+  | 6
+  | 'AccountExists'
+  | 7
+  | 'AccountNotExists'
   | 8
   | 'WrongPassword'
   | 9

@@ -5585,25 +5585,25 @@ export const http = $root.http = (() => {
      * @name http.ResponseStatus
      * @enum {number}
      * @property {number} Ok=1 Ok value
-     * @property {number} AccountExists=2 AccountExists value
-     * @property {number} AccountNotExists=3 AccountNotExists value
-     * @property {number} InternalError=4 InternalError value
-     * @property {number} InvalidBody=5 InvalidBody value
-     * @property {number} NotFound=6 NotFound value
-     * @property {number} VerificationFailure=7 VerificationFailure value
-     * @property {number} NotAuthenticated=8 NotAuthenticated value
+     * @property {number} InternalError=2 InternalError value
+     * @property {number} InvalidBody=3 InvalidBody value
+     * @property {number} NotFound=4 NotFound value
+     * @property {number} VerificationFailure=5 VerificationFailure value
+     * @property {number} NotAuthenticated=6 NotAuthenticated value
+     * @property {number} AccountExists=7 AccountExists value
+     * @property {number} AccountNotExists=8 AccountNotExists value
      * @property {number} WrongPassword=9 WrongPassword value
      */
     http.ResponseStatus = (function() {
         const valuesById = {}, values = $Object.create(valuesById);
         values[valuesById[1] = "Ok"] = 1;
-        values[valuesById[2] = "AccountExists"] = 2;
-        values[valuesById[3] = "AccountNotExists"] = 3;
-        values[valuesById[4] = "InternalError"] = 4;
-        values[valuesById[5] = "InvalidBody"] = 5;
-        values[valuesById[6] = "NotFound"] = 6;
-        values[valuesById[7] = "VerificationFailure"] = 7;
-        values[valuesById[8] = "NotAuthenticated"] = 8;
+        values[valuesById[2] = "InternalError"] = 2;
+        values[valuesById[3] = "InvalidBody"] = 3;
+        values[valuesById[4] = "NotFound"] = 4;
+        values[valuesById[5] = "VerificationFailure"] = 5;
+        values[valuesById[6] = "NotAuthenticated"] = 6;
+        values[valuesById[7] = "AccountExists"] = 7;
+        values[valuesById[8] = "AccountNotExists"] = 8;
         values[valuesById[9] = "WrongPassword"] = 9;
         return values;
     })();
@@ -6389,6 +6389,47 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
+<<<<<<< HEAD
+=======
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "InternalError":
+            case 2:
+                message.status = 2;
+                break;
+            case "InvalidBody":
+            case 3:
+                message.status = 3;
+                break;
+            case "NotFound":
+            case 4:
+                message.status = 4;
+                break;
+            case "VerificationFailure":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotAuthenticated":
+            case 6:
+                message.status = 6;
+                break;
+            case "AccountExists":
+            case 7:
+                message.status = 7;
+                break;
+            case "AccountNotExists":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+>>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.token != null)
                 message.token = $String(object.token);
             if (object.profile != null) {
@@ -6750,6 +6791,47 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
+<<<<<<< HEAD
+=======
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "InternalError":
+            case 2:
+                message.status = 2;
+                break;
+            case "InvalidBody":
+            case 3:
+                message.status = 3;
+                break;
+            case "NotFound":
+            case 4:
+                message.status = 4;
+                break;
+            case "VerificationFailure":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotAuthenticated":
+            case 6:
+                message.status = 6;
+                break;
+            case "AccountExists":
+            case 7:
+                message.status = 7;
+                break;
+            case "AccountNotExists":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+>>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.profile != null) {
                 if (!$util.isObject(object.profile))
                     throw $TypeError(".http.ProfileResponse.profile: object expected");
@@ -7107,6 +7189,47 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
+<<<<<<< HEAD
+=======
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "InternalError":
+            case 2:
+                message.status = 2;
+                break;
+            case "InvalidBody":
+            case 3:
+                message.status = 3;
+                break;
+            case "NotFound":
+            case 4:
+                message.status = 4;
+                break;
+            case "VerificationFailure":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotAuthenticated":
+            case 6:
+                message.status = 6;
+                break;
+            case "AccountExists":
+            case 7:
+                message.status = 7;
+                break;
+            case "AccountNotExists":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+>>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.profile != null) {
                 if (!$util.isObject(object.profile))
                     throw $TypeError(".http.AuthResponse.profile: object expected");
@@ -7428,6 +7551,47 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
+<<<<<<< HEAD
+=======
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "InternalError":
+            case 2:
+                message.status = 2;
+                break;
+            case "InvalidBody":
+            case 3:
+                message.status = 3;
+                break;
+            case "NotFound":
+            case 4:
+                message.status = 4;
+                break;
+            case "VerificationFailure":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotAuthenticated":
+            case 6:
+                message.status = 6;
+                break;
+            case "AccountExists":
+            case 7:
+                message.status = 7;
+                break;
+            case "AccountNotExists":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+>>>>>>> 0555d54 (Added decorate requests for worlds)
             return message;
         };
 
@@ -8120,6 +8284,47 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
+<<<<<<< HEAD
+=======
+                break;
+            case "Ok":
+            case 1:
+                message.status = 1;
+                break;
+            case "InternalError":
+            case 2:
+                message.status = 2;
+                break;
+            case "InvalidBody":
+            case 3:
+                message.status = 3;
+                break;
+            case "NotFound":
+            case 4:
+                message.status = 4;
+                break;
+            case "VerificationFailure":
+            case 5:
+                message.status = 5;
+                break;
+            case "NotAuthenticated":
+            case 6:
+                message.status = 6;
+                break;
+            case "AccountExists":
+            case 7:
+                message.status = 7;
+                break;
+            case "AccountNotExists":
+            case 8:
+                message.status = 8;
+                break;
+            case "WrongPassword":
+            case 9:
+                message.status = 9;
+                break;
+            }
+>>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.servers) {
                 if (!$Array.isArray(object.servers))
                     throw $TypeError(".http.ServersResponse.servers: array expected");
@@ -8190,6 +8395,1463 @@ export const http = $root.http = (() => {
         };
 
         return ServersResponse;
+    })();
+
+    /**
+     * WorldEffect enum.
+     * @name http.WorldEffect
+     * @enum {number}
+     * @property {number} RAIN=1 RAIN value
+     * @property {number} RAINSTORM=2 RAINSTORM value
+     * @property {number} SNOW=3 SNOW value
+     * @property {number} SNOWSTORM=4 SNOWSTORM value
+     * @property {number} AUTUMN=5 AUTUMN value
+     */
+    http.WorldEffect = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[1] = "RAIN"] = 1;
+        values[valuesById[2] = "RAINSTORM"] = 2;
+        values[valuesById[3] = "SNOW"] = 3;
+        values[valuesById[4] = "SNOWSTORM"] = 4;
+        values[valuesById[5] = "AUTUMN"] = 5;
+        return values;
+    })();
+
+    http.WorldProperties = (function() {
+
+        /**
+         * Properties of a WorldProperties.
+         * @memberof http
+         * @interface IWorldProperties
+         * @property {string|null} [fillStyle] WorldProperties fillStyle
+         * @property {string|null} [strokeStyle] WorldProperties strokeStyle
+         * @property {string|null} [areaFill] WorldProperties areaFill
+         * @property {number|null} [areaAlpha] WorldProperties areaAlpha
+         * @property {Array.<http.WorldProperties.IBackground>|null} [backgrounds] WorldProperties backgrounds
+         * @property {http.WorldEffect|null} [effect] WorldProperties effect
+         */
+
+        /**
+         * Constructs a new WorldProperties.
+         * @memberof http
+         * @classdesc Represents a WorldProperties.
+         * @implements IWorldProperties
+         * @constructor
+         * @param {http.IWorldProperties=} [properties] Properties to set
+         */
+        function WorldProperties(properties) {
+            this.backgrounds = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WorldProperties fillStyle.
+         * @member {string} fillStyle
+         * @memberof http.WorldProperties
+         * @instance
+         */
+        WorldProperties.prototype.fillStyle = "";
+
+        /**
+         * WorldProperties strokeStyle.
+         * @member {string} strokeStyle
+         * @memberof http.WorldProperties
+         * @instance
+         */
+        WorldProperties.prototype.strokeStyle = "";
+
+        /**
+         * WorldProperties areaFill.
+         * @member {string} areaFill
+         * @memberof http.WorldProperties
+         * @instance
+         */
+        WorldProperties.prototype.areaFill = "";
+
+        /**
+         * WorldProperties areaAlpha.
+         * @member {number|null|undefined} areaAlpha
+         * @memberof http.WorldProperties
+         * @instance
+         */
+        WorldProperties.prototype.areaAlpha = null;
+
+        /**
+         * WorldProperties backgrounds.
+         * @member {Array.<http.WorldProperties.IBackground>} backgrounds
+         * @memberof http.WorldProperties
+         * @instance
+         */
+        WorldProperties.prototype.backgrounds = $util.emptyArray;
+
+        /**
+         * WorldProperties effect.
+         * @member {http.WorldEffect|null|undefined} effect
+         * @memberof http.WorldProperties
+         * @instance
+         */
+        WorldProperties.prototype.effect = null;
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(WorldProperties.prototype, "_areaAlpha", {
+            get: $util.oneOfGetter($oneOfFields = ["areaAlpha"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(WorldProperties.prototype, "_effect", {
+            get: $util.oneOfGetter($oneOfFields = ["effect"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new WorldProperties instance using the specified properties.
+         * @function create
+         * @memberof http.WorldProperties
+         * @static
+         * @param {http.IWorldProperties=} [properties] Properties to set
+         * @returns {http.WorldProperties} WorldProperties instance
+         */
+        WorldProperties.create = function create(properties) {
+            return new WorldProperties(properties);
+        };
+
+        /**
+         * Encodes the specified WorldProperties message. Does not implicitly {@link http.WorldProperties.verify|verify} messages.
+         * @function encode
+         * @memberof http.WorldProperties
+         * @static
+         * @param {http.IWorldProperties} message WorldProperties message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WorldProperties.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.fillStyle != null && Object.hasOwnProperty.call(message, "fillStyle"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.fillStyle);
+            if (message.strokeStyle != null && Object.hasOwnProperty.call(message, "strokeStyle"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.strokeStyle);
+            if (message.areaFill != null && Object.hasOwnProperty.call(message, "areaFill"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.areaFill);
+            if (message.areaAlpha != null && Object.hasOwnProperty.call(message, "areaAlpha"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.areaAlpha);
+            if (message.backgrounds != null && message.backgrounds.length)
+                for (let i = 0; i < message.backgrounds.length; ++i)
+                    $root.http.WorldProperties.Background.encode(message.backgrounds[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            if (message.effect != null && Object.hasOwnProperty.call(message, "effect"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.effect);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WorldProperties message, length delimited. Does not implicitly {@link http.WorldProperties.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.WorldProperties
+         * @static
+         * @param {http.IWorldProperties} message WorldProperties message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WorldProperties.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WorldProperties message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.WorldProperties
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.WorldProperties} WorldProperties
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WorldProperties.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldProperties();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.fillStyle = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.strokeStyle = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.areaFill = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.areaAlpha = reader.uint32();
+                        break;
+                    }
+                case 5: {
+                        if (!(message.backgrounds && message.backgrounds.length))
+                            message.backgrounds = [];
+                        message.backgrounds.push($root.http.WorldProperties.Background.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 6: {
+                        message.effect = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WorldProperties message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.WorldProperties
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.WorldProperties} WorldProperties
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WorldProperties.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WorldProperties message.
+         * @function verify
+         * @memberof http.WorldProperties
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WorldProperties.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            let properties = {};
+            if (message.fillStyle != null && message.hasOwnProperty("fillStyle"))
+                if (!$util.isString(message.fillStyle))
+                    return "fillStyle: string expected";
+            if (message.strokeStyle != null && message.hasOwnProperty("strokeStyle"))
+                if (!$util.isString(message.strokeStyle))
+                    return "strokeStyle: string expected";
+            if (message.areaFill != null && message.hasOwnProperty("areaFill"))
+                if (!$util.isString(message.areaFill))
+                    return "areaFill: string expected";
+            if (message.areaAlpha != null && message.hasOwnProperty("areaAlpha")) {
+                properties._areaAlpha = 1;
+                if (!$util.isInteger(message.areaAlpha))
+                    return "areaAlpha: integer expected";
+            }
+            if (message.backgrounds != null && message.hasOwnProperty("backgrounds")) {
+                if (!Array.isArray(message.backgrounds))
+                    return "backgrounds: array expected";
+                for (let i = 0; i < message.backgrounds.length; ++i) {
+                    let error = $root.http.WorldProperties.Background.verify(message.backgrounds[i]);
+                    if (error)
+                        return "backgrounds." + error;
+                }
+            }
+            if (message.effect != null && message.hasOwnProperty("effect")) {
+                properties._effect = 1;
+                switch (message.effect) {
+                default:
+                    return "effect: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    break;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a WorldProperties message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.WorldProperties
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.WorldProperties} WorldProperties
+         */
+        WorldProperties.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.WorldProperties)
+                return object;
+            let message = new $root.http.WorldProperties();
+            if (object.fillStyle != null)
+                message.fillStyle = String(object.fillStyle);
+            if (object.strokeStyle != null)
+                message.strokeStyle = String(object.strokeStyle);
+            if (object.areaFill != null)
+                message.areaFill = String(object.areaFill);
+            if (object.areaAlpha != null)
+                message.areaAlpha = object.areaAlpha >>> 0;
+            if (object.backgrounds) {
+                if (!Array.isArray(object.backgrounds))
+                    throw TypeError(".http.WorldProperties.backgrounds: array expected");
+                message.backgrounds = [];
+                for (let i = 0; i < object.backgrounds.length; ++i) {
+                    if (typeof object.backgrounds[i] !== "object")
+                        throw TypeError(".http.WorldProperties.backgrounds: object expected");
+                    message.backgrounds[i] = $root.http.WorldProperties.Background.fromObject(object.backgrounds[i]);
+                }
+            }
+            switch (object.effect) {
+            default:
+                if (typeof object.effect === "number") {
+                    message.effect = object.effect;
+                    break;
+                }
+                break;
+            case "RAIN":
+            case 1:
+                message.effect = 1;
+                break;
+            case "RAINSTORM":
+            case 2:
+                message.effect = 2;
+                break;
+            case "SNOW":
+            case 3:
+                message.effect = 3;
+                break;
+            case "SNOWSTORM":
+            case 4:
+                message.effect = 4;
+                break;
+            case "AUTUMN":
+            case 5:
+                message.effect = 5;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WorldProperties message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.WorldProperties
+         * @static
+         * @param {http.WorldProperties} message WorldProperties
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WorldProperties.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.backgrounds = [];
+            if (options.defaults) {
+                object.fillStyle = "";
+                object.strokeStyle = "";
+                object.areaFill = "";
+            }
+            if (message.fillStyle != null && message.hasOwnProperty("fillStyle"))
+                object.fillStyle = message.fillStyle;
+            if (message.strokeStyle != null && message.hasOwnProperty("strokeStyle"))
+                object.strokeStyle = message.strokeStyle;
+            if (message.areaFill != null && message.hasOwnProperty("areaFill"))
+                object.areaFill = message.areaFill;
+            if (message.areaAlpha != null && message.hasOwnProperty("areaAlpha")) {
+                object.areaAlpha = message.areaAlpha;
+                if (options.oneofs)
+                    object._areaAlpha = "areaAlpha";
+            }
+            if (message.backgrounds && message.backgrounds.length) {
+                object.backgrounds = [];
+                for (let j = 0; j < message.backgrounds.length; ++j)
+                    object.backgrounds[j] = $root.http.WorldProperties.Background.toObject(message.backgrounds[j], options);
+            }
+            if (message.effect != null && message.hasOwnProperty("effect")) {
+                object.effect = options.enums === String ? $root.http.WorldEffect[message.effect] === undefined ? message.effect : $root.http.WorldEffect[message.effect] : message.effect;
+                if (options.oneofs)
+                    object._effect = "effect";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this WorldProperties to JSON.
+         * @function toJSON
+         * @memberof http.WorldProperties
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WorldProperties.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for WorldProperties
+         * @function getTypeUrl
+         * @memberof http.WorldProperties
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        WorldProperties.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.WorldProperties";
+        };
+
+        WorldProperties.Background = (function() {
+
+            /**
+             * Properties of a Background.
+             * @memberof http.WorldProperties
+             * @interface IBackground
+             * @property {string|null} [name] Background name
+             * @property {number|null} [alpha] Background alpha
+             */
+
+            /**
+             * Constructs a new Background.
+             * @memberof http.WorldProperties
+             * @classdesc Represents a Background.
+             * @implements IBackground
+             * @constructor
+             * @param {http.WorldProperties.IBackground=} [properties] Properties to set
+             */
+            function Background(properties) {
+                if (properties)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Background name.
+             * @member {string} name
+             * @memberof http.WorldProperties.Background
+             * @instance
+             */
+            Background.prototype.name = "";
+
+            /**
+             * Background alpha.
+             * @member {number} alpha
+             * @memberof http.WorldProperties.Background
+             * @instance
+             */
+            Background.prototype.alpha = 0;
+
+            /**
+             * Creates a new Background instance using the specified properties.
+             * @function create
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {http.WorldProperties.IBackground=} [properties] Properties to set
+             * @returns {http.WorldProperties.Background} Background instance
+             */
+            Background.create = function create(properties) {
+                return new Background(properties);
+            };
+
+            /**
+             * Encodes the specified Background message. Does not implicitly {@link http.WorldProperties.Background.verify|verify} messages.
+             * @function encode
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {http.WorldProperties.IBackground} message Background message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Background.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                if (message.alpha != null && Object.hasOwnProperty.call(message, "alpha"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.alpha);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Background message, length delimited. Does not implicitly {@link http.WorldProperties.Background.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {http.WorldProperties.IBackground} message Background message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Background.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a Background message from the specified reader or buffer.
+             * @function decode
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {http.WorldProperties.Background} Background
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Background.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldProperties.Background();
+                while (reader.pos < end) {
+                    let tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.alpha = reader.uint32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a Background message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {http.WorldProperties.Background} Background
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Background.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a Background message.
+             * @function verify
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Background.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.alpha != null && message.hasOwnProperty("alpha"))
+                    if (!$util.isInteger(message.alpha))
+                        return "alpha: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a Background message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {http.WorldProperties.Background} Background
+             */
+            Background.fromObject = function fromObject(object) {
+                if (object instanceof $root.http.WorldProperties.Background)
+                    return object;
+                let message = new $root.http.WorldProperties.Background();
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.alpha != null)
+                    message.alpha = object.alpha >>> 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Background message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {http.WorldProperties.Background} message Background
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Background.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                let object = {};
+                if (options.defaults) {
+                    object.name = "";
+                    object.alpha = 0;
+                }
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.alpha != null && message.hasOwnProperty("alpha"))
+                    object.alpha = message.alpha;
+                return object;
+            };
+
+            /**
+             * Converts this Background to JSON.
+             * @function toJSON
+             * @memberof http.WorldProperties.Background
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Background.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for Background
+             * @function getTypeUrl
+             * @memberof http.WorldProperties.Background
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Background.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/http.WorldProperties.Background";
+            };
+
+            return Background;
+        })();
+
+        return WorldProperties;
+    })();
+
+    http.AreaResponse = (function() {
+
+        /**
+         * Properties of an AreaResponse.
+         * @memberof http
+         * @interface IAreaResponse
+         * @property {boolean|null} [win] AreaResponse win
+         * @property {number|null} [vp] AreaResponse vp
+         * @property {string|null} [text] AreaResponse text
+         */
+
+        /**
+         * Constructs a new AreaResponse.
+         * @memberof http
+         * @classdesc Represents an AreaResponse.
+         * @implements IAreaResponse
+         * @constructor
+         * @param {http.IAreaResponse=} [properties] Properties to set
+         */
+        function AreaResponse(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AreaResponse win.
+         * @member {boolean|null|undefined} win
+         * @memberof http.AreaResponse
+         * @instance
+         */
+        AreaResponse.prototype.win = null;
+
+        /**
+         * AreaResponse vp.
+         * @member {number|null|undefined} vp
+         * @memberof http.AreaResponse
+         * @instance
+         */
+        AreaResponse.prototype.vp = null;
+
+        /**
+         * AreaResponse text.
+         * @member {string|null|undefined} text
+         * @memberof http.AreaResponse
+         * @instance
+         */
+        AreaResponse.prototype.text = null;
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(AreaResponse.prototype, "_win", {
+            get: $util.oneOfGetter($oneOfFields = ["win"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(AreaResponse.prototype, "_vp", {
+            get: $util.oneOfGetter($oneOfFields = ["vp"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(AreaResponse.prototype, "_text", {
+            get: $util.oneOfGetter($oneOfFields = ["text"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new AreaResponse instance using the specified properties.
+         * @function create
+         * @memberof http.AreaResponse
+         * @static
+         * @param {http.IAreaResponse=} [properties] Properties to set
+         * @returns {http.AreaResponse} AreaResponse instance
+         */
+        AreaResponse.create = function create(properties) {
+            return new AreaResponse(properties);
+        };
+
+        /**
+         * Encodes the specified AreaResponse message. Does not implicitly {@link http.AreaResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.AreaResponse
+         * @static
+         * @param {http.IAreaResponse} message AreaResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AreaResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.win != null && Object.hasOwnProperty.call(message, "win"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.win);
+            if (message.vp != null && Object.hasOwnProperty.call(message, "vp"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.vp);
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.text);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AreaResponse message, length delimited. Does not implicitly {@link http.AreaResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.AreaResponse
+         * @static
+         * @param {http.IAreaResponse} message AreaResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AreaResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AreaResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.AreaResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.AreaResponse} AreaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AreaResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.AreaResponse();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.win = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.vp = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.text = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AreaResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.AreaResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.AreaResponse} AreaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AreaResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AreaResponse message.
+         * @function verify
+         * @memberof http.AreaResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AreaResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            let properties = {};
+            if (message.win != null && message.hasOwnProperty("win")) {
+                properties._win = 1;
+                if (typeof message.win !== "boolean")
+                    return "win: boolean expected";
+            }
+            if (message.vp != null && message.hasOwnProperty("vp")) {
+                properties._vp = 1;
+                if (!$util.isInteger(message.vp))
+                    return "vp: integer expected";
+            }
+            if (message.text != null && message.hasOwnProperty("text")) {
+                properties._text = 1;
+                if (!$util.isString(message.text))
+                    return "text: string expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates an AreaResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.AreaResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.AreaResponse} AreaResponse
+         */
+        AreaResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.AreaResponse)
+                return object;
+            let message = new $root.http.AreaResponse();
+            if (object.win != null)
+                message.win = Boolean(object.win);
+            if (object.vp != null)
+                message.vp = object.vp >>> 0;
+            if (object.text != null)
+                message.text = String(object.text);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AreaResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.AreaResponse
+         * @static
+         * @param {http.AreaResponse} message AreaResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AreaResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (message.win != null && message.hasOwnProperty("win")) {
+                object.win = message.win;
+                if (options.oneofs)
+                    object._win = "win";
+            }
+            if (message.vp != null && message.hasOwnProperty("vp")) {
+                object.vp = message.vp;
+                if (options.oneofs)
+                    object._vp = "vp";
+            }
+            if (message.text != null && message.hasOwnProperty("text")) {
+                object.text = message.text;
+                if (options.oneofs)
+                    object._text = "text";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this AreaResponse to JSON.
+         * @function toJSON
+         * @memberof http.AreaResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AreaResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AreaResponse
+         * @function getTypeUrl
+         * @memberof http.AreaResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AreaResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.AreaResponse";
+        };
+
+        return AreaResponse;
+    })();
+
+    http.WorldResponse = (function() {
+
+        /**
+         * Properties of a WorldResponse.
+         * @memberof http
+         * @interface IWorldResponse
+         * @property {http.IWorldProperties|null} [properties] WorldResponse properties
+         * @property {Object.<string,http.IAreaResponse>|null} [areas] WorldResponse areas
+         */
+
+        /**
+         * Constructs a new WorldResponse.
+         * @memberof http
+         * @classdesc Represents a WorldResponse.
+         * @implements IWorldResponse
+         * @constructor
+         * @param {http.IWorldResponse=} [properties] Properties to set
+         */
+        function WorldResponse(properties) {
+            this.areas = {};
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WorldResponse properties.
+         * @member {http.IWorldProperties|null|undefined} properties
+         * @memberof http.WorldResponse
+         * @instance
+         */
+        WorldResponse.prototype.properties = null;
+
+        /**
+         * WorldResponse areas.
+         * @member {Object.<string,http.IAreaResponse>} areas
+         * @memberof http.WorldResponse
+         * @instance
+         */
+        WorldResponse.prototype.areas = $util.emptyObject;
+
+        /**
+         * Creates a new WorldResponse instance using the specified properties.
+         * @function create
+         * @memberof http.WorldResponse
+         * @static
+         * @param {http.IWorldResponse=} [properties] Properties to set
+         * @returns {http.WorldResponse} WorldResponse instance
+         */
+        WorldResponse.create = function create(properties) {
+            return new WorldResponse(properties);
+        };
+
+        /**
+         * Encodes the specified WorldResponse message. Does not implicitly {@link http.WorldResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.WorldResponse
+         * @static
+         * @param {http.IWorldResponse} message WorldResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WorldResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.properties != null && Object.hasOwnProperty.call(message, "properties"))
+                $root.http.WorldProperties.encode(message.properties, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.areas != null && Object.hasOwnProperty.call(message, "areas"))
+                for (let keys = Object.keys(message.areas), i = 0; i < keys.length; ++i) {
+                    writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
+                    $root.http.AreaResponse.encode(message.areas[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WorldResponse message, length delimited. Does not implicitly {@link http.WorldResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.WorldResponse
+         * @static
+         * @param {http.IWorldResponse} message WorldResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WorldResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WorldResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.WorldResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.WorldResponse} WorldResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WorldResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldResponse(), key, value;
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.properties = $root.http.WorldProperties.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        if (message.areas === $util.emptyObject)
+                            message.areas = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = null;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = $root.http.AreaResponse.decode(reader, reader.uint32());
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.areas[key] = value;
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WorldResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.WorldResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.WorldResponse} WorldResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WorldResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WorldResponse message.
+         * @function verify
+         * @memberof http.WorldResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WorldResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.properties != null && message.hasOwnProperty("properties")) {
+                let error = $root.http.WorldProperties.verify(message.properties);
+                if (error)
+                    return "properties." + error;
+            }
+            if (message.areas != null && message.hasOwnProperty("areas")) {
+                if (!$util.isObject(message.areas))
+                    return "areas: object expected";
+                let key = Object.keys(message.areas);
+                for (let i = 0; i < key.length; ++i) {
+                    let error = $root.http.AreaResponse.verify(message.areas[key[i]]);
+                    if (error)
+                        return "areas." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a WorldResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.WorldResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.WorldResponse} WorldResponse
+         */
+        WorldResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.WorldResponse)
+                return object;
+            let message = new $root.http.WorldResponse();
+            if (object.properties != null) {
+                if (typeof object.properties !== "object")
+                    throw TypeError(".http.WorldResponse.properties: object expected");
+                message.properties = $root.http.WorldProperties.fromObject(object.properties);
+            }
+            if (object.areas) {
+                if (typeof object.areas !== "object")
+                    throw TypeError(".http.WorldResponse.areas: object expected");
+                message.areas = {};
+                for (let keys = Object.keys(object.areas), i = 0; i < keys.length; ++i) {
+                    if (typeof object.areas[keys[i]] !== "object")
+                        throw TypeError(".http.WorldResponse.areas: object expected");
+                    message.areas[keys[i]] = $root.http.AreaResponse.fromObject(object.areas[keys[i]]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WorldResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.WorldResponse
+         * @static
+         * @param {http.WorldResponse} message WorldResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WorldResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.objects || options.defaults)
+                object.areas = {};
+            if (options.defaults)
+                object.properties = null;
+            if (message.properties != null && message.hasOwnProperty("properties"))
+                object.properties = $root.http.WorldProperties.toObject(message.properties, options);
+            let keys2;
+            if (message.areas && (keys2 = Object.keys(message.areas)).length) {
+                object.areas = {};
+                for (let j = 0; j < keys2.length; ++j)
+                    object.areas[keys2[j]] = $root.http.AreaResponse.toObject(message.areas[keys2[j]], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this WorldResponse to JSON.
+         * @function toJSON
+         * @memberof http.WorldResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WorldResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for WorldResponse
+         * @function getTypeUrl
+         * @memberof http.WorldResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        WorldResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.WorldResponse";
+        };
+
+        return WorldResponse;
+    })();
+
+    http.WorldsResponse = (function() {
+
+        /**
+         * Properties of a WorldsResponse.
+         * @memberof http
+         * @interface IWorldsResponse
+         * @property {Object.<string,http.IWorldResponse>|null} [worlds] WorldsResponse worlds
+         */
+
+        /**
+         * Constructs a new WorldsResponse.
+         * @memberof http
+         * @classdesc Represents a WorldsResponse.
+         * @implements IWorldsResponse
+         * @constructor
+         * @param {http.IWorldsResponse=} [properties] Properties to set
+         */
+        function WorldsResponse(properties) {
+            this.worlds = {};
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WorldsResponse worlds.
+         * @member {Object.<string,http.IWorldResponse>} worlds
+         * @memberof http.WorldsResponse
+         * @instance
+         */
+        WorldsResponse.prototype.worlds = $util.emptyObject;
+
+        /**
+         * Creates a new WorldsResponse instance using the specified properties.
+         * @function create
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {http.IWorldsResponse=} [properties] Properties to set
+         * @returns {http.WorldsResponse} WorldsResponse instance
+         */
+        WorldsResponse.create = function create(properties) {
+            return new WorldsResponse(properties);
+        };
+
+        /**
+         * Encodes the specified WorldsResponse message. Does not implicitly {@link http.WorldsResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {http.IWorldsResponse} message WorldsResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WorldsResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.worlds != null && Object.hasOwnProperty.call(message, "worlds"))
+                for (let keys = Object.keys(message.worlds), i = 0; i < keys.length; ++i) {
+                    writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
+                    $root.http.WorldResponse.encode(message.worlds[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WorldsResponse message, length delimited. Does not implicitly {@link http.WorldsResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {http.IWorldsResponse} message WorldsResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WorldsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WorldsResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.WorldsResponse} WorldsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WorldsResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldsResponse(), key, value;
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (message.worlds === $util.emptyObject)
+                            message.worlds = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = null;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = $root.http.WorldResponse.decode(reader, reader.uint32());
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.worlds[key] = value;
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WorldsResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.WorldsResponse} WorldsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WorldsResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WorldsResponse message.
+         * @function verify
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WorldsResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.worlds != null && message.hasOwnProperty("worlds")) {
+                if (!$util.isObject(message.worlds))
+                    return "worlds: object expected";
+                let key = Object.keys(message.worlds);
+                for (let i = 0; i < key.length; ++i) {
+                    let error = $root.http.WorldResponse.verify(message.worlds[key[i]]);
+                    if (error)
+                        return "worlds." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a WorldsResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.WorldsResponse} WorldsResponse
+         */
+        WorldsResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.http.WorldsResponse)
+                return object;
+            let message = new $root.http.WorldsResponse();
+            if (object.worlds) {
+                if (typeof object.worlds !== "object")
+                    throw TypeError(".http.WorldsResponse.worlds: object expected");
+                message.worlds = {};
+                for (let keys = Object.keys(object.worlds), i = 0; i < keys.length; ++i) {
+                    if (typeof object.worlds[keys[i]] !== "object")
+                        throw TypeError(".http.WorldsResponse.worlds: object expected");
+                    message.worlds[keys[i]] = $root.http.WorldResponse.fromObject(object.worlds[keys[i]]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WorldsResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {http.WorldsResponse} message WorldsResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WorldsResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.objects || options.defaults)
+                object.worlds = {};
+            let keys2;
+            if (message.worlds && (keys2 = Object.keys(message.worlds)).length) {
+                object.worlds = {};
+                for (let j = 0; j < keys2.length; ++j)
+                    object.worlds[keys2[j]] = $root.http.WorldResponse.toObject(message.worlds[keys2[j]], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this WorldsResponse to JSON.
+         * @function toJSON
+         * @memberof http.WorldsResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WorldsResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for WorldsResponse
+         * @function getTypeUrl
+         * @memberof http.WorldsResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        WorldsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/http.WorldsResponse";
+        };
+
+        return WorldsResponse;
     })();
 
     return http;

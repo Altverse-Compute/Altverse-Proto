@@ -1,6 +1,7 @@
 import type * as grpc from '@grpc/grpc-js';
 import type { EnumTypeDefinition, MessageTypeDefinition } from '@grpc/proto-loader';
 
+import type { AreaResponse as _http_AreaResponse, AreaResponse__Output as _http_AreaResponse__Output } from './http/AreaResponse';
 import type { AuthResponse as _http_AuthResponse, AuthResponse__Output as _http_AuthResponse__Output } from './http/AuthResponse';
 import type { LoginAndRegisterResponse as _http_LoginAndRegisterResponse, LoginAndRegisterResponse__Output as _http_LoginAndRegisterResponse__Output } from './http/LoginAndRegisterResponse';
 import type { LogoutResponse as _http_LogoutResponse, LogoutResponse__Output as _http_LogoutResponse__Output } from './http/LogoutResponse';
@@ -8,6 +9,9 @@ import type { Profile as _http_Profile, Profile__Output as _http_Profile__Output
 import type { ProfileResponse as _http_ProfileResponse, ProfileResponse__Output as _http_ProfileResponse__Output } from './http/ProfileResponse';
 import type { ServerElement as _http_ServerElement, ServerElement__Output as _http_ServerElement__Output } from './http/ServerElement';
 import type { ServersResponse as _http_ServersResponse, ServersResponse__Output as _http_ServersResponse__Output } from './http/ServersResponse';
+import type { WorldProperties as _http_WorldProperties, WorldProperties__Output as _http_WorldProperties__Output } from './http/WorldProperties';
+import type { WorldResponse as _http_WorldResponse, WorldResponse__Output as _http_WorldResponse__Output } from './http/WorldResponse';
+import type { WorldsResponse as _http_WorldsResponse, WorldsResponse__Output as _http_WorldsResponse__Output } from './http/WorldsResponse';
 
 type SubtypeConstructor<Constructor extends new (...args: any) => any, Subtype> = {
   new(...args: ConstructorParameters<Constructor>): Subtype;
@@ -16,6 +20,7 @@ type SubtypeConstructor<Constructor extends new (...args: any) => any, Subtype> 
 export interface ProtoGrpcType {
   http: {
     AccountRole: EnumTypeDefinition
+    AreaResponse: MessageTypeDefinition<_http_AreaResponse, _http_AreaResponse__Output>
     AuthResponse: MessageTypeDefinition<_http_AuthResponse, _http_AuthResponse__Output>
     LoginAndRegisterResponse: MessageTypeDefinition<_http_LoginAndRegisterResponse, _http_LoginAndRegisterResponse__Output>
     LogoutResponse: MessageTypeDefinition<_http_LogoutResponse, _http_LogoutResponse__Output>
@@ -24,6 +29,10 @@ export interface ProtoGrpcType {
     ResponseStatus: EnumTypeDefinition
     ServerElement: MessageTypeDefinition<_http_ServerElement, _http_ServerElement__Output>
     ServersResponse: MessageTypeDefinition<_http_ServersResponse, _http_ServersResponse__Output>
+    WorldEffect: EnumTypeDefinition
+    WorldProperties: MessageTypeDefinition<_http_WorldProperties, _http_WorldProperties__Output>
+    WorldResponse: MessageTypeDefinition<_http_WorldResponse, _http_WorldResponse__Output>
+    WorldsResponse: MessageTypeDefinition<_http_WorldsResponse, _http_WorldsResponse__Output>
   }
 }
 

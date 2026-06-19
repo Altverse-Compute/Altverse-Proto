@@ -1913,6 +1913,7 @@ export namespace http {
 
         /** Ok value */
         Ok = 1,
+<<<<<<< HEAD
 
         /** AccountExists value */
         AccountExists = 2,
@@ -1936,6 +1937,15 @@ export namespace http {
         NotAuthenticated = 8,
 
         /** WrongPassword value */
+=======
+        InternalError = 2,
+        InvalidBody = 3,
+        NotFound = 4,
+        VerificationFailure = 5,
+        NotAuthenticated = 6,
+        AccountExists = 7,
+        AccountNotExists = 8,
+>>>>>>> 0555d54 (Added decorate requests for worlds)
         WrongPassword = 9
     }
 
@@ -2828,6 +2838,557 @@ export namespace http {
 
         /** Shape of a ServersResponse. */
         type $Shape = http.ServersResponse.$Properties;
+    }
+
+    /** WorldEffect enum. */
+    enum WorldEffect {
+        RAIN = 1,
+        RAINSTORM = 2,
+        SNOW = 3,
+        SNOWSTORM = 4,
+        AUTUMN = 5
+    }
+
+    /** Properties of a WorldProperties. */
+    interface IWorldProperties {
+
+        /** WorldProperties fillStyle */
+        fillStyle?: (string|null);
+
+        /** WorldProperties strokeStyle */
+        strokeStyle?: (string|null);
+
+        /** WorldProperties areaFill */
+        areaFill?: (string|null);
+
+        /** WorldProperties areaAlpha */
+        areaAlpha?: (number|null);
+
+        /** WorldProperties backgrounds */
+        backgrounds?: (http.WorldProperties.IBackground[]|null);
+
+        /** WorldProperties effect */
+        effect?: (http.WorldEffect|null);
+    }
+
+    /** Represents a WorldProperties. */
+    class WorldProperties implements IWorldProperties {
+
+        /**
+         * Constructs a new WorldProperties.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IWorldProperties);
+
+        /** WorldProperties fillStyle. */
+        public fillStyle: string;
+
+        /** WorldProperties strokeStyle. */
+        public strokeStyle: string;
+
+        /** WorldProperties areaFill. */
+        public areaFill: string;
+
+        /** WorldProperties areaAlpha. */
+        public areaAlpha?: (number|null);
+
+        /** WorldProperties backgrounds. */
+        public backgrounds: http.WorldProperties.IBackground[];
+
+        /** WorldProperties effect. */
+        public effect?: (http.WorldEffect|null);
+
+        /**
+         * Creates a new WorldProperties instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WorldProperties instance
+         */
+        public static create(properties?: http.IWorldProperties): http.WorldProperties;
+
+        /**
+         * Encodes the specified WorldProperties message. Does not implicitly {@link http.WorldProperties.verify|verify} messages.
+         * @param message WorldProperties message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IWorldProperties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WorldProperties message, length delimited. Does not implicitly {@link http.WorldProperties.verify|verify} messages.
+         * @param message WorldProperties message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IWorldProperties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WorldProperties message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WorldProperties
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldProperties;
+
+        /**
+         * Decodes a WorldProperties message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WorldProperties
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldProperties;
+
+        /**
+         * Verifies a WorldProperties message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WorldProperties message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WorldProperties
+         */
+        public static fromObject(object: { [k: string]: any }): http.WorldProperties;
+
+        /**
+         * Creates a plain object from a WorldProperties message. Also converts values to other types if specified.
+         * @param message WorldProperties
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.WorldProperties, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WorldProperties to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for WorldProperties
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace WorldProperties {
+
+        /** Properties of a Background. */
+        interface IBackground {
+
+            /** Background name */
+            name?: (string|null);
+
+            /** Background alpha */
+            alpha?: (number|null);
+        }
+
+        /** Represents a Background. */
+        class Background implements IBackground {
+
+            /**
+             * Constructs a new Background.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: http.WorldProperties.IBackground);
+
+            /** Background name. */
+            public name: string;
+
+            /** Background alpha. */
+            public alpha: number;
+
+            /**
+             * Creates a new Background instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Background instance
+             */
+            public static create(properties?: http.WorldProperties.IBackground): http.WorldProperties.Background;
+
+            /**
+             * Encodes the specified Background message. Does not implicitly {@link http.WorldProperties.Background.verify|verify} messages.
+             * @param message Background message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: http.WorldProperties.IBackground, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Background message, length delimited. Does not implicitly {@link http.WorldProperties.Background.verify|verify} messages.
+             * @param message Background message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: http.WorldProperties.IBackground, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Background message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Background
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldProperties.Background;
+
+            /**
+             * Decodes a Background message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Background
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldProperties.Background;
+
+            /**
+             * Verifies a Background message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Background message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Background
+             */
+            public static fromObject(object: { [k: string]: any }): http.WorldProperties.Background;
+
+            /**
+             * Creates a plain object from a Background message. Also converts values to other types if specified.
+             * @param message Background
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: http.WorldProperties.Background, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Background to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for Background
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+    }
+
+    /** Properties of an AreaResponse. */
+    interface IAreaResponse {
+
+        /** AreaResponse win */
+        win?: (boolean|null);
+
+        /** AreaResponse vp */
+        vp?: (number|null);
+
+        /** AreaResponse text */
+        text?: (string|null);
+    }
+
+    /** Represents an AreaResponse. */
+    class AreaResponse implements IAreaResponse {
+
+        /**
+         * Constructs a new AreaResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IAreaResponse);
+
+        /** AreaResponse win. */
+        public win?: (boolean|null);
+
+        /** AreaResponse vp. */
+        public vp?: (number|null);
+
+        /** AreaResponse text. */
+        public text?: (string|null);
+
+        /**
+         * Creates a new AreaResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AreaResponse instance
+         */
+        public static create(properties?: http.IAreaResponse): http.AreaResponse;
+
+        /**
+         * Encodes the specified AreaResponse message. Does not implicitly {@link http.AreaResponse.verify|verify} messages.
+         * @param message AreaResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IAreaResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AreaResponse message, length delimited. Does not implicitly {@link http.AreaResponse.verify|verify} messages.
+         * @param message AreaResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IAreaResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AreaResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AreaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AreaResponse;
+
+        /**
+         * Decodes an AreaResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AreaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AreaResponse;
+
+        /**
+         * Verifies an AreaResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AreaResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AreaResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.AreaResponse;
+
+        /**
+         * Creates a plain object from an AreaResponse message. Also converts values to other types if specified.
+         * @param message AreaResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.AreaResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AreaResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AreaResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a WorldResponse. */
+    interface IWorldResponse {
+
+        /** WorldResponse properties */
+        properties?: (http.IWorldProperties|null);
+
+        /** WorldResponse areas */
+        areas?: ({ [k: string]: http.IAreaResponse }|null);
+    }
+
+    /** Represents a WorldResponse. */
+    class WorldResponse implements IWorldResponse {
+
+        /**
+         * Constructs a new WorldResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IWorldResponse);
+
+        /** WorldResponse properties. */
+        public properties?: (http.IWorldProperties|null);
+
+        /** WorldResponse areas. */
+        public areas: { [k: string]: http.IAreaResponse };
+
+        /**
+         * Creates a new WorldResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WorldResponse instance
+         */
+        public static create(properties?: http.IWorldResponse): http.WorldResponse;
+
+        /**
+         * Encodes the specified WorldResponse message. Does not implicitly {@link http.WorldResponse.verify|verify} messages.
+         * @param message WorldResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IWorldResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WorldResponse message, length delimited. Does not implicitly {@link http.WorldResponse.verify|verify} messages.
+         * @param message WorldResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IWorldResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WorldResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WorldResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldResponse;
+
+        /**
+         * Decodes a WorldResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WorldResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldResponse;
+
+        /**
+         * Verifies a WorldResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WorldResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WorldResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.WorldResponse;
+
+        /**
+         * Creates a plain object from a WorldResponse message. Also converts values to other types if specified.
+         * @param message WorldResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.WorldResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WorldResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for WorldResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a WorldsResponse. */
+    interface IWorldsResponse {
+
+        /** WorldsResponse worlds */
+        worlds?: ({ [k: string]: http.IWorldResponse }|null);
+    }
+
+    /** Represents a WorldsResponse. */
+    class WorldsResponse implements IWorldsResponse {
+
+        /**
+         * Constructs a new WorldsResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IWorldsResponse);
+
+        /** WorldsResponse worlds. */
+        public worlds: { [k: string]: http.IWorldResponse };
+
+        /**
+         * Creates a new WorldsResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WorldsResponse instance
+         */
+        public static create(properties?: http.IWorldsResponse): http.WorldsResponse;
+
+        /**
+         * Encodes the specified WorldsResponse message. Does not implicitly {@link http.WorldsResponse.verify|verify} messages.
+         * @param message WorldsResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IWorldsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WorldsResponse message, length delimited. Does not implicitly {@link http.WorldsResponse.verify|verify} messages.
+         * @param message WorldsResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IWorldsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WorldsResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WorldsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldsResponse;
+
+        /**
+         * Decodes a WorldsResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WorldsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldsResponse;
+
+        /**
+         * Verifies a WorldsResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WorldsResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WorldsResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.WorldsResponse;
+
+        /**
+         * Creates a plain object from a WorldsResponse message. Also converts values to other types if specified.
+         * @param message WorldsResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.WorldsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WorldsResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for WorldsResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }
 

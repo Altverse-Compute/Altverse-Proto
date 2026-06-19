@@ -10,13 +10,15 @@ enum AccountRole {
 
 enum ResponseStatus {
     Ok = 1;
-    AccountExists = 2;
-    AccountNotExists = 3;
-    InternalError = 4;
-    InvalidBody = 5;
-    NotFound = 6;
-    VerificationFailure = 7;
-    NotAuthenticated = 8;
+    InternalError = 2;
+    InvalidBody = 3;
+    NotFound = 4;
+
+    VerificationFailure = 5;
+    NotAuthenticated = 6;
+
+    AccountExists = 7;
+    AccountNotExists = 8;
     WrongPassword = 9;
 }
 
@@ -58,4 +60,43 @@ message ServerElement {
 message ServersResponse {
     ResponseStatus status = 1;
     repeated ServerElement servers = 2;
+}
+
+// Server HTTP
+
+enum WorldEffect {
+    RAIN = 1;
+    RAINSTORM = 2;
+    SNOW = 3;
+    SNOWSTORM = 4;
+    AUTUMN = 5;
+}
+
+message WorldProperties {
+    message Background {
+        string name = 1;
+        uint32 alpha = 2;
+    }
+
+    string fillStyle = 1;
+    string strokeStyle = 2;
+    string areaFill = 3;
+    optional uint32 areaAlpha = 4;
+    repeated Background backgrounds = 5;
+    optional WorldEffect effect = 6;
+}
+
+message AreaResponse {
+    optional bool win = 1;
+    optional uint32 vp = 2;
+    optional string text = 3;
+}
+
+message WorldResponse {
+    WorldProperties properties = 1;
+    map<string, AreaResponse> areas = 2;
+}
+
+message WorldsResponse {
+    map<string, WorldResponse> worlds = 1;
 }

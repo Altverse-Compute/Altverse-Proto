@@ -6,6 +6,7 @@ enum AccountRole {
     USER = 0;
     MOD = 1;
     DEV = 2;
+    ADMIN = 3;
 }
 
 enum ResponseStatus {
@@ -60,6 +61,19 @@ message ServerElement {
 message ServersResponse {
     ResponseStatus status = 1;
     repeated ServerElement servers = 2;
+}
+
+message AdminModeServer {
+    string icon = 1;
+    string name = 2;
+    string domain = 3;
+    string lastSeen = 4;
+}
+
+message AdminModeServersResponse {
+    repeated AdminModeServer servers = 1;
+    uint32 online = 2;
+    uint32 count = 3;
 }
 
 // Server HTTP

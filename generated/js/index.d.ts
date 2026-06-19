@@ -1,63 +1,64 @@
 import * as $protobuf from "protobufjs";
 import Long = require("long");
-
 /** Namespace game. */
 export namespace game {
 
     /** Role enum. */
     enum Role {
-
-        /** USER value */
         USER = 0,
-
-        /** MOD value */
         MOD = 1,
-
-        /** DEV value */
         DEV = 2
     }
 
-    /**
-     * Properties of a Chat.
-     * @deprecated Use game.Chat.$Properties instead.
-     */
-    interface IChat extends game.Chat.$Properties {
+    /** Properties of a Chat. */
+    interface IChat {
+
+        /** Chat id */
+        id?: (number|null);
+
+        /** Chat content */
+        content?: (string|null);
+
+        /** Chat author */
+        author?: (string|null);
+
+        /** Chat role */
+        role?: (game.Role|null);
+
+        /** Chat world */
+        world?: (string|null);
     }
 
     /** Represents a Chat. */
-    class Chat {
+    class Chat implements IChat {
 
         /**
          * Constructs a new Chat.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.Chat.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IChat);
 
         /** Chat id. */
-        id: number;
+        public id: number;
 
         /** Chat content. */
-        content: string;
+        public content: string;
 
         /** Chat author. */
-        author: string;
+        public author: string;
 
         /** Chat role. */
-        role: game.Role;
+        public role: game.Role;
 
         /** Chat world. */
-        world: string;
+        public world: string;
 
         /**
          * Creates a new Chat instance using the specified properties.
          * @param [properties] Properties to set
          * @returns Chat instance
          */
-        static create(properties: game.Chat.$Shape): game.Chat & game.Chat.$Shape;
-        static create(properties?: game.Chat.$Properties): game.Chat;
+        public static create(properties?: game.IChat): game.Chat;
 
         /**
          * Encodes the specified Chat message. Does not implicitly {@link game.Chat.verify|verify} messages.
@@ -65,7 +66,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.Chat.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IChat, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified Chat message, length delimited. Does not implicitly {@link game.Chat.verify|verify} messages.
@@ -73,40 +74,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.Chat.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IChat, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a Chat message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.Chat & game.Chat.$Shape} Chat
+         * @returns Chat
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Chat & game.Chat.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Chat;
 
         /**
          * Decodes a Chat message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.Chat & game.Chat.$Shape} Chat
+         * @returns Chat
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Chat & game.Chat.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Chat;
 
         /**
          * Verifies a Chat message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a Chat message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Chat
          */
-        static fromObject(object: { [k: string]: any }): game.Chat;
+        public static fromObject(object: { [k: string]: any }): game.Chat;
 
         /**
          * Creates a plain object from a Chat message. Also converts values to other types if specified.
@@ -114,100 +115,89 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.Chat, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.Chat, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this Chat to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for Chat
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for Chat
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace Chat {
+    /** Properties of a PackedEntity. */
+    interface IPackedEntity {
 
-        /** Properties of a Chat. */
-        interface $Properties {
+        /** PackedEntity typeId */
+        typeId?: (number|null);
 
-            /** Chat id */
-            id?: (number|null);
+        /** PackedEntity x */
+        x?: (number|null);
 
-            /** Chat content */
-            content?: (string|null);
+        /** PackedEntity y */
+        y?: (number|null);
 
-            /** Chat author */
-            author?: (string|null);
+        /** PackedEntity radius */
+        radius?: (number|null);
 
-            /** Chat role */
-            role?: (game.Role|null);
+        /** PackedEntity harmless */
+        harmless?: (boolean|null);
 
-            /** Chat world */
-            world?: (string|null);
+        /** PackedEntity state */
+        state?: (number|null);
 
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
+        /** PackedEntity stateMetadata */
+        stateMetadata?: (number|null);
 
-        /** Shape of a Chat. */
-        type $Shape = game.Chat.$Properties;
-    }
-
-    /**
-     * Properties of a PackedEntity.
-     * @deprecated Use game.PackedEntity.$Properties instead.
-     */
-    interface IPackedEntity extends game.PackedEntity.$Properties {
+        /** PackedEntity alpha */
+        alpha?: (number|null);
     }
 
     /** Represents a PackedEntity. */
-    class PackedEntity {
+    class PackedEntity implements IPackedEntity {
 
         /**
          * Constructs a new PackedEntity.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.PackedEntity.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPackedEntity);
 
         /** PackedEntity typeId. */
-        typeId: number;
+        public typeId: number;
 
         /** PackedEntity x. */
-        x: number;
+        public x: number;
 
         /** PackedEntity y. */
-        y: number;
+        public y: number;
 
         /** PackedEntity radius. */
-        radius: number;
+        public radius: number;
 
         /** PackedEntity harmless. */
-        harmless: boolean;
+        public harmless: boolean;
 
         /** PackedEntity state. */
-        state: number;
+        public state: number;
 
         /** PackedEntity stateMetadata. */
-        stateMetadata: number;
+        public stateMetadata: number;
 
         /** PackedEntity alpha. */
-        alpha: number;
+        public alpha: number;
 
         /**
          * Creates a new PackedEntity instance using the specified properties.
          * @param [properties] Properties to set
          * @returns PackedEntity instance
          */
-        static create(properties: game.PackedEntity.$Shape): game.PackedEntity & game.PackedEntity.$Shape;
-        static create(properties?: game.PackedEntity.$Properties): game.PackedEntity;
+        public static create(properties?: game.IPackedEntity): game.PackedEntity;
 
         /**
          * Encodes the specified PackedEntity message. Does not implicitly {@link game.PackedEntity.verify|verify} messages.
@@ -215,7 +205,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.PackedEntity.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPackedEntity, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified PackedEntity message, length delimited. Does not implicitly {@link game.PackedEntity.verify|verify} messages.
@@ -223,40 +213,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.PackedEntity.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPackedEntity, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a PackedEntity message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.PackedEntity & game.PackedEntity.$Shape} PackedEntity
+         * @returns PackedEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PackedEntity & game.PackedEntity.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PackedEntity;
 
         /**
          * Decodes a PackedEntity message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.PackedEntity & game.PackedEntity.$Shape} PackedEntity
+         * @returns PackedEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PackedEntity & game.PackedEntity.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PackedEntity;
 
         /**
          * Verifies a PackedEntity message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PackedEntity message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns PackedEntity
          */
-        static fromObject(object: { [k: string]: any }): game.PackedEntity;
+        public static fromObject(object: { [k: string]: any }): game.PackedEntity;
 
         /**
          * Creates a plain object from a PackedEntity message. Also converts values to other types if specified.
@@ -264,130 +254,131 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.PackedEntity, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.PackedEntity, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this PackedEntity to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for PackedEntity
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for PackedEntity
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace PackedEntity {
+    /** Properties of a PackedPlayer. */
+    interface IPackedPlayer {
 
-        /** Properties of a PackedEntity. */
-        interface $Properties {
+        /** PackedPlayer name */
+        name?: (string|null);
 
-            /** PackedEntity typeId */
-            typeId?: (number|null);
+        /** PackedPlayer id */
+        id?: (number|null);
 
-            /** PackedEntity x */
-            x?: (number|null);
+        /** PackedPlayer x */
+        x?: (number|null);
 
-            /** PackedEntity y */
-            y?: (number|null);
+        /** PackedPlayer y */
+        y?: (number|null);
 
-            /** PackedEntity radius */
-            radius?: (number|null);
+        /** PackedPlayer radius */
+        radius?: (number|null);
 
-            /** PackedEntity harmless */
-            harmless?: (boolean|null);
+        /** PackedPlayer speed */
+        speed?: (number|null);
 
-            /** PackedEntity state */
-            state?: (number|null);
+        /** PackedPlayer energy */
+        energy?: (number|null);
 
-            /** PackedEntity stateMetadata */
-            stateMetadata?: (number|null);
+        /** PackedPlayer maxEnergy */
+        maxEnergy?: (number|null);
 
-            /** PackedEntity alpha */
-            alpha?: (number|null);
+        /** PackedPlayer deathTimer */
+        deathTimer?: (number|null);
 
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
+        /** PackedPlayer state */
+        state?: (number|null);
 
-        /** Shape of a PackedEntity. */
-        type $Shape = game.PackedEntity.$Properties;
-    }
+        /** PackedPlayer stateMeta */
+        stateMeta?: (number|null);
 
-    /**
-     * Properties of a PackedPlayer.
-     * @deprecated Use game.PackedPlayer.$Properties instead.
-     */
-    interface IPackedPlayer extends game.PackedPlayer.$Properties {
+        /** PackedPlayer area */
+        area?: (number|null);
+
+        /** PackedPlayer world */
+        world?: (string|null);
+
+        /** PackedPlayer died */
+        died?: (boolean|null);
+
+        /** PackedPlayer hero */
+        hero?: (number|null);
     }
 
     /** Represents a PackedPlayer. */
-    class PackedPlayer {
+    class PackedPlayer implements IPackedPlayer {
 
         /**
          * Constructs a new PackedPlayer.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.PackedPlayer.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPackedPlayer);
 
         /** PackedPlayer name. */
-        name: string;
+        public name: string;
 
         /** PackedPlayer id. */
-        id: number;
+        public id: number;
 
         /** PackedPlayer x. */
-        x: number;
+        public x: number;
 
         /** PackedPlayer y. */
-        y: number;
+        public y: number;
 
         /** PackedPlayer radius. */
-        radius: number;
+        public radius: number;
 
         /** PackedPlayer speed. */
-        speed: number;
+        public speed: number;
 
         /** PackedPlayer energy. */
-        energy: number;
+        public energy: number;
 
         /** PackedPlayer maxEnergy. */
-        maxEnergy: number;
+        public maxEnergy: number;
 
         /** PackedPlayer deathTimer. */
-        deathTimer: number;
+        public deathTimer: number;
 
         /** PackedPlayer state. */
-        state: number;
+        public state: number;
 
         /** PackedPlayer stateMeta. */
-        stateMeta: number;
+        public stateMeta: number;
 
         /** PackedPlayer area. */
-        area: number;
+        public area: number;
 
         /** PackedPlayer world. */
-        world: string;
+        public world: string;
 
         /** PackedPlayer died. */
-        died: boolean;
+        public died: boolean;
 
         /** PackedPlayer hero. */
-        hero: number;
+        public hero: number;
 
         /**
          * Creates a new PackedPlayer instance using the specified properties.
          * @param [properties] Properties to set
          * @returns PackedPlayer instance
          */
-        static create(properties: game.PackedPlayer.$Shape): game.PackedPlayer & game.PackedPlayer.$Shape;
-        static create(properties?: game.PackedPlayer.$Properties): game.PackedPlayer;
+        public static create(properties?: game.IPackedPlayer): game.PackedPlayer;
 
         /**
          * Encodes the specified PackedPlayer message. Does not implicitly {@link game.PackedPlayer.verify|verify} messages.
@@ -395,7 +386,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.PackedPlayer.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPackedPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified PackedPlayer message, length delimited. Does not implicitly {@link game.PackedPlayer.verify|verify} messages.
@@ -403,40 +394,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.PackedPlayer.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPackedPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a PackedPlayer message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.PackedPlayer & game.PackedPlayer.$Shape} PackedPlayer
+         * @returns PackedPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PackedPlayer & game.PackedPlayer.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PackedPlayer;
 
         /**
          * Decodes a PackedPlayer message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.PackedPlayer & game.PackedPlayer.$Shape} PackedPlayer
+         * @returns PackedPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PackedPlayer & game.PackedPlayer.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PackedPlayer;
 
         /**
          * Verifies a PackedPlayer message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PackedPlayer message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns PackedPlayer
          */
-        static fromObject(object: { [k: string]: any }): game.PackedPlayer;
+        public static fromObject(object: { [k: string]: any }): game.PackedPlayer;
 
         /**
          * Creates a plain object from a PackedPlayer message. Also converts values to other types if specified.
@@ -444,127 +435,83 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.PackedPlayer, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.PackedPlayer, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this PackedPlayer to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for PackedPlayer
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for PackedPlayer
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace PackedPlayer {
+    /** Properties of a PartialEntity. */
+    interface IPartialEntity {
 
-        /** Properties of a PackedPlayer. */
-        interface $Properties {
+        /** PartialEntity x */
+        x?: (number|null);
 
-            /** PackedPlayer name */
-            name?: (string|null);
+        /** PartialEntity y */
+        y?: (number|null);
 
-            /** PackedPlayer id */
-            id?: (number|null);
+        /** PartialEntity radius */
+        radius?: (number|null);
 
-            /** PackedPlayer x */
-            x?: (number|null);
+        /** PartialEntity harmless */
+        harmless?: (boolean|null);
 
-            /** PackedPlayer y */
-            y?: (number|null);
+        /** PartialEntity state */
+        state?: (number|null);
 
-            /** PackedPlayer radius */
-            radius?: (number|null);
+        /** PartialEntity stateMetadata */
+        stateMetadata?: (number|null);
 
-            /** PackedPlayer speed */
-            speed?: (number|null);
-
-            /** PackedPlayer energy */
-            energy?: (number|null);
-
-            /** PackedPlayer maxEnergy */
-            maxEnergy?: (number|null);
-
-            /** PackedPlayer deathTimer */
-            deathTimer?: (number|null);
-
-            /** PackedPlayer state */
-            state?: (number|null);
-
-            /** PackedPlayer stateMeta */
-            stateMeta?: (number|null);
-
-            /** PackedPlayer area */
-            area?: (number|null);
-
-            /** PackedPlayer world */
-            world?: (string|null);
-
-            /** PackedPlayer died */
-            died?: (boolean|null);
-
-            /** PackedPlayer hero */
-            hero?: (number|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a PackedPlayer. */
-        type $Shape = game.PackedPlayer.$Properties;
-    }
-
-    /**
-     * Properties of a PartialEntity.
-     * @deprecated Use game.PartialEntity.$Properties instead.
-     */
-    interface IPartialEntity extends game.PartialEntity.$Properties {
+        /** PartialEntity alpha */
+        alpha?: (number|null);
     }
 
     /** Represents a PartialEntity. */
-    class PartialEntity {
+    class PartialEntity implements IPartialEntity {
 
         /**
          * Constructs a new PartialEntity.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.PartialEntity.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPartialEntity);
 
         /** PartialEntity x. */
-        x?: (number|null);
+        public x?: (number|null);
 
         /** PartialEntity y. */
-        y?: (number|null);
+        public y?: (number|null);
 
         /** PartialEntity radius. */
-        radius?: (number|null);
+        public radius?: (number|null);
 
         /** PartialEntity harmless. */
-        harmless?: (boolean|null);
+        public harmless?: (boolean|null);
 
         /** PartialEntity state. */
-        state?: (number|null);
+        public state?: (number|null);
 
         /** PartialEntity stateMetadata. */
-        stateMetadata?: (number|null);
+        public stateMetadata?: (number|null);
 
         /** PartialEntity alpha. */
-        alpha?: (number|null);
+        public alpha?: (number|null);
 
         /**
          * Creates a new PartialEntity instance using the specified properties.
          * @param [properties] Properties to set
          * @returns PartialEntity instance
          */
-        static create(properties: game.PartialEntity.$Shape): game.PartialEntity & game.PartialEntity.$Shape;
-        static create(properties?: game.PartialEntity.$Properties): game.PartialEntity;
+        public static create(properties?: game.IPartialEntity): game.PartialEntity;
 
         /**
          * Encodes the specified PartialEntity message. Does not implicitly {@link game.PartialEntity.verify|verify} messages.
@@ -572,7 +519,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.PartialEntity.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPartialEntity, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified PartialEntity message, length delimited. Does not implicitly {@link game.PartialEntity.verify|verify} messages.
@@ -580,40 +527,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.PartialEntity.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPartialEntity, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a PartialEntity message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.PartialEntity & game.PartialEntity.$Shape} PartialEntity
+         * @returns PartialEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PartialEntity & game.PartialEntity.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PartialEntity;
 
         /**
          * Decodes a PartialEntity message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.PartialEntity & game.PartialEntity.$Shape} PartialEntity
+         * @returns PartialEntity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PartialEntity & game.PartialEntity.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PartialEntity;
 
         /**
          * Verifies a PartialEntity message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PartialEntity message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns PartialEntity
          */
-        static fromObject(object: { [k: string]: any }): game.PartialEntity;
+        public static fromObject(object: { [k: string]: any }): game.PartialEntity;
 
         /**
          * Creates a plain object from a PartialEntity message. Also converts values to other types if specified.
@@ -621,118 +568,113 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.PartialEntity, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.PartialEntity, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this PartialEntity to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for PartialEntity
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for PartialEntity
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace PartialEntity {
+    /** Properties of a PartialPlayer. */
+    interface IPartialPlayer {
 
-        /** Properties of a PartialEntity. */
-        interface $Properties {
+        /** PartialPlayer x */
+        x?: (number|null);
 
-            /** PartialEntity x */
-            x?: (number|null);
+        /** PartialPlayer y */
+        y?: (number|null);
 
-            /** PartialEntity y */
-            y?: (number|null);
+        /** PartialPlayer radius */
+        radius?: (number|null);
 
-            /** PartialEntity radius */
-            radius?: (number|null);
+        /** PartialPlayer speed */
+        speed?: (number|null);
 
-            /** PartialEntity harmless */
-            harmless?: (boolean|null);
+        /** PartialPlayer energy */
+        energy?: (number|null);
 
-            /** PartialEntity state */
-            state?: (number|null);
+        /** PartialPlayer maxEnergy */
+        maxEnergy?: (number|null);
 
-            /** PartialEntity stateMetadata */
-            stateMetadata?: (number|null);
+        /** PartialPlayer deathTimer */
+        deathTimer?: (number|null);
 
-            /** PartialEntity alpha */
-            alpha?: (number|null);
+        /** PartialPlayer state */
+        state?: (number|null);
 
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
+        /** PartialPlayer stateMeta */
+        stateMeta?: (number|null);
 
-        /** Shape of a PartialEntity. */
-        type $Shape = game.PartialEntity.$Properties;
-    }
+        /** PartialPlayer area */
+        area?: (number|null);
 
-    /**
-     * Properties of a PartialPlayer.
-     * @deprecated Use game.PartialPlayer.$Properties instead.
-     */
-    interface IPartialPlayer extends game.PartialPlayer.$Properties {
+        /** PartialPlayer world */
+        world?: (string|null);
+
+        /** PartialPlayer died */
+        died?: (boolean|null);
     }
 
     /** Represents a PartialPlayer. */
-    class PartialPlayer {
+    class PartialPlayer implements IPartialPlayer {
 
         /**
          * Constructs a new PartialPlayer.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.PartialPlayer.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPartialPlayer);
 
         /** PartialPlayer x. */
-        x?: (number|null);
+        public x?: (number|null);
 
         /** PartialPlayer y. */
-        y?: (number|null);
+        public y?: (number|null);
 
         /** PartialPlayer radius. */
-        radius?: (number|null);
+        public radius?: (number|null);
 
         /** PartialPlayer speed. */
-        speed?: (number|null);
+        public speed?: (number|null);
 
         /** PartialPlayer energy. */
-        energy?: (number|null);
+        public energy?: (number|null);
 
         /** PartialPlayer maxEnergy. */
-        maxEnergy?: (number|null);
+        public maxEnergy?: (number|null);
 
         /** PartialPlayer deathTimer. */
-        deathTimer?: (number|null);
+        public deathTimer?: (number|null);
 
         /** PartialPlayer state. */
-        state?: (number|null);
+        public state?: (number|null);
 
         /** PartialPlayer stateMeta. */
-        stateMeta?: (number|null);
+        public stateMeta?: (number|null);
 
         /** PartialPlayer area. */
-        area?: (number|null);
+        public area?: (number|null);
 
         /** PartialPlayer world. */
-        world?: (string|null);
+        public world?: (string|null);
 
         /** PartialPlayer died. */
-        died?: (boolean|null);
+        public died?: (boolean|null);
 
         /**
          * Creates a new PartialPlayer instance using the specified properties.
          * @param [properties] Properties to set
          * @returns PartialPlayer instance
          */
-        static create(properties: game.PartialPlayer.$Shape): game.PartialPlayer & game.PartialPlayer.$Shape;
-        static create(properties?: game.PartialPlayer.$Properties): game.PartialPlayer;
+        public static create(properties?: game.IPartialPlayer): game.PartialPlayer;
 
         /**
          * Encodes the specified PartialPlayer message. Does not implicitly {@link game.PartialPlayer.verify|verify} messages.
@@ -740,7 +682,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.PartialPlayer.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPartialPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified PartialPlayer message, length delimited. Does not implicitly {@link game.PartialPlayer.verify|verify} messages.
@@ -748,40 +690,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.PartialPlayer.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPartialPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a PartialPlayer message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.PartialPlayer & game.PartialPlayer.$Shape} PartialPlayer
+         * @returns PartialPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PartialPlayer & game.PartialPlayer.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PartialPlayer;
 
         /**
          * Decodes a PartialPlayer message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.PartialPlayer & game.PartialPlayer.$Shape} PartialPlayer
+         * @returns PartialPlayer
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PartialPlayer & game.PartialPlayer.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PartialPlayer;
 
         /**
          * Verifies a PartialPlayer message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PartialPlayer message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns PartialPlayer
          */
-        static fromObject(object: { [k: string]: any }): game.PartialPlayer;
+        public static fromObject(object: { [k: string]: any }): game.PartialPlayer;
 
         /**
          * Creates a plain object from a PartialPlayer message. Also converts values to other types if specified.
@@ -789,112 +731,71 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.PartialPlayer, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.PartialPlayer, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this PartialPlayer to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for PartialPlayer
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for PartialPlayer
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace PartialPlayer {
+    /** Properties of a PackedArea. */
+    interface IPackedArea {
 
-        /** Properties of a PartialPlayer. */
-        interface $Properties {
+        /** PackedArea w */
+        w?: (number|null);
 
-            /** PartialPlayer x */
-            x?: (number|null);
+        /** PackedArea h */
+        h?: (number|null);
 
-            /** PartialPlayer y */
-            y?: (number|null);
+        /** PackedArea area */
+        area?: (number|Long|null);
 
-            /** PartialPlayer radius */
-            radius?: (number|null);
+        /** PackedArea world */
+        world?: (string|null);
 
-            /** PartialPlayer speed */
-            speed?: (number|null);
-
-            /** PartialPlayer energy */
-            energy?: (number|null);
-
-            /** PartialPlayer maxEnergy */
-            maxEnergy?: (number|null);
-
-            /** PartialPlayer deathTimer */
-            deathTimer?: (number|null);
-
-            /** PartialPlayer state */
-            state?: (number|null);
-
-            /** PartialPlayer stateMeta */
-            stateMeta?: (number|null);
-
-            /** PartialPlayer area */
-            area?: (number|null);
-
-            /** PartialPlayer world */
-            world?: (string|null);
-
-            /** PartialPlayer died */
-            died?: (boolean|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a PartialPlayer. */
-        type $Shape = game.PartialPlayer.$Properties;
-    }
-
-    /**
-     * Properties of a PackedArea.
-     * @deprecated Use game.PackedArea.$Properties instead.
-     */
-    interface IPackedArea extends game.PackedArea.$Properties {
+        /** PackedArea entities */
+        entities?: ({ [k: string]: game.IPackedEntity }|null);
     }
 
     /** Represents a PackedArea. */
-    class PackedArea {
+    class PackedArea implements IPackedArea {
 
         /**
          * Constructs a new PackedArea.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.PackedArea.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPackedArea);
 
         /** PackedArea w. */
-        w: number;
+        public w: number;
 
         /** PackedArea h. */
-        h: number;
+        public h: number;
 
         /** PackedArea area. */
-        area: (number|Long);
+        public area: (number|Long);
 
         /** PackedArea world. */
-        world: string;
+        public world: string;
 
         /** PackedArea entities. */
-        entities: { [k: string]: game.PackedEntity.$Properties };
+        public entities: { [k: string]: game.IPackedEntity };
 
         /**
          * Creates a new PackedArea instance using the specified properties.
          * @param [properties] Properties to set
          * @returns PackedArea instance
          */
-        static create(properties: game.PackedArea.$Shape): game.PackedArea & game.PackedArea.$Shape;
-        static create(properties?: game.PackedArea.$Properties): game.PackedArea;
+        public static create(properties?: game.IPackedArea): game.PackedArea;
 
         /**
          * Encodes the specified PackedArea message. Does not implicitly {@link game.PackedArea.verify|verify} messages.
@@ -902,7 +803,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.PackedArea.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPackedArea, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified PackedArea message, length delimited. Does not implicitly {@link game.PackedArea.verify|verify} messages.
@@ -910,40 +811,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.PackedArea.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPackedArea, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a PackedArea message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.PackedArea & game.PackedArea.$Shape} PackedArea
+         * @returns PackedArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PackedArea & game.PackedArea.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.PackedArea;
 
         /**
          * Decodes a PackedArea message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.PackedArea & game.PackedArea.$Shape} PackedArea
+         * @returns PackedArea
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PackedArea & game.PackedArea.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.PackedArea;
 
         /**
          * Verifies a PackedArea message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PackedArea message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns PackedArea
          */
-        static fromObject(object: { [k: string]: any }): game.PackedArea;
+        public static fromObject(object: { [k: string]: any }): game.PackedArea;
 
         /**
          * Creates a plain object from a PackedArea message. Also converts values to other types if specified.
@@ -951,109 +852,104 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.PackedArea, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.PackedArea, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this PackedArea to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for PackedArea
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for PackedArea
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace PackedArea {
+    /** Properties of a Package. */
+    interface IPackage {
 
-        /** Properties of a PackedArea. */
-        interface $Properties {
+        /** Package newPlayer */
+        newPlayer?: (game.IPackedPlayer|null);
 
-            /** PackedArea w */
-            w?: (number|null);
+        /** Package closePlayer */
+        closePlayer?: (number|Long|null);
 
-            /** PackedArea h */
-            h?: (number|null);
+        /** Package players */
+        players?: (game.IPlayers|null);
 
-            /** PackedArea area */
-            area?: (number|Long|null);
+        /** Package newEntities */
+        newEntities?: (game.IEntities|null);
 
-            /** PackedArea world */
-            world?: (string|null);
+        /** Package closeEntities */
+        closeEntities?: (game.ICloseEntities|null);
 
-            /** PackedArea entities */
-            entities?: ({ [k: string]: game.PackedEntity.$Properties }|null);
+        /** Package areaInit */
+        areaInit?: (game.IPackedArea|null);
 
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
+        /** Package myself */
+        myself?: (game.IPackedPlayer|null);
 
-        /** Shape of a PackedArea. */
-        type $Shape = game.PackedArea.$Properties;
-    }
+        /** Package updateEntities */
+        updateEntities?: (game.IUpdateEntitiesMap|null);
 
-    /**
-     * Properties of a Package.
-     * @deprecated Use game.Package.$Properties instead.
-     */
-    interface IPackage extends game.Package.$Properties {
+        /** Package updatePlayers */
+        updatePlayers?: (game.IUpdatePlayersMap|null);
+
+        /** Package chatMessage */
+        chatMessage?: (game.IChat|null);
     }
 
     /** Represents a Package. */
-    class Package {
+    class Package implements IPackage {
 
         /**
          * Constructs a new Package.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.Package.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPackage);
 
         /** Package newPlayer. */
-        newPlayer?: (game.PackedPlayer.$Properties|null);
+        public newPlayer?: (game.IPackedPlayer|null);
 
         /** Package closePlayer. */
-        closePlayer?: (number|Long|null);
+        public closePlayer?: (number|Long|null);
 
         /** Package players. */
-        players?: (game.Players.$Properties|null);
+        public players?: (game.IPlayers|null);
 
         /** Package newEntities. */
-        newEntities?: (game.Entities.$Properties|null);
+        public newEntities?: (game.IEntities|null);
 
         /** Package closeEntities. */
-        closeEntities?: (game.CloseEntities.$Properties|null);
+        public closeEntities?: (game.ICloseEntities|null);
 
         /** Package areaInit. */
-        areaInit?: (game.PackedArea.$Properties|null);
+        public areaInit?: (game.IPackedArea|null);
 
         /** Package myself. */
-        myself?: (game.PackedPlayer.$Properties|null);
+        public myself?: (game.IPackedPlayer|null);
 
         /** Package updateEntities. */
-        updateEntities?: (game.UpdateEntitiesMap.$Properties|null);
+        public updateEntities?: (game.IUpdateEntitiesMap|null);
 
         /** Package updatePlayers. */
-        updatePlayers?: (game.UpdatePlayersMap.$Properties|null);
+        public updatePlayers?: (game.IUpdatePlayersMap|null);
 
         /** Package chatMessage. */
-        chatMessage?: (game.Chat.$Properties|null);
+        public chatMessage?: (game.IChat|null);
 
         /** Package kind. */
-        kind?: ("newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage");
+        public kind?: ("newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage");
 
         /**
          * Creates a new Package instance using the specified properties.
          * @param [properties] Properties to set
          * @returns Package instance
          */
-        static create(properties: game.Package.$Shape): game.Package & game.Package.$Shape;
-        static create(properties?: game.Package.$Properties): game.Package;
+        public static create(properties?: game.IPackage): game.Package;
 
         /**
          * Encodes the specified Package message. Does not implicitly {@link game.Package.verify|verify} messages.
@@ -1061,7 +957,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.Package.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPackage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified Package message, length delimited. Does not implicitly {@link game.Package.verify|verify} messages.
@@ -1069,40 +965,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.Package.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPackage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a Package message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.Package & game.Package.$Shape} Package
+         * @returns Package
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Package & game.Package.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Package;
 
         /**
          * Decodes a Package message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.Package & game.Package.$Shape} Package
+         * @returns Package
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Package & game.Package.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Package;
 
         /**
          * Verifies a Package message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a Package message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Package
          */
-        static fromObject(object: { [k: string]: any }): game.Package;
+        public static fromObject(object: { [k: string]: any }): game.Package;
 
         /**
          * Creates a plain object from a Package message. Also converts values to other types if specified.
@@ -1110,111 +1006,47 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.Package, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.Package, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this Package to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for Package
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for Package
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace Package {
+    /** Properties of a Packages. */
+    interface IPackages {
 
-        /** Properties of a Package. */
-        interface $Properties {
-
-            /** Package newPlayer */
-            newPlayer?: (game.PackedPlayer.$Properties|null);
-
-            /** Package closePlayer */
-            closePlayer?: (number|Long|null);
-
-            /** Package players */
-            players?: (game.Players.$Properties|null);
-
-            /** Package newEntities */
-            newEntities?: (game.Entities.$Properties|null);
-
-            /** Package closeEntities */
-            closeEntities?: (game.CloseEntities.$Properties|null);
-
-            /** Package areaInit */
-            areaInit?: (game.PackedArea.$Properties|null);
-
-            /** Package myself */
-            myself?: (game.PackedPlayer.$Properties|null);
-
-            /** Package updateEntities */
-            updateEntities?: (game.UpdateEntitiesMap.$Properties|null);
-
-            /** Package updatePlayers */
-            updatePlayers?: (game.UpdatePlayersMap.$Properties|null);
-
-            /** Package chatMessage */
-            chatMessage?: (game.Chat.$Properties|null);
-
-            /** Package kind */
-            kind?: ("newPlayer"|"closePlayer"|"players"|"newEntities"|"closeEntities"|"areaInit"|"myself"|"updateEntities"|"updatePlayers"|"chatMessage");
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Narrowed shape of a Package. */
-        type $Shape = {
-          newPlayer?: game.PackedPlayer.$Shape|null;
-          closePlayer?: number|Long|null;
-          players?: game.Players.$Shape|null;
-          newEntities?: game.Entities.$Shape|null;
-          closeEntities?: game.CloseEntities.$Shape|null;
-          areaInit?: game.PackedArea.$Shape|null;
-          myself?: game.PackedPlayer.$Shape|null;
-          updateEntities?: game.UpdateEntitiesMap.$Shape|null;
-          updatePlayers?: game.UpdatePlayersMap.$Shape|null;
-          chatMessage?: game.Chat.$Shape|null;
-          $unknowns?: Uint8Array[];
-        } & (
-          ({ kind?: undefined; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "newPlayer"; newPlayer: game.PackedPlayer.$Shape; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "closePlayer"; newPlayer?: null; closePlayer: number|Long; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "players"; newPlayer?: null; closePlayer?: null; players: game.Players.$Shape; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "newEntities"; newPlayer?: null; closePlayer?: null; players?: null; newEntities: game.Entities.$Shape; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "closeEntities"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities: game.CloseEntities.$Shape; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "areaInit"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit: game.PackedArea.$Shape; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "myself"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself: game.PackedPlayer.$Shape; updateEntities?: null; updatePlayers?: null; chatMessage?: null }|{ kind?: "updateEntities"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities: game.UpdateEntitiesMap.$Shape; updatePlayers?: null; chatMessage?: null }|{ kind?: "updatePlayers"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers: game.UpdatePlayersMap.$Shape; chatMessage?: null }|{ kind?: "chatMessage"; newPlayer?: null; closePlayer?: null; players?: null; newEntities?: null; closeEntities?: null; areaInit?: null; myself?: null; updateEntities?: null; updatePlayers?: null; chatMessage: game.Chat.$Shape })
-        );
-    }
-
-    /**
-     * Properties of a Packages.
-     * @deprecated Use game.Packages.$Properties instead.
-     */
-    interface IPackages extends game.Packages.$Properties {
+        /** Packages items */
+        items?: (game.IPackage[]|null);
     }
 
     /** Represents a Packages. */
-    class Packages {
+    class Packages implements IPackages {
 
         /**
          * Constructs a new Packages.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.Packages.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPackages);
 
         /** Packages items. */
-        items: game.Package.$Properties[];
+        public items: game.IPackage[];
 
         /**
          * Creates a new Packages instance using the specified properties.
          * @param [properties] Properties to set
          * @returns Packages instance
          */
-        static create(properties: game.Packages.$Shape): game.Packages & game.Packages.$Shape;
-        static create(properties?: game.Packages.$Properties): game.Packages;
+        public static create(properties?: game.IPackages): game.Packages;
 
         /**
          * Encodes the specified Packages message. Does not implicitly {@link game.Packages.verify|verify} messages.
@@ -1222,7 +1054,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.Packages.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPackages, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified Packages message, length delimited. Does not implicitly {@link game.Packages.verify|verify} messages.
@@ -1230,40 +1062,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.Packages.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPackages, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a Packages message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.Packages & game.Packages.$Shape} Packages
+         * @returns Packages
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Packages & game.Packages.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Packages;
 
         /**
          * Decodes a Packages message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.Packages & game.Packages.$Shape} Packages
+         * @returns Packages
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Packages & game.Packages.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Packages;
 
         /**
          * Verifies a Packages message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a Packages message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Packages
          */
-        static fromObject(object: { [k: string]: any }): game.Packages;
+        public static fromObject(object: { [k: string]: any }): game.Packages;
 
         /**
          * Creates a plain object from a Packages message. Also converts values to other types if specified.
@@ -1271,70 +1103,47 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.Packages, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.Packages, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this Packages to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for Packages
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for Packages
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace Packages {
+    /** Properties of a Players. */
+    interface IPlayers {
 
-        /** Properties of a Packages. */
-        interface $Properties {
-
-            /** Packages items */
-            items?: (game.Package.$Properties[]|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a Packages. */
-        type $Shape = {
-          items?: game.Package.$Shape[]|null;
-          $unknowns?: Uint8Array[];
-        };
-    }
-
-    /**
-     * Properties of a Players.
-     * @deprecated Use game.Players.$Properties instead.
-     */
-    interface IPlayers extends game.Players.$Properties {
+        /** Players players */
+        players?: ({ [k: string]: game.IPackedPlayer }|null);
     }
 
     /** Represents a Players. */
-    class Players {
+    class Players implements IPlayers {
 
         /**
          * Constructs a new Players.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.Players.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IPlayers);
 
         /** Players players. */
-        players: { [k: string]: game.PackedPlayer.$Properties };
+        public players: { [k: string]: game.IPackedPlayer };
 
         /**
          * Creates a new Players instance using the specified properties.
          * @param [properties] Properties to set
          * @returns Players instance
          */
-        static create(properties: game.Players.$Shape): game.Players & game.Players.$Shape;
-        static create(properties?: game.Players.$Properties): game.Players;
+        public static create(properties?: game.IPlayers): game.Players;
 
         /**
          * Encodes the specified Players message. Does not implicitly {@link game.Players.verify|verify} messages.
@@ -1342,7 +1151,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.Players.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IPlayers, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified Players message, length delimited. Does not implicitly {@link game.Players.verify|verify} messages.
@@ -1350,40 +1159,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.Players.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IPlayers, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a Players message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.Players & game.Players.$Shape} Players
+         * @returns Players
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Players & game.Players.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Players;
 
         /**
          * Decodes a Players message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.Players & game.Players.$Shape} Players
+         * @returns Players
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Players & game.Players.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Players;
 
         /**
          * Verifies a Players message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a Players message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Players
          */
-        static fromObject(object: { [k: string]: any }): game.Players;
+        public static fromObject(object: { [k: string]: any }): game.Players;
 
         /**
          * Creates a plain object from a Players message. Also converts values to other types if specified.
@@ -1391,67 +1200,47 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.Players, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.Players, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this Players to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for Players
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for Players
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace Players {
+    /** Properties of an Entities. */
+    interface IEntities {
 
-        /** Properties of a Players. */
-        interface $Properties {
-
-            /** Players players */
-            players?: ({ [k: string]: game.PackedPlayer.$Properties }|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a Players. */
-        type $Shape = game.Players.$Properties;
-    }
-
-    /**
-     * Properties of an Entities.
-     * @deprecated Use game.Entities.$Properties instead.
-     */
-    interface IEntities extends game.Entities.$Properties {
+        /** Entities entities */
+        entities?: ({ [k: string]: game.IPackedEntity }|null);
     }
 
     /** Represents an Entities. */
-    class Entities {
+    class Entities implements IEntities {
 
         /**
          * Constructs a new Entities.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.Entities.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IEntities);
 
         /** Entities entities. */
-        entities: { [k: string]: game.PackedEntity.$Properties };
+        public entities: { [k: string]: game.IPackedEntity };
 
         /**
          * Creates a new Entities instance using the specified properties.
          * @param [properties] Properties to set
          * @returns Entities instance
          */
-        static create(properties: game.Entities.$Shape): game.Entities & game.Entities.$Shape;
-        static create(properties?: game.Entities.$Properties): game.Entities;
+        public static create(properties?: game.IEntities): game.Entities;
 
         /**
          * Encodes the specified Entities message. Does not implicitly {@link game.Entities.verify|verify} messages.
@@ -1459,7 +1248,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.Entities.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IEntities, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified Entities message, length delimited. Does not implicitly {@link game.Entities.verify|verify} messages.
@@ -1467,40 +1256,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.Entities.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IEntities, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an Entities message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.Entities & game.Entities.$Shape} Entities
+         * @returns Entities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Entities & game.Entities.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.Entities;
 
         /**
          * Decodes an Entities message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.Entities & game.Entities.$Shape} Entities
+         * @returns Entities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Entities & game.Entities.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.Entities;
 
         /**
          * Verifies an Entities message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an Entities message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Entities
          */
-        static fromObject(object: { [k: string]: any }): game.Entities;
+        public static fromObject(object: { [k: string]: any }): game.Entities;
 
         /**
          * Creates a plain object from an Entities message. Also converts values to other types if specified.
@@ -1508,67 +1297,47 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.Entities, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.Entities, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this Entities to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for Entities
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for Entities
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace Entities {
+    /** Properties of a CloseEntities. */
+    interface ICloseEntities {
 
-        /** Properties of an Entities. */
-        interface $Properties {
-
-            /** Entities entities */
-            entities?: ({ [k: string]: game.PackedEntity.$Properties }|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an Entities. */
-        type $Shape = game.Entities.$Properties;
-    }
-
-    /**
-     * Properties of a CloseEntities.
-     * @deprecated Use game.CloseEntities.$Properties instead.
-     */
-    interface ICloseEntities extends game.CloseEntities.$Properties {
+        /** CloseEntities ids */
+        ids?: (number[]|null);
     }
 
     /** Represents a CloseEntities. */
-    class CloseEntities {
+    class CloseEntities implements ICloseEntities {
 
         /**
          * Constructs a new CloseEntities.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.CloseEntities.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.ICloseEntities);
 
         /** CloseEntities ids. */
-        ids: number[];
+        public ids: number[];
 
         /**
          * Creates a new CloseEntities instance using the specified properties.
          * @param [properties] Properties to set
          * @returns CloseEntities instance
          */
-        static create(properties: game.CloseEntities.$Shape): game.CloseEntities & game.CloseEntities.$Shape;
-        static create(properties?: game.CloseEntities.$Properties): game.CloseEntities;
+        public static create(properties?: game.ICloseEntities): game.CloseEntities;
 
         /**
          * Encodes the specified CloseEntities message. Does not implicitly {@link game.CloseEntities.verify|verify} messages.
@@ -1576,7 +1345,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.CloseEntities.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.ICloseEntities, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified CloseEntities message, length delimited. Does not implicitly {@link game.CloseEntities.verify|verify} messages.
@@ -1584,40 +1353,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.CloseEntities.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.ICloseEntities, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a CloseEntities message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.CloseEntities & game.CloseEntities.$Shape} CloseEntities
+         * @returns CloseEntities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.CloseEntities & game.CloseEntities.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.CloseEntities;
 
         /**
          * Decodes a CloseEntities message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.CloseEntities & game.CloseEntities.$Shape} CloseEntities
+         * @returns CloseEntities
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.CloseEntities & game.CloseEntities.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.CloseEntities;
 
         /**
          * Verifies a CloseEntities message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a CloseEntities message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns CloseEntities
          */
-        static fromObject(object: { [k: string]: any }): game.CloseEntities;
+        public static fromObject(object: { [k: string]: any }): game.CloseEntities;
 
         /**
          * Creates a plain object from a CloseEntities message. Also converts values to other types if specified.
@@ -1625,67 +1394,47 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.CloseEntities, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.CloseEntities, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this CloseEntities to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for CloseEntities
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for CloseEntities
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace CloseEntities {
+    /** Properties of an UpdateEntitiesMap. */
+    interface IUpdateEntitiesMap {
 
-        /** Properties of a CloseEntities. */
-        interface $Properties {
-
-            /** CloseEntities ids */
-            ids?: (number[]|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a CloseEntities. */
-        type $Shape = game.CloseEntities.$Properties;
-    }
-
-    /**
-     * Properties of an UpdateEntitiesMap.
-     * @deprecated Use game.UpdateEntitiesMap.$Properties instead.
-     */
-    interface IUpdateEntitiesMap extends game.UpdateEntitiesMap.$Properties {
+        /** UpdateEntitiesMap items */
+        items?: ({ [k: string]: game.IPartialEntity }|null);
     }
 
     /** Represents an UpdateEntitiesMap. */
-    class UpdateEntitiesMap {
+    class UpdateEntitiesMap implements IUpdateEntitiesMap {
 
         /**
          * Constructs a new UpdateEntitiesMap.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.UpdateEntitiesMap.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IUpdateEntitiesMap);
 
         /** UpdateEntitiesMap items. */
-        items: { [k: string]: game.PartialEntity.$Properties };
+        public items: { [k: string]: game.IPartialEntity };
 
         /**
          * Creates a new UpdateEntitiesMap instance using the specified properties.
          * @param [properties] Properties to set
          * @returns UpdateEntitiesMap instance
          */
-        static create(properties: game.UpdateEntitiesMap.$Shape): game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape;
-        static create(properties?: game.UpdateEntitiesMap.$Properties): game.UpdateEntitiesMap;
+        public static create(properties?: game.IUpdateEntitiesMap): game.UpdateEntitiesMap;
 
         /**
          * Encodes the specified UpdateEntitiesMap message. Does not implicitly {@link game.UpdateEntitiesMap.verify|verify} messages.
@@ -1693,7 +1442,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.UpdateEntitiesMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IUpdateEntitiesMap, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified UpdateEntitiesMap message, length delimited. Does not implicitly {@link game.UpdateEntitiesMap.verify|verify} messages.
@@ -1701,40 +1450,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.UpdateEntitiesMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IUpdateEntitiesMap, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an UpdateEntitiesMap message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape} UpdateEntitiesMap
+         * @returns UpdateEntitiesMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.UpdateEntitiesMap;
 
         /**
          * Decodes an UpdateEntitiesMap message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape} UpdateEntitiesMap
+         * @returns UpdateEntitiesMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.UpdateEntitiesMap & game.UpdateEntitiesMap.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.UpdateEntitiesMap;
 
         /**
          * Verifies an UpdateEntitiesMap message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an UpdateEntitiesMap message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns UpdateEntitiesMap
          */
-        static fromObject(object: { [k: string]: any }): game.UpdateEntitiesMap;
+        public static fromObject(object: { [k: string]: any }): game.UpdateEntitiesMap;
 
         /**
          * Creates a plain object from an UpdateEntitiesMap message. Also converts values to other types if specified.
@@ -1742,67 +1491,47 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.UpdateEntitiesMap, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.UpdateEntitiesMap, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this UpdateEntitiesMap to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for UpdateEntitiesMap
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for UpdateEntitiesMap
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace UpdateEntitiesMap {
+    /** Properties of an UpdatePlayersMap. */
+    interface IUpdatePlayersMap {
 
-        /** Properties of an UpdateEntitiesMap. */
-        interface $Properties {
-
-            /** UpdateEntitiesMap items */
-            items?: ({ [k: string]: game.PartialEntity.$Properties }|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an UpdateEntitiesMap. */
-        type $Shape = game.UpdateEntitiesMap.$Properties;
-    }
-
-    /**
-     * Properties of an UpdatePlayersMap.
-     * @deprecated Use game.UpdatePlayersMap.$Properties instead.
-     */
-    interface IUpdatePlayersMap extends game.UpdatePlayersMap.$Properties {
+        /** UpdatePlayersMap items */
+        items?: ({ [k: string]: game.IPartialPlayer }|null);
     }
 
     /** Represents an UpdatePlayersMap. */
-    class UpdatePlayersMap {
+    class UpdatePlayersMap implements IUpdatePlayersMap {
 
         /**
          * Constructs a new UpdatePlayersMap.
          * @param [properties] Properties to set
          */
-        constructor(properties?: game.UpdatePlayersMap.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: game.IUpdatePlayersMap);
 
         /** UpdatePlayersMap items. */
-        items: { [k: string]: game.PartialPlayer.$Properties };
+        public items: { [k: string]: game.IPartialPlayer };
 
         /**
          * Creates a new UpdatePlayersMap instance using the specified properties.
          * @param [properties] Properties to set
          * @returns UpdatePlayersMap instance
          */
-        static create(properties: game.UpdatePlayersMap.$Shape): game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape;
-        static create(properties?: game.UpdatePlayersMap.$Properties): game.UpdatePlayersMap;
+        public static create(properties?: game.IUpdatePlayersMap): game.UpdatePlayersMap;
 
         /**
          * Encodes the specified UpdatePlayersMap message. Does not implicitly {@link game.UpdatePlayersMap.verify|verify} messages.
@@ -1810,7 +1539,7 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: game.UpdatePlayersMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: game.IUpdatePlayersMap, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified UpdatePlayersMap message, length delimited. Does not implicitly {@link game.UpdatePlayersMap.verify|verify} messages.
@@ -1818,40 +1547,40 @@ export namespace game {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: game.UpdatePlayersMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: game.IUpdatePlayersMap, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an UpdatePlayersMap message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape} UpdatePlayersMap
+         * @returns UpdatePlayersMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.UpdatePlayersMap;
 
         /**
          * Decodes an UpdatePlayersMap message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape} UpdatePlayersMap
+         * @returns UpdatePlayersMap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.UpdatePlayersMap & game.UpdatePlayersMap.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.UpdatePlayersMap;
 
         /**
          * Verifies an UpdatePlayersMap message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an UpdatePlayersMap message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns UpdatePlayersMap
          */
-        static fromObject(object: { [k: string]: any }): game.UpdatePlayersMap;
+        public static fromObject(object: { [k: string]: any }): game.UpdatePlayersMap;
 
         /**
          * Creates a plain object from an UpdatePlayersMap message. Also converts values to other types if specified.
@@ -1859,36 +1588,20 @@ export namespace game {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: game.UpdatePlayersMap, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: game.UpdatePlayersMap, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this UpdatePlayersMap to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for UpdatePlayersMap
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for UpdatePlayersMap
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
-    }
-
-    namespace UpdatePlayersMap {
-
-        /** Properties of an UpdatePlayersMap. */
-        interface $Properties {
-
-            /** UpdatePlayersMap items */
-            items?: ({ [k: string]: game.PartialPlayer.$Properties }|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an UpdatePlayersMap. */
-        type $Shape = game.UpdatePlayersMap.$Properties;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }
 
@@ -1897,89 +1610,74 @@ export namespace http {
 
     /** AccountRole enum. */
     enum AccountRole {
-
-        /** USER value */
         USER = 0,
-
-        /** MOD value */
         MOD = 1,
-
-        /** DEV value */
-        DEV = 2
+        DEV = 2,
+        ADMIN = 3
     }
 
     /** ResponseStatus enum. */
     enum ResponseStatus {
-
-        /** Ok value */
         Ok = 1,
-
-        /** InternalError value */
         InternalError = 2,
-
-        /** InvalidBody value */
         InvalidBody = 3,
-
-        /** NotFound value */
         NotFound = 4,
-
-        /** VerificationFailure value */
         VerificationFailure = 5,
-
-        /** NotAuthenticated value */
         NotAuthenticated = 6,
-
-        /** AccountExists value */
         AccountExists = 7,
-
-        /** AccountNotExists value */
         AccountNotExists = 8,
-
-        /** WrongPassword value */
         WrongPassword = 9
     }
 
-    /**
-     * Properties of a Profile.
-     * @deprecated Use http.Profile.$Properties instead.
-     */
-    interface IProfile extends http.Profile.$Properties {
+    /** Properties of a Profile. */
+    interface IProfile {
+
+        /** Profile vp */
+        vp?: (number|null);
+
+        /** Profile username */
+        username?: (string|null);
+
+        /** Profile highest */
+        highest?: ({ [k: string]: string }|null);
+
+        /** Profile accessories */
+        accessories?: (string[]|null);
+
+        /** Profile role */
+        role?: (http.AccountRole|null);
     }
 
     /** Represents a Profile. */
-    class Profile {
+    class Profile implements IProfile {
 
         /**
          * Constructs a new Profile.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.Profile.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IProfile);
 
         /** Profile vp. */
-        vp: number;
+        public vp: number;
 
         /** Profile username. */
-        username: string;
+        public username: string;
 
         /** Profile highest. */
-        highest: { [k: string]: string };
+        public highest: { [k: string]: string };
 
         /** Profile accessories. */
-        accessories: string[];
+        public accessories: string[];
 
         /** Profile role. */
-        role: http.AccountRole;
+        public role: http.AccountRole;
 
         /**
          * Creates a new Profile instance using the specified properties.
          * @param [properties] Properties to set
          * @returns Profile instance
          */
-        static create(properties: http.Profile.$Shape): http.Profile & http.Profile.$Shape;
-        static create(properties?: http.Profile.$Properties): http.Profile;
+        public static create(properties?: http.IProfile): http.Profile;
 
         /**
          * Encodes the specified Profile message. Does not implicitly {@link http.Profile.verify|verify} messages.
@@ -1987,7 +1685,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.Profile.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IProfile, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified Profile message, length delimited. Does not implicitly {@link http.Profile.verify|verify} messages.
@@ -1995,40 +1693,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.Profile.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IProfile, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a Profile message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.Profile & http.Profile.$Shape} Profile
+         * @returns Profile
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.Profile & http.Profile.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.Profile;
 
         /**
          * Decodes a Profile message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.Profile & http.Profile.$Shape} Profile
+         * @returns Profile
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.Profile & http.Profile.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.Profile;
 
         /**
          * Verifies a Profile message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a Profile message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns Profile
          */
-        static fromObject(object: { [k: string]: any }): http.Profile;
+        public static fromObject(object: { [k: string]: any }): http.Profile;
 
         /**
          * Creates a plain object from a Profile message. Also converts values to other types if specified.
@@ -2036,85 +1734,59 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.Profile, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.Profile, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this Profile to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for Profile
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for Profile
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace Profile {
+    /** Properties of a LoginAndRegisterResponse. */
+    interface ILoginAndRegisterResponse {
 
-        /** Properties of a Profile. */
-        interface $Properties {
+        /** LoginAndRegisterResponse status */
+        status?: (http.ResponseStatus|null);
 
-            /** Profile vp */
-            vp?: (number|null);
+        /** LoginAndRegisterResponse token */
+        token?: (string|null);
 
-            /** Profile username */
-            username?: (string|null);
-
-            /** Profile highest */
-            highest?: ({ [k: string]: string }|null);
-
-            /** Profile accessories */
-            accessories?: (string[]|null);
-
-            /** Profile role */
-            role?: (http.AccountRole|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a Profile. */
-        type $Shape = http.Profile.$Properties;
-    }
-
-    /**
-     * Properties of a LoginAndRegisterResponse.
-     * @deprecated Use http.LoginAndRegisterResponse.$Properties instead.
-     */
-    interface ILoginAndRegisterResponse extends http.LoginAndRegisterResponse.$Properties {
+        /** LoginAndRegisterResponse profile */
+        profile?: (http.IProfile|null);
     }
 
     /** Represents a LoginAndRegisterResponse. */
-    class LoginAndRegisterResponse {
+    class LoginAndRegisterResponse implements ILoginAndRegisterResponse {
 
         /**
          * Constructs a new LoginAndRegisterResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.LoginAndRegisterResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.ILoginAndRegisterResponse);
 
         /** LoginAndRegisterResponse status. */
-        status: http.ResponseStatus;
+        public status: http.ResponseStatus;
 
         /** LoginAndRegisterResponse token. */
-        token?: (string|null);
+        public token?: (string|null);
 
         /** LoginAndRegisterResponse profile. */
-        profile?: (http.Profile.$Properties|null);
+        public profile?: (http.IProfile|null);
 
         /**
          * Creates a new LoginAndRegisterResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns LoginAndRegisterResponse instance
          */
-        static create(properties: http.LoginAndRegisterResponse.$Shape): http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape;
-        static create(properties?: http.LoginAndRegisterResponse.$Properties): http.LoginAndRegisterResponse;
+        public static create(properties?: http.ILoginAndRegisterResponse): http.LoginAndRegisterResponse;
 
         /**
          * Encodes the specified LoginAndRegisterResponse message. Does not implicitly {@link http.LoginAndRegisterResponse.verify|verify} messages.
@@ -2122,7 +1794,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.LoginAndRegisterResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.ILoginAndRegisterResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified LoginAndRegisterResponse message, length delimited. Does not implicitly {@link http.LoginAndRegisterResponse.verify|verify} messages.
@@ -2130,40 +1802,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.LoginAndRegisterResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.ILoginAndRegisterResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a LoginAndRegisterResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape} LoginAndRegisterResponse
+         * @returns LoginAndRegisterResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LoginAndRegisterResponse;
 
         /**
          * Decodes a LoginAndRegisterResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape} LoginAndRegisterResponse
+         * @returns LoginAndRegisterResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LoginAndRegisterResponse & http.LoginAndRegisterResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LoginAndRegisterResponse;
 
         /**
          * Verifies a LoginAndRegisterResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a LoginAndRegisterResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns LoginAndRegisterResponse
          */
-        static fromObject(object: { [k: string]: any }): http.LoginAndRegisterResponse;
+        public static fromObject(object: { [k: string]: any }): http.LoginAndRegisterResponse;
 
         /**
          * Creates a plain object from a LoginAndRegisterResponse message. Also converts values to other types if specified.
@@ -2171,76 +1843,53 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.LoginAndRegisterResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.LoginAndRegisterResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this LoginAndRegisterResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for LoginAndRegisterResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for LoginAndRegisterResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace LoginAndRegisterResponse {
+    /** Properties of a ProfileResponse. */
+    interface IProfileResponse {
 
-        /** Properties of a LoginAndRegisterResponse. */
-        interface $Properties {
+        /** ProfileResponse status */
+        status?: (http.ResponseStatus|null);
 
-            /** LoginAndRegisterResponse status */
-            status?: (http.ResponseStatus|null);
-
-            /** LoginAndRegisterResponse token */
-            token?: (string|null);
-
-            /** LoginAndRegisterResponse profile */
-            profile?: (http.Profile.$Properties|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a LoginAndRegisterResponse. */
-        type $Shape = http.LoginAndRegisterResponse.$Properties;
-    }
-
-    /**
-     * Properties of a ProfileResponse.
-     * @deprecated Use http.ProfileResponse.$Properties instead.
-     */
-    interface IProfileResponse extends http.ProfileResponse.$Properties {
+        /** ProfileResponse profile */
+        profile?: (http.IProfile|null);
     }
 
     /** Represents a ProfileResponse. */
-    class ProfileResponse {
+    class ProfileResponse implements IProfileResponse {
 
         /**
          * Constructs a new ProfileResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.ProfileResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IProfileResponse);
 
         /** ProfileResponse status. */
-        status: http.ResponseStatus;
+        public status: http.ResponseStatus;
 
         /** ProfileResponse profile. */
-        profile?: (http.Profile.$Properties|null);
+        public profile?: (http.IProfile|null);
 
         /**
          * Creates a new ProfileResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns ProfileResponse instance
          */
-        static create(properties: http.ProfileResponse.$Shape): http.ProfileResponse & http.ProfileResponse.$Shape;
-        static create(properties?: http.ProfileResponse.$Properties): http.ProfileResponse;
+        public static create(properties?: http.IProfileResponse): http.ProfileResponse;
 
         /**
          * Encodes the specified ProfileResponse message. Does not implicitly {@link http.ProfileResponse.verify|verify} messages.
@@ -2248,7 +1897,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.ProfileResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IProfileResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified ProfileResponse message, length delimited. Does not implicitly {@link http.ProfileResponse.verify|verify} messages.
@@ -2256,40 +1905,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.ProfileResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IProfileResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a ProfileResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.ProfileResponse & http.ProfileResponse.$Shape} ProfileResponse
+         * @returns ProfileResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ProfileResponse & http.ProfileResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ProfileResponse;
 
         /**
          * Decodes a ProfileResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.ProfileResponse & http.ProfileResponse.$Shape} ProfileResponse
+         * @returns ProfileResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ProfileResponse & http.ProfileResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ProfileResponse;
 
         /**
          * Verifies a ProfileResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a ProfileResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns ProfileResponse
          */
-        static fromObject(object: { [k: string]: any }): http.ProfileResponse;
+        public static fromObject(object: { [k: string]: any }): http.ProfileResponse;
 
         /**
          * Creates a plain object from a ProfileResponse message. Also converts values to other types if specified.
@@ -2297,73 +1946,53 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.ProfileResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.ProfileResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this ProfileResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for ProfileResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for ProfileResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace ProfileResponse {
+    /** Properties of an AuthResponse. */
+    interface IAuthResponse {
 
-        /** Properties of a ProfileResponse. */
-        interface $Properties {
+        /** AuthResponse status */
+        status?: (http.ResponseStatus|null);
 
-            /** ProfileResponse status */
-            status?: (http.ResponseStatus|null);
-
-            /** ProfileResponse profile */
-            profile?: (http.Profile.$Properties|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a ProfileResponse. */
-        type $Shape = http.ProfileResponse.$Properties;
-    }
-
-    /**
-     * Properties of an AuthResponse.
-     * @deprecated Use http.AuthResponse.$Properties instead.
-     */
-    interface IAuthResponse extends http.AuthResponse.$Properties {
+        /** AuthResponse profile */
+        profile?: (http.IProfile|null);
     }
 
     /** Represents an AuthResponse. */
-    class AuthResponse {
+    class AuthResponse implements IAuthResponse {
 
         /**
          * Constructs a new AuthResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.AuthResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IAuthResponse);
 
         /** AuthResponse status. */
-        status: http.ResponseStatus;
+        public status: http.ResponseStatus;
 
         /** AuthResponse profile. */
-        profile?: (http.Profile.$Properties|null);
+        public profile?: (http.IProfile|null);
 
         /**
          * Creates a new AuthResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns AuthResponse instance
          */
-        static create(properties: http.AuthResponse.$Shape): http.AuthResponse & http.AuthResponse.$Shape;
-        static create(properties?: http.AuthResponse.$Properties): http.AuthResponse;
+        public static create(properties?: http.IAuthResponse): http.AuthResponse;
 
         /**
          * Encodes the specified AuthResponse message. Does not implicitly {@link http.AuthResponse.verify|verify} messages.
@@ -2371,7 +2000,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.AuthResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IAuthResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified AuthResponse message, length delimited. Does not implicitly {@link http.AuthResponse.verify|verify} messages.
@@ -2379,40 +2008,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.AuthResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IAuthResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an AuthResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.AuthResponse & http.AuthResponse.$Shape} AuthResponse
+         * @returns AuthResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AuthResponse & http.AuthResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AuthResponse;
 
         /**
          * Decodes an AuthResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.AuthResponse & http.AuthResponse.$Shape} AuthResponse
+         * @returns AuthResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AuthResponse & http.AuthResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AuthResponse;
 
         /**
          * Verifies an AuthResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an AuthResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns AuthResponse
          */
-        static fromObject(object: { [k: string]: any }): http.AuthResponse;
+        public static fromObject(object: { [k: string]: any }): http.AuthResponse;
 
         /**
          * Creates a plain object from an AuthResponse message. Also converts values to other types if specified.
@@ -2420,70 +2049,47 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.AuthResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.AuthResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this AuthResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for AuthResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for AuthResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace AuthResponse {
+    /** Properties of a LogoutResponse. */
+    interface ILogoutResponse {
 
-        /** Properties of an AuthResponse. */
-        interface $Properties {
-
-            /** AuthResponse status */
-            status?: (http.ResponseStatus|null);
-
-            /** AuthResponse profile */
-            profile?: (http.Profile.$Properties|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an AuthResponse. */
-        type $Shape = http.AuthResponse.$Properties;
-    }
-
-    /**
-     * Properties of a LogoutResponse.
-     * @deprecated Use http.LogoutResponse.$Properties instead.
-     */
-    interface ILogoutResponse extends http.LogoutResponse.$Properties {
+        /** LogoutResponse status */
+        status?: (http.ResponseStatus|null);
     }
 
     /** Represents a LogoutResponse. */
-    class LogoutResponse {
+    class LogoutResponse implements ILogoutResponse {
 
         /**
          * Constructs a new LogoutResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.LogoutResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.ILogoutResponse);
 
         /** LogoutResponse status. */
-        status: http.ResponseStatus;
+        public status: http.ResponseStatus;
 
         /**
          * Creates a new LogoutResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns LogoutResponse instance
          */
-        static create(properties: http.LogoutResponse.$Shape): http.LogoutResponse & http.LogoutResponse.$Shape;
-        static create(properties?: http.LogoutResponse.$Properties): http.LogoutResponse;
+        public static create(properties?: http.ILogoutResponse): http.LogoutResponse;
 
         /**
          * Encodes the specified LogoutResponse message. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
@@ -2491,7 +2097,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.LogoutResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.ILogoutResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified LogoutResponse message, length delimited. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
@@ -2499,40 +2105,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.LogoutResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.ILogoutResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a LogoutResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
+         * @returns LogoutResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LogoutResponse & http.LogoutResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LogoutResponse;
 
         /**
          * Decodes a LogoutResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
+         * @returns LogoutResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LogoutResponse & http.LogoutResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LogoutResponse;
 
         /**
          * Verifies a LogoutResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a LogoutResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns LogoutResponse
          */
-        static fromObject(object: { [k: string]: any }): http.LogoutResponse;
+        public static fromObject(object: { [k: string]: any }): http.LogoutResponse;
 
         /**
          * Creates a plain object from a LogoutResponse message. Also converts values to other types if specified.
@@ -2540,76 +2146,65 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.LogoutResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.LogoutResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this LogoutResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for LogoutResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for LogoutResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace LogoutResponse {
+    /** Properties of a ServerElement. */
+    interface IServerElement {
 
-        /** Properties of a LogoutResponse. */
-        interface $Properties {
+        /** ServerElement icon */
+        icon?: (string|null);
 
-            /** LogoutResponse status */
-            status?: (http.ResponseStatus|null);
+        /** ServerElement name */
+        name?: (string|null);
 
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
+        /** ServerElement domain */
+        domain?: (string|null);
 
-        /** Shape of a LogoutResponse. */
-        type $Shape = http.LogoutResponse.$Properties;
-    }
-
-    /**
-     * Properties of a ServerElement.
-     * @deprecated Use http.ServerElement.$Properties instead.
-     */
-    interface IServerElement extends http.ServerElement.$Properties {
+        /** ServerElement online */
+        online?: (number|null);
     }
 
     /** Represents a ServerElement. */
-    class ServerElement {
+    class ServerElement implements IServerElement {
 
         /**
          * Constructs a new ServerElement.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.ServerElement.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IServerElement);
 
         /** ServerElement icon. */
-        icon: string;
+        public icon: string;
 
         /** ServerElement name. */
-        name: string;
+        public name: string;
 
         /** ServerElement domain. */
-        domain: string;
+        public domain: string;
 
         /** ServerElement online. */
-        online: number;
+        public online: number;
 
         /**
          * Creates a new ServerElement instance using the specified properties.
          * @param [properties] Properties to set
          * @returns ServerElement instance
          */
-        static create(properties: http.ServerElement.$Shape): http.ServerElement & http.ServerElement.$Shape;
-        static create(properties?: http.ServerElement.$Properties): http.ServerElement;
+        public static create(properties?: http.IServerElement): http.ServerElement;
 
         /**
          * Encodes the specified ServerElement message. Does not implicitly {@link http.ServerElement.verify|verify} messages.
@@ -2617,7 +2212,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.ServerElement.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IServerElement, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified ServerElement message, length delimited. Does not implicitly {@link http.ServerElement.verify|verify} messages.
@@ -2625,40 +2220,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.ServerElement.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IServerElement, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a ServerElement message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.ServerElement & http.ServerElement.$Shape} ServerElement
+         * @returns ServerElement
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ServerElement & http.ServerElement.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ServerElement;
 
         /**
          * Decodes a ServerElement message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.ServerElement & http.ServerElement.$Shape} ServerElement
+         * @returns ServerElement
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ServerElement & http.ServerElement.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ServerElement;
 
         /**
          * Verifies a ServerElement message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a ServerElement message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns ServerElement
          */
-        static fromObject(object: { [k: string]: any }): http.ServerElement;
+        public static fromObject(object: { [k: string]: any }): http.ServerElement;
 
         /**
          * Creates a plain object from a ServerElement message. Also converts values to other types if specified.
@@ -2666,79 +2261,53 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.ServerElement, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.ServerElement, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this ServerElement to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for ServerElement
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for ServerElement
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace ServerElement {
+    /** Properties of a ServersResponse. */
+    interface IServersResponse {
 
-        /** Properties of a ServerElement. */
-        interface $Properties {
+        /** ServersResponse status */
+        status?: (http.ResponseStatus|null);
 
-            /** ServerElement icon */
-            icon?: (string|null);
-
-            /** ServerElement name */
-            name?: (string|null);
-
-            /** ServerElement domain */
-            domain?: (string|null);
-
-            /** ServerElement online */
-            online?: (number|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a ServerElement. */
-        type $Shape = http.ServerElement.$Properties;
-    }
-
-    /**
-     * Properties of a ServersResponse.
-     * @deprecated Use http.ServersResponse.$Properties instead.
-     */
-    interface IServersResponse extends http.ServersResponse.$Properties {
+        /** ServersResponse servers */
+        servers?: (http.IServerElement[]|null);
     }
 
     /** Represents a ServersResponse. */
-    class ServersResponse {
+    class ServersResponse implements IServersResponse {
 
         /**
          * Constructs a new ServersResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.ServersResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IServersResponse);
 
         /** ServersResponse status. */
-        status: http.ResponseStatus;
+        public status: http.ResponseStatus;
 
         /** ServersResponse servers. */
-        servers: http.ServerElement.$Properties[];
+        public servers: http.IServerElement[];
 
         /**
          * Creates a new ServersResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns ServersResponse instance
          */
-        static create(properties: http.ServersResponse.$Shape): http.ServersResponse & http.ServersResponse.$Shape;
-        static create(properties?: http.ServersResponse.$Properties): http.ServersResponse;
+        public static create(properties?: http.IServersResponse): http.ServersResponse;
 
         /**
          * Encodes the specified ServersResponse message. Does not implicitly {@link http.ServersResponse.verify|verify} messages.
@@ -2746,7 +2315,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.ServersResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IServersResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified ServersResponse message, length delimited. Does not implicitly {@link http.ServersResponse.verify|verify} messages.
@@ -2754,40 +2323,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.ServersResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IServersResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a ServersResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.ServersResponse & http.ServersResponse.$Shape} ServersResponse
+         * @returns ServersResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ServersResponse & http.ServersResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.ServersResponse;
 
         /**
          * Decodes a ServersResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.ServersResponse & http.ServersResponse.$Shape} ServersResponse
+         * @returns ServersResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ServersResponse & http.ServersResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.ServersResponse;
 
         /**
          * Verifies a ServersResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a ServersResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns ServersResponse
          */
-        static fromObject(object: { [k: string]: any }): http.ServersResponse;
+        public static fromObject(object: { [k: string]: any }): http.ServersResponse;
 
         /**
          * Creates a plain object from a ServersResponse message. Also converts values to other types if specified.
@@ -2795,104 +2364,310 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.ServersResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.ServersResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this ServersResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for ServersResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for ServersResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace ServersResponse {
+    /** Properties of an AdminModeServer. */
+    interface IAdminModeServer {
 
-        /** Properties of a ServersResponse. */
-        interface $Properties {
+        /** AdminModeServer icon */
+        icon?: (string|null);
 
-            /** ServersResponse status */
-            status?: (http.ResponseStatus|null);
+        /** AdminModeServer name */
+        name?: (string|null);
 
-            /** ServersResponse servers */
-            servers?: (http.ServerElement.$Properties[]|null);
+        /** AdminModeServer domain */
+        domain?: (string|null);
 
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
+        /** AdminModeServer lastSeen */
+        lastSeen?: (string|null);
+    }
 
-        /** Shape of a ServersResponse. */
-        type $Shape = http.ServersResponse.$Properties;
+    /** Represents an AdminModeServer. */
+    class AdminModeServer implements IAdminModeServer {
+
+        /**
+         * Constructs a new AdminModeServer.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IAdminModeServer);
+
+        /** AdminModeServer icon. */
+        public icon: string;
+
+        /** AdminModeServer name. */
+        public name: string;
+
+        /** AdminModeServer domain. */
+        public domain: string;
+
+        /** AdminModeServer lastSeen. */
+        public lastSeen: string;
+
+        /**
+         * Creates a new AdminModeServer instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AdminModeServer instance
+         */
+        public static create(properties?: http.IAdminModeServer): http.AdminModeServer;
+
+        /**
+         * Encodes the specified AdminModeServer message. Does not implicitly {@link http.AdminModeServer.verify|verify} messages.
+         * @param message AdminModeServer message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IAdminModeServer, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AdminModeServer message, length delimited. Does not implicitly {@link http.AdminModeServer.verify|verify} messages.
+         * @param message AdminModeServer message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IAdminModeServer, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AdminModeServer message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AdminModeServer
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AdminModeServer;
+
+        /**
+         * Decodes an AdminModeServer message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AdminModeServer
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AdminModeServer;
+
+        /**
+         * Verifies an AdminModeServer message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AdminModeServer message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AdminModeServer
+         */
+        public static fromObject(object: { [k: string]: any }): http.AdminModeServer;
+
+        /**
+         * Creates a plain object from an AdminModeServer message. Also converts values to other types if specified.
+         * @param message AdminModeServer
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.AdminModeServer, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AdminModeServer to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AdminModeServer
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an AdminModeServersResponse. */
+    interface IAdminModeServersResponse {
+
+        /** AdminModeServersResponse servers */
+        servers?: (http.IAdminModeServer[]|null);
+
+        /** AdminModeServersResponse online */
+        online?: (number|null);
+
+        /** AdminModeServersResponse count */
+        count?: (number|null);
+    }
+
+    /** Represents an AdminModeServersResponse. */
+    class AdminModeServersResponse implements IAdminModeServersResponse {
+
+        /**
+         * Constructs a new AdminModeServersResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.IAdminModeServersResponse);
+
+        /** AdminModeServersResponse servers. */
+        public servers: http.IAdminModeServer[];
+
+        /** AdminModeServersResponse online. */
+        public online: number;
+
+        /** AdminModeServersResponse count. */
+        public count: number;
+
+        /**
+         * Creates a new AdminModeServersResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AdminModeServersResponse instance
+         */
+        public static create(properties?: http.IAdminModeServersResponse): http.AdminModeServersResponse;
+
+        /**
+         * Encodes the specified AdminModeServersResponse message. Does not implicitly {@link http.AdminModeServersResponse.verify|verify} messages.
+         * @param message AdminModeServersResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: http.IAdminModeServersResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AdminModeServersResponse message, length delimited. Does not implicitly {@link http.AdminModeServersResponse.verify|verify} messages.
+         * @param message AdminModeServersResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: http.IAdminModeServersResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AdminModeServersResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AdminModeServersResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AdminModeServersResponse;
+
+        /**
+         * Decodes an AdminModeServersResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AdminModeServersResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AdminModeServersResponse;
+
+        /**
+         * Verifies an AdminModeServersResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AdminModeServersResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AdminModeServersResponse
+         */
+        public static fromObject(object: { [k: string]: any }): http.AdminModeServersResponse;
+
+        /**
+         * Creates a plain object from an AdminModeServersResponse message. Also converts values to other types if specified.
+         * @param message AdminModeServersResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: http.AdminModeServersResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AdminModeServersResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AdminModeServersResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** WorldEffect enum. */
     enum WorldEffect {
-
-        /** RAIN value */
         RAIN = 1,
-
-        /** RAINSTORM value */
         RAINSTORM = 2,
-
-        /** SNOW value */
         SNOW = 3,
-
-        /** SNOWSTORM value */
         SNOWSTORM = 4,
-
-        /** AUTUMN value */
         AUTUMN = 5
     }
 
-    /**
-     * Properties of a WorldProperties.
-     * @deprecated Use http.WorldProperties.$Properties instead.
-     */
-    interface IWorldProperties extends http.WorldProperties.$Properties {
+    /** Properties of a WorldProperties. */
+    interface IWorldProperties {
+
+        /** WorldProperties fillStyle */
+        fillStyle?: (string|null);
+
+        /** WorldProperties strokeStyle */
+        strokeStyle?: (string|null);
+
+        /** WorldProperties areaFill */
+        areaFill?: (string|null);
+
+        /** WorldProperties areaAlpha */
+        areaAlpha?: (number|null);
+
+        /** WorldProperties backgrounds */
+        backgrounds?: (http.WorldProperties.IBackground[]|null);
+
+        /** WorldProperties effect */
+        effect?: (http.WorldEffect|null);
     }
 
     /** Represents a WorldProperties. */
-    class WorldProperties {
+    class WorldProperties implements IWorldProperties {
 
         /**
          * Constructs a new WorldProperties.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.WorldProperties.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IWorldProperties);
 
         /** WorldProperties fillStyle. */
-        fillStyle: string;
+        public fillStyle: string;
 
         /** WorldProperties strokeStyle. */
-        strokeStyle: string;
+        public strokeStyle: string;
 
         /** WorldProperties areaFill. */
-        areaFill: string;
+        public areaFill: string;
 
         /** WorldProperties areaAlpha. */
-        areaAlpha?: (number|null);
+        public areaAlpha?: (number|null);
 
         /** WorldProperties backgrounds. */
-        backgrounds: http.WorldProperties.Background.$Properties[];
+        public backgrounds: http.WorldProperties.IBackground[];
 
         /** WorldProperties effect. */
-        effect?: (http.WorldEffect|null);
+        public effect?: (http.WorldEffect|null);
 
         /**
          * Creates a new WorldProperties instance using the specified properties.
          * @param [properties] Properties to set
          * @returns WorldProperties instance
          */
-        static create(properties: http.WorldProperties.$Shape): http.WorldProperties & http.WorldProperties.$Shape;
-        static create(properties?: http.WorldProperties.$Properties): http.WorldProperties;
+        public static create(properties?: http.IWorldProperties): http.WorldProperties;
 
         /**
          * Encodes the specified WorldProperties message. Does not implicitly {@link http.WorldProperties.verify|verify} messages.
@@ -2900,7 +2675,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.WorldProperties.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IWorldProperties, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified WorldProperties message, length delimited. Does not implicitly {@link http.WorldProperties.verify|verify} messages.
@@ -2908,40 +2683,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.WorldProperties.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IWorldProperties, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a WorldProperties message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.WorldProperties & http.WorldProperties.$Shape} WorldProperties
+         * @returns WorldProperties
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldProperties & http.WorldProperties.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldProperties;
 
         /**
          * Decodes a WorldProperties message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.WorldProperties & http.WorldProperties.$Shape} WorldProperties
+         * @returns WorldProperties
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldProperties & http.WorldProperties.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldProperties;
 
         /**
          * Verifies a WorldProperties message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a WorldProperties message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns WorldProperties
          */
-        static fromObject(object: { [k: string]: any }): http.WorldProperties;
+        public static fromObject(object: { [k: string]: any }): http.WorldProperties;
 
         /**
          * Creates a plain object from a WorldProperties message. Also converts values to other types if specified.
@@ -2949,84 +2724,55 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.WorldProperties, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.WorldProperties, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this WorldProperties to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for WorldProperties
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for WorldProperties
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     namespace WorldProperties {
 
-        /** Properties of a WorldProperties. */
-        interface $Properties {
+        /** Properties of a Background. */
+        interface IBackground {
 
-            /** WorldProperties fillStyle */
-            fillStyle?: (string|null);
+            /** Background name */
+            name?: (string|null);
 
-            /** WorldProperties strokeStyle */
-            strokeStyle?: (string|null);
-
-            /** WorldProperties areaFill */
-            areaFill?: (string|null);
-
-            /** WorldProperties areaAlpha */
-            areaAlpha?: (number|null);
-
-            /** WorldProperties backgrounds */
-            backgrounds?: (http.WorldProperties.Background.$Properties[]|null);
-
-            /** WorldProperties effect */
-            effect?: (http.WorldEffect|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a WorldProperties. */
-        type $Shape = http.WorldProperties.$Properties;
-
-        /**
-         * Properties of a Background.
-         * @deprecated Use http.WorldProperties.Background.$Properties instead.
-         */
-        interface IBackground extends http.WorldProperties.Background.$Properties {
+            /** Background alpha */
+            alpha?: (number|null);
         }
 
         /** Represents a Background. */
-        class Background {
+        class Background implements IBackground {
 
             /**
              * Constructs a new Background.
              * @param [properties] Properties to set
              */
-            constructor(properties?: http.WorldProperties.Background.$Properties);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
+            constructor(properties?: http.WorldProperties.IBackground);
 
             /** Background name. */
-            name: string;
+            public name: string;
 
             /** Background alpha. */
-            alpha: number;
+            public alpha: number;
 
             /**
              * Creates a new Background instance using the specified properties.
              * @param [properties] Properties to set
              * @returns Background instance
              */
-            static create(properties: http.WorldProperties.Background.$Shape): http.WorldProperties.Background & http.WorldProperties.Background.$Shape;
-            static create(properties?: http.WorldProperties.Background.$Properties): http.WorldProperties.Background;
+            public static create(properties?: http.WorldProperties.IBackground): http.WorldProperties.Background;
 
             /**
              * Encodes the specified Background message. Does not implicitly {@link http.WorldProperties.Background.verify|verify} messages.
@@ -3034,7 +2780,7 @@ export namespace http {
              * @param [writer] Writer to encode to
              * @returns Writer
              */
-            static encode(message: http.WorldProperties.Background.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+            public static encode(message: http.WorldProperties.IBackground, writer?: $protobuf.Writer): $protobuf.Writer;
 
             /**
              * Encodes the specified Background message, length delimited. Does not implicitly {@link http.WorldProperties.Background.verify|verify} messages.
@@ -3042,40 +2788,40 @@ export namespace http {
              * @param [writer] Writer to encode to
              * @returns Writer
              */
-            static encodeDelimited(message: http.WorldProperties.Background.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+            public static encodeDelimited(message: http.WorldProperties.IBackground, writer?: $protobuf.Writer): $protobuf.Writer;
 
             /**
              * Decodes a Background message from the specified reader or buffer.
              * @param reader Reader or buffer to decode from
              * @param [length] Message length if known beforehand
-             * @returns {http.WorldProperties.Background & http.WorldProperties.Background.$Shape} Background
+             * @returns Background
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldProperties.Background & http.WorldProperties.Background.$Shape;
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldProperties.Background;
 
             /**
              * Decodes a Background message from the specified reader or buffer, length delimited.
              * @param reader Reader or buffer to decode from
-             * @returns {http.WorldProperties.Background & http.WorldProperties.Background.$Shape} Background
+             * @returns Background
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldProperties.Background & http.WorldProperties.Background.$Shape;
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldProperties.Background;
 
             /**
              * Verifies a Background message.
              * @param message Plain object to verify
              * @returns `null` if valid, otherwise the reason why it is not
              */
-            static verify(message: { [k: string]: any }): (string|null);
+            public static verify(message: { [k: string]: any }): (string|null);
 
             /**
              * Creates a Background message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              * @returns Background
              */
-            static fromObject(object: { [k: string]: any }): http.WorldProperties.Background;
+            public static fromObject(object: { [k: string]: any }): http.WorldProperties.Background;
 
             /**
              * Creates a plain object from a Background message. Also converts values to other types if specified.
@@ -3083,77 +2829,60 @@ export namespace http {
              * @param [options] Conversion options
              * @returns Plain object
              */
-            static toObject(message: http.WorldProperties.Background, options?: $protobuf.IConversionOptions): { [k: string]: any };
+            public static toObject(message: http.WorldProperties.Background, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
             /**
              * Converts this Background to JSON.
              * @returns JSON object
              */
-            toJSON(): { [k: string]: any };
+            public toJSON(): { [k: string]: any };
 
             /**
-             * Gets the type url for Background
-             * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-             * @returns The type url
+             * Gets the default type url for Background
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
              */
-            static getTypeUrl(prefix?: string): string;
-        }
-
-        namespace Background {
-
-            /** Properties of a Background. */
-            interface $Properties {
-
-                /** Background name */
-                name?: (string|null);
-
-                /** Background alpha */
-                alpha?: (number|null);
-
-                /** Unknown fields preserved while decoding when enabled */
-                $unknowns?: Uint8Array[];
-            }
-
-            /** Shape of a Background. */
-            type $Shape = http.WorldProperties.Background.$Properties;
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
     }
 
-    /**
-     * Properties of an AreaResponse.
-     * @deprecated Use http.AreaResponse.$Properties instead.
-     */
-    interface IAreaResponse extends http.AreaResponse.$Properties {
+    /** Properties of an AreaResponse. */
+    interface IAreaResponse {
+
+        /** AreaResponse win */
+        win?: (boolean|null);
+
+        /** AreaResponse vp */
+        vp?: (number|null);
+
+        /** AreaResponse text */
+        text?: (string|null);
     }
 
     /** Represents an AreaResponse. */
-    class AreaResponse {
+    class AreaResponse implements IAreaResponse {
 
         /**
          * Constructs a new AreaResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.AreaResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IAreaResponse);
 
         /** AreaResponse win. */
-        win?: (boolean|null);
+        public win?: (boolean|null);
 
         /** AreaResponse vp. */
-        vp?: (number|null);
+        public vp?: (number|null);
 
         /** AreaResponse text. */
-        text?: (string|null);
+        public text?: (string|null);
 
         /**
          * Creates a new AreaResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns AreaResponse instance
          */
-        static create(properties: http.AreaResponse.$Shape): http.AreaResponse & http.AreaResponse.$Shape;
-        static create(properties?: http.AreaResponse.$Properties): http.AreaResponse;
+        public static create(properties?: http.IAreaResponse): http.AreaResponse;
 
         /**
          * Encodes the specified AreaResponse message. Does not implicitly {@link http.AreaResponse.verify|verify} messages.
@@ -3161,7 +2890,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.AreaResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IAreaResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified AreaResponse message, length delimited. Does not implicitly {@link http.AreaResponse.verify|verify} messages.
@@ -3169,40 +2898,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.AreaResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IAreaResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an AreaResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.AreaResponse & http.AreaResponse.$Shape} AreaResponse
+         * @returns AreaResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AreaResponse & http.AreaResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AreaResponse;
 
         /**
          * Decodes an AreaResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.AreaResponse & http.AreaResponse.$Shape} AreaResponse
+         * @returns AreaResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AreaResponse & http.AreaResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AreaResponse;
 
         /**
          * Verifies an AreaResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an AreaResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns AreaResponse
          */
-        static fromObject(object: { [k: string]: any }): http.AreaResponse;
+        public static fromObject(object: { [k: string]: any }): http.AreaResponse;
 
         /**
          * Creates a plain object from an AreaResponse message. Also converts values to other types if specified.
@@ -3210,76 +2939,53 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.AreaResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.AreaResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this AreaResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for AreaResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for AreaResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace AreaResponse {
+    /** Properties of a WorldResponse. */
+    interface IWorldResponse {
 
-        /** Properties of an AreaResponse. */
-        interface $Properties {
+        /** WorldResponse properties */
+        properties?: (http.IWorldProperties|null);
 
-            /** AreaResponse win */
-            win?: (boolean|null);
-
-            /** AreaResponse vp */
-            vp?: (number|null);
-
-            /** AreaResponse text */
-            text?: (string|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an AreaResponse. */
-        type $Shape = http.AreaResponse.$Properties;
-    }
-
-    /**
-     * Properties of a WorldResponse.
-     * @deprecated Use http.WorldResponse.$Properties instead.
-     */
-    interface IWorldResponse extends http.WorldResponse.$Properties {
+        /** WorldResponse areas */
+        areas?: ({ [k: string]: http.IAreaResponse }|null);
     }
 
     /** Represents a WorldResponse. */
-    class WorldResponse {
+    class WorldResponse implements IWorldResponse {
 
         /**
          * Constructs a new WorldResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.WorldResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IWorldResponse);
 
         /** WorldResponse properties. */
-        properties?: (http.WorldProperties.$Properties|null);
+        public properties?: (http.IWorldProperties|null);
 
         /** WorldResponse areas. */
-        areas: { [k: string]: http.AreaResponse.$Properties };
+        public areas: { [k: string]: http.IAreaResponse };
 
         /**
          * Creates a new WorldResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns WorldResponse instance
          */
-        static create(properties: http.WorldResponse.$Shape): http.WorldResponse & http.WorldResponse.$Shape;
-        static create(properties?: http.WorldResponse.$Properties): http.WorldResponse;
+        public static create(properties?: http.IWorldResponse): http.WorldResponse;
 
         /**
          * Encodes the specified WorldResponse message. Does not implicitly {@link http.WorldResponse.verify|verify} messages.
@@ -3287,7 +2993,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.WorldResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IWorldResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified WorldResponse message, length delimited. Does not implicitly {@link http.WorldResponse.verify|verify} messages.
@@ -3295,40 +3001,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.WorldResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IWorldResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a WorldResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.WorldResponse & http.WorldResponse.$Shape} WorldResponse
+         * @returns WorldResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldResponse & http.WorldResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldResponse;
 
         /**
          * Decodes a WorldResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.WorldResponse & http.WorldResponse.$Shape} WorldResponse
+         * @returns WorldResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldResponse & http.WorldResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldResponse;
 
         /**
          * Verifies a WorldResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a WorldResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns WorldResponse
          */
-        static fromObject(object: { [k: string]: any }): http.WorldResponse;
+        public static fromObject(object: { [k: string]: any }): http.WorldResponse;
 
         /**
          * Creates a plain object from a WorldResponse message. Also converts values to other types if specified.
@@ -3336,70 +3042,47 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.WorldResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.WorldResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this WorldResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for WorldResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for WorldResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace WorldResponse {
+    /** Properties of a WorldsResponse. */
+    interface IWorldsResponse {
 
-        /** Properties of a WorldResponse. */
-        interface $Properties {
-
-            /** WorldResponse properties */
-            properties?: (http.WorldProperties.$Properties|null);
-
-            /** WorldResponse areas */
-            areas?: ({ [k: string]: http.AreaResponse.$Properties }|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a WorldResponse. */
-        type $Shape = http.WorldResponse.$Properties;
-    }
-
-    /**
-     * Properties of a WorldsResponse.
-     * @deprecated Use http.WorldsResponse.$Properties instead.
-     */
-    interface IWorldsResponse extends http.WorldsResponse.$Properties {
+        /** WorldsResponse worlds */
+        worlds?: ({ [k: string]: http.IWorldResponse }|null);
     }
 
     /** Represents a WorldsResponse. */
-    class WorldsResponse {
+    class WorldsResponse implements IWorldsResponse {
 
         /**
          * Constructs a new WorldsResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: http.WorldsResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: http.IWorldsResponse);
 
         /** WorldsResponse worlds. */
-        worlds: { [k: string]: http.WorldResponse.$Properties };
+        public worlds: { [k: string]: http.IWorldResponse };
 
         /**
          * Creates a new WorldsResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns WorldsResponse instance
          */
-        static create(properties: http.WorldsResponse.$Shape): http.WorldsResponse & http.WorldsResponse.$Shape;
-        static create(properties?: http.WorldsResponse.$Properties): http.WorldsResponse;
+        public static create(properties?: http.IWorldsResponse): http.WorldsResponse;
 
         /**
          * Encodes the specified WorldsResponse message. Does not implicitly {@link http.WorldsResponse.verify|verify} messages.
@@ -3407,7 +3090,7 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: http.WorldsResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: http.IWorldsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified WorldsResponse message, length delimited. Does not implicitly {@link http.WorldsResponse.verify|verify} messages.
@@ -3415,40 +3098,40 @@ export namespace http {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: http.WorldsResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: http.IWorldsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a WorldsResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {http.WorldsResponse & http.WorldsResponse.$Shape} WorldsResponse
+         * @returns WorldsResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldsResponse & http.WorldsResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.WorldsResponse;
 
         /**
          * Decodes a WorldsResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {http.WorldsResponse & http.WorldsResponse.$Shape} WorldsResponse
+         * @returns WorldsResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldsResponse & http.WorldsResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.WorldsResponse;
 
         /**
          * Verifies a WorldsResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a WorldsResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns WorldsResponse
          */
-        static fromObject(object: { [k: string]: any }): http.WorldsResponse;
+        public static fromObject(object: { [k: string]: any }): http.WorldsResponse;
 
         /**
          * Creates a plain object from a WorldsResponse message. Also converts values to other types if specified.
@@ -3456,36 +3139,20 @@ export namespace http {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: http.WorldsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: http.WorldsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this WorldsResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for WorldsResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for WorldsResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
-    }
-
-    namespace WorldsResponse {
-
-        /** Properties of a WorldsResponse. */
-        interface $Properties {
-
-            /** WorldsResponse worlds */
-            worlds?: ({ [k: string]: http.WorldResponse.$Properties }|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a WorldsResponse. */
-        type $Shape = http.WorldsResponse.$Properties;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }
 
@@ -3510,19 +3177,63 @@ export namespace connection {
          * @param [responseDelimited=false] Whether responses are length-delimited
          * @returns RPC service. Useful where requests and/or responses are streamed.
          */
-        static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): Game;
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): Game;
 
-        /** Calls Authentication. */
-        authentication: connection.Game.Authentication;
+        /**
+         * Calls Authentication.
+         * @param request AuthenticationRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and AuthenticationResponse
+         */
+        public authentication(request: connection.IAuthenticationRequest, callback: connection.Game.AuthenticationCallback): void;
 
-        /** Calls JoinPlayer. */
-        joinPlayer: connection.Game.JoinPlayer;
+        /**
+         * Calls Authentication.
+         * @param request AuthenticationRequest message or plain object
+         * @returns Promise
+         */
+        public authentication(request: connection.IAuthenticationRequest): Promise<connection.AuthenticationResponse>;
 
-        /** Calls Ping. */
-        ping: connection.Game.Ping;
+        /**
+         * Calls JoinPlayer.
+         * @param request JoinPlayerRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and JoinPlayerResponse
+         */
+        public joinPlayer(request: connection.IJoinPlayerRequest, callback: connection.Game.JoinPlayerCallback): void;
 
-        /** Calls AwardPlayer. */
-        awardPlayer: connection.Game.AwardPlayer;
+        /**
+         * Calls JoinPlayer.
+         * @param request JoinPlayerRequest message or plain object
+         * @returns Promise
+         */
+        public joinPlayer(request: connection.IJoinPlayerRequest): Promise<connection.JoinPlayerResponse>;
+
+        /**
+         * Calls Ping.
+         * @param request PingRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and PongResponse
+         */
+        public ping(request: connection.IPingRequest, callback: connection.Game.PingCallback): void;
+
+        /**
+         * Calls Ping.
+         * @param request PingRequest message or plain object
+         * @returns Promise
+         */
+        public ping(request: connection.IPingRequest): Promise<connection.PongResponse>;
+
+        /**
+         * Calls AwardPlayer.
+         * @param request AwardRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and AwardResponse
+         */
+        public awardPlayer(request: connection.IAwardRequest, callback: connection.Game.AwardPlayerCallback): void;
+
+        /**
+         * Calls AwardPlayer.
+         * @param request AwardRequest message or plain object
+         * @returns Promise
+         */
+        public awardPlayer(request: connection.IAwardRequest): Promise<connection.AwardResponse>;
     }
 
     namespace Game {
@@ -3534,36 +3245,12 @@ export namespace connection {
          */
         type AuthenticationCallback = (error: (Error|null), response?: connection.AuthenticationResponse) => void;
 
-        /** Calls Authentication. */
-        type Authentication = {
-          (request: connection.IAuthenticationRequest, callback: connection.Game.AuthenticationCallback): void;
-          (request: connection.IAuthenticationRequest): Promise<connection.AuthenticationResponse>;
-          readonly name: "Authentication";
-          readonly path: "/connection.Game/Authentication";
-          readonly requestType: "AuthenticationRequest";
-          readonly responseType: "AuthenticationResponse";
-          readonly requestStream: undefined;
-          readonly responseStream: undefined;
-        };
-
         /**
          * Callback as used by {@link connection.Game#joinPlayer}.
          * @param error Error, if any
          * @param [response] JoinPlayerResponse
          */
         type JoinPlayerCallback = (error: (Error|null), response?: connection.JoinPlayerResponse) => void;
-
-        /** Calls JoinPlayer. */
-        type JoinPlayer = {
-          (request: connection.IJoinPlayerRequest, callback: connection.Game.JoinPlayerCallback): void;
-          (request: connection.IJoinPlayerRequest): Promise<connection.JoinPlayerResponse>;
-          readonly name: "JoinPlayer";
-          readonly path: "/connection.Game/JoinPlayer";
-          readonly requestType: "JoinPlayerRequest";
-          readonly responseType: "JoinPlayerResponse";
-          readonly requestStream: undefined;
-          readonly responseStream: undefined;
-        };
 
         /**
          * Callback as used by {@link connection.Game#ping}.
@@ -3572,70 +3259,45 @@ export namespace connection {
          */
         type PingCallback = (error: (Error|null), response?: connection.PongResponse) => void;
 
-        /** Calls Ping. */
-        type Ping = {
-          (request: connection.IPingRequest, callback: connection.Game.PingCallback): void;
-          (request: connection.IPingRequest): Promise<connection.PongResponse>;
-          readonly name: "Ping";
-          readonly path: "/connection.Game/Ping";
-          readonly requestType: "PingRequest";
-          readonly responseType: "PongResponse";
-          readonly requestStream: undefined;
-          readonly responseStream: undefined;
-        };
-
         /**
          * Callback as used by {@link connection.Game#awardPlayer}.
          * @param error Error, if any
          * @param [response] AwardResponse
          */
         type AwardPlayerCallback = (error: (Error|null), response?: connection.AwardResponse) => void;
-
-        /** Calls AwardPlayer. */
-        type AwardPlayer = {
-          (request: connection.IAwardRequest, callback: connection.Game.AwardPlayerCallback): void;
-          (request: connection.IAwardRequest): Promise<connection.AwardResponse>;
-          readonly name: "AwardPlayer";
-          readonly path: "/connection.Game/AwardPlayer";
-          readonly requestType: "AwardRequest";
-          readonly responseType: "AwardResponse";
-          readonly requestStream: undefined;
-          readonly responseStream: undefined;
-        };
     }
 
-    /**
-     * Properties of a PingRequest.
-     * @deprecated Use connection.PingRequest.$Properties instead.
-     */
-    interface IPingRequest extends connection.PingRequest.$Properties {
+    /** Properties of a PingRequest. */
+    interface IPingRequest {
+
+        /** PingRequest online */
+        online?: (number|null);
+
+        /** PingRequest alive */
+        alive?: (boolean|null);
     }
 
     /** Represents a PingRequest. */
-    class PingRequest {
+    class PingRequest implements IPingRequest {
 
         /**
          * Constructs a new PingRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.PingRequest.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IPingRequest);
 
         /** PingRequest online. */
-        online: number;
+        public online: number;
 
         /** PingRequest alive. */
-        alive: boolean;
+        public alive: boolean;
 
         /**
          * Creates a new PingRequest instance using the specified properties.
          * @param [properties] Properties to set
          * @returns PingRequest instance
          */
-        static create(properties: connection.PingRequest.$Shape): connection.PingRequest & connection.PingRequest.$Shape;
-        static create(properties?: connection.PingRequest.$Properties): connection.PingRequest;
+        public static create(properties?: connection.IPingRequest): connection.PingRequest;
 
         /**
          * Encodes the specified PingRequest message. Does not implicitly {@link connection.PingRequest.verify|verify} messages.
@@ -3643,7 +3305,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.PingRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IPingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified PingRequest message, length delimited. Does not implicitly {@link connection.PingRequest.verify|verify} messages.
@@ -3651,40 +3313,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.PingRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IPingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a PingRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.PingRequest & connection.PingRequest.$Shape} PingRequest
+         * @returns PingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.PingRequest & connection.PingRequest.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.PingRequest;
 
         /**
          * Decodes a PingRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.PingRequest & connection.PingRequest.$Shape} PingRequest
+         * @returns PingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.PingRequest & connection.PingRequest.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.PingRequest;
 
         /**
          * Verifies a PingRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PingRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns PingRequest
          */
-        static fromObject(object: { [k: string]: any }): connection.PingRequest;
+        public static fromObject(object: { [k: string]: any }): connection.PingRequest;
 
         /**
          * Creates a plain object from a PingRequest message. Also converts values to other types if specified.
@@ -3692,70 +3354,47 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.PingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.PingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this PingRequest to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for PingRequest
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for PingRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace PingRequest {
+    /** Properties of a PongResponse. */
+    interface IPongResponse {
 
-        /** Properties of a PingRequest. */
-        interface $Properties {
-
-            /** PingRequest online */
-            online?: (number|null);
-
-            /** PingRequest alive */
-            alive?: (boolean|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a PingRequest. */
-        type $Shape = connection.PingRequest.$Properties;
-    }
-
-    /**
-     * Properties of a PongResponse.
-     * @deprecated Use connection.PongResponse.$Properties instead.
-     */
-    interface IPongResponse extends connection.PongResponse.$Properties {
+        /** PongResponse success */
+        success?: (boolean|null);
     }
 
     /** Represents a PongResponse. */
-    class PongResponse {
+    class PongResponse implements IPongResponse {
 
         /**
          * Constructs a new PongResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.PongResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IPongResponse);
 
         /** PongResponse success. */
-        success: boolean;
+        public success: boolean;
 
         /**
          * Creates a new PongResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns PongResponse instance
          */
-        static create(properties: connection.PongResponse.$Shape): connection.PongResponse & connection.PongResponse.$Shape;
-        static create(properties?: connection.PongResponse.$Properties): connection.PongResponse;
+        public static create(properties?: connection.IPongResponse): connection.PongResponse;
 
         /**
          * Encodes the specified PongResponse message. Does not implicitly {@link connection.PongResponse.verify|verify} messages.
@@ -3763,7 +3402,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.PongResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IPongResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified PongResponse message, length delimited. Does not implicitly {@link connection.PongResponse.verify|verify} messages.
@@ -3771,40 +3410,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.PongResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IPongResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a PongResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.PongResponse & connection.PongResponse.$Shape} PongResponse
+         * @returns PongResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.PongResponse & connection.PongResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.PongResponse;
 
         /**
          * Decodes a PongResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.PongResponse & connection.PongResponse.$Shape} PongResponse
+         * @returns PongResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.PongResponse & connection.PongResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.PongResponse;
 
         /**
          * Verifies a PongResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a PongResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns PongResponse
          */
-        static fromObject(object: { [k: string]: any }): connection.PongResponse;
+        public static fromObject(object: { [k: string]: any }): connection.PongResponse;
 
         /**
          * Creates a plain object from a PongResponse message. Also converts values to other types if specified.
@@ -3812,67 +3451,47 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.PongResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.PongResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this PongResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for PongResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for PongResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace PongResponse {
+    /** Properties of an AuthenticationRequest. */
+    interface IAuthenticationRequest {
 
-        /** Properties of a PongResponse. */
-        interface $Properties {
-
-            /** PongResponse success */
-            success?: (boolean|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a PongResponse. */
-        type $Shape = connection.PongResponse.$Properties;
-    }
-
-    /**
-     * Properties of an AuthenticationRequest.
-     * @deprecated Use connection.AuthenticationRequest.$Properties instead.
-     */
-    interface IAuthenticationRequest extends connection.AuthenticationRequest.$Properties {
+        /** AuthenticationRequest token */
+        token?: (string|null);
     }
 
     /** Represents an AuthenticationRequest. */
-    class AuthenticationRequest {
+    class AuthenticationRequest implements IAuthenticationRequest {
 
         /**
          * Constructs a new AuthenticationRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.AuthenticationRequest.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IAuthenticationRequest);
 
         /** AuthenticationRequest token. */
-        token: string;
+        public token: string;
 
         /**
          * Creates a new AuthenticationRequest instance using the specified properties.
          * @param [properties] Properties to set
          * @returns AuthenticationRequest instance
          */
-        static create(properties: connection.AuthenticationRequest.$Shape): connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape;
-        static create(properties?: connection.AuthenticationRequest.$Properties): connection.AuthenticationRequest;
+        public static create(properties?: connection.IAuthenticationRequest): connection.AuthenticationRequest;
 
         /**
          * Encodes the specified AuthenticationRequest message. Does not implicitly {@link connection.AuthenticationRequest.verify|verify} messages.
@@ -3880,7 +3499,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.AuthenticationRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IAuthenticationRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified AuthenticationRequest message, length delimited. Does not implicitly {@link connection.AuthenticationRequest.verify|verify} messages.
@@ -3888,40 +3507,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.AuthenticationRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IAuthenticationRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an AuthenticationRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape} AuthenticationRequest
+         * @returns AuthenticationRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AuthenticationRequest;
 
         /**
          * Decodes an AuthenticationRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape} AuthenticationRequest
+         * @returns AuthenticationRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AuthenticationRequest & connection.AuthenticationRequest.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AuthenticationRequest;
 
         /**
          * Verifies an AuthenticationRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an AuthenticationRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns AuthenticationRequest
          */
-        static fromObject(object: { [k: string]: any }): connection.AuthenticationRequest;
+        public static fromObject(object: { [k: string]: any }): connection.AuthenticationRequest;
 
         /**
          * Creates a plain object from an AuthenticationRequest message. Also converts values to other types if specified.
@@ -3929,67 +3548,47 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.AuthenticationRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.AuthenticationRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this AuthenticationRequest to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for AuthenticationRequest
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for AuthenticationRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace AuthenticationRequest {
+    /** Properties of an AuthenticationResponse. */
+    interface IAuthenticationResponse {
 
-        /** Properties of an AuthenticationRequest. */
-        interface $Properties {
-
-            /** AuthenticationRequest token */
-            token?: (string|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an AuthenticationRequest. */
-        type $Shape = connection.AuthenticationRequest.$Properties;
-    }
-
-    /**
-     * Properties of an AuthenticationResponse.
-     * @deprecated Use connection.AuthenticationResponse.$Properties instead.
-     */
-    interface IAuthenticationResponse extends connection.AuthenticationResponse.$Properties {
+        /** AuthenticationResponse session */
+        session?: (string|null);
     }
 
     /** Represents an AuthenticationResponse. */
-    class AuthenticationResponse {
+    class AuthenticationResponse implements IAuthenticationResponse {
 
         /**
          * Constructs a new AuthenticationResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.AuthenticationResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IAuthenticationResponse);
 
         /** AuthenticationResponse session. */
-        session: string;
+        public session: string;
 
         /**
          * Creates a new AuthenticationResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns AuthenticationResponse instance
          */
-        static create(properties: connection.AuthenticationResponse.$Shape): connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape;
-        static create(properties?: connection.AuthenticationResponse.$Properties): connection.AuthenticationResponse;
+        public static create(properties?: connection.IAuthenticationResponse): connection.AuthenticationResponse;
 
         /**
          * Encodes the specified AuthenticationResponse message. Does not implicitly {@link connection.AuthenticationResponse.verify|verify} messages.
@@ -3997,7 +3596,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.AuthenticationResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IAuthenticationResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified AuthenticationResponse message, length delimited. Does not implicitly {@link connection.AuthenticationResponse.verify|verify} messages.
@@ -4005,40 +3604,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.AuthenticationResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IAuthenticationResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an AuthenticationResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape} AuthenticationResponse
+         * @returns AuthenticationResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AuthenticationResponse;
 
         /**
          * Decodes an AuthenticationResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape} AuthenticationResponse
+         * @returns AuthenticationResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AuthenticationResponse & connection.AuthenticationResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AuthenticationResponse;
 
         /**
          * Verifies an AuthenticationResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an AuthenticationResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns AuthenticationResponse
          */
-        static fromObject(object: { [k: string]: any }): connection.AuthenticationResponse;
+        public static fromObject(object: { [k: string]: any }): connection.AuthenticationResponse;
 
         /**
          * Creates a plain object from an AuthenticationResponse message. Also converts values to other types if specified.
@@ -4046,67 +3645,47 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.AuthenticationResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.AuthenticationResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this AuthenticationResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for AuthenticationResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for AuthenticationResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace AuthenticationResponse {
+    /** Properties of a JoinPlayerRequest. */
+    interface IJoinPlayerRequest {
 
-        /** Properties of an AuthenticationResponse. */
-        interface $Properties {
-
-            /** AuthenticationResponse session */
-            session?: (string|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an AuthenticationResponse. */
-        type $Shape = connection.AuthenticationResponse.$Properties;
-    }
-
-    /**
-     * Properties of a JoinPlayerRequest.
-     * @deprecated Use connection.JoinPlayerRequest.$Properties instead.
-     */
-    interface IJoinPlayerRequest extends connection.JoinPlayerRequest.$Properties {
+        /** JoinPlayerRequest token */
+        token?: (string|null);
     }
 
     /** Represents a JoinPlayerRequest. */
-    class JoinPlayerRequest {
+    class JoinPlayerRequest implements IJoinPlayerRequest {
 
         /**
          * Constructs a new JoinPlayerRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.JoinPlayerRequest.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IJoinPlayerRequest);
 
         /** JoinPlayerRequest token. */
-        token: string;
+        public token: string;
 
         /**
          * Creates a new JoinPlayerRequest instance using the specified properties.
          * @param [properties] Properties to set
          * @returns JoinPlayerRequest instance
          */
-        static create(properties: connection.JoinPlayerRequest.$Shape): connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape;
-        static create(properties?: connection.JoinPlayerRequest.$Properties): connection.JoinPlayerRequest;
+        public static create(properties?: connection.IJoinPlayerRequest): connection.JoinPlayerRequest;
 
         /**
          * Encodes the specified JoinPlayerRequest message. Does not implicitly {@link connection.JoinPlayerRequest.verify|verify} messages.
@@ -4114,7 +3693,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.JoinPlayerRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IJoinPlayerRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified JoinPlayerRequest message, length delimited. Does not implicitly {@link connection.JoinPlayerRequest.verify|verify} messages.
@@ -4122,40 +3701,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.JoinPlayerRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IJoinPlayerRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a JoinPlayerRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape} JoinPlayerRequest
+         * @returns JoinPlayerRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.JoinPlayerRequest;
 
         /**
          * Decodes a JoinPlayerRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape} JoinPlayerRequest
+         * @returns JoinPlayerRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.JoinPlayerRequest & connection.JoinPlayerRequest.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.JoinPlayerRequest;
 
         /**
          * Verifies a JoinPlayerRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a JoinPlayerRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns JoinPlayerRequest
          */
-        static fromObject(object: { [k: string]: any }): connection.JoinPlayerRequest;
+        public static fromObject(object: { [k: string]: any }): connection.JoinPlayerRequest;
 
         /**
          * Creates a plain object from a JoinPlayerRequest message. Also converts values to other types if specified.
@@ -4163,73 +3742,59 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.JoinPlayerRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.JoinPlayerRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this JoinPlayerRequest to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for JoinPlayerRequest
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for JoinPlayerRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace JoinPlayerRequest {
+    /** Properties of a JoinPlayerResponse. */
+    interface IJoinPlayerResponse {
 
-        /** Properties of a JoinPlayerRequest. */
-        interface $Properties {
+        /** JoinPlayerResponse name */
+        name?: (string|null);
 
-            /** JoinPlayerRequest token */
-            token?: (string|null);
+        /** JoinPlayerResponse role */
+        role?: (connection.Role|null);
 
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a JoinPlayerRequest. */
-        type $Shape = connection.JoinPlayerRequest.$Properties;
-    }
-
-    /**
-     * Properties of a JoinPlayerResponse.
-     * @deprecated Use connection.JoinPlayerResponse.$Properties instead.
-     */
-    interface IJoinPlayerResponse extends connection.JoinPlayerResponse.$Properties {
+        /** JoinPlayerResponse id */
+        id?: (string|null);
     }
 
     /** Represents a JoinPlayerResponse. */
-    class JoinPlayerResponse {
+    class JoinPlayerResponse implements IJoinPlayerResponse {
 
         /**
          * Constructs a new JoinPlayerResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.JoinPlayerResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IJoinPlayerResponse);
 
         /** JoinPlayerResponse name. */
-        name: string;
+        public name: string;
 
         /** JoinPlayerResponse role. */
-        role: connection.Role;
+        public role: connection.Role;
 
         /** JoinPlayerResponse id. */
-        id: string;
+        public id: string;
 
         /**
          * Creates a new JoinPlayerResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns JoinPlayerResponse instance
          */
-        static create(properties: connection.JoinPlayerResponse.$Shape): connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape;
-        static create(properties?: connection.JoinPlayerResponse.$Properties): connection.JoinPlayerResponse;
+        public static create(properties?: connection.IJoinPlayerResponse): connection.JoinPlayerResponse;
 
         /**
          * Encodes the specified JoinPlayerResponse message. Does not implicitly {@link connection.JoinPlayerResponse.verify|verify} messages.
@@ -4237,7 +3802,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.JoinPlayerResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IJoinPlayerResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified JoinPlayerResponse message, length delimited. Does not implicitly {@link connection.JoinPlayerResponse.verify|verify} messages.
@@ -4245,40 +3810,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.JoinPlayerResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IJoinPlayerResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a JoinPlayerResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape} JoinPlayerResponse
+         * @returns JoinPlayerResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.JoinPlayerResponse;
 
         /**
          * Decodes a JoinPlayerResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape} JoinPlayerResponse
+         * @returns JoinPlayerResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.JoinPlayerResponse & connection.JoinPlayerResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.JoinPlayerResponse;
 
         /**
          * Verifies a JoinPlayerResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates a JoinPlayerResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns JoinPlayerResponse
          */
-        static fromObject(object: { [k: string]: any }): connection.JoinPlayerResponse;
+        public static fromObject(object: { [k: string]: any }): connection.JoinPlayerResponse;
 
         /**
          * Creates a plain object from a JoinPlayerResponse message. Also converts values to other types if specified.
@@ -4286,79 +3851,59 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.JoinPlayerResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.JoinPlayerResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this JoinPlayerResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for JoinPlayerResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for JoinPlayerResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace JoinPlayerResponse {
+    /** Properties of an AwardRequest. */
+    interface IAwardRequest {
 
-        /** Properties of a JoinPlayerResponse. */
-        interface $Properties {
+        /** AwardRequest id */
+        id?: (string|null);
 
-            /** JoinPlayerResponse name */
-            name?: (string|null);
+        /** AwardRequest vp */
+        vp?: (number|null);
 
-            /** JoinPlayerResponse role */
-            role?: (connection.Role|null);
-
-            /** JoinPlayerResponse id */
-            id?: (string|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of a JoinPlayerResponse. */
-        type $Shape = connection.JoinPlayerResponse.$Properties;
-    }
-
-    /**
-     * Properties of an AwardRequest.
-     * @deprecated Use connection.AwardRequest.$Properties instead.
-     */
-    interface IAwardRequest extends connection.AwardRequest.$Properties {
+        /** AwardRequest accessory */
+        accessory?: (string|null);
     }
 
     /** Represents an AwardRequest. */
-    class AwardRequest {
+    class AwardRequest implements IAwardRequest {
 
         /**
          * Constructs a new AwardRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.AwardRequest.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IAwardRequest);
 
         /** AwardRequest id. */
-        id: string;
+        public id: string;
 
         /** AwardRequest vp. */
-        vp?: (number|null);
+        public vp?: (number|null);
 
         /** AwardRequest accessory. */
-        accessory?: (string|null);
+        public accessory?: (string|null);
 
         /**
          * Creates a new AwardRequest instance using the specified properties.
          * @param [properties] Properties to set
          * @returns AwardRequest instance
          */
-        static create(properties: connection.AwardRequest.$Shape): connection.AwardRequest & connection.AwardRequest.$Shape;
-        static create(properties?: connection.AwardRequest.$Properties): connection.AwardRequest;
+        public static create(properties?: connection.IAwardRequest): connection.AwardRequest;
 
         /**
          * Encodes the specified AwardRequest message. Does not implicitly {@link connection.AwardRequest.verify|verify} messages.
@@ -4366,7 +3911,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.AwardRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IAwardRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified AwardRequest message, length delimited. Does not implicitly {@link connection.AwardRequest.verify|verify} messages.
@@ -4374,40 +3919,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.AwardRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IAwardRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an AwardRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.AwardRequest & connection.AwardRequest.$Shape} AwardRequest
+         * @returns AwardRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AwardRequest & connection.AwardRequest.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AwardRequest;
 
         /**
          * Decodes an AwardRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.AwardRequest & connection.AwardRequest.$Shape} AwardRequest
+         * @returns AwardRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AwardRequest & connection.AwardRequest.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AwardRequest;
 
         /**
          * Verifies an AwardRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an AwardRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns AwardRequest
          */
-        static fromObject(object: { [k: string]: any }): connection.AwardRequest;
+        public static fromObject(object: { [k: string]: any }): connection.AwardRequest;
 
         /**
          * Creates a plain object from an AwardRequest message. Also converts values to other types if specified.
@@ -4415,73 +3960,47 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.AwardRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.AwardRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this AwardRequest to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for AwardRequest
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for AwardRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace AwardRequest {
+    /** Properties of an AwardResponse. */
+    interface IAwardResponse {
 
-        /** Properties of an AwardRequest. */
-        interface $Properties {
-
-            /** AwardRequest id */
-            id?: (string|null);
-
-            /** AwardRequest vp */
-            vp?: (number|null);
-
-            /** AwardRequest accessory */
-            accessory?: (string|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an AwardRequest. */
-        type $Shape = connection.AwardRequest.$Properties;
-    }
-
-    /**
-     * Properties of an AwardResponse.
-     * @deprecated Use connection.AwardResponse.$Properties instead.
-     */
-    interface IAwardResponse extends connection.AwardResponse.$Properties {
+        /** AwardResponse success */
+        success?: (boolean|null);
     }
 
     /** Represents an AwardResponse. */
-    class AwardResponse {
+    class AwardResponse implements IAwardResponse {
 
         /**
          * Constructs a new AwardResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: connection.AwardResponse.$Properties);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
+        constructor(properties?: connection.IAwardResponse);
 
         /** AwardResponse success. */
-        success: boolean;
+        public success: boolean;
 
         /**
          * Creates a new AwardResponse instance using the specified properties.
          * @param [properties] Properties to set
          * @returns AwardResponse instance
          */
-        static create(properties: connection.AwardResponse.$Shape): connection.AwardResponse & connection.AwardResponse.$Shape;
-        static create(properties?: connection.AwardResponse.$Properties): connection.AwardResponse;
+        public static create(properties?: connection.IAwardResponse): connection.AwardResponse;
 
         /**
          * Encodes the specified AwardResponse message. Does not implicitly {@link connection.AwardResponse.verify|verify} messages.
@@ -4489,7 +4008,7 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encode(message: connection.AwardResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: connection.IAwardResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Encodes the specified AwardResponse message, length delimited. Does not implicitly {@link connection.AwardResponse.verify|verify} messages.
@@ -4497,40 +4016,40 @@ export namespace connection {
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        static encodeDelimited(message: connection.AwardResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: connection.IAwardResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes an AwardResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns {connection.AwardResponse & connection.AwardResponse.$Shape} AwardResponse
+         * @returns AwardResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AwardResponse & connection.AwardResponse.$Shape;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): connection.AwardResponse;
 
         /**
          * Decodes an AwardResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns {connection.AwardResponse & connection.AwardResponse.$Shape} AwardResponse
+         * @returns AwardResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AwardResponse & connection.AwardResponse.$Shape;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): connection.AwardResponse;
 
         /**
          * Verifies an AwardResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
-        static verify(message: { [k: string]: any }): (string|null);
+        public static verify(message: { [k: string]: any }): (string|null);
 
         /**
          * Creates an AwardResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          * @returns AwardResponse
          */
-        static fromObject(object: { [k: string]: any }): connection.AwardResponse;
+        public static fromObject(object: { [k: string]: any }): connection.AwardResponse;
 
         /**
          * Creates a plain object from an AwardResponse message. Also converts values to other types if specified.
@@ -4538,48 +4057,26 @@ export namespace connection {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        static toObject(message: connection.AwardResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: connection.AwardResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this AwardResponse to JSON.
          * @returns JSON object
          */
-        toJSON(): { [k: string]: any };
+        public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the type url for AwardResponse
-         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-         * @returns The type url
+         * Gets the default type url for AwardResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
          */
-        static getTypeUrl(prefix?: string): string;
-    }
-
-    namespace AwardResponse {
-
-        /** Properties of an AwardResponse. */
-        interface $Properties {
-
-            /** AwardResponse success */
-            success?: (boolean|null);
-
-            /** Unknown fields preserved while decoding when enabled */
-            $unknowns?: Uint8Array[];
-        }
-
-        /** Shape of an AwardResponse. */
-        type $Shape = connection.AwardResponse.$Properties;
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Role enum. */
     enum Role {
-
-        /** USER value */
         USER = 0,
-
-        /** MOD value */
         MOD = 1,
-
-        /** DEV value */
         DEV = 2
     }
 }

@@ -6356,31 +6356,31 @@ export const http = $root.http = (() => {
                 case 1:
                     message.status = 1;
                     break;
-                case "AccountExists":
+                case "InternalError":
                 case 2:
                     message.status = 2;
                     break;
-                case "AccountNotExists":
+                case "InvalidBody":
                 case 3:
                     message.status = 3;
                     break;
-                case "InternalError":
+                case "NotFound":
                 case 4:
                     message.status = 4;
                     break;
-                case "InvalidBody":
+                case "VerificationFailure":
                 case 5:
                     message.status = 5;
                     break;
-                case "NotFound":
+                case "NotAuthenticated":
                 case 6:
                     message.status = 6;
                     break;
-                case "VerificationFailure":
+                case "AccountExists":
                 case 7:
                     message.status = 7;
                     break;
-                case "NotAuthenticated":
+                case "AccountNotExists":
                 case 8:
                     message.status = 8;
                     break;
@@ -6389,47 +6389,6 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
-<<<<<<< HEAD
-=======
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "InternalError":
-            case 2:
-                message.status = 2;
-                break;
-            case "InvalidBody":
-            case 3:
-                message.status = 3;
-                break;
-            case "NotFound":
-            case 4:
-                message.status = 4;
-                break;
-            case "VerificationFailure":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotAuthenticated":
-            case 6:
-                message.status = 6;
-                break;
-            case "AccountExists":
-            case 7:
-                message.status = 7;
-                break;
-            case "AccountNotExists":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
->>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.token != null)
                 message.token = $String(object.token);
             if (object.profile != null) {
@@ -6758,31 +6717,31 @@ export const http = $root.http = (() => {
                 case 1:
                     message.status = 1;
                     break;
-                case "AccountExists":
+                case "InternalError":
                 case 2:
                     message.status = 2;
                     break;
-                case "AccountNotExists":
+                case "InvalidBody":
                 case 3:
                     message.status = 3;
                     break;
-                case "InternalError":
+                case "NotFound":
                 case 4:
                     message.status = 4;
                     break;
-                case "InvalidBody":
+                case "VerificationFailure":
                 case 5:
                     message.status = 5;
                     break;
-                case "NotFound":
+                case "NotAuthenticated":
                 case 6:
                     message.status = 6;
                     break;
-                case "VerificationFailure":
+                case "AccountExists":
                 case 7:
                     message.status = 7;
                     break;
-                case "NotAuthenticated":
+                case "AccountNotExists":
                 case 8:
                     message.status = 8;
                     break;
@@ -6791,47 +6750,6 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
-<<<<<<< HEAD
-=======
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "InternalError":
-            case 2:
-                message.status = 2;
-                break;
-            case "InvalidBody":
-            case 3:
-                message.status = 3;
-                break;
-            case "NotFound":
-            case 4:
-                message.status = 4;
-                break;
-            case "VerificationFailure":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotAuthenticated":
-            case 6:
-                message.status = 6;
-                break;
-            case "AccountExists":
-            case 7:
-                message.status = 7;
-                break;
-            case "AccountNotExists":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
->>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.profile != null) {
                 if (!$util.isObject(object.profile))
                     throw $TypeError(".http.ProfileResponse.profile: object expected");
@@ -7156,31 +7074,31 @@ export const http = $root.http = (() => {
                 case 1:
                     message.status = 1;
                     break;
-                case "AccountExists":
+                case "InternalError":
                 case 2:
                     message.status = 2;
                     break;
-                case "AccountNotExists":
+                case "InvalidBody":
                 case 3:
                     message.status = 3;
                     break;
-                case "InternalError":
+                case "NotFound":
                 case 4:
                     message.status = 4;
                     break;
-                case "InvalidBody":
+                case "VerificationFailure":
                 case 5:
                     message.status = 5;
                     break;
-                case "NotFound":
+                case "NotAuthenticated":
                 case 6:
                     message.status = 6;
                     break;
-                case "VerificationFailure":
+                case "AccountExists":
                 case 7:
                     message.status = 7;
                     break;
-                case "NotAuthenticated":
+                case "AccountNotExists":
                 case 8:
                     message.status = 8;
                     break;
@@ -7189,47 +7107,6 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
-<<<<<<< HEAD
-=======
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "InternalError":
-            case 2:
-                message.status = 2;
-                break;
-            case "InvalidBody":
-            case 3:
-                message.status = 3;
-                break;
-            case "NotFound":
-            case 4:
-                message.status = 4;
-                break;
-            case "VerificationFailure":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotAuthenticated":
-            case 6:
-                message.status = 6;
-                break;
-            case "AccountExists":
-            case 7:
-                message.status = 7;
-                break;
-            case "AccountNotExists":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
->>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.profile != null) {
                 if (!$util.isObject(object.profile))
                     throw $TypeError(".http.AuthResponse.profile: object expected");
@@ -7518,31 +7395,31 @@ export const http = $root.http = (() => {
                 case 1:
                     message.status = 1;
                     break;
-                case "AccountExists":
+                case "InternalError":
                 case 2:
                     message.status = 2;
                     break;
-                case "AccountNotExists":
+                case "InvalidBody":
                 case 3:
                     message.status = 3;
                     break;
-                case "InternalError":
+                case "NotFound":
                 case 4:
                     message.status = 4;
                     break;
-                case "InvalidBody":
+                case "VerificationFailure":
                 case 5:
                     message.status = 5;
                     break;
-                case "NotFound":
+                case "NotAuthenticated":
                 case 6:
                     message.status = 6;
                     break;
-                case "VerificationFailure":
+                case "AccountExists":
                 case 7:
                     message.status = 7;
                     break;
-                case "NotAuthenticated":
+                case "AccountNotExists":
                 case 8:
                     message.status = 8;
                     break;
@@ -7551,47 +7428,6 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
-<<<<<<< HEAD
-=======
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "InternalError":
-            case 2:
-                message.status = 2;
-                break;
-            case "InvalidBody":
-            case 3:
-                message.status = 3;
-                break;
-            case "NotFound":
-            case 4:
-                message.status = 4;
-                break;
-            case "VerificationFailure":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotAuthenticated":
-            case 6:
-                message.status = 6;
-                break;
-            case "AccountExists":
-            case 7:
-                message.status = 7;
-                break;
-            case "AccountNotExists":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
->>>>>>> 0555d54 (Added decorate requests for worlds)
             return message;
         };
 
@@ -8251,31 +8087,31 @@ export const http = $root.http = (() => {
                 case 1:
                     message.status = 1;
                     break;
-                case "AccountExists":
+                case "InternalError":
                 case 2:
                     message.status = 2;
                     break;
-                case "AccountNotExists":
+                case "InvalidBody":
                 case 3:
                     message.status = 3;
                     break;
-                case "InternalError":
+                case "NotFound":
                 case 4:
                     message.status = 4;
                     break;
-                case "InvalidBody":
+                case "VerificationFailure":
                 case 5:
                     message.status = 5;
                     break;
-                case "NotFound":
+                case "NotAuthenticated":
                 case 6:
                     message.status = 6;
                     break;
-                case "VerificationFailure":
+                case "AccountExists":
                 case 7:
                     message.status = 7;
                     break;
-                case "NotAuthenticated":
+                case "AccountNotExists":
                 case 8:
                     message.status = 8;
                     break;
@@ -8284,47 +8120,6 @@ export const http = $root.http = (() => {
                     message.status = 9;
                     break;
                 }
-<<<<<<< HEAD
-=======
-                break;
-            case "Ok":
-            case 1:
-                message.status = 1;
-                break;
-            case "InternalError":
-            case 2:
-                message.status = 2;
-                break;
-            case "InvalidBody":
-            case 3:
-                message.status = 3;
-                break;
-            case "NotFound":
-            case 4:
-                message.status = 4;
-                break;
-            case "VerificationFailure":
-            case 5:
-                message.status = 5;
-                break;
-            case "NotAuthenticated":
-            case 6:
-                message.status = 6;
-                break;
-            case "AccountExists":
-            case 7:
-                message.status = 7;
-                break;
-            case "AccountNotExists":
-            case 8:
-                message.status = 8;
-                break;
-            case "WrongPassword":
-            case 9:
-                message.status = 9;
-                break;
-            }
->>>>>>> 0555d54 (Added decorate requests for worlds)
             if (object.servers) {
                 if (!$Array.isArray(object.servers))
                     throw $TypeError(".http.ServersResponse.servers: array expected");
@@ -8408,7 +8203,7 @@ export const http = $root.http = (() => {
      * @property {number} AUTUMN=5 AUTUMN value
      */
     http.WorldEffect = (function() {
-        const valuesById = {}, values = Object.create(valuesById);
+        const valuesById = {}, values = $Object.create(valuesById);
         values[valuesById[1] = "RAIN"] = 1;
         values[valuesById[2] = "RAINSTORM"] = 2;
         values[valuesById[3] = "SNOW"] = 3;
@@ -8421,31 +8216,44 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a WorldProperties.
-         * @memberof http
-         * @interface IWorldProperties
+         * @typedef {Object} http.WorldProperties.$Properties
          * @property {string|null} [fillStyle] WorldProperties fillStyle
          * @property {string|null} [strokeStyle] WorldProperties strokeStyle
          * @property {string|null} [areaFill] WorldProperties areaFill
          * @property {number|null} [areaAlpha] WorldProperties areaAlpha
-         * @property {Array.<http.WorldProperties.IBackground>|null} [backgrounds] WorldProperties backgrounds
+         * @property {Array.<http.WorldProperties.Background.$Properties>|null} [backgrounds] WorldProperties backgrounds
          * @property {http.WorldEffect|null} [effect] WorldProperties effect
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a WorldProperties.
+         * @memberof http
+         * @interface IWorldProperties
+         * @augments http.WorldProperties.$Properties
+         * @deprecated Use http.WorldProperties.$Properties instead.
+         */
+
+        /**
+         * Shape of a WorldProperties.
+         * @typedef {http.WorldProperties.$Properties} http.WorldProperties.$Shape
          */
 
         /**
          * Constructs a new WorldProperties.
          * @memberof http
          * @classdesc Represents a WorldProperties.
-         * @implements IWorldProperties
          * @constructor
-         * @param {http.IWorldProperties=} [properties] Properties to set
+         * @param {http.WorldProperties.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function WorldProperties(properties) {
+        const WorldProperties = function (properties) {
             this.backgrounds = [];
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * WorldProperties fillStyle.
@@ -8481,7 +8289,7 @@ export const http = $root.http = (() => {
 
         /**
          * WorldProperties backgrounds.
-         * @member {Array.<http.WorldProperties.IBackground>} backgrounds
+         * @member {Array.<http.WorldProperties.Background.$Properties>} backgrounds
          * @memberof http.WorldProperties
          * @instance
          */
@@ -8499,13 +8307,13 @@ export const http = $root.http = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(WorldProperties.prototype, "_areaAlpha", {
+        $Object.defineProperty(WorldProperties.prototype, "_areaAlpha", {
             get: $util.oneOfGetter($oneOfFields = ["areaAlpha"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(WorldProperties.prototype, "_effect", {
+        $Object.defineProperty(WorldProperties.prototype, "_effect", {
             get: $util.oneOfGetter($oneOfFields = ["effect"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -8515,10 +8323,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.WorldProperties
          * @static
-         * @param {http.IWorldProperties=} [properties] Properties to set
+         * @param {http.WorldProperties.$Properties=} [properties] Properties to set
          * @returns {http.WorldProperties} WorldProperties instance
+         * @type {{
+         *   (properties: http.WorldProperties.$Shape): http.WorldProperties & http.WorldProperties.$Shape;
+         *   (properties?: http.WorldProperties.$Properties): http.WorldProperties;
+         * }}
          */
-        WorldProperties.create = function create(properties) {
+        WorldProperties.create = function(properties) {
             return new WorldProperties(properties);
         };
 
@@ -8527,26 +8339,33 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.WorldProperties
          * @static
-         * @param {http.IWorldProperties} message WorldProperties message or plain object to encode
+         * @param {http.WorldProperties.$Properties} message WorldProperties message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WorldProperties.encode = function encode(message, writer) {
+        WorldProperties.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.fillStyle != null && Object.hasOwnProperty.call(message, "fillStyle"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.fillStyle != null && $Object.hasOwnProperty.call(message, "fillStyle"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.fillStyle);
-            if (message.strokeStyle != null && Object.hasOwnProperty.call(message, "strokeStyle"))
+            if (message.strokeStyle != null && $Object.hasOwnProperty.call(message, "strokeStyle"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.strokeStyle);
-            if (message.areaFill != null && Object.hasOwnProperty.call(message, "areaFill"))
+            if (message.areaFill != null && $Object.hasOwnProperty.call(message, "areaFill"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.areaFill);
-            if (message.areaAlpha != null && Object.hasOwnProperty.call(message, "areaAlpha"))
+            if (message.areaAlpha != null && $Object.hasOwnProperty.call(message, "areaAlpha"))
                 writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.areaAlpha);
             if (message.backgrounds != null && message.backgrounds.length)
                 for (let i = 0; i < message.backgrounds.length; ++i)
-                    $root.http.WorldProperties.Background.encode(message.backgrounds[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-            if (message.effect != null && Object.hasOwnProperty.call(message, "effect"))
+                    $root.http.WorldProperties.Background.encode(message.backgrounds[i], writer.uint32(/* id 5, wireType 2 =*/42).fork(), _depth + 1).ldelim();
+            if (message.effect != null && $Object.hasOwnProperty.call(message, "effect"))
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.effect);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -8555,12 +8374,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.WorldProperties
          * @static
-         * @param {http.IWorldProperties} message WorldProperties message or plain object to encode
+         * @param {http.WorldProperties.$Properties} message WorldProperties message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WorldProperties.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        WorldProperties.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -8570,50 +8389,85 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.WorldProperties} WorldProperties
+         * @returns {http.WorldProperties & http.WorldProperties.$Shape} WorldProperties
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WorldProperties.decode = function decode(reader, length, error) {
+        WorldProperties.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldProperties();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.WorldProperties(), value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.fillStyle = reader.string();
-                        break;
-                    }
-                case 2: {
-                        message.strokeStyle = reader.string();
-                        break;
-                    }
-                case 3: {
-                        message.areaFill = reader.string();
-                        break;
-                    }
-                case 4: {
-                        message.areaAlpha = reader.uint32();
-                        break;
-                    }
-                case 5: {
-                        if (!(message.backgrounds && message.backgrounds.length))
-                            message.backgrounds = [];
-                        message.backgrounds.push($root.http.WorldProperties.Background.decode(reader, reader.uint32()));
-                        break;
-                    }
-                case 6: {
-                        message.effect = reader.int32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.fillStyle = value;
+                        else
+                            delete message.fillStyle;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.strokeStyle = value;
+                        else
+                            delete message.strokeStyle;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.areaFill = value;
+                        else
+                            delete message.areaFill;
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        message.areaAlpha = reader.uint32();
+                        message._areaAlpha = "areaAlpha";
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 2)
+                            break;
+                        if (!(message.backgrounds && message.backgrounds.length))
+                            message.backgrounds = [];
+                        message.backgrounds.push($root.http.WorldProperties.Background.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                        continue;
+                    }
+                case 6: {
+                        if (wireType !== 0)
+                            break;
+                        message.effect = reader.int32();
+                        message._effect = "effect";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -8623,11 +8477,11 @@ export const http = $root.http = (() => {
          * @memberof http.WorldProperties
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.WorldProperties} WorldProperties
+         * @returns {http.WorldProperties & http.WorldProperties.$Shape} WorldProperties
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WorldProperties.decodeDelimited = function decodeDelimited(reader) {
+        WorldProperties.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -8641,34 +8495,38 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        WorldProperties.verify = function verify(message) {
+        WorldProperties.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.fillStyle != null && message.hasOwnProperty("fillStyle"))
+            if (message.fillStyle != null && $Object.hasOwnProperty.call(message, "fillStyle"))
                 if (!$util.isString(message.fillStyle))
                     return "fillStyle: string expected";
-            if (message.strokeStyle != null && message.hasOwnProperty("strokeStyle"))
+            if (message.strokeStyle != null && $Object.hasOwnProperty.call(message, "strokeStyle"))
                 if (!$util.isString(message.strokeStyle))
                     return "strokeStyle: string expected";
-            if (message.areaFill != null && message.hasOwnProperty("areaFill"))
+            if (message.areaFill != null && $Object.hasOwnProperty.call(message, "areaFill"))
                 if (!$util.isString(message.areaFill))
                     return "areaFill: string expected";
-            if (message.areaAlpha != null && message.hasOwnProperty("areaAlpha")) {
+            if (message.areaAlpha != null && $Object.hasOwnProperty.call(message, "areaAlpha")) {
                 properties._areaAlpha = 1;
                 if (!$util.isInteger(message.areaAlpha))
                     return "areaAlpha: integer expected";
             }
-            if (message.backgrounds != null && message.hasOwnProperty("backgrounds")) {
-                if (!Array.isArray(message.backgrounds))
+            if (message.backgrounds != null && $Object.hasOwnProperty.call(message, "backgrounds")) {
+                if (!$Array.isArray(message.backgrounds))
                     return "backgrounds: array expected";
                 for (let i = 0; i < message.backgrounds.length; ++i) {
-                    let error = $root.http.WorldProperties.Background.verify(message.backgrounds[i]);
+                    let error = $root.http.WorldProperties.Background.verify(message.backgrounds[i], _depth + 1);
                     if (error)
                         return "backgrounds." + error;
                 }
             }
-            if (message.effect != null && message.hasOwnProperty("effect")) {
+            if (message.effect != null && $Object.hasOwnProperty.call(message, "effect")) {
                 properties._effect = 1;
                 switch (message.effect) {
                 default:
@@ -8692,26 +8550,35 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.WorldProperties} WorldProperties
          */
-        WorldProperties.fromObject = function fromObject(object) {
+        WorldProperties.fromObject = function (object, _depth) {
             if (object instanceof $root.http.WorldProperties)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.WorldProperties: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.WorldProperties();
             if (object.fillStyle != null)
-                message.fillStyle = String(object.fillStyle);
+                if (typeof object.fillStyle !== "string" || object.fillStyle.length)
+                    message.fillStyle = $String(object.fillStyle);
             if (object.strokeStyle != null)
-                message.strokeStyle = String(object.strokeStyle);
+                if (typeof object.strokeStyle !== "string" || object.strokeStyle.length)
+                    message.strokeStyle = $String(object.strokeStyle);
             if (object.areaFill != null)
-                message.areaFill = String(object.areaFill);
+                if (typeof object.areaFill !== "string" || object.areaFill.length)
+                    message.areaFill = $String(object.areaFill);
             if (object.areaAlpha != null)
                 message.areaAlpha = object.areaAlpha >>> 0;
             if (object.backgrounds) {
-                if (!Array.isArray(object.backgrounds))
-                    throw TypeError(".http.WorldProperties.backgrounds: array expected");
-                message.backgrounds = [];
+                if (!$Array.isArray(object.backgrounds))
+                    throw $TypeError(".http.WorldProperties.backgrounds: array expected");
+                message.backgrounds = $Array(object.backgrounds.length);
                 for (let i = 0; i < object.backgrounds.length; ++i) {
-                    if (typeof object.backgrounds[i] !== "object")
-                        throw TypeError(".http.WorldProperties.backgrounds: object expected");
-                    message.backgrounds[i] = $root.http.WorldProperties.Background.fromObject(object.backgrounds[i]);
+                    if (!$util.isObject(object.backgrounds[i]))
+                        throw $TypeError(".http.WorldProperties.backgrounds: object expected");
+                    message.backgrounds[i] = $root.http.WorldProperties.Background.fromObject(object.backgrounds[i], _depth + 1);
                 }
             }
             switch (object.effect) {
@@ -8754,9 +8621,13 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        WorldProperties.toObject = function toObject(message, options) {
+        WorldProperties.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.arrays || options.defaults)
                 object.backgrounds = [];
@@ -8765,27 +8636,21 @@ export const http = $root.http = (() => {
                 object.strokeStyle = "";
                 object.areaFill = "";
             }
-            if (message.fillStyle != null && message.hasOwnProperty("fillStyle"))
+            if (message.fillStyle != null && $Object.hasOwnProperty.call(message, "fillStyle"))
                 object.fillStyle = message.fillStyle;
-            if (message.strokeStyle != null && message.hasOwnProperty("strokeStyle"))
+            if (message.strokeStyle != null && $Object.hasOwnProperty.call(message, "strokeStyle"))
                 object.strokeStyle = message.strokeStyle;
-            if (message.areaFill != null && message.hasOwnProperty("areaFill"))
+            if (message.areaFill != null && $Object.hasOwnProperty.call(message, "areaFill"))
                 object.areaFill = message.areaFill;
-            if (message.areaAlpha != null && message.hasOwnProperty("areaAlpha")) {
+            if (message.areaAlpha != null && $Object.hasOwnProperty.call(message, "areaAlpha"))
                 object.areaAlpha = message.areaAlpha;
-                if (options.oneofs)
-                    object._areaAlpha = "areaAlpha";
-            }
             if (message.backgrounds && message.backgrounds.length) {
-                object.backgrounds = [];
+                object.backgrounds = $Array(message.backgrounds.length);
                 for (let j = 0; j < message.backgrounds.length; ++j)
-                    object.backgrounds[j] = $root.http.WorldProperties.Background.toObject(message.backgrounds[j], options);
+                    object.backgrounds[j] = $root.http.WorldProperties.Background.toObject(message.backgrounds[j], options, _depth + 1);
             }
-            if (message.effect != null && message.hasOwnProperty("effect")) {
-                object.effect = options.enums === String ? $root.http.WorldEffect[message.effect] === undefined ? message.effect : $root.http.WorldEffect[message.effect] : message.effect;
-                if (options.oneofs)
-                    object._effect = "effect";
-            }
+            if (message.effect != null && $Object.hasOwnProperty.call(message, "effect"))
+                object.effect = options.enums === $String ? $root.http.WorldEffect[message.effect] === $undefined ? message.effect : $root.http.WorldEffect[message.effect] : message.effect;
             return object;
         };
 
@@ -8796,49 +8661,61 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        WorldProperties.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        WorldProperties.prototype.toJSON = function() {
+            return WorldProperties.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for WorldProperties
+         * Gets the type url for WorldProperties
          * @function getTypeUrl
          * @memberof http.WorldProperties
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        WorldProperties.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.WorldProperties";
+        WorldProperties.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.WorldProperties";
         };
 
         WorldProperties.Background = (function() {
 
             /**
              * Properties of a Background.
-             * @memberof http.WorldProperties
-             * @interface IBackground
+             * @typedef {Object} http.WorldProperties.Background.$Properties
              * @property {string|null} [name] Background name
              * @property {number|null} [alpha] Background alpha
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             */
+
+            /**
+             * Properties of a Background.
+             * @memberof http.WorldProperties
+             * @interface IBackground
+             * @augments http.WorldProperties.Background.$Properties
+             * @deprecated Use http.WorldProperties.Background.$Properties instead.
+             */
+
+            /**
+             * Shape of a Background.
+             * @typedef {http.WorldProperties.Background.$Properties} http.WorldProperties.Background.$Shape
              */
 
             /**
              * Constructs a new Background.
              * @memberof http.WorldProperties
              * @classdesc Represents a Background.
-             * @implements IBackground
              * @constructor
-             * @param {http.WorldProperties.IBackground=} [properties] Properties to set
+             * @param {http.WorldProperties.Background.$Properties=} [properties] Properties to set
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
              */
-            function Background(properties) {
+            const Background = function (properties) {
                 if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                    for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
-            }
+            };
 
             /**
              * Background name.
@@ -8861,10 +8738,14 @@ export const http = $root.http = (() => {
              * @function create
              * @memberof http.WorldProperties.Background
              * @static
-             * @param {http.WorldProperties.IBackground=} [properties] Properties to set
+             * @param {http.WorldProperties.Background.$Properties=} [properties] Properties to set
              * @returns {http.WorldProperties.Background} Background instance
+             * @type {{
+             *   (properties: http.WorldProperties.Background.$Shape): http.WorldProperties.Background & http.WorldProperties.Background.$Shape;
+             *   (properties?: http.WorldProperties.Background.$Properties): http.WorldProperties.Background;
+             * }}
              */
-            Background.create = function create(properties) {
+            Background.create = function(properties) {
                 return new Background(properties);
             };
 
@@ -8873,17 +8754,24 @@ export const http = $root.http = (() => {
              * @function encode
              * @memberof http.WorldProperties.Background
              * @static
-             * @param {http.WorldProperties.IBackground} message Background message or plain object to encode
+             * @param {http.WorldProperties.Background.$Properties} message Background message or plain object to encode
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            Background.encode = function encode(message, writer) {
+            Background.encode = function (message, writer, _depth) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                if (message.alpha != null && Object.hasOwnProperty.call(message, "alpha"))
+                if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                     writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.alpha);
+                if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                    for (let i = 0; i < message.$unknowns.length; ++i)
+                        writer.raw(message.$unknowns[i]);
                 return writer;
             };
 
@@ -8892,12 +8780,12 @@ export const http = $root.http = (() => {
              * @function encodeDelimited
              * @memberof http.WorldProperties.Background
              * @static
-             * @param {http.WorldProperties.IBackground} message Background message or plain object to encode
+             * @param {http.WorldProperties.Background.$Properties} message Background message or plain object to encode
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            Background.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+            Background.encodeDelimited = function(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -8907,32 +8795,54 @@ export const http = $root.http = (() => {
              * @static
              * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
              * @param {number} [length] Message length if known beforehand
-             * @returns {http.WorldProperties.Background} Background
+             * @returns {http.WorldProperties.Background & http.WorldProperties.Background.$Shape} Background
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Background.decode = function decode(reader, length, error) {
+            Background.decode = function (reader, length, _end, _depth, _target) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldProperties.Background();
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $Reader.recursionLimit)
+                    throw $Error("max depth exceeded");
+                let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.WorldProperties.Background(), value;
                 while (reader.pos < end) {
-                    let tag = reader.uint32();
-                    if (tag === error)
-                        break;
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.name = reader.string();
-                            break;
-                        }
-                    case 2: {
-                            message.alpha = reader.uint32();
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
+                    let start = reader.pos;
+                    let tag = reader.tag();
+                    if (tag === _end) {
+                        _end = $undefined;
                         break;
                     }
+                    let wireType = tag & 7;
+                    switch (tag >>>= 3) {
+                    case 1: {
+                            if (wireType !== 2)
+                                break;
+                            if ((value = reader.stringVerify()).length)
+                                message.name = value;
+                            else
+                                delete message.name;
+                            continue;
+                        }
+                    case 2: {
+                            if (wireType !== 0)
+                                break;
+                            if (value = reader.uint32())
+                                message.alpha = value;
+                            else
+                                delete message.alpha;
+                            continue;
+                        }
+                    }
+                    reader.skipType(wireType, _depth, tag);
+                    if (!reader.discardUnknown) {
+                        $util.makeProp(message, "$unknowns", false);
+                        (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                    }
                 }
+                if (_end !== $undefined)
+                    throw $Error("missing end group");
                 return message;
             };
 
@@ -8942,11 +8852,11 @@ export const http = $root.http = (() => {
              * @memberof http.WorldProperties.Background
              * @static
              * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {http.WorldProperties.Background} Background
+             * @returns {http.WorldProperties.Background & http.WorldProperties.Background.$Shape} Background
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Background.decodeDelimited = function decodeDelimited(reader) {
+            Background.decodeDelimited = function(reader) {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, reader.uint32());
@@ -8960,13 +8870,17 @@ export const http = $root.http = (() => {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            Background.verify = function verify(message) {
+            Background.verify = function (message, _depth) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    return "max depth exceeded";
+                if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
-                if (message.alpha != null && message.hasOwnProperty("alpha"))
+                if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                     if (!$util.isInteger(message.alpha))
                         return "alpha: integer expected";
                 return null;
@@ -8980,14 +8894,22 @@ export const http = $root.http = (() => {
              * @param {Object.<string,*>} object Plain object
              * @returns {http.WorldProperties.Background} Background
              */
-            Background.fromObject = function fromObject(object) {
+            Background.fromObject = function (object, _depth) {
                 if (object instanceof $root.http.WorldProperties.Background)
                     return object;
+                if (!$util.isObject(object))
+                    throw $TypeError(".http.WorldProperties.Background: object expected");
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
                 let message = new $root.http.WorldProperties.Background();
                 if (object.name != null)
-                    message.name = String(object.name);
+                    if (typeof object.name !== "string" || object.name.length)
+                        message.name = $String(object.name);
                 if (object.alpha != null)
-                    message.alpha = object.alpha >>> 0;
+                    if ($Number(object.alpha) !== 0)
+                        message.alpha = object.alpha >>> 0;
                 return message;
             };
 
@@ -9000,17 +8922,21 @@ export const http = $root.http = (() => {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            Background.toObject = function toObject(message, options) {
+            Background.toObject = function (message, options, _depth) {
                 if (!options)
                     options = {};
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
                 let object = {};
                 if (options.defaults) {
                     object.name = "";
                     object.alpha = 0;
                 }
-                if (message.name != null && message.hasOwnProperty("name"))
+                if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
                     object.name = message.name;
-                if (message.alpha != null && message.hasOwnProperty("alpha"))
+                if (message.alpha != null && $Object.hasOwnProperty.call(message, "alpha"))
                     object.alpha = message.alpha;
                 return object;
             };
@@ -9022,23 +8948,22 @@ export const http = $root.http = (() => {
              * @instance
              * @returns {Object.<string,*>} JSON object
              */
-            Background.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            Background.prototype.toJSON = function() {
+                return Background.toObject(this, $protobuf.util.toJSONOptions);
             };
 
             /**
-             * Gets the default type url for Background
+             * Gets the type url for Background
              * @function getTypeUrl
              * @memberof http.WorldProperties.Background
              * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
+             * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+             * @returns {string} The type url
              */
-            Background.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/http.WorldProperties.Background";
+            Background.getTypeUrl = function(prefix) {
+                if (prefix === $undefined)
+                    prefix = "type.googleapis.com";
+                return prefix + "/http.WorldProperties.Background";
             };
 
             return Background;
@@ -9051,27 +8976,40 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of an AreaResponse.
-         * @memberof http
-         * @interface IAreaResponse
+         * @typedef {Object} http.AreaResponse.$Properties
          * @property {boolean|null} [win] AreaResponse win
          * @property {number|null} [vp] AreaResponse vp
          * @property {string|null} [text] AreaResponse text
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AreaResponse.
+         * @memberof http
+         * @interface IAreaResponse
+         * @augments http.AreaResponse.$Properties
+         * @deprecated Use http.AreaResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of an AreaResponse.
+         * @typedef {http.AreaResponse.$Properties} http.AreaResponse.$Shape
          */
 
         /**
          * Constructs a new AreaResponse.
          * @memberof http
          * @classdesc Represents an AreaResponse.
-         * @implements IAreaResponse
          * @constructor
-         * @param {http.IAreaResponse=} [properties] Properties to set
+         * @param {http.AreaResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function AreaResponse(properties) {
+        const AreaResponse = function (properties) {
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * AreaResponse win.
@@ -9101,19 +9039,19 @@ export const http = $root.http = (() => {
         let $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(AreaResponse.prototype, "_win", {
+        $Object.defineProperty(AreaResponse.prototype, "_win", {
             get: $util.oneOfGetter($oneOfFields = ["win"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(AreaResponse.prototype, "_vp", {
+        $Object.defineProperty(AreaResponse.prototype, "_vp", {
             get: $util.oneOfGetter($oneOfFields = ["vp"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
         // Virtual OneOf for proto3 optional field
-        Object.defineProperty(AreaResponse.prototype, "_text", {
+        $Object.defineProperty(AreaResponse.prototype, "_text", {
             get: $util.oneOfGetter($oneOfFields = ["text"]),
             set: $util.oneOfSetter($oneOfFields)
         });
@@ -9123,10 +9061,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.AreaResponse
          * @static
-         * @param {http.IAreaResponse=} [properties] Properties to set
+         * @param {http.AreaResponse.$Properties=} [properties] Properties to set
          * @returns {http.AreaResponse} AreaResponse instance
+         * @type {{
+         *   (properties: http.AreaResponse.$Shape): http.AreaResponse & http.AreaResponse.$Shape;
+         *   (properties?: http.AreaResponse.$Properties): http.AreaResponse;
+         * }}
          */
-        AreaResponse.create = function create(properties) {
+        AreaResponse.create = function(properties) {
             return new AreaResponse(properties);
         };
 
@@ -9135,19 +9077,26 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.AreaResponse
          * @static
-         * @param {http.IAreaResponse} message AreaResponse message or plain object to encode
+         * @param {http.AreaResponse.$Properties} message AreaResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AreaResponse.encode = function encode(message, writer) {
+        AreaResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.win != null && Object.hasOwnProperty.call(message, "win"))
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.win != null && $Object.hasOwnProperty.call(message, "win"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.win);
-            if (message.vp != null && Object.hasOwnProperty.call(message, "vp"))
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.vp);
-            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+            if (message.text != null && $Object.hasOwnProperty.call(message, "text"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.text);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -9156,12 +9105,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.AreaResponse
          * @static
-         * @param {http.IAreaResponse} message AreaResponse message or plain object to encode
+         * @param {http.AreaResponse.$Properties} message AreaResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        AreaResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        AreaResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -9171,36 +9120,57 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.AreaResponse} AreaResponse
+         * @returns {http.AreaResponse & http.AreaResponse.$Shape} AreaResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AreaResponse.decode = function decode(reader, length, error) {
+        AreaResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.AreaResponse();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.AreaResponse();
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.win = reader.bool();
-                        break;
-                    }
-                case 2: {
-                        message.vp = reader.uint32();
-                        break;
-                    }
-                case 3: {
-                        message.text = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
                 }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        message.win = reader.bool();
+                        message._win = "win";
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        message.vp = reader.uint32();
+                        message._vp = "vp";
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        message.text = reader.stringVerify();
+                        message._text = "text";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -9210,11 +9180,11 @@ export const http = $root.http = (() => {
          * @memberof http.AreaResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.AreaResponse} AreaResponse
+         * @returns {http.AreaResponse & http.AreaResponse.$Shape} AreaResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AreaResponse.decodeDelimited = function decodeDelimited(reader) {
+        AreaResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -9228,21 +9198,25 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AreaResponse.verify = function verify(message) {
+        AreaResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
             let properties = {};
-            if (message.win != null && message.hasOwnProperty("win")) {
+            if (message.win != null && $Object.hasOwnProperty.call(message, "win")) {
                 properties._win = 1;
                 if (typeof message.win !== "boolean")
                     return "win: boolean expected";
             }
-            if (message.vp != null && message.hasOwnProperty("vp")) {
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp")) {
                 properties._vp = 1;
                 if (!$util.isInteger(message.vp))
                     return "vp: integer expected";
             }
-            if (message.text != null && message.hasOwnProperty("text")) {
+            if (message.text != null && $Object.hasOwnProperty.call(message, "text")) {
                 properties._text = 1;
                 if (!$util.isString(message.text))
                     return "text: string expected";
@@ -9258,16 +9232,22 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.AreaResponse} AreaResponse
          */
-        AreaResponse.fromObject = function fromObject(object) {
+        AreaResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.AreaResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.AreaResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.AreaResponse();
             if (object.win != null)
-                message.win = Boolean(object.win);
+                message.win = $Boolean(object.win);
             if (object.vp != null)
                 message.vp = object.vp >>> 0;
             if (object.text != null)
-                message.text = String(object.text);
+                message.text = $String(object.text);
             return message;
         };
 
@@ -9280,25 +9260,20 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        AreaResponse.toObject = function toObject(message, options) {
+        AreaResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
-            if (message.win != null && message.hasOwnProperty("win")) {
+            if (message.win != null && $Object.hasOwnProperty.call(message, "win"))
                 object.win = message.win;
-                if (options.oneofs)
-                    object._win = "win";
-            }
-            if (message.vp != null && message.hasOwnProperty("vp")) {
+            if (message.vp != null && $Object.hasOwnProperty.call(message, "vp"))
                 object.vp = message.vp;
-                if (options.oneofs)
-                    object._vp = "vp";
-            }
-            if (message.text != null && message.hasOwnProperty("text")) {
+            if (message.text != null && $Object.hasOwnProperty.call(message, "text"))
                 object.text = message.text;
-                if (options.oneofs)
-                    object._text = "text";
-            }
             return object;
         };
 
@@ -9309,23 +9284,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        AreaResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        AreaResponse.prototype.toJSON = function() {
+            return AreaResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for AreaResponse
+         * Gets the type url for AreaResponse
          * @function getTypeUrl
          * @memberof http.AreaResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        AreaResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.AreaResponse";
+        AreaResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.AreaResponse";
         };
 
         return AreaResponse;
@@ -9335,31 +9309,44 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a WorldResponse.
+         * @typedef {Object} http.WorldResponse.$Properties
+         * @property {http.WorldProperties.$Properties|null} [properties] WorldResponse properties
+         * @property {Object.<string,http.AreaResponse.$Properties>|null} [areas] WorldResponse areas
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a WorldResponse.
          * @memberof http
          * @interface IWorldResponse
-         * @property {http.IWorldProperties|null} [properties] WorldResponse properties
-         * @property {Object.<string,http.IAreaResponse>|null} [areas] WorldResponse areas
+         * @augments http.WorldResponse.$Properties
+         * @deprecated Use http.WorldResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a WorldResponse.
+         * @typedef {http.WorldResponse.$Properties} http.WorldResponse.$Shape
          */
 
         /**
          * Constructs a new WorldResponse.
          * @memberof http
          * @classdesc Represents a WorldResponse.
-         * @implements IWorldResponse
          * @constructor
-         * @param {http.IWorldResponse=} [properties] Properties to set
+         * @param {http.WorldResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function WorldResponse(properties) {
+        const WorldResponse = function (properties) {
             this.areas = {};
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * WorldResponse properties.
-         * @member {http.IWorldProperties|null|undefined} properties
+         * @member {http.WorldProperties.$Properties|null|undefined} properties
          * @memberof http.WorldResponse
          * @instance
          */
@@ -9367,7 +9354,7 @@ export const http = $root.http = (() => {
 
         /**
          * WorldResponse areas.
-         * @member {Object.<string,http.IAreaResponse>} areas
+         * @member {Object.<string,http.AreaResponse.$Properties>} areas
          * @memberof http.WorldResponse
          * @instance
          */
@@ -9378,10 +9365,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.WorldResponse
          * @static
-         * @param {http.IWorldResponse=} [properties] Properties to set
+         * @param {http.WorldResponse.$Properties=} [properties] Properties to set
          * @returns {http.WorldResponse} WorldResponse instance
+         * @type {{
+         *   (properties: http.WorldResponse.$Shape): http.WorldResponse & http.WorldResponse.$Shape;
+         *   (properties?: http.WorldResponse.$Properties): http.WorldResponse;
+         * }}
          */
-        WorldResponse.create = function create(properties) {
+        WorldResponse.create = function(properties) {
             return new WorldResponse(properties);
         };
 
@@ -9390,20 +9381,27 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.WorldResponse
          * @static
-         * @param {http.IWorldResponse} message WorldResponse message or plain object to encode
+         * @param {http.WorldResponse.$Properties} message WorldResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WorldResponse.encode = function encode(message, writer) {
+        WorldResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.properties != null && Object.hasOwnProperty.call(message, "properties"))
-                $root.http.WorldProperties.encode(message.properties, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.areas != null && Object.hasOwnProperty.call(message, "areas"))
-                for (let keys = Object.keys(message.areas), i = 0; i < keys.length; ++i) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.properties != null && $Object.hasOwnProperty.call(message, "properties"))
+                $root.http.WorldProperties.encode(message.properties, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+            if (message.areas != null && $Object.hasOwnProperty.call(message, "areas"))
+                for (let keys = $Object.keys(message.areas), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                    $root.http.AreaResponse.encode(message.areas[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.http.AreaResponse.encode(message.areas[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
                 }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -9412,12 +9410,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.WorldResponse
          * @static
-         * @param {http.IWorldResponse} message WorldResponse message or plain object to encode
+         * @param {http.WorldResponse.$Properties} message WorldResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WorldResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        WorldResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -9427,51 +9425,72 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.WorldResponse} WorldResponse
+         * @returns {http.WorldResponse & http.WorldResponse.$Shape} WorldResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WorldResponse.decode = function decode(reader, length, error) {
+        WorldResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldResponse(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.WorldResponse(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
-                        message.properties = $root.http.WorldProperties.decode(reader, reader.uint32());
-                        break;
+                        if (wireType !== 2)
+                            break;
+                        message.properties = $root.http.WorldProperties.decode(reader, reader.uint32(), $undefined, _depth + 1, message.properties);
+                        continue;
                     }
                 case 2: {
+                        if (wireType !== 2)
+                            break;
                         if (message.areas === $util.emptyObject)
                             message.areas = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = "";
                         value = null;
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
-                                key = reader.string();
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                key = reader.stringVerify();
+                                continue;
                             case 2:
-                                value = $root.http.AreaResponse.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = $root.http.AreaResponse.decode(reader, reader.uint32(), $undefined, _depth + 1);
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
-                        message.areas[key] = value;
-                        break;
+                        if (key === "__proto__")
+                            $util.makeProp(message.areas, key);
+                        message.areas[key] = value || new $root.http.AreaResponse();
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -9481,11 +9500,11 @@ export const http = $root.http = (() => {
          * @memberof http.WorldResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.WorldResponse} WorldResponse
+         * @returns {http.WorldResponse & http.WorldResponse.$Shape} WorldResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WorldResponse.decodeDelimited = function decodeDelimited(reader) {
+        WorldResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -9499,20 +9518,24 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        WorldResponse.verify = function verify(message) {
+        WorldResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.properties != null && message.hasOwnProperty("properties")) {
-                let error = $root.http.WorldProperties.verify(message.properties);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.properties != null && $Object.hasOwnProperty.call(message, "properties")) {
+                let error = $root.http.WorldProperties.verify(message.properties, _depth + 1);
                 if (error)
                     return "properties." + error;
             }
-            if (message.areas != null && message.hasOwnProperty("areas")) {
+            if (message.areas != null && $Object.hasOwnProperty.call(message, "areas")) {
                 if (!$util.isObject(message.areas))
                     return "areas: object expected";
-                let key = Object.keys(message.areas);
+                let key = $Object.keys(message.areas);
                 for (let i = 0; i < key.length; ++i) {
-                    let error = $root.http.AreaResponse.verify(message.areas[key[i]]);
+                    let error = $root.http.AreaResponse.verify(message.areas[key[i]], _depth + 1);
                     if (error)
                         return "areas." + error;
                 }
@@ -9528,23 +9551,31 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.WorldResponse} WorldResponse
          */
-        WorldResponse.fromObject = function fromObject(object) {
+        WorldResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.WorldResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.WorldResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.WorldResponse();
             if (object.properties != null) {
-                if (typeof object.properties !== "object")
-                    throw TypeError(".http.WorldResponse.properties: object expected");
-                message.properties = $root.http.WorldProperties.fromObject(object.properties);
+                if (!$util.isObject(object.properties))
+                    throw $TypeError(".http.WorldResponse.properties: object expected");
+                message.properties = $root.http.WorldProperties.fromObject(object.properties, _depth + 1);
             }
             if (object.areas) {
-                if (typeof object.areas !== "object")
-                    throw TypeError(".http.WorldResponse.areas: object expected");
+                if (!$util.isObject(object.areas))
+                    throw $TypeError(".http.WorldResponse.areas: object expected");
                 message.areas = {};
-                for (let keys = Object.keys(object.areas), i = 0; i < keys.length; ++i) {
-                    if (typeof object.areas[keys[i]] !== "object")
-                        throw TypeError(".http.WorldResponse.areas: object expected");
-                    message.areas[keys[i]] = $root.http.AreaResponse.fromObject(object.areas[keys[i]]);
+                for (let keys = $Object.keys(object.areas), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.areas, keys[i]);
+                    if (!$util.isObject(object.areas[keys[i]]))
+                        throw $TypeError(".http.WorldResponse.areas: object expected");
+                    message.areas[keys[i]] = $root.http.AreaResponse.fromObject(object.areas[keys[i]], _depth + 1);
                 }
             }
             return message;
@@ -9559,21 +9590,28 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        WorldResponse.toObject = function toObject(message, options) {
+        WorldResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.objects || options.defaults)
                 object.areas = {};
             if (options.defaults)
                 object.properties = null;
-            if (message.properties != null && message.hasOwnProperty("properties"))
-                object.properties = $root.http.WorldProperties.toObject(message.properties, options);
+            if (message.properties != null && $Object.hasOwnProperty.call(message, "properties"))
+                object.properties = $root.http.WorldProperties.toObject(message.properties, options, _depth + 1);
             let keys2;
-            if (message.areas && (keys2 = Object.keys(message.areas)).length) {
+            if (message.areas && (keys2 = $Object.keys(message.areas)).length) {
                 object.areas = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.areas[keys2[j]] = $root.http.AreaResponse.toObject(message.areas[keys2[j]], options);
+                for (let j = 0; j < keys2.length; ++j) {
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.areas, keys2[j]);
+                    object.areas[keys2[j]] = $root.http.AreaResponse.toObject(message.areas[keys2[j]], options, _depth + 1);
+                }
             }
             return object;
         };
@@ -9585,23 +9623,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        WorldResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        WorldResponse.prototype.toJSON = function() {
+            return WorldResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for WorldResponse
+         * Gets the type url for WorldResponse
          * @function getTypeUrl
          * @memberof http.WorldResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        WorldResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.WorldResponse";
+        WorldResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.WorldResponse";
         };
 
         return WorldResponse;
@@ -9611,30 +9648,43 @@ export const http = $root.http = (() => {
 
         /**
          * Properties of a WorldsResponse.
+         * @typedef {Object} http.WorldsResponse.$Properties
+         * @property {Object.<string,http.WorldResponse.$Properties>|null} [worlds] WorldsResponse worlds
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a WorldsResponse.
          * @memberof http
          * @interface IWorldsResponse
-         * @property {Object.<string,http.IWorldResponse>|null} [worlds] WorldsResponse worlds
+         * @augments http.WorldsResponse.$Properties
+         * @deprecated Use http.WorldsResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a WorldsResponse.
+         * @typedef {http.WorldsResponse.$Properties} http.WorldsResponse.$Shape
          */
 
         /**
          * Constructs a new WorldsResponse.
          * @memberof http
          * @classdesc Represents a WorldsResponse.
-         * @implements IWorldsResponse
          * @constructor
-         * @param {http.IWorldsResponse=} [properties] Properties to set
+         * @param {http.WorldsResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
-        function WorldsResponse(properties) {
+        const WorldsResponse = function (properties) {
             this.worlds = {};
             if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
-        }
+        };
 
         /**
          * WorldsResponse worlds.
-         * @member {Object.<string,http.IWorldResponse>} worlds
+         * @member {Object.<string,http.WorldResponse.$Properties>} worlds
          * @memberof http.WorldsResponse
          * @instance
          */
@@ -9645,10 +9695,14 @@ export const http = $root.http = (() => {
          * @function create
          * @memberof http.WorldsResponse
          * @static
-         * @param {http.IWorldsResponse=} [properties] Properties to set
+         * @param {http.WorldsResponse.$Properties=} [properties] Properties to set
          * @returns {http.WorldsResponse} WorldsResponse instance
+         * @type {{
+         *   (properties: http.WorldsResponse.$Shape): http.WorldsResponse & http.WorldsResponse.$Shape;
+         *   (properties?: http.WorldsResponse.$Properties): http.WorldsResponse;
+         * }}
          */
-        WorldsResponse.create = function create(properties) {
+        WorldsResponse.create = function(properties) {
             return new WorldsResponse(properties);
         };
 
@@ -9657,18 +9711,25 @@ export const http = $root.http = (() => {
          * @function encode
          * @memberof http.WorldsResponse
          * @static
-         * @param {http.IWorldsResponse} message WorldsResponse message or plain object to encode
+         * @param {http.WorldsResponse.$Properties} message WorldsResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WorldsResponse.encode = function encode(message, writer) {
+        WorldsResponse.encode = function (message, writer, _depth) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.worlds != null && Object.hasOwnProperty.call(message, "worlds"))
-                for (let keys = Object.keys(message.worlds), i = 0; i < keys.length; ++i) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.worlds != null && $Object.hasOwnProperty.call(message, "worlds"))
+                for (let keys = $Object.keys(message.worlds), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                    $root.http.WorldResponse.encode(message.worlds[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.http.WorldResponse.encode(message.worlds[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
                 }
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
             return writer;
         };
 
@@ -9677,12 +9738,12 @@ export const http = $root.http = (() => {
          * @function encodeDelimited
          * @memberof http.WorldsResponse
          * @static
-         * @param {http.IWorldsResponse} message WorldsResponse message or plain object to encode
+         * @param {http.WorldsResponse.$Properties} message WorldsResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WorldsResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+        WorldsResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -9692,47 +9753,66 @@ export const http = $root.http = (() => {
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {http.WorldsResponse} WorldsResponse
+         * @returns {http.WorldsResponse & http.WorldsResponse.$Shape} WorldsResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WorldsResponse.decode = function decode(reader, length, error) {
+        WorldsResponse.decode = function (reader, length, _end, _depth, _target) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.http.WorldsResponse(), key, value;
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.WorldsResponse(), key, value;
             while (reader.pos < end) {
-                let tag = reader.uint32();
-                if (tag === error)
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
                     break;
-                switch (tag >>> 3) {
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
                 case 1: {
+                        if (wireType !== 2)
+                            break;
                         if (message.worlds === $util.emptyObject)
                             message.worlds = {};
                         let end2 = reader.uint32() + reader.pos;
                         key = "";
                         value = null;
                         while (reader.pos < end2) {
-                            let tag2 = reader.uint32();
-                            switch (tag2 >>> 3) {
+                            let tag2 = reader.tag();
+                            wireType = tag2 & 7;
+                            switch (tag2 >>>= 3) {
                             case 1:
-                                key = reader.string();
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                key = reader.stringVerify();
+                                continue;
                             case 2:
-                                value = $root.http.WorldResponse.decode(reader, reader.uint32());
-                                break;
-                            default:
-                                reader.skipType(tag2 & 7);
-                                break;
+                                if (wireType !== 2)
+                                    break;
+                                value = $root.http.WorldResponse.decode(reader, reader.uint32(), $undefined, _depth + 1);
+                                continue;
                             }
+                            reader.skipType(wireType, _depth, tag2);
                         }
-                        message.worlds[key] = value;
-                        break;
+                        if (key === "__proto__")
+                            $util.makeProp(message.worlds, key);
+                        message.worlds[key] = value || new $root.http.WorldResponse();
+                        continue;
                     }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
                 }
             }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
             return message;
         };
 
@@ -9742,11 +9822,11 @@ export const http = $root.http = (() => {
          * @memberof http.WorldsResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {http.WorldsResponse} WorldsResponse
+         * @returns {http.WorldsResponse & http.WorldsResponse.$Shape} WorldsResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WorldsResponse.decodeDelimited = function decodeDelimited(reader) {
+        WorldsResponse.decodeDelimited = function(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
@@ -9760,15 +9840,19 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        WorldsResponse.verify = function verify(message) {
+        WorldsResponse.verify = function (message, _depth) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.worlds != null && message.hasOwnProperty("worlds")) {
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.worlds != null && $Object.hasOwnProperty.call(message, "worlds")) {
                 if (!$util.isObject(message.worlds))
                     return "worlds: object expected";
-                let key = Object.keys(message.worlds);
+                let key = $Object.keys(message.worlds);
                 for (let i = 0; i < key.length; ++i) {
-                    let error = $root.http.WorldResponse.verify(message.worlds[key[i]]);
+                    let error = $root.http.WorldResponse.verify(message.worlds[key[i]], _depth + 1);
                     if (error)
                         return "worlds." + error;
                 }
@@ -9784,18 +9868,26 @@ export const http = $root.http = (() => {
          * @param {Object.<string,*>} object Plain object
          * @returns {http.WorldsResponse} WorldsResponse
          */
-        WorldsResponse.fromObject = function fromObject(object) {
+        WorldsResponse.fromObject = function (object, _depth) {
             if (object instanceof $root.http.WorldsResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.WorldsResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let message = new $root.http.WorldsResponse();
             if (object.worlds) {
-                if (typeof object.worlds !== "object")
-                    throw TypeError(".http.WorldsResponse.worlds: object expected");
+                if (!$util.isObject(object.worlds))
+                    throw $TypeError(".http.WorldsResponse.worlds: object expected");
                 message.worlds = {};
-                for (let keys = Object.keys(object.worlds), i = 0; i < keys.length; ++i) {
-                    if (typeof object.worlds[keys[i]] !== "object")
-                        throw TypeError(".http.WorldsResponse.worlds: object expected");
-                    message.worlds[keys[i]] = $root.http.WorldResponse.fromObject(object.worlds[keys[i]]);
+                for (let keys = $Object.keys(object.worlds), i = 0; i < keys.length; ++i) {
+                    if (keys[i] === "__proto__")
+                        $util.makeProp(message.worlds, keys[i]);
+                    if (!$util.isObject(object.worlds[keys[i]]))
+                        throw $TypeError(".http.WorldsResponse.worlds: object expected");
+                    message.worlds[keys[i]] = $root.http.WorldResponse.fromObject(object.worlds[keys[i]], _depth + 1);
                 }
             }
             return message;
@@ -9810,17 +9902,24 @@ export const http = $root.http = (() => {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        WorldsResponse.toObject = function toObject(message, options) {
+        WorldsResponse.toObject = function (message, options, _depth) {
             if (!options)
                 options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
             let object = {};
             if (options.objects || options.defaults)
                 object.worlds = {};
             let keys2;
-            if (message.worlds && (keys2 = Object.keys(message.worlds)).length) {
+            if (message.worlds && (keys2 = $Object.keys(message.worlds)).length) {
                 object.worlds = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.worlds[keys2[j]] = $root.http.WorldResponse.toObject(message.worlds[keys2[j]], options);
+                for (let j = 0; j < keys2.length; ++j) {
+                    if (keys2[j] === "__proto__")
+                        $util.makeProp(object.worlds, keys2[j]);
+                    object.worlds[keys2[j]] = $root.http.WorldResponse.toObject(message.worlds[keys2[j]], options, _depth + 1);
+                }
             }
             return object;
         };
@@ -9832,23 +9931,22 @@ export const http = $root.http = (() => {
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        WorldsResponse.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        WorldsResponse.prototype.toJSON = function() {
+            return WorldsResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for WorldsResponse
+         * Gets the type url for WorldsResponse
          * @function getTypeUrl
          * @memberof http.WorldsResponse
          * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
          */
-        WorldsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/http.WorldsResponse";
+        WorldsResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.WorldsResponse";
         };
 
         return WorldsResponse;

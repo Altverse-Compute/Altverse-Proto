@@ -2,6 +2,9 @@ import type * as grpc from '@grpc/grpc-js';
 import type { EnumTypeDefinition, MessageTypeDefinition } from '@grpc/proto-loader';
 
 import type { Chat as _game_Chat, Chat__Output as _game_Chat__Output } from './game/Chat';
+import type { ClientInit as _game_ClientInit, ClientInit__Output as _game_ClientInit__Output } from './game/ClientInit';
+import type { ClientMessage as _game_ClientMessage, ClientMessage__Output as _game_ClientMessage__Output } from './game/ClientMessage';
+import type { ClientMousePos as _game_ClientMousePos, ClientMousePos__Output as _game_ClientMousePos__Output } from './game/ClientMousePos';
 import type { CloseEntities as _game_CloseEntities, CloseEntities__Output as _game_CloseEntities__Output } from './game/CloseEntities';
 import type { Entities as _game_Entities, Entities__Output as _game_Entities__Output } from './game/Entities';
 import type { Package as _game_Package, Package__Output as _game_Package__Output } from './game/Package';
@@ -22,6 +25,11 @@ type SubtypeConstructor<Constructor extends new (...args: any) => any, Subtype> 
 export interface ProtoGrpcType {
   game: {
     Chat: MessageTypeDefinition<_game_Chat, _game_Chat__Output>
+    ClientAbility: EnumTypeDefinition
+    ClientInit: MessageTypeDefinition<_game_ClientInit, _game_ClientInit__Output>
+    ClientKey: EnumTypeDefinition
+    ClientMessage: MessageTypeDefinition<_game_ClientMessage, _game_ClientMessage__Output>
+    ClientMousePos: MessageTypeDefinition<_game_ClientMousePos, _game_ClientMousePos__Output>
     CloseEntities: MessageTypeDefinition<_game_CloseEntities, _game_CloseEntities__Output>
     Entities: MessageTypeDefinition<_game_Entities, _game_Entities__Output>
     Package: MessageTypeDefinition<_game_Package, _game_Package__Output>

@@ -5552,6 +5552,1154 @@ export const game = $root.game = (() => {
         return UpdatePlayersMap;
     })();
 
+    /**
+     * ClientKey enum.
+     * @name game.ClientKey
+     * @enum {number}
+     * @property {number} UP=1 UP value
+     * @property {number} DOWN=2 DOWN value
+     * @property {number} LEFT=3 LEFT value
+     * @property {number} RIGHT=4 RIGHT value
+     * @property {number} SHIFT=5 SHIFT value
+     */
+    game.ClientKey = (function() {
+        const valuesById = {}, values = $Object.create(valuesById);
+        values[valuesById[1] = "UP"] = 1;
+        values[valuesById[2] = "DOWN"] = 2;
+        values[valuesById[3] = "LEFT"] = 3;
+        values[valuesById[4] = "RIGHT"] = 4;
+        values[valuesById[5] = "SHIFT"] = 5;
+        return values;
+    })();
+
+    /**
+     * ClientAbility enum.
+     * @name game.ClientAbility
+     * @enum {number}
+     * @property {number} FIRST=1 FIRST value
+     * @property {number} SECOND=2 SECOND value
+     */
+    game.ClientAbility = (function() {
+        const valuesById = {}, values = $Object.create(valuesById);
+        values[valuesById[1] = "FIRST"] = 1;
+        values[valuesById[2] = "SECOND"] = 2;
+        return values;
+    })();
+
+    game.ClientInit = (function() {
+
+        /**
+         * Properties of a ClientInit.
+         * @typedef {Object} game.ClientInit.$Properties
+         * @property {string|null} [hero] ClientInit hero
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a ClientInit.
+         * @memberof game
+         * @interface IClientInit
+         * @augments game.ClientInit.$Properties
+         * @deprecated Use game.ClientInit.$Properties instead.
+         */
+
+        /**
+         * Shape of a ClientInit.
+         * @typedef {game.ClientInit.$Properties} game.ClientInit.$Shape
+         */
+
+        /**
+         * Constructs a new ClientInit.
+         * @memberof game
+         * @classdesc Represents a ClientInit.
+         * @constructor
+         * @param {game.ClientInit.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const ClientInit = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * ClientInit hero.
+         * @member {string} hero
+         * @memberof game.ClientInit
+         * @instance
+         */
+        ClientInit.prototype.hero = "";
+
+        /**
+         * Creates a new ClientInit instance using the specified properties.
+         * @function create
+         * @memberof game.ClientInit
+         * @static
+         * @param {game.ClientInit.$Properties=} [properties] Properties to set
+         * @returns {game.ClientInit} ClientInit instance
+         * @type {{
+         *   (properties: game.ClientInit.$Shape): game.ClientInit & game.ClientInit.$Shape;
+         *   (properties?: game.ClientInit.$Properties): game.ClientInit;
+         * }}
+         */
+        ClientInit.create = function(properties) {
+            return new ClientInit(properties);
+        };
+
+        /**
+         * Encodes the specified ClientInit message. Does not implicitly {@link game.ClientInit.verify|verify} messages.
+         * @function encode
+         * @memberof game.ClientInit
+         * @static
+         * @param {game.ClientInit.$Properties} message ClientInit message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ClientInit.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.hero);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ClientInit message, length delimited. Does not implicitly {@link game.ClientInit.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.ClientInit
+         * @static
+         * @param {game.ClientInit.$Properties} message ClientInit message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ClientInit.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a ClientInit message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.ClientInit
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.ClientInit & game.ClientInit.$Shape} ClientInit
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ClientInit.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.ClientInit(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.hero = value;
+                        else
+                            delete message.hero;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a ClientInit message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.ClientInit
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.ClientInit & game.ClientInit.$Shape} ClientInit
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ClientInit.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ClientInit message.
+         * @function verify
+         * @memberof game.ClientInit
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ClientInit.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+                if (!$util.isString(message.hero))
+                    return "hero: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a ClientInit message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.ClientInit
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.ClientInit} ClientInit
+         */
+        ClientInit.fromObject = function (object, _depth) {
+            if (object instanceof $root.game.ClientInit)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.ClientInit: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.game.ClientInit();
+            if (object.hero != null)
+                if (typeof object.hero !== "string" || object.hero.length)
+                    message.hero = $String(object.hero);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ClientInit message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.ClientInit
+         * @static
+         * @param {game.ClientInit} message ClientInit
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ClientInit.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults)
+                object.hero = "";
+            if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+                object.hero = message.hero;
+            return object;
+        };
+
+        /**
+         * Converts this ClientInit to JSON.
+         * @function toJSON
+         * @memberof game.ClientInit
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ClientInit.prototype.toJSON = function() {
+            return ClientInit.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for ClientInit
+         * @function getTypeUrl
+         * @memberof game.ClientInit
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        ClientInit.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.ClientInit";
+        };
+
+        return ClientInit;
+    })();
+
+    game.ClientMousePos = (function() {
+
+        /**
+         * Properties of a ClientMousePos.
+         * @typedef {Object} game.ClientMousePos.$Properties
+         * @property {number|null} [x] ClientMousePos x
+         * @property {number|null} [y] ClientMousePos y
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a ClientMousePos.
+         * @memberof game
+         * @interface IClientMousePos
+         * @augments game.ClientMousePos.$Properties
+         * @deprecated Use game.ClientMousePos.$Properties instead.
+         */
+
+        /**
+         * Shape of a ClientMousePos.
+         * @typedef {game.ClientMousePos.$Properties} game.ClientMousePos.$Shape
+         */
+
+        /**
+         * Constructs a new ClientMousePos.
+         * @memberof game
+         * @classdesc Represents a ClientMousePos.
+         * @constructor
+         * @param {game.ClientMousePos.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const ClientMousePos = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * ClientMousePos x.
+         * @member {number} x
+         * @memberof game.ClientMousePos
+         * @instance
+         */
+        ClientMousePos.prototype.x = 0;
+
+        /**
+         * ClientMousePos y.
+         * @member {number} y
+         * @memberof game.ClientMousePos
+         * @instance
+         */
+        ClientMousePos.prototype.y = 0;
+
+        /**
+         * Creates a new ClientMousePos instance using the specified properties.
+         * @function create
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {game.ClientMousePos.$Properties=} [properties] Properties to set
+         * @returns {game.ClientMousePos} ClientMousePos instance
+         * @type {{
+         *   (properties: game.ClientMousePos.$Shape): game.ClientMousePos & game.ClientMousePos.$Shape;
+         *   (properties?: game.ClientMousePos.$Properties): game.ClientMousePos;
+         * }}
+         */
+        ClientMousePos.create = function(properties) {
+            return new ClientMousePos(properties);
+        };
+
+        /**
+         * Encodes the specified ClientMousePos message. Does not implicitly {@link game.ClientMousePos.verify|verify} messages.
+         * @function encode
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {game.ClientMousePos.$Properties} message ClientMousePos message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ClientMousePos.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+                writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+                writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ClientMousePos message, length delimited. Does not implicitly {@link game.ClientMousePos.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {game.ClientMousePos.$Properties} message ClientMousePos message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ClientMousePos.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a ClientMousePos message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.ClientMousePos & game.ClientMousePos.$Shape} ClientMousePos
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ClientMousePos.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.ClientMousePos(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 5)
+                            break;
+                        if ((value = reader.float()) !== 0)
+                            message.x = value;
+                        else
+                            delete message.x;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 5)
+                            break;
+                        if ((value = reader.float()) !== 0)
+                            message.y = value;
+                        else
+                            delete message.y;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a ClientMousePos message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.ClientMousePos & game.ClientMousePos.$Shape} ClientMousePos
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ClientMousePos.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ClientMousePos message.
+         * @function verify
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ClientMousePos.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+                if (typeof message.x !== "number")
+                    return "x: number expected";
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+                if (typeof message.y !== "number")
+                    return "y: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a ClientMousePos message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.ClientMousePos} ClientMousePos
+         */
+        ClientMousePos.fromObject = function (object, _depth) {
+            if (object instanceof $root.game.ClientMousePos)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.ClientMousePos: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.game.ClientMousePos();
+            if (object.x != null)
+                if ($Number(object.x) !== 0)
+                    message.x = $Number(object.x);
+            if (object.y != null)
+                if ($Number(object.y) !== 0)
+                    message.y = $Number(object.y);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ClientMousePos message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {game.ClientMousePos} message ClientMousePos
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ClientMousePos.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults) {
+                object.x = 0;
+                object.y = 0;
+            }
+            if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+                object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+            if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+                object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+            return object;
+        };
+
+        /**
+         * Converts this ClientMousePos to JSON.
+         * @function toJSON
+         * @memberof game.ClientMousePos
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ClientMousePos.prototype.toJSON = function() {
+            return ClientMousePos.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for ClientMousePos
+         * @function getTypeUrl
+         * @memberof game.ClientMousePos
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        ClientMousePos.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.ClientMousePos";
+        };
+
+        return ClientMousePos;
+    })();
+
+    game.ClientMessage = (function() {
+
+        /**
+         * Properties of a ClientMessage.
+         * @typedef {Object} game.ClientMessage.$Properties
+         * @property {string|null} [chatMessage] ClientMessage chatMessage
+         * @property {game.ClientKey|null} [keyUp] ClientMessage keyUp
+         * @property {game.ClientKey|null} [keyDown] ClientMessage keyDown
+         * @property {boolean|null} [mouseEnable] ClientMessage mouseEnable
+         * @property {game.ClientMousePos.$Properties|null} [mousePos] ClientMessage mousePos
+         * @property {game.ClientInit.$Properties|null} [init] ClientMessage init
+         * @property {game.ClientAbility|null} [ability] ClientMessage ability
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a ClientMessage.
+         * @memberof game
+         * @interface IClientMessage
+         * @augments game.ClientMessage.$Properties
+         * @deprecated Use game.ClientMessage.$Properties instead.
+         */
+
+        /**
+         * Shape of a ClientMessage.
+         * @typedef {game.ClientMessage.$Properties} game.ClientMessage.$Shape
+         */
+
+        /**
+         * Constructs a new ClientMessage.
+         * @memberof game
+         * @classdesc Represents a ClientMessage.
+         * @constructor
+         * @param {game.ClientMessage.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const ClientMessage = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * ClientMessage chatMessage.
+         * @member {string|null|undefined} chatMessage
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        ClientMessage.prototype.chatMessage = null;
+
+        /**
+         * ClientMessage keyUp.
+         * @member {game.ClientKey|null|undefined} keyUp
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        ClientMessage.prototype.keyUp = null;
+
+        /**
+         * ClientMessage keyDown.
+         * @member {game.ClientKey|null|undefined} keyDown
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        ClientMessage.prototype.keyDown = null;
+
+        /**
+         * ClientMessage mouseEnable.
+         * @member {boolean|null|undefined} mouseEnable
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        ClientMessage.prototype.mouseEnable = null;
+
+        /**
+         * ClientMessage mousePos.
+         * @member {game.ClientMousePos.$Properties|null|undefined} mousePos
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        ClientMessage.prototype.mousePos = null;
+
+        /**
+         * ClientMessage init.
+         * @member {game.ClientInit.$Properties|null|undefined} init
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        ClientMessage.prototype.init = null;
+
+        /**
+         * ClientMessage ability.
+         * @member {game.ClientAbility|null|undefined} ability
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        ClientMessage.prototype.ability = null;
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(ClientMessage.prototype, "_chatMessage", {
+            get: $util.oneOfGetter($oneOfFields = ["chatMessage"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(ClientMessage.prototype, "_keyUp", {
+            get: $util.oneOfGetter($oneOfFields = ["keyUp"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(ClientMessage.prototype, "_keyDown", {
+            get: $util.oneOfGetter($oneOfFields = ["keyDown"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(ClientMessage.prototype, "_mouseEnable", {
+            get: $util.oneOfGetter($oneOfFields = ["mouseEnable"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(ClientMessage.prototype, "_mousePos", {
+            get: $util.oneOfGetter($oneOfFields = ["mousePos"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(ClientMessage.prototype, "_init", {
+            get: $util.oneOfGetter($oneOfFields = ["init"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(ClientMessage.prototype, "_ability", {
+            get: $util.oneOfGetter($oneOfFields = ["ability"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new ClientMessage instance using the specified properties.
+         * @function create
+         * @memberof game.ClientMessage
+         * @static
+         * @param {game.ClientMessage.$Properties=} [properties] Properties to set
+         * @returns {game.ClientMessage} ClientMessage instance
+         * @type {{
+         *   (properties: game.ClientMessage.$Shape): game.ClientMessage & game.ClientMessage.$Shape;
+         *   (properties?: game.ClientMessage.$Properties): game.ClientMessage;
+         * }}
+         */
+        ClientMessage.create = function(properties) {
+            return new ClientMessage(properties);
+        };
+
+        /**
+         * Encodes the specified ClientMessage message. Does not implicitly {@link game.ClientMessage.verify|verify} messages.
+         * @function encode
+         * @memberof game.ClientMessage
+         * @static
+         * @param {game.ClientMessage.$Properties} message ClientMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ClientMessage.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.chatMessage);
+            if (message.keyUp != null && $Object.hasOwnProperty.call(message, "keyUp"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.keyUp);
+            if (message.keyDown != null && $Object.hasOwnProperty.call(message, "keyDown"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.keyDown);
+            if (message.mouseEnable != null && $Object.hasOwnProperty.call(message, "mouseEnable"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.mouseEnable);
+            if (message.mousePos != null && $Object.hasOwnProperty.call(message, "mousePos"))
+                $root.game.ClientMousePos.encode(message.mousePos, writer.uint32(/* id 5, wireType 2 =*/42).fork(), _depth + 1).ldelim();
+            if (message.init != null && $Object.hasOwnProperty.call(message, "init"))
+                $root.game.ClientInit.encode(message.init, writer.uint32(/* id 6, wireType 2 =*/50).fork(), _depth + 1).ldelim();
+            if (message.ability != null && $Object.hasOwnProperty.call(message, "ability"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.ability);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ClientMessage message, length delimited. Does not implicitly {@link game.ClientMessage.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.ClientMessage
+         * @static
+         * @param {game.ClientMessage.$Properties} message ClientMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ClientMessage.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a ClientMessage message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.ClientMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.ClientMessage & game.ClientMessage.$Shape} ClientMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ClientMessage.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.game.ClientMessage();
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        message.chatMessage = reader.stringVerify();
+                        message._chatMessage = "chatMessage";
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 0)
+                            break;
+                        message.keyUp = reader.int32();
+                        message._keyUp = "keyUp";
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 0)
+                            break;
+                        message.keyDown = reader.int32();
+                        message._keyDown = "keyDown";
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 0)
+                            break;
+                        message.mouseEnable = reader.bool();
+                        message._mouseEnable = "mouseEnable";
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 2)
+                            break;
+                        message.mousePos = $root.game.ClientMousePos.decode(reader, reader.uint32(), $undefined, _depth + 1, message.mousePos);
+                        message._mousePos = "mousePos";
+                        continue;
+                    }
+                case 6: {
+                        if (wireType !== 2)
+                            break;
+                        message.init = $root.game.ClientInit.decode(reader, reader.uint32(), $undefined, _depth + 1, message.init);
+                        message._init = "init";
+                        continue;
+                    }
+                case 7: {
+                        if (wireType !== 0)
+                            break;
+                        message.ability = reader.int32();
+                        message._ability = "ability";
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a ClientMessage message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.ClientMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.ClientMessage & game.ClientMessage.$Shape} ClientMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ClientMessage.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ClientMessage message.
+         * @function verify
+         * @memberof game.ClientMessage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ClientMessage.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            let properties = {};
+            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage")) {
+                properties._chatMessage = 1;
+                if (!$util.isString(message.chatMessage))
+                    return "chatMessage: string expected";
+            }
+            if (message.keyUp != null && $Object.hasOwnProperty.call(message, "keyUp")) {
+                properties._keyUp = 1;
+                switch (message.keyUp) {
+                default:
+                    return "keyUp: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    break;
+                }
+            }
+            if (message.keyDown != null && $Object.hasOwnProperty.call(message, "keyDown")) {
+                properties._keyDown = 1;
+                switch (message.keyDown) {
+                default:
+                    return "keyDown: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    break;
+                }
+            }
+            if (message.mouseEnable != null && $Object.hasOwnProperty.call(message, "mouseEnable")) {
+                properties._mouseEnable = 1;
+                if (typeof message.mouseEnable !== "boolean")
+                    return "mouseEnable: boolean expected";
+            }
+            if (message.mousePos != null && $Object.hasOwnProperty.call(message, "mousePos")) {
+                properties._mousePos = 1;
+                {
+                    let error = $root.game.ClientMousePos.verify(message.mousePos, _depth + 1);
+                    if (error)
+                        return "mousePos." + error;
+                }
+            }
+            if (message.init != null && $Object.hasOwnProperty.call(message, "init")) {
+                properties._init = 1;
+                {
+                    let error = $root.game.ClientInit.verify(message.init, _depth + 1);
+                    if (error)
+                        return "init." + error;
+                }
+            }
+            if (message.ability != null && $Object.hasOwnProperty.call(message, "ability")) {
+                properties._ability = 1;
+                switch (message.ability) {
+                default:
+                    return "ability: enum value expected";
+                case 1:
+                case 2:
+                    break;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a ClientMessage message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.ClientMessage
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.ClientMessage} ClientMessage
+         */
+        ClientMessage.fromObject = function (object, _depth) {
+            if (object instanceof $root.game.ClientMessage)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".game.ClientMessage: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.game.ClientMessage();
+            if (object.chatMessage != null)
+                message.chatMessage = $String(object.chatMessage);
+            switch (object.keyUp) {
+            default:
+                if (typeof object.keyUp === "number") {
+                    message.keyUp = object.keyUp;
+                    break;
+                }
+                break;
+            case "UP":
+            case 1:
+                message.keyUp = 1;
+                break;
+            case "DOWN":
+            case 2:
+                message.keyUp = 2;
+                break;
+            case "LEFT":
+            case 3:
+                message.keyUp = 3;
+                break;
+            case "RIGHT":
+            case 4:
+                message.keyUp = 4;
+                break;
+            case "SHIFT":
+            case 5:
+                message.keyUp = 5;
+                break;
+            }
+            switch (object.keyDown) {
+            default:
+                if (typeof object.keyDown === "number") {
+                    message.keyDown = object.keyDown;
+                    break;
+                }
+                break;
+            case "UP":
+            case 1:
+                message.keyDown = 1;
+                break;
+            case "DOWN":
+            case 2:
+                message.keyDown = 2;
+                break;
+            case "LEFT":
+            case 3:
+                message.keyDown = 3;
+                break;
+            case "RIGHT":
+            case 4:
+                message.keyDown = 4;
+                break;
+            case "SHIFT":
+            case 5:
+                message.keyDown = 5;
+                break;
+            }
+            if (object.mouseEnable != null)
+                message.mouseEnable = $Boolean(object.mouseEnable);
+            if (object.mousePos != null) {
+                if (!$util.isObject(object.mousePos))
+                    throw $TypeError(".game.ClientMessage.mousePos: object expected");
+                message.mousePos = $root.game.ClientMousePos.fromObject(object.mousePos, _depth + 1);
+            }
+            if (object.init != null) {
+                if (!$util.isObject(object.init))
+                    throw $TypeError(".game.ClientMessage.init: object expected");
+                message.init = $root.game.ClientInit.fromObject(object.init, _depth + 1);
+            }
+            switch (object.ability) {
+            default:
+                if (typeof object.ability === "number") {
+                    message.ability = object.ability;
+                    break;
+                }
+                break;
+            case "FIRST":
+            case 1:
+                message.ability = 1;
+                break;
+            case "SECOND":
+            case 2:
+                message.ability = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ClientMessage message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.ClientMessage
+         * @static
+         * @param {game.ClientMessage} message ClientMessage
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ClientMessage.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage"))
+                object.chatMessage = message.chatMessage;
+            if (message.keyUp != null && $Object.hasOwnProperty.call(message, "keyUp"))
+                object.keyUp = options.enums === $String ? $root.game.ClientKey[message.keyUp] === $undefined ? message.keyUp : $root.game.ClientKey[message.keyUp] : message.keyUp;
+            if (message.keyDown != null && $Object.hasOwnProperty.call(message, "keyDown"))
+                object.keyDown = options.enums === $String ? $root.game.ClientKey[message.keyDown] === $undefined ? message.keyDown : $root.game.ClientKey[message.keyDown] : message.keyDown;
+            if (message.mouseEnable != null && $Object.hasOwnProperty.call(message, "mouseEnable"))
+                object.mouseEnable = message.mouseEnable;
+            if (message.mousePos != null && $Object.hasOwnProperty.call(message, "mousePos"))
+                object.mousePos = $root.game.ClientMousePos.toObject(message.mousePos, options, _depth + 1);
+            if (message.init != null && $Object.hasOwnProperty.call(message, "init"))
+                object.init = $root.game.ClientInit.toObject(message.init, options, _depth + 1);
+            if (message.ability != null && $Object.hasOwnProperty.call(message, "ability"))
+                object.ability = options.enums === $String ? $root.game.ClientAbility[message.ability] === $undefined ? message.ability : $root.game.ClientAbility[message.ability] : message.ability;
+            return object;
+        };
+
+        /**
+         * Converts this ClientMessage to JSON.
+         * @function toJSON
+         * @memberof game.ClientMessage
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ClientMessage.prototype.toJSON = function() {
+            return ClientMessage.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for ClientMessage
+         * @function getTypeUrl
+         * @memberof game.ClientMessage
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        ClientMessage.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/game.ClientMessage";
+        };
+
+        return ClientMessage;
+    })();
+
     return game;
 })();
 
@@ -6070,6 +7218,615 @@ export const http = $root.http = (() => {
         };
 
         return Profile;
+    })();
+
+    http.RegisterRequest = (function() {
+
+        /**
+         * Properties of a RegisterRequest.
+         * @typedef {Object} http.RegisterRequest.$Properties
+         * @property {string|null} [username] RegisterRequest username
+         * @property {string|null} [password] RegisterRequest password
+         * @property {string|null} [token] RegisterRequest token
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a RegisterRequest.
+         * @memberof http
+         * @interface IRegisterRequest
+         * @augments http.RegisterRequest.$Properties
+         * @deprecated Use http.RegisterRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of a RegisterRequest.
+         * @typedef {http.RegisterRequest.$Properties} http.RegisterRequest.$Shape
+         */
+
+        /**
+         * Constructs a new RegisterRequest.
+         * @memberof http
+         * @classdesc Represents a RegisterRequest.
+         * @constructor
+         * @param {http.RegisterRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const RegisterRequest = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * RegisterRequest username.
+         * @member {string} username
+         * @memberof http.RegisterRequest
+         * @instance
+         */
+        RegisterRequest.prototype.username = "";
+
+        /**
+         * RegisterRequest password.
+         * @member {string} password
+         * @memberof http.RegisterRequest
+         * @instance
+         */
+        RegisterRequest.prototype.password = "";
+
+        /**
+         * RegisterRequest token.
+         * @member {string} token
+         * @memberof http.RegisterRequest
+         * @instance
+         */
+        RegisterRequest.prototype.token = "";
+
+        /**
+         * Creates a new RegisterRequest instance using the specified properties.
+         * @function create
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {http.RegisterRequest.$Properties=} [properties] Properties to set
+         * @returns {http.RegisterRequest} RegisterRequest instance
+         * @type {{
+         *   (properties: http.RegisterRequest.$Shape): http.RegisterRequest & http.RegisterRequest.$Shape;
+         *   (properties?: http.RegisterRequest.$Properties): http.RegisterRequest;
+         * }}
+         */
+        RegisterRequest.create = function(properties) {
+            return new RegisterRequest(properties);
+        };
+
+        /**
+         * Encodes the specified RegisterRequest message. Does not implicitly {@link http.RegisterRequest.verify|verify} messages.
+         * @function encode
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {http.RegisterRequest.$Properties} message RegisterRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RegisterRequest.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
+            if (message.password != null && $Object.hasOwnProperty.call(message, "password"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.token);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RegisterRequest message, length delimited. Does not implicitly {@link http.RegisterRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {http.RegisterRequest.$Properties} message RegisterRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RegisterRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a RegisterRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.RegisterRequest & http.RegisterRequest.$Shape} RegisterRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RegisterRequest.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.RegisterRequest(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.username = value;
+                        else
+                            delete message.username;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.password = value;
+                        else
+                            delete message.password;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.token = value;
+                        else
+                            delete message.token;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a RegisterRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.RegisterRequest & http.RegisterRequest.$Shape} RegisterRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RegisterRequest.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RegisterRequest message.
+         * @function verify
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RegisterRequest.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
+                if (!$util.isString(message.username))
+                    return "username: string expected";
+            if (message.password != null && $Object.hasOwnProperty.call(message, "password"))
+                if (!$util.isString(message.password))
+                    return "password: string expected";
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a RegisterRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.RegisterRequest} RegisterRequest
+         */
+        RegisterRequest.fromObject = function (object, _depth) {
+            if (object instanceof $root.http.RegisterRequest)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.RegisterRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.http.RegisterRequest();
+            if (object.username != null)
+                if (typeof object.username !== "string" || object.username.length)
+                    message.username = $String(object.username);
+            if (object.password != null)
+                if (typeof object.password !== "string" || object.password.length)
+                    message.password = $String(object.password);
+            if (object.token != null)
+                if (typeof object.token !== "string" || object.token.length)
+                    message.token = $String(object.token);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RegisterRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {http.RegisterRequest} message RegisterRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RegisterRequest.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults) {
+                object.username = "";
+                object.password = "";
+                object.token = "";
+            }
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
+                object.username = message.username;
+            if (message.password != null && $Object.hasOwnProperty.call(message, "password"))
+                object.password = message.password;
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                object.token = message.token;
+            return object;
+        };
+
+        /**
+         * Converts this RegisterRequest to JSON.
+         * @function toJSON
+         * @memberof http.RegisterRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RegisterRequest.prototype.toJSON = function() {
+            return RegisterRequest.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for RegisterRequest
+         * @function getTypeUrl
+         * @memberof http.RegisterRequest
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        RegisterRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.RegisterRequest";
+        };
+
+        return RegisterRequest;
+    })();
+
+    http.LoginRequest = (function() {
+
+        /**
+         * Properties of a LoginRequest.
+         * @typedef {Object} http.LoginRequest.$Properties
+         * @property {string|null} [username] LoginRequest username
+         * @property {string|null} [password] LoginRequest password
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a LoginRequest.
+         * @memberof http
+         * @interface ILoginRequest
+         * @augments http.LoginRequest.$Properties
+         * @deprecated Use http.LoginRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of a LoginRequest.
+         * @typedef {http.LoginRequest.$Properties} http.LoginRequest.$Shape
+         */
+
+        /**
+         * Constructs a new LoginRequest.
+         * @memberof http
+         * @classdesc Represents a LoginRequest.
+         * @constructor
+         * @param {http.LoginRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const LoginRequest = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * LoginRequest username.
+         * @member {string} username
+         * @memberof http.LoginRequest
+         * @instance
+         */
+        LoginRequest.prototype.username = "";
+
+        /**
+         * LoginRequest password.
+         * @member {string} password
+         * @memberof http.LoginRequest
+         * @instance
+         */
+        LoginRequest.prototype.password = "";
+
+        /**
+         * Creates a new LoginRequest instance using the specified properties.
+         * @function create
+         * @memberof http.LoginRequest
+         * @static
+         * @param {http.LoginRequest.$Properties=} [properties] Properties to set
+         * @returns {http.LoginRequest} LoginRequest instance
+         * @type {{
+         *   (properties: http.LoginRequest.$Shape): http.LoginRequest & http.LoginRequest.$Shape;
+         *   (properties?: http.LoginRequest.$Properties): http.LoginRequest;
+         * }}
+         */
+        LoginRequest.create = function(properties) {
+            return new LoginRequest(properties);
+        };
+
+        /**
+         * Encodes the specified LoginRequest message. Does not implicitly {@link http.LoginRequest.verify|verify} messages.
+         * @function encode
+         * @memberof http.LoginRequest
+         * @static
+         * @param {http.LoginRequest.$Properties} message LoginRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginRequest.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
+            if (message.password != null && $Object.hasOwnProperty.call(message, "password"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LoginRequest message, length delimited. Does not implicitly {@link http.LoginRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.LoginRequest
+         * @static
+         * @param {http.LoginRequest.$Properties} message LoginRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a LoginRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.LoginRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.LoginRequest & http.LoginRequest.$Shape} LoginRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginRequest.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.LoginRequest(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.username = value;
+                        else
+                            delete message.username;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.password = value;
+                        else
+                            delete message.password;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a LoginRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.LoginRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.LoginRequest & http.LoginRequest.$Shape} LoginRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginRequest.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LoginRequest message.
+         * @function verify
+         * @memberof http.LoginRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LoginRequest.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
+                if (!$util.isString(message.username))
+                    return "username: string expected";
+            if (message.password != null && $Object.hasOwnProperty.call(message, "password"))
+                if (!$util.isString(message.password))
+                    return "password: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a LoginRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.LoginRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.LoginRequest} LoginRequest
+         */
+        LoginRequest.fromObject = function (object, _depth) {
+            if (object instanceof $root.http.LoginRequest)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.LoginRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.http.LoginRequest();
+            if (object.username != null)
+                if (typeof object.username !== "string" || object.username.length)
+                    message.username = $String(object.username);
+            if (object.password != null)
+                if (typeof object.password !== "string" || object.password.length)
+                    message.password = $String(object.password);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LoginRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.LoginRequest
+         * @static
+         * @param {http.LoginRequest} message LoginRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LoginRequest.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults) {
+                object.username = "";
+                object.password = "";
+            }
+            if (message.username != null && $Object.hasOwnProperty.call(message, "username"))
+                object.username = message.username;
+            if (message.password != null && $Object.hasOwnProperty.call(message, "password"))
+                object.password = message.password;
+            return object;
+        };
+
+        /**
+         * Converts this LoginRequest to JSON.
+         * @function toJSON
+         * @memberof http.LoginRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LoginRequest.prototype.toJSON = function() {
+            return LoginRequest.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for LoginRequest
+         * @function getTypeUrl
+         * @memberof http.LoginRequest
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        LoginRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.LoginRequest";
+        };
+
+        return LoginRequest;
     })();
 
     http.LoginAndRegisterResponse = (function() {

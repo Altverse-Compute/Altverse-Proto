@@ -1890,6 +1890,428 @@ export namespace game {
         /** Shape of an UpdatePlayersMap. */
         type $Shape = game.UpdatePlayersMap.$Properties;
     }
+
+    /** ClientKey enum. */
+    enum ClientKey {
+
+        /** UP value */
+        UP = 1,
+
+        /** DOWN value */
+        DOWN = 2,
+
+        /** LEFT value */
+        LEFT = 3,
+
+        /** RIGHT value */
+        RIGHT = 4,
+
+        /** SHIFT value */
+        SHIFT = 5
+    }
+
+    /** ClientAbility enum. */
+    enum ClientAbility {
+
+        /** FIRST value */
+        FIRST = 1,
+
+        /** SECOND value */
+        SECOND = 2
+    }
+
+    /**
+     * Properties of a ClientInit.
+     * @deprecated Use game.ClientInit.$Properties instead.
+     */
+    interface IClientInit extends game.ClientInit.$Properties {
+    }
+
+    /** Represents a ClientInit. */
+    class ClientInit {
+
+        /**
+         * Constructs a new ClientInit.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.ClientInit.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** ClientInit hero. */
+        hero: string;
+
+        /**
+         * Creates a new ClientInit instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ClientInit instance
+         */
+        static create(properties: game.ClientInit.$Shape): game.ClientInit & game.ClientInit.$Shape;
+        static create(properties?: game.ClientInit.$Properties): game.ClientInit;
+
+        /**
+         * Encodes the specified ClientInit message. Does not implicitly {@link game.ClientInit.verify|verify} messages.
+         * @param message ClientInit message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: game.ClientInit.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ClientInit message, length delimited. Does not implicitly {@link game.ClientInit.verify|verify} messages.
+         * @param message ClientInit message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: game.ClientInit.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ClientInit message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {game.ClientInit & game.ClientInit.$Shape} ClientInit
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.ClientInit & game.ClientInit.$Shape;
+
+        /**
+         * Decodes a ClientInit message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {game.ClientInit & game.ClientInit.$Shape} ClientInit
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.ClientInit & game.ClientInit.$Shape;
+
+        /**
+         * Verifies a ClientInit message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ClientInit message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ClientInit
+         */
+        static fromObject(object: { [k: string]: any }): game.ClientInit;
+
+        /**
+         * Creates a plain object from a ClientInit message. Also converts values to other types if specified.
+         * @param message ClientInit
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: game.ClientInit, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ClientInit to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for ClientInit
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace ClientInit {
+
+        /** Properties of a ClientInit. */
+        interface $Properties {
+
+            /** ClientInit hero */
+            hero?: (string|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of a ClientInit. */
+        type $Shape = game.ClientInit.$Properties;
+    }
+
+    /**
+     * Properties of a ClientMousePos.
+     * @deprecated Use game.ClientMousePos.$Properties instead.
+     */
+    interface IClientMousePos extends game.ClientMousePos.$Properties {
+    }
+
+    /** Represents a ClientMousePos. */
+    class ClientMousePos {
+
+        /**
+         * Constructs a new ClientMousePos.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.ClientMousePos.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** ClientMousePos x. */
+        x: number;
+
+        /** ClientMousePos y. */
+        y: number;
+
+        /**
+         * Creates a new ClientMousePos instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ClientMousePos instance
+         */
+        static create(properties: game.ClientMousePos.$Shape): game.ClientMousePos & game.ClientMousePos.$Shape;
+        static create(properties?: game.ClientMousePos.$Properties): game.ClientMousePos;
+
+        /**
+         * Encodes the specified ClientMousePos message. Does not implicitly {@link game.ClientMousePos.verify|verify} messages.
+         * @param message ClientMousePos message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: game.ClientMousePos.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ClientMousePos message, length delimited. Does not implicitly {@link game.ClientMousePos.verify|verify} messages.
+         * @param message ClientMousePos message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: game.ClientMousePos.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ClientMousePos message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {game.ClientMousePos & game.ClientMousePos.$Shape} ClientMousePos
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.ClientMousePos & game.ClientMousePos.$Shape;
+
+        /**
+         * Decodes a ClientMousePos message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {game.ClientMousePos & game.ClientMousePos.$Shape} ClientMousePos
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.ClientMousePos & game.ClientMousePos.$Shape;
+
+        /**
+         * Verifies a ClientMousePos message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ClientMousePos message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ClientMousePos
+         */
+        static fromObject(object: { [k: string]: any }): game.ClientMousePos;
+
+        /**
+         * Creates a plain object from a ClientMousePos message. Also converts values to other types if specified.
+         * @param message ClientMousePos
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: game.ClientMousePos, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ClientMousePos to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for ClientMousePos
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace ClientMousePos {
+
+        /** Properties of a ClientMousePos. */
+        interface $Properties {
+
+            /** ClientMousePos x */
+            x?: (number|null);
+
+            /** ClientMousePos y */
+            y?: (number|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of a ClientMousePos. */
+        type $Shape = game.ClientMousePos.$Properties;
+    }
+
+    /**
+     * Properties of a ClientMessage.
+     * @deprecated Use game.ClientMessage.$Properties instead.
+     */
+    interface IClientMessage extends game.ClientMessage.$Properties {
+    }
+
+    /** Represents a ClientMessage. */
+    class ClientMessage {
+
+        /**
+         * Constructs a new ClientMessage.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.ClientMessage.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** ClientMessage chatMessage. */
+        chatMessage?: (string|null);
+
+        /** ClientMessage keyUp. */
+        keyUp?: (game.ClientKey|null);
+
+        /** ClientMessage keyDown. */
+        keyDown?: (game.ClientKey|null);
+
+        /** ClientMessage mouseEnable. */
+        mouseEnable?: (boolean|null);
+
+        /** ClientMessage mousePos. */
+        mousePos?: (game.ClientMousePos.$Properties|null);
+
+        /** ClientMessage init. */
+        init?: (game.ClientInit.$Properties|null);
+
+        /** ClientMessage ability. */
+        ability?: (game.ClientAbility|null);
+
+        /**
+         * Creates a new ClientMessage instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ClientMessage instance
+         */
+        static create(properties: game.ClientMessage.$Shape): game.ClientMessage & game.ClientMessage.$Shape;
+        static create(properties?: game.ClientMessage.$Properties): game.ClientMessage;
+
+        /**
+         * Encodes the specified ClientMessage message. Does not implicitly {@link game.ClientMessage.verify|verify} messages.
+         * @param message ClientMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: game.ClientMessage.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ClientMessage message, length delimited. Does not implicitly {@link game.ClientMessage.verify|verify} messages.
+         * @param message ClientMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: game.ClientMessage.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ClientMessage message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {game.ClientMessage & game.ClientMessage.$Shape} ClientMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.ClientMessage & game.ClientMessage.$Shape;
+
+        /**
+         * Decodes a ClientMessage message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {game.ClientMessage & game.ClientMessage.$Shape} ClientMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.ClientMessage & game.ClientMessage.$Shape;
+
+        /**
+         * Verifies a ClientMessage message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ClientMessage message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ClientMessage
+         */
+        static fromObject(object: { [k: string]: any }): game.ClientMessage;
+
+        /**
+         * Creates a plain object from a ClientMessage message. Also converts values to other types if specified.
+         * @param message ClientMessage
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: game.ClientMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ClientMessage to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for ClientMessage
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace ClientMessage {
+
+        /** Properties of a ClientMessage. */
+        interface $Properties {
+
+            /** ClientMessage chatMessage */
+            chatMessage?: (string|null);
+
+            /** ClientMessage keyUp */
+            keyUp?: (game.ClientKey|null);
+
+            /** ClientMessage keyDown */
+            keyDown?: (game.ClientKey|null);
+
+            /** ClientMessage mouseEnable */
+            mouseEnable?: (boolean|null);
+
+            /** ClientMessage mousePos */
+            mousePos?: (game.ClientMousePos.$Properties|null);
+
+            /** ClientMessage init */
+            init?: (game.ClientInit.$Properties|null);
+
+            /** ClientMessage ability */
+            ability?: (game.ClientAbility|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of a ClientMessage. */
+        type $Shape = game.ClientMessage.$Properties;
+    }
 }
 
 /** Namespace http. */
@@ -2081,6 +2503,258 @@ export namespace http {
 
         /** Shape of a Profile. */
         type $Shape = http.Profile.$Properties;
+    }
+
+    /**
+     * Properties of a RegisterRequest.
+     * @deprecated Use http.RegisterRequest.$Properties instead.
+     */
+    interface IRegisterRequest extends http.RegisterRequest.$Properties {
+    }
+
+    /** Represents a RegisterRequest. */
+    class RegisterRequest {
+
+        /**
+         * Constructs a new RegisterRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.RegisterRequest.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** RegisterRequest username. */
+        username: string;
+
+        /** RegisterRequest password. */
+        password: string;
+
+        /** RegisterRequest token. */
+        token: string;
+
+        /**
+         * Creates a new RegisterRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns RegisterRequest instance
+         */
+        static create(properties: http.RegisterRequest.$Shape): http.RegisterRequest & http.RegisterRequest.$Shape;
+        static create(properties?: http.RegisterRequest.$Properties): http.RegisterRequest;
+
+        /**
+         * Encodes the specified RegisterRequest message. Does not implicitly {@link http.RegisterRequest.verify|verify} messages.
+         * @param message RegisterRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: http.RegisterRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified RegisterRequest message, length delimited. Does not implicitly {@link http.RegisterRequest.verify|verify} messages.
+         * @param message RegisterRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: http.RegisterRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a RegisterRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {http.RegisterRequest & http.RegisterRequest.$Shape} RegisterRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.RegisterRequest & http.RegisterRequest.$Shape;
+
+        /**
+         * Decodes a RegisterRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {http.RegisterRequest & http.RegisterRequest.$Shape} RegisterRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.RegisterRequest & http.RegisterRequest.$Shape;
+
+        /**
+         * Verifies a RegisterRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a RegisterRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns RegisterRequest
+         */
+        static fromObject(object: { [k: string]: any }): http.RegisterRequest;
+
+        /**
+         * Creates a plain object from a RegisterRequest message. Also converts values to other types if specified.
+         * @param message RegisterRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: http.RegisterRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this RegisterRequest to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for RegisterRequest
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace RegisterRequest {
+
+        /** Properties of a RegisterRequest. */
+        interface $Properties {
+
+            /** RegisterRequest username */
+            username?: (string|null);
+
+            /** RegisterRequest password */
+            password?: (string|null);
+
+            /** RegisterRequest token */
+            token?: (string|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of a RegisterRequest. */
+        type $Shape = http.RegisterRequest.$Properties;
+    }
+
+    /**
+     * Properties of a LoginRequest.
+     * @deprecated Use http.LoginRequest.$Properties instead.
+     */
+    interface ILoginRequest extends http.LoginRequest.$Properties {
+    }
+
+    /** Represents a LoginRequest. */
+    class LoginRequest {
+
+        /**
+         * Constructs a new LoginRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.LoginRequest.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** LoginRequest username. */
+        username: string;
+
+        /** LoginRequest password. */
+        password: string;
+
+        /**
+         * Creates a new LoginRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LoginRequest instance
+         */
+        static create(properties: http.LoginRequest.$Shape): http.LoginRequest & http.LoginRequest.$Shape;
+        static create(properties?: http.LoginRequest.$Properties): http.LoginRequest;
+
+        /**
+         * Encodes the specified LoginRequest message. Does not implicitly {@link http.LoginRequest.verify|verify} messages.
+         * @param message LoginRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: http.LoginRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LoginRequest message, length delimited. Does not implicitly {@link http.LoginRequest.verify|verify} messages.
+         * @param message LoginRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: http.LoginRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LoginRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {http.LoginRequest & http.LoginRequest.$Shape} LoginRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LoginRequest & http.LoginRequest.$Shape;
+
+        /**
+         * Decodes a LoginRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {http.LoginRequest & http.LoginRequest.$Shape} LoginRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LoginRequest & http.LoginRequest.$Shape;
+
+        /**
+         * Verifies a LoginRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LoginRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LoginRequest
+         */
+        static fromObject(object: { [k: string]: any }): http.LoginRequest;
+
+        /**
+         * Creates a plain object from a LoginRequest message. Also converts values to other types if specified.
+         * @param message LoginRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: http.LoginRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LoginRequest to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for LoginRequest
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace LoginRequest {
+
+        /** Properties of a LoginRequest. */
+        interface $Properties {
+
+            /** LoginRequest username */
+            username?: (string|null);
+
+            /** LoginRequest password */
+            password?: (string|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of a LoginRequest. */
+        type $Shape = http.LoginRequest.$Properties;
     }
 
     /**

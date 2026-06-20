@@ -3508,6 +3508,9 @@ export namespace http {
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
 
+        /** AdminModeServer id. */
+        id: string;
+
         /** AdminModeServer icon. */
         icon: string;
 
@@ -3603,6 +3606,9 @@ export namespace http {
 
         /** Properties of an AdminModeServer. */
         interface $Properties {
+
+            /** AdminModeServer id */
+            id?: (string|null);
 
             /** AdminModeServer icon */
             icon?: (string|null);

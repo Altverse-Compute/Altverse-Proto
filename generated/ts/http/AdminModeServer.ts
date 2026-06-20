@@ -2,6 +2,7 @@
 
 
 export interface AdminModeServer {
+  'id'?: (string);
   'icon'?: (string);
   'name'?: (string);
   'domain'?: (string);
@@ -9,6 +10,7 @@ export interface AdminModeServer {
 }
 
 export interface AdminModeServer__Output {
+  'id'?: (string);
   'icon'?: (string);
   'name'?: (string);
   'domain'?: (string);

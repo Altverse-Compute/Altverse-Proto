@@ -9709,6 +9709,7 @@ export const http = $root.http = (() => {
         /**
          * Properties of an AdminModeServer.
          * @typedef {Object} http.AdminModeServer.$Properties
+         * @property {string|null} [id] AdminModeServer id
          * @property {string|null} [icon] AdminModeServer icon
          * @property {string|null} [name] AdminModeServer name
          * @property {string|null} [domain] AdminModeServer domain
@@ -9743,6 +9744,14 @@ export const http = $root.http = (() => {
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         };
+
+        /**
+         * AdminModeServer id.
+         * @member {string} id
+         * @memberof http.AdminModeServer
+         * @instance
+         */
+        AdminModeServer.prototype.id = "";
 
         /**
          * AdminModeServer icon.
@@ -9808,14 +9817,16 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
             if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.icon);
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.icon);
             if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.name);
             if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.domain);
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.domain);
             if (message.lastSeen != null && $Object.hasOwnProperty.call(message, "lastSeen"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.lastSeen);
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.lastSeen);
             if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
                 for (let i = 0; i < message.$unknowns.length; ++i)
                     writer.raw(message.$unknowns[i]);
@@ -9867,12 +9878,21 @@ export const http = $root.http = (() => {
                         if (wireType !== 2)
                             break;
                         if ((value = reader.stringVerify()).length)
+                            message.id = value;
+                        else
+                            delete message.id;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
                             message.icon = value;
                         else
                             delete message.icon;
                         continue;
                     }
-                case 2: {
+                case 3: {
                         if (wireType !== 2)
                             break;
                         if ((value = reader.stringVerify()).length)
@@ -9881,7 +9901,7 @@ export const http = $root.http = (() => {
                             delete message.name;
                         continue;
                     }
-                case 3: {
+                case 4: {
                         if (wireType !== 2)
                             break;
                         if ((value = reader.stringVerify()).length)
@@ -9890,7 +9910,7 @@ export const http = $root.http = (() => {
                             delete message.domain;
                         continue;
                     }
-                case 4: {
+                case 5: {
                         if (wireType !== 2)
                             break;
                         if ((value = reader.stringVerify()).length)
@@ -9942,6 +9962,9 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $util.recursionLimit)
                 return "max depth exceeded";
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
             if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
                 if (!$util.isString(message.icon))
                     return "icon: string expected";
@@ -9975,6 +9998,9 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let message = new $root.http.AdminModeServer();
+            if (object.id != null)
+                if (typeof object.id !== "string" || object.id.length)
+                    message.id = $String(object.id);
             if (object.icon != null)
                 if (typeof object.icon !== "string" || object.icon.length)
                     message.icon = $String(object.icon);
@@ -10008,11 +10034,14 @@ export const http = $root.http = (() => {
                 throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults) {
+                object.id = "";
                 object.icon = "";
                 object.name = "";
                 object.domain = "";
                 object.lastSeen = "";
             }
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                object.id = message.id;
             if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
                 object.icon = message.icon;
             if (message.name != null && $Object.hasOwnProperty.call(message, "name"))

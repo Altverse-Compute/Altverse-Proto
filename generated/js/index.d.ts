@@ -4011,6 +4011,141 @@ export namespace http {
         type $Shape = http.AdminModeEditServerRequest.$Properties;
     }
 
+    /**
+     * Properties of an AdminModeAddServerRequest.
+     * @deprecated Use http.AdminModeAddServerRequest.$Properties instead.
+     */
+    interface IAdminModeAddServerRequest extends http.AdminModeAddServerRequest.$Properties {
+    }
+
+    /** Represents an AdminModeAddServerRequest. */
+    class AdminModeAddServerRequest {
+
+        /**
+         * Constructs a new AdminModeAddServerRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.AdminModeAddServerRequest.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** AdminModeAddServerRequest name. */
+        name: string;
+
+        /** AdminModeAddServerRequest icon. */
+        icon: string;
+
+        /** AdminModeAddServerRequest token. */
+        token: string;
+
+        /** AdminModeAddServerRequest domain. */
+        domain: string;
+
+        /**
+         * Creates a new AdminModeAddServerRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AdminModeAddServerRequest instance
+         */
+        static create(properties: http.AdminModeAddServerRequest.$Shape): http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape;
+        static create(properties?: http.AdminModeAddServerRequest.$Properties): http.AdminModeAddServerRequest;
+
+        /**
+         * Encodes the specified AdminModeAddServerRequest message. Does not implicitly {@link http.AdminModeAddServerRequest.verify|verify} messages.
+         * @param message AdminModeAddServerRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: http.AdminModeAddServerRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AdminModeAddServerRequest message, length delimited. Does not implicitly {@link http.AdminModeAddServerRequest.verify|verify} messages.
+         * @param message AdminModeAddServerRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: http.AdminModeAddServerRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AdminModeAddServerRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape} AdminModeAddServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape;
+
+        /**
+         * Decodes an AdminModeAddServerRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape} AdminModeAddServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape;
+
+        /**
+         * Verifies an AdminModeAddServerRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AdminModeAddServerRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AdminModeAddServerRequest
+         */
+        static fromObject(object: { [k: string]: any }): http.AdminModeAddServerRequest;
+
+        /**
+         * Creates a plain object from an AdminModeAddServerRequest message. Also converts values to other types if specified.
+         * @param message AdminModeAddServerRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: http.AdminModeAddServerRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AdminModeAddServerRequest to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for AdminModeAddServerRequest
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace AdminModeAddServerRequest {
+
+        /** Properties of an AdminModeAddServerRequest. */
+        interface $Properties {
+
+            /** AdminModeAddServerRequest name */
+            name?: (string|null);
+
+            /** AdminModeAddServerRequest icon */
+            icon?: (string|null);
+
+            /** AdminModeAddServerRequest token */
+            token?: (string|null);
+
+            /** AdminModeAddServerRequest domain */
+            domain?: (string|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of an AdminModeAddServerRequest. */
+        type $Shape = http.AdminModeAddServerRequest.$Properties;
+    }
+
     /** WorldEffect enum. */
     enum WorldEffect {
 

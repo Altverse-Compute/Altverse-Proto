@@ -11034,6 +11034,354 @@ export const http = $root.http = (() => {
         return AdminModeEditServerRequest;
     })();
 
+    http.AdminModeAddServerRequest = (function() {
+
+        /**
+         * Properties of an AdminModeAddServerRequest.
+         * @typedef {Object} http.AdminModeAddServerRequest.$Properties
+         * @property {string|null} [name] AdminModeAddServerRequest name
+         * @property {string|null} [icon] AdminModeAddServerRequest icon
+         * @property {string|null} [token] AdminModeAddServerRequest token
+         * @property {string|null} [domain] AdminModeAddServerRequest domain
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AdminModeAddServerRequest.
+         * @memberof http
+         * @interface IAdminModeAddServerRequest
+         * @augments http.AdminModeAddServerRequest.$Properties
+         * @deprecated Use http.AdminModeAddServerRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of an AdminModeAddServerRequest.
+         * @typedef {http.AdminModeAddServerRequest.$Properties} http.AdminModeAddServerRequest.$Shape
+         */
+
+        /**
+         * Constructs a new AdminModeAddServerRequest.
+         * @memberof http
+         * @classdesc Represents an AdminModeAddServerRequest.
+         * @constructor
+         * @param {http.AdminModeAddServerRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const AdminModeAddServerRequest = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * AdminModeAddServerRequest name.
+         * @member {string} name
+         * @memberof http.AdminModeAddServerRequest
+         * @instance
+         */
+        AdminModeAddServerRequest.prototype.name = "";
+
+        /**
+         * AdminModeAddServerRequest icon.
+         * @member {string} icon
+         * @memberof http.AdminModeAddServerRequest
+         * @instance
+         */
+        AdminModeAddServerRequest.prototype.icon = "";
+
+        /**
+         * AdminModeAddServerRequest token.
+         * @member {string} token
+         * @memberof http.AdminModeAddServerRequest
+         * @instance
+         */
+        AdminModeAddServerRequest.prototype.token = "";
+
+        /**
+         * AdminModeAddServerRequest domain.
+         * @member {string} domain
+         * @memberof http.AdminModeAddServerRequest
+         * @instance
+         */
+        AdminModeAddServerRequest.prototype.domain = "";
+
+        /**
+         * Creates a new AdminModeAddServerRequest instance using the specified properties.
+         * @function create
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {http.AdminModeAddServerRequest.$Properties=} [properties] Properties to set
+         * @returns {http.AdminModeAddServerRequest} AdminModeAddServerRequest instance
+         * @type {{
+         *   (properties: http.AdminModeAddServerRequest.$Shape): http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape;
+         *   (properties?: http.AdminModeAddServerRequest.$Properties): http.AdminModeAddServerRequest;
+         * }}
+         */
+        AdminModeAddServerRequest.create = function(properties) {
+            return new AdminModeAddServerRequest(properties);
+        };
+
+        /**
+         * Encodes the specified AdminModeAddServerRequest message. Does not implicitly {@link http.AdminModeAddServerRequest.verify|verify} messages.
+         * @function encode
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {http.AdminModeAddServerRequest.$Properties} message AdminModeAddServerRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AdminModeAddServerRequest.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.icon);
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.token);
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.domain);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AdminModeAddServerRequest message, length delimited. Does not implicitly {@link http.AdminModeAddServerRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {http.AdminModeAddServerRequest.$Properties} message AdminModeAddServerRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AdminModeAddServerRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes an AdminModeAddServerRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape} AdminModeAddServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AdminModeAddServerRequest.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.AdminModeAddServerRequest(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.name = value;
+                        else
+                            delete message.name;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.icon = value;
+                        else
+                            delete message.icon;
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.token = value;
+                        else
+                            delete message.token;
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.domain = value;
+                        else
+                            delete message.domain;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes an AdminModeAddServerRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.AdminModeAddServerRequest & http.AdminModeAddServerRequest.$Shape} AdminModeAddServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AdminModeAddServerRequest.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AdminModeAddServerRequest message.
+         * @function verify
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AdminModeAddServerRequest.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
+                if (!$util.isString(message.icon))
+                    return "icon: string expected";
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
+                if (!$util.isString(message.domain))
+                    return "domain: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an AdminModeAddServerRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.AdminModeAddServerRequest} AdminModeAddServerRequest
+         */
+        AdminModeAddServerRequest.fromObject = function (object, _depth) {
+            if (object instanceof $root.http.AdminModeAddServerRequest)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.AdminModeAddServerRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.http.AdminModeAddServerRequest();
+            if (object.name != null)
+                if (typeof object.name !== "string" || object.name.length)
+                    message.name = $String(object.name);
+            if (object.icon != null)
+                if (typeof object.icon !== "string" || object.icon.length)
+                    message.icon = $String(object.icon);
+            if (object.token != null)
+                if (typeof object.token !== "string" || object.token.length)
+                    message.token = $String(object.token);
+            if (object.domain != null)
+                if (typeof object.domain !== "string" || object.domain.length)
+                    message.domain = $String(object.domain);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AdminModeAddServerRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {http.AdminModeAddServerRequest} message AdminModeAddServerRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AdminModeAddServerRequest.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults) {
+                object.name = "";
+                object.icon = "";
+                object.token = "";
+                object.domain = "";
+            }
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+                object.name = message.name;
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
+                object.icon = message.icon;
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                object.token = message.token;
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
+                object.domain = message.domain;
+            return object;
+        };
+
+        /**
+         * Converts this AdminModeAddServerRequest to JSON.
+         * @function toJSON
+         * @memberof http.AdminModeAddServerRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AdminModeAddServerRequest.prototype.toJSON = function() {
+            return AdminModeAddServerRequest.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for AdminModeAddServerRequest
+         * @function getTypeUrl
+         * @memberof http.AdminModeAddServerRequest
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        AdminModeAddServerRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.AdminModeAddServerRequest";
+        };
+
+        return AdminModeAddServerRequest;
+    })();
+
     /**
      * WorldEffect enum.
      * @name http.WorldEffect

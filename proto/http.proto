@@ -96,6 +96,13 @@ message AdminModeEditServerRequest {
     string domain = 5;
 }
 
+message AdminModeAddServerRequest {
+    string name = 2;
+    string icon = 3;
+    string token = 4;
+    string domain = 5;
+}
+
 // Server HTTP
 
 enum WorldEffect {

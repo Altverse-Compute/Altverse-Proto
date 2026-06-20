@@ -9713,7 +9713,6 @@ export const http = $root.http = (() => {
          * @property {string|null} [icon] AdminModeServer icon
          * @property {string|null} [name] AdminModeServer name
          * @property {string|null} [domain] AdminModeServer domain
-         * @property {string|null} [lastSeen] AdminModeServer lastSeen
          * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
 
@@ -9778,14 +9777,6 @@ export const http = $root.http = (() => {
         AdminModeServer.prototype.domain = "";
 
         /**
-         * AdminModeServer lastSeen.
-         * @member {string} lastSeen
-         * @memberof http.AdminModeServer
-         * @instance
-         */
-        AdminModeServer.prototype.lastSeen = "";
-
-        /**
          * Creates a new AdminModeServer instance using the specified properties.
          * @function create
          * @memberof http.AdminModeServer
@@ -9825,8 +9816,6 @@ export const http = $root.http = (() => {
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.name);
             if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.domain);
-            if (message.lastSeen != null && $Object.hasOwnProperty.call(message, "lastSeen"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.lastSeen);
             if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
                 for (let i = 0; i < message.$unknowns.length; ++i)
                     writer.raw(message.$unknowns[i]);
@@ -9910,15 +9899,6 @@ export const http = $root.http = (() => {
                             delete message.domain;
                         continue;
                     }
-                case 5: {
-                        if (wireType !== 2)
-                            break;
-                        if ((value = reader.stringVerify()).length)
-                            message.lastSeen = value;
-                        else
-                            delete message.lastSeen;
-                        continue;
-                    }
                 }
                 reader.skipType(wireType, _depth, tag);
                 if (!reader.discardUnknown) {
@@ -9974,9 +9954,6 @@ export const http = $root.http = (() => {
             if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
                 if (!$util.isString(message.domain))
                     return "domain: string expected";
-            if (message.lastSeen != null && $Object.hasOwnProperty.call(message, "lastSeen"))
-                if (!$util.isString(message.lastSeen))
-                    return "lastSeen: string expected";
             return null;
         };
 
@@ -10010,9 +9987,6 @@ export const http = $root.http = (() => {
             if (object.domain != null)
                 if (typeof object.domain !== "string" || object.domain.length)
                     message.domain = $String(object.domain);
-            if (object.lastSeen != null)
-                if (typeof object.lastSeen !== "string" || object.lastSeen.length)
-                    message.lastSeen = $String(object.lastSeen);
             return message;
         };
 
@@ -10038,7 +10012,6 @@ export const http = $root.http = (() => {
                 object.icon = "";
                 object.name = "";
                 object.domain = "";
-                object.lastSeen = "";
             }
             if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 object.id = message.id;
@@ -10048,8 +10021,6 @@ export const http = $root.http = (() => {
                 object.name = message.name;
             if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
                 object.domain = message.domain;
-            if (message.lastSeen != null && $Object.hasOwnProperty.call(message, "lastSeen"))
-                object.lastSeen = message.lastSeen;
             return object;
         };
 
@@ -10676,6 +10647,383 @@ export const http = $root.http = (() => {
         };
 
         return AdminModeServerTokenResponse;
+    })();
+
+    http.AdminModeEditServerRequest = (function() {
+
+        /**
+         * Properties of an AdminModeEditServerRequest.
+         * @typedef {Object} http.AdminModeEditServerRequest.$Properties
+         * @property {string|null} [id] AdminModeEditServerRequest id
+         * @property {string|null} [name] AdminModeEditServerRequest name
+         * @property {string|null} [icon] AdminModeEditServerRequest icon
+         * @property {string|null} [token] AdminModeEditServerRequest token
+         * @property {string|null} [domain] AdminModeEditServerRequest domain
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AdminModeEditServerRequest.
+         * @memberof http
+         * @interface IAdminModeEditServerRequest
+         * @augments http.AdminModeEditServerRequest.$Properties
+         * @deprecated Use http.AdminModeEditServerRequest.$Properties instead.
+         */
+
+        /**
+         * Shape of an AdminModeEditServerRequest.
+         * @typedef {http.AdminModeEditServerRequest.$Properties} http.AdminModeEditServerRequest.$Shape
+         */
+
+        /**
+         * Constructs a new AdminModeEditServerRequest.
+         * @memberof http
+         * @classdesc Represents an AdminModeEditServerRequest.
+         * @constructor
+         * @param {http.AdminModeEditServerRequest.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const AdminModeEditServerRequest = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * AdminModeEditServerRequest id.
+         * @member {string} id
+         * @memberof http.AdminModeEditServerRequest
+         * @instance
+         */
+        AdminModeEditServerRequest.prototype.id = "";
+
+        /**
+         * AdminModeEditServerRequest name.
+         * @member {string} name
+         * @memberof http.AdminModeEditServerRequest
+         * @instance
+         */
+        AdminModeEditServerRequest.prototype.name = "";
+
+        /**
+         * AdminModeEditServerRequest icon.
+         * @member {string} icon
+         * @memberof http.AdminModeEditServerRequest
+         * @instance
+         */
+        AdminModeEditServerRequest.prototype.icon = "";
+
+        /**
+         * AdminModeEditServerRequest token.
+         * @member {string} token
+         * @memberof http.AdminModeEditServerRequest
+         * @instance
+         */
+        AdminModeEditServerRequest.prototype.token = "";
+
+        /**
+         * AdminModeEditServerRequest domain.
+         * @member {string} domain
+         * @memberof http.AdminModeEditServerRequest
+         * @instance
+         */
+        AdminModeEditServerRequest.prototype.domain = "";
+
+        /**
+         * Creates a new AdminModeEditServerRequest instance using the specified properties.
+         * @function create
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {http.AdminModeEditServerRequest.$Properties=} [properties] Properties to set
+         * @returns {http.AdminModeEditServerRequest} AdminModeEditServerRequest instance
+         * @type {{
+         *   (properties: http.AdminModeEditServerRequest.$Shape): http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape;
+         *   (properties?: http.AdminModeEditServerRequest.$Properties): http.AdminModeEditServerRequest;
+         * }}
+         */
+        AdminModeEditServerRequest.create = function(properties) {
+            return new AdminModeEditServerRequest(properties);
+        };
+
+        /**
+         * Encodes the specified AdminModeEditServerRequest message. Does not implicitly {@link http.AdminModeEditServerRequest.verify|verify} messages.
+         * @function encode
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {http.AdminModeEditServerRequest.$Properties} message AdminModeEditServerRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AdminModeEditServerRequest.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.icon);
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.token);
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.domain);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AdminModeEditServerRequest message, length delimited. Does not implicitly {@link http.AdminModeEditServerRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {http.AdminModeEditServerRequest.$Properties} message AdminModeEditServerRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AdminModeEditServerRequest.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes an AdminModeEditServerRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape} AdminModeEditServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AdminModeEditServerRequest.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.AdminModeEditServerRequest(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.id = value;
+                        else
+                            delete message.id;
+                        continue;
+                    }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.name = value;
+                        else
+                            delete message.name;
+                        continue;
+                    }
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.icon = value;
+                        else
+                            delete message.icon;
+                        continue;
+                    }
+                case 4: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.token = value;
+                        else
+                            delete message.token;
+                        continue;
+                    }
+                case 5: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.domain = value;
+                        else
+                            delete message.domain;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes an AdminModeEditServerRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape} AdminModeEditServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AdminModeEditServerRequest.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AdminModeEditServerRequest message.
+         * @function verify
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AdminModeEditServerRequest.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
+                if (!$util.isString(message.icon))
+                    return "icon: string expected";
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
+                if (!$util.isString(message.domain))
+                    return "domain: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an AdminModeEditServerRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.AdminModeEditServerRequest} AdminModeEditServerRequest
+         */
+        AdminModeEditServerRequest.fromObject = function (object, _depth) {
+            if (object instanceof $root.http.AdminModeEditServerRequest)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.AdminModeEditServerRequest: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.http.AdminModeEditServerRequest();
+            if (object.id != null)
+                if (typeof object.id !== "string" || object.id.length)
+                    message.id = $String(object.id);
+            if (object.name != null)
+                if (typeof object.name !== "string" || object.name.length)
+                    message.name = $String(object.name);
+            if (object.icon != null)
+                if (typeof object.icon !== "string" || object.icon.length)
+                    message.icon = $String(object.icon);
+            if (object.token != null)
+                if (typeof object.token !== "string" || object.token.length)
+                    message.token = $String(object.token);
+            if (object.domain != null)
+                if (typeof object.domain !== "string" || object.domain.length)
+                    message.domain = $String(object.domain);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AdminModeEditServerRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {http.AdminModeEditServerRequest} message AdminModeEditServerRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AdminModeEditServerRequest.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults) {
+                object.id = "";
+                object.name = "";
+                object.icon = "";
+                object.token = "";
+                object.domain = "";
+            }
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                object.id = message.id;
+            if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+                object.name = message.name;
+            if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
+                object.icon = message.icon;
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                object.token = message.token;
+            if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
+                object.domain = message.domain;
+            return object;
+        };
+
+        /**
+         * Converts this AdminModeEditServerRequest to JSON.
+         * @function toJSON
+         * @memberof http.AdminModeEditServerRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AdminModeEditServerRequest.prototype.toJSON = function() {
+            return AdminModeEditServerRequest.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for AdminModeEditServerRequest
+         * @function getTypeUrl
+         * @memberof http.AdminModeEditServerRequest
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        AdminModeEditServerRequest.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.AdminModeEditServerRequest";
+        };
+
+        return AdminModeEditServerRequest;
     })();
 
     /**

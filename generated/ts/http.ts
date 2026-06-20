@@ -1,6 +1,7 @@
 import type * as grpc from '@grpc/grpc-js';
 import type { EnumTypeDefinition, MessageTypeDefinition } from '@grpc/proto-loader';
 
+import type { AdminModeEditServerRequest as _http_AdminModeEditServerRequest, AdminModeEditServerRequest__Output as _http_AdminModeEditServerRequest__Output } from './http/AdminModeEditServerRequest';
 import type { AdminModeServer as _http_AdminModeServer, AdminModeServer__Output as _http_AdminModeServer__Output } from './http/AdminModeServer';
 import type { AdminModeServerTokenResponse as _http_AdminModeServerTokenResponse, AdminModeServerTokenResponse__Output as _http_AdminModeServerTokenResponse__Output } from './http/AdminModeServerTokenResponse';
 import type { AdminModeServersResponse as _http_AdminModeServersResponse, AdminModeServersResponse__Output as _http_AdminModeServersResponse__Output } from './http/AdminModeServersResponse';
@@ -25,6 +26,7 @@ type SubtypeConstructor<Constructor extends new (...args: any) => any, Subtype> 
 export interface ProtoGrpcType {
   http: {
     AccountRole: EnumTypeDefinition
+    AdminModeEditServerRequest: MessageTypeDefinition<_http_AdminModeEditServerRequest, _http_AdminModeEditServerRequest__Output>
     AdminModeServer: MessageTypeDefinition<_http_AdminModeServer, _http_AdminModeServer__Output>
     AdminModeServerTokenResponse: MessageTypeDefinition<_http_AdminModeServerTokenResponse, _http_AdminModeServerTokenResponse__Output>
     AdminModeServersResponse: MessageTypeDefinition<_http_AdminModeServersResponse, _http_AdminModeServersResponse__Output>

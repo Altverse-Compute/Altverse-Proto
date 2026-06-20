@@ -3520,9 +3520,6 @@ export namespace http {
         /** AdminModeServer domain. */
         domain: string;
 
-        /** AdminModeServer lastSeen. */
-        lastSeen: string;
-
         /**
          * Creates a new AdminModeServer instance using the specified properties.
          * @param [properties] Properties to set
@@ -3618,9 +3615,6 @@ export namespace http {
 
             /** AdminModeServer domain */
             domain?: (string|null);
-
-            /** AdminModeServer lastSeen */
-            lastSeen?: (string|null);
 
             /** Unknown fields preserved while decoding when enabled */
             $unknowns?: Uint8Array[];
@@ -3874,6 +3868,147 @@ export namespace http {
 
         /** Shape of an AdminModeServerTokenResponse. */
         type $Shape = http.AdminModeServerTokenResponse.$Properties;
+    }
+
+    /**
+     * Properties of an AdminModeEditServerRequest.
+     * @deprecated Use http.AdminModeEditServerRequest.$Properties instead.
+     */
+    interface IAdminModeEditServerRequest extends http.AdminModeEditServerRequest.$Properties {
+    }
+
+    /** Represents an AdminModeEditServerRequest. */
+    class AdminModeEditServerRequest {
+
+        /**
+         * Constructs a new AdminModeEditServerRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.AdminModeEditServerRequest.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** AdminModeEditServerRequest id. */
+        id: string;
+
+        /** AdminModeEditServerRequest name. */
+        name: string;
+
+        /** AdminModeEditServerRequest icon. */
+        icon: string;
+
+        /** AdminModeEditServerRequest token. */
+        token: string;
+
+        /** AdminModeEditServerRequest domain. */
+        domain: string;
+
+        /**
+         * Creates a new AdminModeEditServerRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AdminModeEditServerRequest instance
+         */
+        static create(properties: http.AdminModeEditServerRequest.$Shape): http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape;
+        static create(properties?: http.AdminModeEditServerRequest.$Properties): http.AdminModeEditServerRequest;
+
+        /**
+         * Encodes the specified AdminModeEditServerRequest message. Does not implicitly {@link http.AdminModeEditServerRequest.verify|verify} messages.
+         * @param message AdminModeEditServerRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: http.AdminModeEditServerRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AdminModeEditServerRequest message, length delimited. Does not implicitly {@link http.AdminModeEditServerRequest.verify|verify} messages.
+         * @param message AdminModeEditServerRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: http.AdminModeEditServerRequest.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AdminModeEditServerRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape} AdminModeEditServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape;
+
+        /**
+         * Decodes an AdminModeEditServerRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape} AdminModeEditServerRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AdminModeEditServerRequest & http.AdminModeEditServerRequest.$Shape;
+
+        /**
+         * Verifies an AdminModeEditServerRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AdminModeEditServerRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AdminModeEditServerRequest
+         */
+        static fromObject(object: { [k: string]: any }): http.AdminModeEditServerRequest;
+
+        /**
+         * Creates a plain object from an AdminModeEditServerRequest message. Also converts values to other types if specified.
+         * @param message AdminModeEditServerRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: http.AdminModeEditServerRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AdminModeEditServerRequest to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for AdminModeEditServerRequest
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace AdminModeEditServerRequest {
+
+        /** Properties of an AdminModeEditServerRequest. */
+        interface $Properties {
+
+            /** AdminModeEditServerRequest id */
+            id?: (string|null);
+
+            /** AdminModeEditServerRequest name */
+            name?: (string|null);
+
+            /** AdminModeEditServerRequest icon */
+            icon?: (string|null);
+
+            /** AdminModeEditServerRequest token */
+            token?: (string|null);
+
+            /** AdminModeEditServerRequest domain */
+            domain?: (string|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of an AdminModeEditServerRequest. */
+        type $Shape = http.AdminModeEditServerRequest.$Properties;
     }
 
     /** WorldEffect enum. */

@@ -3899,7 +3899,7 @@ export namespace http {
         icon: string;
 
         /** AdminModeEditServerRequest token. */
-        token: string;
+        token?: (string|null);
 
         /** AdminModeEditServerRequest domain. */
         domain: string;

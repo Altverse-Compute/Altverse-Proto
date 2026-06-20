@@ -10716,11 +10716,11 @@ export const http = $root.http = (() => {
 
         /**
          * AdminModeEditServerRequest token.
-         * @member {string} token
+         * @member {string|null|undefined} token
          * @memberof http.AdminModeEditServerRequest
          * @instance
          */
-        AdminModeEditServerRequest.prototype.token = "";
+        AdminModeEditServerRequest.prototype.token = null;
 
         /**
          * AdminModeEditServerRequest domain.
@@ -10729,6 +10729,15 @@ export const http = $root.http = (() => {
          * @instance
          */
         AdminModeEditServerRequest.prototype.domain = "";
+
+        // OneOf field names bound to virtual getters and setters
+        let $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        $Object.defineProperty(AdminModeEditServerRequest.prototype, "_token", {
+            get: $util.oneOfGetter($oneOfFields = ["token"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
 
         /**
          * Creates a new AdminModeEditServerRequest instance using the specified properties.
@@ -10849,10 +10858,8 @@ export const http = $root.http = (() => {
                 case 4: {
                         if (wireType !== 2)
                             break;
-                        if ((value = reader.stringVerify()).length)
-                            message.token = value;
-                        else
-                            delete message.token;
+                        message.token = reader.stringVerify();
+                        message._token = "token";
                         continue;
                     }
                 case 5: {
@@ -10907,6 +10914,7 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $util.recursionLimit)
                 return "max depth exceeded";
+            let properties = {};
             if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
                 if (!$util.isString(message.id))
                     return "id: string expected";
@@ -10916,9 +10924,11 @@ export const http = $root.http = (() => {
             if (message.icon != null && $Object.hasOwnProperty.call(message, "icon"))
                 if (!$util.isString(message.icon))
                     return "icon: string expected";
-            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+                properties._token = 1;
                 if (!$util.isString(message.token))
                     return "token: string expected";
+            }
             if (message.domain != null && $Object.hasOwnProperty.call(message, "domain"))
                 if (!$util.isString(message.domain))
                     return "domain: string expected";
@@ -10953,8 +10963,7 @@ export const http = $root.http = (() => {
                 if (typeof object.icon !== "string" || object.icon.length)
                     message.icon = $String(object.icon);
             if (object.token != null)
-                if (typeof object.token !== "string" || object.token.length)
-                    message.token = $String(object.token);
+                message.token = $String(object.token);
             if (object.domain != null)
                 if (typeof object.domain !== "string" || object.domain.length)
                     message.domain = $String(object.domain);
@@ -10982,7 +10991,6 @@ export const http = $root.http = (() => {
                 object.id = "";
                 object.name = "";
                 object.icon = "";
-                object.token = "";
                 object.domain = "";
             }
             if (message.id != null && $Object.hasOwnProperty.call(message, "id"))

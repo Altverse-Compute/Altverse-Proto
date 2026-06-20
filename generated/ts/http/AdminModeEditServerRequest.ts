@@ -7,6 +7,7 @@ export interface AdminModeEditServerRequest {
   'icon'?: (string);
   'token'?: (string);
   'domain'?: (string);
+  '_token'?: "token";
 }
 
 export interface AdminModeEditServerRequest__Output {
@@ -15,4 +16,5 @@ export interface AdminModeEditServerRequest__Output {
   'icon'?: (string);
   'token'?: (string);
   'domain'?: (string);
+  '_token'?: "token";
 }

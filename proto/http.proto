@@ -87,6 +87,10 @@ message AdminModeServersResponse {
     uint32 count = 3;
 }
 
+message AdminModeServerTokenResponse {
+    string token = 1;
+}
+
 // Server HTTP
 
 enum WorldEffect {

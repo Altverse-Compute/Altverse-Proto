@@ -17,7 +17,7 @@ enum ResponseStatus {
     NotAuthenticated = 401;
     VerificationFailure = 402;
     NotFound = 404;
-    
+
     AccountExists = 450;
     AccountNotExists = 451;
     WrongPassword = 452;
@@ -72,10 +72,11 @@ message ServersResponse {
 }
 
 message AdminModeServer {
-    string icon = 1;
-    string name = 2;
-    string domain = 3;
-    string lastSeen = 4;
+    string id = 1;
+    string icon = 2;
+    string name = 3;
+    string domain = 4;
+    string lastSeen = 5;
 }
 
 message AdminModeServersResponse {

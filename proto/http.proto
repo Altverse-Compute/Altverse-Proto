@@ -10,17 +10,17 @@ enum AccountRole {
 }
 
 enum ResponseStatus {
-    Ok = 1;
-    InternalError = 2;
-    InvalidBody = 3;
-    NotFound = 4;
+    Ok = 200;
+    InternalError = 500;
 
-    VerificationFailure = 5;
-    NotAuthenticated = 6;
-
-    AccountExists = 7;
-    AccountNotExists = 8;
-    WrongPassword = 9;
+    InvalidBody = 400;
+    NotAuthenticated = 401;
+    VerificationFailure = 402;
+    NotFound = 404;
+    
+    AccountExists = 450;
+    AccountNotExists = 451;
+    WrongPassword = 452;
 }
 
 message Profile {
@@ -43,18 +43,15 @@ message LoginRequest {
 }
 
 message LoginAndRegisterResponse {
-    ResponseStatus status = 1;
     optional string token = 2;
     optional Profile profile = 3;
 }
 
 message ProfileResponse {
-    ResponseStatus status = 1;
     optional Profile profile = 2;
 }
 
 message AuthResponse {
-    ResponseStatus status = 1;
     optional Profile profile = 2;
 }
 

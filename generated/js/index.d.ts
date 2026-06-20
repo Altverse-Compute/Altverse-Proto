@@ -2337,31 +2337,31 @@ export namespace http {
     enum ResponseStatus {
 
         /** Ok value */
-        Ok = 1,
+        Ok = 200,
 
         /** InternalError value */
-        InternalError = 2,
+        InternalError = 500,
 
         /** InvalidBody value */
-        InvalidBody = 3,
-
-        /** NotFound value */
-        NotFound = 4,
-
-        /** VerificationFailure value */
-        VerificationFailure = 5,
+        InvalidBody = 400,
 
         /** NotAuthenticated value */
-        NotAuthenticated = 6,
+        NotAuthenticated = 401,
+
+        /** VerificationFailure value */
+        VerificationFailure = 402,
+
+        /** NotFound value */
+        NotFound = 404,
 
         /** AccountExists value */
-        AccountExists = 7,
+        AccountExists = 450,
 
         /** AccountNotExists value */
-        AccountNotExists = 8,
+        AccountNotExists = 451,
 
         /** WrongPassword value */
-        WrongPassword = 9
+        WrongPassword = 452
     }
 
     /**
@@ -2776,9 +2776,6 @@ export namespace http {
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
 
-        /** LoginAndRegisterResponse status. */
-        status: http.ResponseStatus;
-
         /** LoginAndRegisterResponse token. */
         token?: (string|null);
 
@@ -2869,9 +2866,6 @@ export namespace http {
         /** Properties of a LoginAndRegisterResponse. */
         interface $Properties {
 
-            /** LoginAndRegisterResponse status */
-            status?: (http.ResponseStatus|null);
-
             /** LoginAndRegisterResponse token */
             token?: (string|null);
 
@@ -2904,9 +2898,6 @@ export namespace http {
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
-
-        /** ProfileResponse status. */
-        status: http.ResponseStatus;
 
         /** ProfileResponse profile. */
         profile?: (http.Profile.$Properties|null);
@@ -2995,9 +2986,6 @@ export namespace http {
         /** Properties of a ProfileResponse. */
         interface $Properties {
 
-            /** ProfileResponse status */
-            status?: (http.ResponseStatus|null);
-
             /** ProfileResponse profile */
             profile?: (http.Profile.$Properties|null);
 
@@ -3027,9 +3015,6 @@ export namespace http {
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
-
-        /** AuthResponse status. */
-        status: http.ResponseStatus;
 
         /** AuthResponse profile. */
         profile?: (http.Profile.$Properties|null);
@@ -3117,9 +3102,6 @@ export namespace http {
 
         /** Properties of an AuthResponse. */
         interface $Properties {
-
-            /** AuthResponse status */
-            status?: (http.ResponseStatus|null);
 
             /** AuthResponse profile */
             profile?: (http.Profile.$Properties|null);

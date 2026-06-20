@@ -6734,27 +6734,27 @@ export const http = $root.http = (() => {
      * ResponseStatus enum.
      * @name http.ResponseStatus
      * @enum {number}
-     * @property {number} Ok=1 Ok value
-     * @property {number} InternalError=2 InternalError value
-     * @property {number} InvalidBody=3 InvalidBody value
-     * @property {number} NotFound=4 NotFound value
-     * @property {number} VerificationFailure=5 VerificationFailure value
-     * @property {number} NotAuthenticated=6 NotAuthenticated value
-     * @property {number} AccountExists=7 AccountExists value
-     * @property {number} AccountNotExists=8 AccountNotExists value
-     * @property {number} WrongPassword=9 WrongPassword value
+     * @property {number} Ok=200 Ok value
+     * @property {number} InternalError=500 InternalError value
+     * @property {number} InvalidBody=400 InvalidBody value
+     * @property {number} NotAuthenticated=401 NotAuthenticated value
+     * @property {number} VerificationFailure=402 VerificationFailure value
+     * @property {number} NotFound=404 NotFound value
+     * @property {number} AccountExists=450 AccountExists value
+     * @property {number} AccountNotExists=451 AccountNotExists value
+     * @property {number} WrongPassword=452 WrongPassword value
      */
     http.ResponseStatus = (function() {
         const valuesById = {}, values = $Object.create(valuesById);
-        values[valuesById[1] = "Ok"] = 1;
-        values[valuesById[2] = "InternalError"] = 2;
-        values[valuesById[3] = "InvalidBody"] = 3;
-        values[valuesById[4] = "NotFound"] = 4;
-        values[valuesById[5] = "VerificationFailure"] = 5;
-        values[valuesById[6] = "NotAuthenticated"] = 6;
-        values[valuesById[7] = "AccountExists"] = 7;
-        values[valuesById[8] = "AccountNotExists"] = 8;
-        values[valuesById[9] = "WrongPassword"] = 9;
+        values[valuesById[200] = "Ok"] = 200;
+        values[valuesById[500] = "InternalError"] = 500;
+        values[valuesById[400] = "InvalidBody"] = 400;
+        values[valuesById[401] = "NotAuthenticated"] = 401;
+        values[valuesById[402] = "VerificationFailure"] = 402;
+        values[valuesById[404] = "NotFound"] = 404;
+        values[valuesById[450] = "AccountExists"] = 450;
+        values[valuesById[451] = "AccountNotExists"] = 451;
+        values[valuesById[452] = "WrongPassword"] = 452;
         return values;
     })();
 
@@ -7834,7 +7834,6 @@ export const http = $root.http = (() => {
         /**
          * Properties of a LoginAndRegisterResponse.
          * @typedef {Object} http.LoginAndRegisterResponse.$Properties
-         * @property {http.ResponseStatus|null} [status] LoginAndRegisterResponse status
          * @property {string|null} [token] LoginAndRegisterResponse token
          * @property {http.Profile.$Properties|null} [profile] LoginAndRegisterResponse profile
          * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
@@ -7867,14 +7866,6 @@ export const http = $root.http = (() => {
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         };
-
-        /**
-         * LoginAndRegisterResponse status.
-         * @member {http.ResponseStatus} status
-         * @memberof http.LoginAndRegisterResponse
-         * @instance
-         */
-        LoginAndRegisterResponse.prototype.status = 1;
 
         /**
          * LoginAndRegisterResponse token.
@@ -7939,8 +7930,6 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
             if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
@@ -7982,7 +7971,7 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $Reader.recursionLimit)
                 throw $Error("max depth exceeded");
-            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.LoginAndRegisterResponse(), value;
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.LoginAndRegisterResponse();
             while (reader.pos < end) {
                 let start = reader.pos;
                 let tag = reader.tag();
@@ -7992,15 +7981,6 @@ export const http = $root.http = (() => {
                 }
                 let wireType = tag & 7;
                 switch (tag >>>= 3) {
-                case 1: {
-                        if (wireType !== 0)
-                            break;
-                        if ((value = reader.int32()) !== 1)
-                            message.status = value;
-                        else
-                            delete message.status;
-                        continue;
-                    }
                 case 2: {
                         if (wireType !== 2)
                             break;
@@ -8059,21 +8039,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 return "max depth exceeded";
             let properties = {};
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                switch (message.status) {
-                default:
-                    return "status: enum value expected";
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                    break;
-                }
             if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
                 properties._token = 1;
                 if (!$util.isString(message.token))
@@ -8108,51 +8073,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let message = new $root.http.LoginAndRegisterResponse();
-            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
-                switch (object.status) {
-                default:
-                    if (typeof object.status === "number") {
-                        message.status = object.status;
-                        break;
-                    }
-                    break;
-                case "Ok":
-                case 1:
-                    message.status = 1;
-                    break;
-                case "InternalError":
-                case 2:
-                    message.status = 2;
-                    break;
-                case "InvalidBody":
-                case 3:
-                    message.status = 3;
-                    break;
-                case "NotFound":
-                case 4:
-                    message.status = 4;
-                    break;
-                case "VerificationFailure":
-                case 5:
-                    message.status = 5;
-                    break;
-                case "NotAuthenticated":
-                case 6:
-                    message.status = 6;
-                    break;
-                case "AccountExists":
-                case 7:
-                    message.status = 7;
-                    break;
-                case "AccountNotExists":
-                case 8:
-                    message.status = 8;
-                    break;
-                case "WrongPassword":
-                case 9:
-                    message.status = 9;
-                    break;
-                }
             if (object.token != null)
                 message.token = $String(object.token);
             if (object.profile != null) {
@@ -8180,10 +8100,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let object = {};
-            if (options.defaults)
-                object.status = options.enums === $String ? "Ok" : 1;
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
             if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 object.token = message.token;
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
@@ -8224,7 +8140,6 @@ export const http = $root.http = (() => {
         /**
          * Properties of a ProfileResponse.
          * @typedef {Object} http.ProfileResponse.$Properties
-         * @property {http.ResponseStatus|null} [status] ProfileResponse status
          * @property {http.Profile.$Properties|null} [profile] ProfileResponse profile
          * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
@@ -8256,14 +8171,6 @@ export const http = $root.http = (() => {
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         };
-
-        /**
-         * ProfileResponse status.
-         * @member {http.ResponseStatus} status
-         * @memberof http.ProfileResponse
-         * @instance
-         */
-        ProfileResponse.prototype.status = 1;
 
         /**
          * ProfileResponse profile.
@@ -8314,8 +8221,6 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
                 $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
             if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
@@ -8355,7 +8260,7 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $Reader.recursionLimit)
                 throw $Error("max depth exceeded");
-            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.ProfileResponse(), value;
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.ProfileResponse();
             while (reader.pos < end) {
                 let start = reader.pos;
                 let tag = reader.tag();
@@ -8365,15 +8270,6 @@ export const http = $root.http = (() => {
                 }
                 let wireType = tag & 7;
                 switch (tag >>>= 3) {
-                case 1: {
-                        if (wireType !== 0)
-                            break;
-                        if ((value = reader.int32()) !== 1)
-                            message.status = value;
-                        else
-                            delete message.status;
-                        continue;
-                    }
                 case 2: {
                         if (wireType !== 2)
                             break;
@@ -8425,21 +8321,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 return "max depth exceeded";
             let properties = {};
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                switch (message.status) {
-                default:
-                    return "status: enum value expected";
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                    break;
-                }
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile")) {
                 properties._profile = 1;
                 {
@@ -8469,51 +8350,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let message = new $root.http.ProfileResponse();
-            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
-                switch (object.status) {
-                default:
-                    if (typeof object.status === "number") {
-                        message.status = object.status;
-                        break;
-                    }
-                    break;
-                case "Ok":
-                case 1:
-                    message.status = 1;
-                    break;
-                case "InternalError":
-                case 2:
-                    message.status = 2;
-                    break;
-                case "InvalidBody":
-                case 3:
-                    message.status = 3;
-                    break;
-                case "NotFound":
-                case 4:
-                    message.status = 4;
-                    break;
-                case "VerificationFailure":
-                case 5:
-                    message.status = 5;
-                    break;
-                case "NotAuthenticated":
-                case 6:
-                    message.status = 6;
-                    break;
-                case "AccountExists":
-                case 7:
-                    message.status = 7;
-                    break;
-                case "AccountNotExists":
-                case 8:
-                    message.status = 8;
-                    break;
-                case "WrongPassword":
-                case 9:
-                    message.status = 9;
-                    break;
-                }
             if (object.profile != null) {
                 if (!$util.isObject(object.profile))
                     throw $TypeError(".http.ProfileResponse.profile: object expected");
@@ -8539,10 +8375,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let object = {};
-            if (options.defaults)
-                object.status = options.enums === $String ? "Ok" : 1;
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
                 object.profile = $root.http.Profile.toObject(message.profile, options, _depth + 1);
             return object;
@@ -8581,7 +8413,6 @@ export const http = $root.http = (() => {
         /**
          * Properties of an AuthResponse.
          * @typedef {Object} http.AuthResponse.$Properties
-         * @property {http.ResponseStatus|null} [status] AuthResponse status
          * @property {http.Profile.$Properties|null} [profile] AuthResponse profile
          * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
@@ -8613,14 +8444,6 @@ export const http = $root.http = (() => {
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         };
-
-        /**
-         * AuthResponse status.
-         * @member {http.ResponseStatus} status
-         * @memberof http.AuthResponse
-         * @instance
-         */
-        AuthResponse.prototype.status = 1;
 
         /**
          * AuthResponse profile.
@@ -8671,8 +8494,6 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
                 $root.http.Profile.encode(message.profile, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
             if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
@@ -8712,7 +8533,7 @@ export const http = $root.http = (() => {
                 _depth = 0;
             if (_depth > $Reader.recursionLimit)
                 throw $Error("max depth exceeded");
-            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.AuthResponse(), value;
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.AuthResponse();
             while (reader.pos < end) {
                 let start = reader.pos;
                 let tag = reader.tag();
@@ -8722,15 +8543,6 @@ export const http = $root.http = (() => {
                 }
                 let wireType = tag & 7;
                 switch (tag >>>= 3) {
-                case 1: {
-                        if (wireType !== 0)
-                            break;
-                        if ((value = reader.int32()) !== 1)
-                            message.status = value;
-                        else
-                            delete message.status;
-                        continue;
-                    }
                 case 2: {
                         if (wireType !== 2)
                             break;
@@ -8782,21 +8594,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 return "max depth exceeded";
             let properties = {};
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                switch (message.status) {
-                default:
-                    return "status: enum value expected";
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                    break;
-                }
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile")) {
                 properties._profile = 1;
                 {
@@ -8826,51 +8623,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let message = new $root.http.AuthResponse();
-            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
-                switch (object.status) {
-                default:
-                    if (typeof object.status === "number") {
-                        message.status = object.status;
-                        break;
-                    }
-                    break;
-                case "Ok":
-                case 1:
-                    message.status = 1;
-                    break;
-                case "InternalError":
-                case 2:
-                    message.status = 2;
-                    break;
-                case "InvalidBody":
-                case 3:
-                    message.status = 3;
-                    break;
-                case "NotFound":
-                case 4:
-                    message.status = 4;
-                    break;
-                case "VerificationFailure":
-                case 5:
-                    message.status = 5;
-                    break;
-                case "NotAuthenticated":
-                case 6:
-                    message.status = 6;
-                    break;
-                case "AccountExists":
-                case 7:
-                    message.status = 7;
-                    break;
-                case "AccountNotExists":
-                case 8:
-                    message.status = 8;
-                    break;
-                case "WrongPassword":
-                case 9:
-                    message.status = 9;
-                    break;
-                }
             if (object.profile != null) {
                 if (!$util.isObject(object.profile))
                     throw $TypeError(".http.AuthResponse.profile: object expected");
@@ -8896,10 +8648,6 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let object = {};
-            if (options.defaults)
-                object.status = options.enums === $String ? "Ok" : 1;
-            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
             if (message.profile != null && $Object.hasOwnProperty.call(message, "profile"))
                 object.profile = $root.http.Profile.toObject(message.profile, options, _depth + 1);
             return object;
@@ -8976,7 +8724,7 @@ export const http = $root.http = (() => {
          * @memberof http.LogoutResponse
          * @instance
          */
-        LogoutResponse.prototype.status = 1;
+        LogoutResponse.prototype.status = 200;
 
         /**
          * Creates a new LogoutResponse instance using the specified properties.
@@ -9062,7 +8810,7 @@ export const http = $root.http = (() => {
                 case 1: {
                         if (wireType !== 0)
                             break;
-                        if ((value = reader.int32()) !== 1)
+                        if ((value = reader.int32()) !== 200)
                             message.status = value;
                         else
                             delete message.status;
@@ -9115,15 +8863,15 @@ export const http = $root.http = (() => {
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
+                case 200:
+                case 500:
+                case 400:
+                case 401:
+                case 402:
+                case 404:
+                case 450:
+                case 451:
+                case 452:
                     break;
                 }
             return null;
@@ -9147,7 +8895,7 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let message = new $root.http.LogoutResponse();
-            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
+            if (object.status !== 200 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 200))
                 switch (object.status) {
                 default:
                     if (typeof object.status === "number") {
@@ -9156,40 +8904,40 @@ export const http = $root.http = (() => {
                     }
                     break;
                 case "Ok":
-                case 1:
-                    message.status = 1;
+                case 200:
+                    message.status = 200;
                     break;
                 case "InternalError":
-                case 2:
-                    message.status = 2;
+                case 500:
+                    message.status = 500;
                     break;
                 case "InvalidBody":
-                case 3:
-                    message.status = 3;
-                    break;
-                case "NotFound":
-                case 4:
-                    message.status = 4;
-                    break;
-                case "VerificationFailure":
-                case 5:
-                    message.status = 5;
+                case 400:
+                    message.status = 400;
                     break;
                 case "NotAuthenticated":
-                case 6:
-                    message.status = 6;
+                case 401:
+                    message.status = 401;
+                    break;
+                case "VerificationFailure":
+                case 402:
+                    message.status = 402;
+                    break;
+                case "NotFound":
+                case 404:
+                    message.status = 404;
                     break;
                 case "AccountExists":
-                case 7:
-                    message.status = 7;
+                case 450:
+                    message.status = 450;
                     break;
                 case "AccountNotExists":
-                case 8:
-                    message.status = 8;
+                case 451:
+                    message.status = 451;
                     break;
                 case "WrongPassword":
-                case 9:
-                    message.status = 9;
+                case 452:
+                    message.status = 452;
                     break;
                 }
             return message;
@@ -9213,7 +8961,7 @@ export const http = $root.http = (() => {
                 throw $Error("max depth exceeded");
             let object = {};
             if (options.defaults)
-                object.status = options.enums === $String ? "Ok" : 1;
+                object.status = options.enums === $String ? "Ok" : 200;
             if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
             return object;
@@ -9640,7 +9388,7 @@ export const http = $root.http = (() => {
          * @memberof http.ServersResponse
          * @instance
          */
-        ServersResponse.prototype.status = 1;
+        ServersResponse.prototype.status = 200;
 
         /**
          * ServersResponse servers.
@@ -9737,7 +9485,7 @@ export const http = $root.http = (() => {
                 case 1: {
                         if (wireType !== 0)
                             break;
-                        if ((value = reader.int32()) !== 1)
+                        if ((value = reader.int32()) !== 200)
                             message.status = value;
                         else
                             delete message.status;
@@ -9798,15 +9546,15 @@ export const http = $root.http = (() => {
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
+                case 200:
+                case 500:
+                case 400:
+                case 401:
+                case 402:
+                case 404:
+                case 450:
+                case 451:
+                case 452:
                     break;
                 }
             if (message.servers != null && $Object.hasOwnProperty.call(message, "servers")) {
@@ -9839,7 +9587,7 @@ export const http = $root.http = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let message = new $root.http.ServersResponse();
-            if (object.status !== 1 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 1))
+            if (object.status !== 200 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 200))
                 switch (object.status) {
                 default:
                     if (typeof object.status === "number") {
@@ -9848,40 +9596,40 @@ export const http = $root.http = (() => {
                     }
                     break;
                 case "Ok":
-                case 1:
-                    message.status = 1;
+                case 200:
+                    message.status = 200;
                     break;
                 case "InternalError":
-                case 2:
-                    message.status = 2;
+                case 500:
+                    message.status = 500;
                     break;
                 case "InvalidBody":
-                case 3:
-                    message.status = 3;
-                    break;
-                case "NotFound":
-                case 4:
-                    message.status = 4;
-                    break;
-                case "VerificationFailure":
-                case 5:
-                    message.status = 5;
+                case 400:
+                    message.status = 400;
                     break;
                 case "NotAuthenticated":
-                case 6:
-                    message.status = 6;
+                case 401:
+                    message.status = 401;
+                    break;
+                case "VerificationFailure":
+                case 402:
+                    message.status = 402;
+                    break;
+                case "NotFound":
+                case 404:
+                    message.status = 404;
                     break;
                 case "AccountExists":
-                case 7:
-                    message.status = 7;
+                case 450:
+                    message.status = 450;
                     break;
                 case "AccountNotExists":
-                case 8:
-                    message.status = 8;
+                case 451:
+                    message.status = 451;
                     break;
                 case "WrongPassword":
-                case 9:
-                    message.status = 9;
+                case 452:
+                    message.status = 452;
                     break;
                 }
             if (object.servers) {
@@ -9917,7 +9665,7 @@ export const http = $root.http = (() => {
             if (options.arrays || options.defaults)
                 object.servers = [];
             if (options.defaults)
-                object.status = options.enums === $String ? "Ok" : 1;
+                object.status = options.enums === $String ? "Ok" : 200;
             if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
                 object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
             if (message.servers && message.servers.length) {

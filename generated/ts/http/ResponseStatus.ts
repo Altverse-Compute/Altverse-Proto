@@ -4,9 +4,9 @@ export const ResponseStatus = {
   Ok: 'Ok',
   InternalError: 'InternalError',
   InvalidBody: 'InvalidBody',
-  NotFound: 'NotFound',
-  VerificationFailure: 'VerificationFailure',
   NotAuthenticated: 'NotAuthenticated',
+  VerificationFailure: 'VerificationFailure',
+  NotFound: 'NotFound',
   AccountExists: 'AccountExists',
   AccountNotExists: 'AccountNotExists',
   WrongPassword: 'WrongPassword',
@@ -14,22 +14,22 @@ export const ResponseStatus = {
 
 export type ResponseStatus =
   | 'Ok'
-  | 1
+  | 200
   | 'InternalError'
-  | 2
+  | 500
   | 'InvalidBody'
-  | 3
-  | 'NotFound'
-  | 4
-  | 'VerificationFailure'
-  | 5
+  | 400
   | 'NotAuthenticated'
-  | 6
+  | 401
+  | 'VerificationFailure'
+  | 402
+  | 'NotFound'
+  | 404
   | 'AccountExists'
-  | 7
+  | 450
   | 'AccountNotExists'
-  | 8
+  | 451
   | 'WrongPassword'
-  | 9
+  | 452
 
 export type ResponseStatus__Output = typeof ResponseStatus[keyof typeof ResponseStatus]

@@ -13561,6 +13561,7 @@ export const connection = $root.connection = (() => {
          * Properties of an AuthenticationRequest.
          * @typedef {Object} connection.AuthenticationRequest.$Properties
          * @property {string|null} [token] AuthenticationRequest token
+         * @property {string|null} [id] AuthenticationRequest id
          * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
 
@@ -13601,6 +13602,14 @@ export const connection = $root.connection = (() => {
         AuthenticationRequest.prototype.token = "";
 
         /**
+         * AuthenticationRequest id.
+         * @member {string} id
+         * @memberof connection.AuthenticationRequest
+         * @instance
+         */
+        AuthenticationRequest.prototype.id = "";
+
+        /**
          * Creates a new AuthenticationRequest instance using the specified properties.
          * @function create
          * @memberof connection.AuthenticationRequest
@@ -13634,6 +13643,8 @@ export const connection = $root.connection = (() => {
                 throw $Error("max depth exceeded");
             if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.id);
             if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
                 for (let i = 0; i < message.$unknowns.length; ++i)
                     writer.raw(message.$unknowns[i]);
@@ -13690,6 +13701,15 @@ export const connection = $root.connection = (() => {
                             delete message.token;
                         continue;
                     }
+                case 2: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.id = value;
+                        else
+                            delete message.id;
+                        continue;
+                    }
                 }
                 reader.skipType(wireType, _depth, tag);
                 if (!reader.discardUnknown) {
@@ -13736,6 +13756,9 @@ export const connection = $root.connection = (() => {
             if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 if (!$util.isString(message.token))
                     return "token: string expected";
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
             return null;
         };
 
@@ -13760,6 +13783,9 @@ export const connection = $root.connection = (() => {
             if (object.token != null)
                 if (typeof object.token !== "string" || object.token.length)
                     message.token = $String(object.token);
+            if (object.id != null)
+                if (typeof object.id !== "string" || object.id.length)
+                    message.id = $String(object.id);
             return message;
         };
 
@@ -13780,10 +13806,14 @@ export const connection = $root.connection = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.token = "";
+                object.id = "";
+            }
             if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
                 object.token = message.token;
+            if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                object.id = message.id;
             return object;
         };
 

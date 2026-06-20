@@ -5047,6 +5047,9 @@ export namespace connection {
         /** AuthenticationRequest token. */
         token: string;
 
+        /** AuthenticationRequest id. */
+        id: string;
+
         /**
          * Creates a new AuthenticationRequest instance using the specified properties.
          * @param [properties] Properties to set
@@ -5133,6 +5136,9 @@ export namespace connection {
 
             /** AuthenticationRequest token */
             token?: (string|null);
+
+            /** AuthenticationRequest id */
+            id?: (string|null);
 
             /** Unknown fields preserved while decoding when enabled */
             $unknowns?: Uint8Array[];

@@ -20,6 +20,7 @@ message PongResponse {
 
 message AuthenticationRequest {
     string token = 1;
+    string id = 2;
 }
 
 message AuthenticationResponse {

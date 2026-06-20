@@ -2,6 +2,7 @@ import type * as grpc from '@grpc/grpc-js';
 import type { EnumTypeDefinition, MessageTypeDefinition } from '@grpc/proto-loader';
 
 import type { AdminModeServer as _http_AdminModeServer, AdminModeServer__Output as _http_AdminModeServer__Output } from './http/AdminModeServer';
+import type { AdminModeServerTokenResponse as _http_AdminModeServerTokenResponse, AdminModeServerTokenResponse__Output as _http_AdminModeServerTokenResponse__Output } from './http/AdminModeServerTokenResponse';
 import type { AdminModeServersResponse as _http_AdminModeServersResponse, AdminModeServersResponse__Output as _http_AdminModeServersResponse__Output } from './http/AdminModeServersResponse';
 import type { AreaResponse as _http_AreaResponse, AreaResponse__Output as _http_AreaResponse__Output } from './http/AreaResponse';
 import type { AuthResponse as _http_AuthResponse, AuthResponse__Output as _http_AuthResponse__Output } from './http/AuthResponse';
@@ -25,6 +26,7 @@ export interface ProtoGrpcType {
   http: {
     AccountRole: EnumTypeDefinition
     AdminModeServer: MessageTypeDefinition<_http_AdminModeServer, _http_AdminModeServer__Output>
+    AdminModeServerTokenResponse: MessageTypeDefinition<_http_AdminModeServerTokenResponse, _http_AdminModeServerTokenResponse__Output>
     AdminModeServersResponse: MessageTypeDefinition<_http_AdminModeServersResponse, _http_AdminModeServersResponse__Output>
     AreaResponse: MessageTypeDefinition<_http_AreaResponse, _http_AreaResponse__Output>
     AuthResponse: MessageTypeDefinition<_http_AuthResponse, _http_AuthResponse__Output>

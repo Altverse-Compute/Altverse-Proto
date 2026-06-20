@@ -10641,6 +10641,266 @@ export const http = $root.http = (() => {
         return AdminModeServersResponse;
     })();
 
+    http.AdminModeServerTokenResponse = (function() {
+
+        /**
+         * Properties of an AdminModeServerTokenResponse.
+         * @typedef {Object} http.AdminModeServerTokenResponse.$Properties
+         * @property {string|null} [token] AdminModeServerTokenResponse token
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of an AdminModeServerTokenResponse.
+         * @memberof http
+         * @interface IAdminModeServerTokenResponse
+         * @augments http.AdminModeServerTokenResponse.$Properties
+         * @deprecated Use http.AdminModeServerTokenResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of an AdminModeServerTokenResponse.
+         * @typedef {http.AdminModeServerTokenResponse.$Properties} http.AdminModeServerTokenResponse.$Shape
+         */
+
+        /**
+         * Constructs a new AdminModeServerTokenResponse.
+         * @memberof http
+         * @classdesc Represents an AdminModeServerTokenResponse.
+         * @constructor
+         * @param {http.AdminModeServerTokenResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const AdminModeServerTokenResponse = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * AdminModeServerTokenResponse token.
+         * @member {string} token
+         * @memberof http.AdminModeServerTokenResponse
+         * @instance
+         */
+        AdminModeServerTokenResponse.prototype.token = "";
+
+        /**
+         * Creates a new AdminModeServerTokenResponse instance using the specified properties.
+         * @function create
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {http.AdminModeServerTokenResponse.$Properties=} [properties] Properties to set
+         * @returns {http.AdminModeServerTokenResponse} AdminModeServerTokenResponse instance
+         * @type {{
+         *   (properties: http.AdminModeServerTokenResponse.$Shape): http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape;
+         *   (properties?: http.AdminModeServerTokenResponse.$Properties): http.AdminModeServerTokenResponse;
+         * }}
+         */
+        AdminModeServerTokenResponse.create = function(properties) {
+            return new AdminModeServerTokenResponse(properties);
+        };
+
+        /**
+         * Encodes the specified AdminModeServerTokenResponse message. Does not implicitly {@link http.AdminModeServerTokenResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {http.AdminModeServerTokenResponse.$Properties} message AdminModeServerTokenResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AdminModeServerTokenResponse.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AdminModeServerTokenResponse message, length delimited. Does not implicitly {@link http.AdminModeServerTokenResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {http.AdminModeServerTokenResponse.$Properties} message AdminModeServerTokenResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AdminModeServerTokenResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes an AdminModeServerTokenResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape} AdminModeServerTokenResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AdminModeServerTokenResponse.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.AdminModeServerTokenResponse(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.token = value;
+                        else
+                            delete message.token;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes an AdminModeServerTokenResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape} AdminModeServerTokenResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AdminModeServerTokenResponse.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AdminModeServerTokenResponse message.
+         * @function verify
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AdminModeServerTokenResponse.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an AdminModeServerTokenResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.AdminModeServerTokenResponse} AdminModeServerTokenResponse
+         */
+        AdminModeServerTokenResponse.fromObject = function (object, _depth) {
+            if (object instanceof $root.http.AdminModeServerTokenResponse)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.AdminModeServerTokenResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.http.AdminModeServerTokenResponse();
+            if (object.token != null)
+                if (typeof object.token !== "string" || object.token.length)
+                    message.token = $String(object.token);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AdminModeServerTokenResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {http.AdminModeServerTokenResponse} message AdminModeServerTokenResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AdminModeServerTokenResponse.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults)
+                object.token = "";
+            if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+                object.token = message.token;
+            return object;
+        };
+
+        /**
+         * Converts this AdminModeServerTokenResponse to JSON.
+         * @function toJSON
+         * @memberof http.AdminModeServerTokenResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AdminModeServerTokenResponse.prototype.toJSON = function() {
+            return AdminModeServerTokenResponse.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for AdminModeServerTokenResponse
+         * @function getTypeUrl
+         * @memberof http.AdminModeServerTokenResponse
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        AdminModeServerTokenResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.AdminModeServerTokenResponse";
+        };
+
+        return AdminModeServerTokenResponse;
+    })();
+
     /**
      * WorldEffect enum.
      * @name http.WorldEffect

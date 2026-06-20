@@ -3771,6 +3771,123 @@ export namespace http {
         type $Shape = http.AdminModeServersResponse.$Properties;
     }
 
+    /**
+     * Properties of an AdminModeServerTokenResponse.
+     * @deprecated Use http.AdminModeServerTokenResponse.$Properties instead.
+     */
+    interface IAdminModeServerTokenResponse extends http.AdminModeServerTokenResponse.$Properties {
+    }
+
+    /** Represents an AdminModeServerTokenResponse. */
+    class AdminModeServerTokenResponse {
+
+        /**
+         * Constructs a new AdminModeServerTokenResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.AdminModeServerTokenResponse.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** AdminModeServerTokenResponse token. */
+        token: string;
+
+        /**
+         * Creates a new AdminModeServerTokenResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AdminModeServerTokenResponse instance
+         */
+        static create(properties: http.AdminModeServerTokenResponse.$Shape): http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape;
+        static create(properties?: http.AdminModeServerTokenResponse.$Properties): http.AdminModeServerTokenResponse;
+
+        /**
+         * Encodes the specified AdminModeServerTokenResponse message. Does not implicitly {@link http.AdminModeServerTokenResponse.verify|verify} messages.
+         * @param message AdminModeServerTokenResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: http.AdminModeServerTokenResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AdminModeServerTokenResponse message, length delimited. Does not implicitly {@link http.AdminModeServerTokenResponse.verify|verify} messages.
+         * @param message AdminModeServerTokenResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: http.AdminModeServerTokenResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AdminModeServerTokenResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape} AdminModeServerTokenResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape;
+
+        /**
+         * Decodes an AdminModeServerTokenResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape} AdminModeServerTokenResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.AdminModeServerTokenResponse & http.AdminModeServerTokenResponse.$Shape;
+
+        /**
+         * Verifies an AdminModeServerTokenResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AdminModeServerTokenResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AdminModeServerTokenResponse
+         */
+        static fromObject(object: { [k: string]: any }): http.AdminModeServerTokenResponse;
+
+        /**
+         * Creates a plain object from an AdminModeServerTokenResponse message. Also converts values to other types if specified.
+         * @param message AdminModeServerTokenResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: http.AdminModeServerTokenResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AdminModeServerTokenResponse to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for AdminModeServerTokenResponse
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace AdminModeServerTokenResponse {
+
+        /** Properties of an AdminModeServerTokenResponse. */
+        interface $Properties {
+
+            /** AdminModeServerTokenResponse token */
+            token?: (string|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of an AdminModeServerTokenResponse. */
+        type $Shape = http.AdminModeServerTokenResponse.$Properties;
+    }
+
     /** WorldEffect enum. */
     enum WorldEffect {
 

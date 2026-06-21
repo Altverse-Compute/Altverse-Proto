@@ -148,7 +148,7 @@ message ClientMessage {
     ClientKey keyUp = 2;
     ClientKey keyDown = 3;
     bool mouse_enable = 4;
-    Client_muse_pos mousePos = 5;
+    ClientMousePos mouse_pos = 5;
     ClientInit init = 6;
     ClientAbility ability = 7; 
   }

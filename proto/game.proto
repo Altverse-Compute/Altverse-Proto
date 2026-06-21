@@ -145,8 +145,8 @@ message ClientMousePos {
 message ClientMessage {
   oneof pkg {
     string chat_message = 1;
-    Client_key keyUp = 2;
-    Client_key keyDown = 3;
+    ClientKey keyUp = 2;
+    ClientKey keyDown = 3;
     bool mouse_enable = 4;
     Client_muse_pos mousePos = 5;
     ClientInit init = 6;

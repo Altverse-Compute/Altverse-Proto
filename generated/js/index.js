@@ -6148,6 +6148,7 @@ export const game = $root.game = (() => {
          * @property {game.ClientMousePos.$Properties|null} [mousePos] ClientMessage mousePos
          * @property {game.ClientInit.$Properties|null} [init] ClientMessage init
          * @property {game.ClientAbility|null} [ability] ClientMessage ability
+         * @property {"chatMessage"|"keyUp"|"keyDown"|"mouseEnable"|"mousePos"|"init"|"ability"} [pkg] ClientMessage pkg
          * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
          */
 
@@ -6160,8 +6161,19 @@ export const game = $root.game = (() => {
          */
 
         /**
-         * Shape of a ClientMessage.
-         * @typedef {game.ClientMessage.$Properties} game.ClientMessage.$Shape
+         * Narrowed shape of a ClientMessage.
+         * @typedef {{
+         *   chatMessage?: string|null;
+         *   keyUp?: game.ClientKey|null;
+         *   keyDown?: game.ClientKey|null;
+         *   mouseEnable?: boolean|null;
+         *   mousePos?: game.ClientMousePos.$Shape|null;
+         *   init?: game.ClientInit.$Shape|null;
+         *   ability?: game.ClientAbility|null;
+         *   $unknowns?: Array.<Uint8Array>;
+         * } & (
+         *   ({ pkg?: undefined; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "chatMessage"; chatMessage: string; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "keyUp"; chatMessage?: null; keyUp: game.ClientKey; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "keyDown"; chatMessage?: null; keyUp?: null; keyDown: game.ClientKey; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "mouseEnable"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable: boolean; mousePos?: null; init?: null; ability?: null }|{ pkg?: "mousePos"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos: game.ClientMousePos.$Shape; init?: null; ability?: null }|{ pkg?: "init"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init: game.ClientInit.$Shape; ability?: null }|{ pkg?: "ability"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability: game.ClientAbility })
+         * )} game.ClientMessage.$Shape
          */
 
         /**
@@ -6238,45 +6250,14 @@ export const game = $root.game = (() => {
         // OneOf field names bound to virtual getters and setters
         let $oneOfFields;
 
-        // Virtual OneOf for proto3 optional field
-        $Object.defineProperty(ClientMessage.prototype, "_chatMessage", {
-            get: $util.oneOfGetter($oneOfFields = ["chatMessage"]),
-            set: $util.oneOfSetter($oneOfFields)
-        });
-
-        // Virtual OneOf for proto3 optional field
-        $Object.defineProperty(ClientMessage.prototype, "_keyUp", {
-            get: $util.oneOfGetter($oneOfFields = ["keyUp"]),
-            set: $util.oneOfSetter($oneOfFields)
-        });
-
-        // Virtual OneOf for proto3 optional field
-        $Object.defineProperty(ClientMessage.prototype, "_keyDown", {
-            get: $util.oneOfGetter($oneOfFields = ["keyDown"]),
-            set: $util.oneOfSetter($oneOfFields)
-        });
-
-        // Virtual OneOf for proto3 optional field
-        $Object.defineProperty(ClientMessage.prototype, "_mouseEnable", {
-            get: $util.oneOfGetter($oneOfFields = ["mouseEnable"]),
-            set: $util.oneOfSetter($oneOfFields)
-        });
-
-        // Virtual OneOf for proto3 optional field
-        $Object.defineProperty(ClientMessage.prototype, "_mousePos", {
-            get: $util.oneOfGetter($oneOfFields = ["mousePos"]),
-            set: $util.oneOfSetter($oneOfFields)
-        });
-
-        // Virtual OneOf for proto3 optional field
-        $Object.defineProperty(ClientMessage.prototype, "_init", {
-            get: $util.oneOfGetter($oneOfFields = ["init"]),
-            set: $util.oneOfSetter($oneOfFields)
-        });
-
-        // Virtual OneOf for proto3 optional field
-        $Object.defineProperty(ClientMessage.prototype, "_ability", {
-            get: $util.oneOfGetter($oneOfFields = ["ability"]),
+        /**
+         * ClientMessage pkg.
+         * @member {"chatMessage"|"keyUp"|"keyDown"|"mouseEnable"|"mousePos"|"init"|"ability"|undefined} pkg
+         * @memberof game.ClientMessage
+         * @instance
+         */
+        $Object.defineProperty(ClientMessage.prototype, "pkg", {
+            get: $util.oneOfGetter($oneOfFields = ["chatMessage", "keyUp", "keyDown", "mouseEnable", "mousePos", "init", "ability"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -6377,49 +6358,49 @@ export const game = $root.game = (() => {
                         if (wireType !== 2)
                             break;
                         message.chatMessage = reader.stringVerify();
-                        message._chatMessage = "chatMessage";
+                        message.pkg = "chatMessage";
                         continue;
                     }
                 case 2: {
                         if (wireType !== 0)
                             break;
                         message.keyUp = reader.int32();
-                        message._keyUp = "keyUp";
+                        message.pkg = "keyUp";
                         continue;
                     }
                 case 3: {
                         if (wireType !== 0)
                             break;
                         message.keyDown = reader.int32();
-                        message._keyDown = "keyDown";
+                        message.pkg = "keyDown";
                         continue;
                     }
                 case 4: {
                         if (wireType !== 0)
                             break;
                         message.mouseEnable = reader.bool();
-                        message._mouseEnable = "mouseEnable";
+                        message.pkg = "mouseEnable";
                         continue;
                     }
                 case 5: {
                         if (wireType !== 2)
                             break;
                         message.mousePos = $root.game.ClientMousePos.decode(reader, reader.uint32(), $undefined, _depth + 1, message.mousePos);
-                        message._mousePos = "mousePos";
+                        message.pkg = "mousePos";
                         continue;
                     }
                 case 6: {
                         if (wireType !== 2)
                             break;
                         message.init = $root.game.ClientInit.decode(reader, reader.uint32(), $undefined, _depth + 1, message.init);
-                        message._init = "init";
+                        message.pkg = "init";
                         continue;
                     }
                 case 7: {
                         if (wireType !== 0)
                             break;
                         message.ability = reader.int32();
-                        message._ability = "ability";
+                        message.pkg = "ability";
                         continue;
                     }
                 }
@@ -6467,12 +6448,14 @@ export const game = $root.game = (() => {
                 return "max depth exceeded";
             let properties = {};
             if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage")) {
-                properties._chatMessage = 1;
+                properties.pkg = 1;
                 if (!$util.isString(message.chatMessage))
                     return "chatMessage: string expected";
             }
             if (message.keyUp != null && $Object.hasOwnProperty.call(message, "keyUp")) {
-                properties._keyUp = 1;
+                if (properties.pkg === 1)
+                    return "pkg: multiple values";
+                properties.pkg = 1;
                 switch (message.keyUp) {
                 default:
                     return "keyUp: enum value expected";
@@ -6485,7 +6468,9 @@ export const game = $root.game = (() => {
                 }
             }
             if (message.keyDown != null && $Object.hasOwnProperty.call(message, "keyDown")) {
-                properties._keyDown = 1;
+                if (properties.pkg === 1)
+                    return "pkg: multiple values";
+                properties.pkg = 1;
                 switch (message.keyDown) {
                 default:
                     return "keyDown: enum value expected";
@@ -6498,12 +6483,16 @@ export const game = $root.game = (() => {
                 }
             }
             if (message.mouseEnable != null && $Object.hasOwnProperty.call(message, "mouseEnable")) {
-                properties._mouseEnable = 1;
+                if (properties.pkg === 1)
+                    return "pkg: multiple values";
+                properties.pkg = 1;
                 if (typeof message.mouseEnable !== "boolean")
                     return "mouseEnable: boolean expected";
             }
             if (message.mousePos != null && $Object.hasOwnProperty.call(message, "mousePos")) {
-                properties._mousePos = 1;
+                if (properties.pkg === 1)
+                    return "pkg: multiple values";
+                properties.pkg = 1;
                 {
                     let error = $root.game.ClientMousePos.verify(message.mousePos, _depth + 1);
                     if (error)
@@ -6511,7 +6500,9 @@ export const game = $root.game = (() => {
                 }
             }
             if (message.init != null && $Object.hasOwnProperty.call(message, "init")) {
-                properties._init = 1;
+                if (properties.pkg === 1)
+                    return "pkg: multiple values";
+                properties.pkg = 1;
                 {
                     let error = $root.game.ClientInit.verify(message.init, _depth + 1);
                     if (error)
@@ -6519,7 +6510,9 @@ export const game = $root.game = (() => {
                 }
             }
             if (message.ability != null && $Object.hasOwnProperty.call(message, "ability")) {
-                properties._ability = 1;
+                if (properties.pkg === 1)
+                    return "pkg: multiple values";
+                properties.pkg = 1;
                 switch (message.ability) {
                 default:
                     return "ability: enum value expected";
@@ -6655,20 +6648,41 @@ export const game = $root.game = (() => {
             if (_depth > $util.recursionLimit)
                 throw $Error("max depth exceeded");
             let object = {};
-            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage"))
+            if (message.chatMessage != null && $Object.hasOwnProperty.call(message, "chatMessage")) {
                 object.chatMessage = message.chatMessage;
-            if (message.keyUp != null && $Object.hasOwnProperty.call(message, "keyUp"))
+                if (options.oneofs)
+                    object.pkg = "chatMessage";
+            }
+            if (message.keyUp != null && $Object.hasOwnProperty.call(message, "keyUp")) {
                 object.keyUp = options.enums === $String ? $root.game.ClientKey[message.keyUp] === $undefined ? message.keyUp : $root.game.ClientKey[message.keyUp] : message.keyUp;
-            if (message.keyDown != null && $Object.hasOwnProperty.call(message, "keyDown"))
+                if (options.oneofs)
+                    object.pkg = "keyUp";
+            }
+            if (message.keyDown != null && $Object.hasOwnProperty.call(message, "keyDown")) {
                 object.keyDown = options.enums === $String ? $root.game.ClientKey[message.keyDown] === $undefined ? message.keyDown : $root.game.ClientKey[message.keyDown] : message.keyDown;
-            if (message.mouseEnable != null && $Object.hasOwnProperty.call(message, "mouseEnable"))
+                if (options.oneofs)
+                    object.pkg = "keyDown";
+            }
+            if (message.mouseEnable != null && $Object.hasOwnProperty.call(message, "mouseEnable")) {
                 object.mouseEnable = message.mouseEnable;
-            if (message.mousePos != null && $Object.hasOwnProperty.call(message, "mousePos"))
+                if (options.oneofs)
+                    object.pkg = "mouseEnable";
+            }
+            if (message.mousePos != null && $Object.hasOwnProperty.call(message, "mousePos")) {
                 object.mousePos = $root.game.ClientMousePos.toObject(message.mousePos, options, _depth + 1);
-            if (message.init != null && $Object.hasOwnProperty.call(message, "init"))
+                if (options.oneofs)
+                    object.pkg = "mousePos";
+            }
+            if (message.init != null && $Object.hasOwnProperty.call(message, "init")) {
                 object.init = $root.game.ClientInit.toObject(message.init, options, _depth + 1);
-            if (message.ability != null && $Object.hasOwnProperty.call(message, "ability"))
+                if (options.oneofs)
+                    object.pkg = "init";
+            }
+            if (message.ability != null && $Object.hasOwnProperty.call(message, "ability")) {
                 object.ability = options.enums === $String ? $root.game.ClientAbility[message.ability] === $undefined ? message.ability : $root.game.ClientAbility[message.ability] : message.ability;
+                if (options.oneofs)
+                    object.pkg = "ability";
+            }
             return object;
         };
 

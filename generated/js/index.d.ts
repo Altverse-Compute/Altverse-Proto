@@ -2200,6 +2200,9 @@ export namespace game {
         /** ClientMessage ability. */
         ability?: (game.ClientAbility|null);
 
+        /** ClientMessage pkg. */
+        pkg?: ("chatMessage"|"keyUp"|"keyDown"|"mouseEnable"|"mousePos"|"init"|"ability");
+
         /**
          * Creates a new ClientMessage instance using the specified properties.
          * @param [properties] Properties to set
@@ -2305,12 +2308,26 @@ export namespace game {
             /** ClientMessage ability */
             ability?: (game.ClientAbility|null);
 
+            /** ClientMessage pkg */
+            pkg?: ("chatMessage"|"keyUp"|"keyDown"|"mouseEnable"|"mousePos"|"init"|"ability");
+
             /** Unknown fields preserved while decoding when enabled */
             $unknowns?: Uint8Array[];
         }
 
-        /** Shape of a ClientMessage. */
-        type $Shape = game.ClientMessage.$Properties;
+        /** Narrowed shape of a ClientMessage. */
+        type $Shape = {
+          chatMessage?: string|null;
+          keyUp?: game.ClientKey|null;
+          keyDown?: game.ClientKey|null;
+          mouseEnable?: boolean|null;
+          mousePos?: game.ClientMousePos.$Shape|null;
+          init?: game.ClientInit.$Shape|null;
+          ability?: game.ClientAbility|null;
+          $unknowns?: Uint8Array[];
+        } & (
+          ({ pkg?: undefined; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "chatMessage"; chatMessage: string; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "keyUp"; chatMessage?: null; keyUp: game.ClientKey; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "keyDown"; chatMessage?: null; keyUp?: null; keyDown: game.ClientKey; mouseEnable?: null; mousePos?: null; init?: null; ability?: null }|{ pkg?: "mouseEnable"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable: boolean; mousePos?: null; init?: null; ability?: null }|{ pkg?: "mousePos"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos: game.ClientMousePos.$Shape; init?: null; ability?: null }|{ pkg?: "init"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init: game.ClientInit.$Shape; ability?: null }|{ pkg?: "ability"; chatMessage?: null; keyUp?: null; keyDown?: null; mouseEnable?: null; mousePos?: null; init?: null; ability: game.ClientAbility })
+        );
     }
 }
 

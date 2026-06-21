@@ -13,13 +13,7 @@ export interface ClientMessage {
   'mousePos'?: (_game_ClientMousePos | null);
   'init'?: (_game_ClientInit | null);
   'ability'?: (_game_ClientAbility);
-  '_chatMessage'?: "chatMessage";
-  '_keyUp'?: "keyUp";
-  '_keyDown'?: "keyDown";
-  '_mouseEnable'?: "mouseEnable";
-  '_mousePos'?: "mousePos";
-  '_init'?: "init";
-  '_ability'?: "ability";
+  'pkg'?: "chatMessage"|"keyUp"|"keyDown"|"mouseEnable"|"mousePos"|"init"|"ability";
 }
 
 export interface ClientMessage__Output {
@@ -30,11 +24,5 @@ export interface ClientMessage__Output {
   'mousePos'?: (_game_ClientMousePos__Output);
   'init'?: (_game_ClientInit__Output);
   'ability'?: (_game_ClientAbility__Output);
-  '_chatMessage'?: "chatMessage";
-  '_keyUp'?: "keyUp";
-  '_keyDown'?: "keyDown";
-  '_mouseEnable'?: "mouseEnable";
-  '_mousePos'?: "mousePos";
-  '_init'?: "init";
-  '_ability'?: "ability";
+  'pkg'?: "chatMessage"|"keyUp"|"keyDown"|"mouseEnable"|"mousePos"|"init"|"ability";
 }

@@ -3115,6 +3115,123 @@ export namespace http {
     }
 
     /**
+     * Properties of a LogoutResponse.
+     * @deprecated Use http.LogoutResponse.$Properties instead.
+     */
+    interface ILogoutResponse extends http.LogoutResponse.$Properties {
+    }
+
+    /** Represents a LogoutResponse. */
+    class LogoutResponse {
+
+        /**
+         * Constructs a new LogoutResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: http.LogoutResponse.$Properties);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+
+        /** LogoutResponse status. */
+        status: http.ResponseStatus;
+
+        /**
+         * Creates a new LogoutResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LogoutResponse instance
+         */
+        static create(properties: http.LogoutResponse.$Shape): http.LogoutResponse & http.LogoutResponse.$Shape;
+        static create(properties?: http.LogoutResponse.$Properties): http.LogoutResponse;
+
+        /**
+         * Encodes the specified LogoutResponse message. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @param message LogoutResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encode(message: http.LogoutResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LogoutResponse message, length delimited. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @param message LogoutResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        static encodeDelimited(message: http.LogoutResponse.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): http.LogoutResponse & http.LogoutResponse.$Shape;
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): http.LogoutResponse & http.LogoutResponse.$Shape;
+
+        /**
+         * Verifies a LogoutResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LogoutResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LogoutResponse
+         */
+        static fromObject(object: { [k: string]: any }): http.LogoutResponse;
+
+        /**
+         * Creates a plain object from a LogoutResponse message. Also converts values to other types if specified.
+         * @param message LogoutResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        static toObject(message: http.LogoutResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LogoutResponse to JSON.
+         * @returns JSON object
+         */
+        toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the type url for LogoutResponse
+         * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns The type url
+         */
+        static getTypeUrl(prefix?: string): string;
+    }
+
+    namespace LogoutResponse {
+
+        /** Properties of a LogoutResponse. */
+        interface $Properties {
+
+            /** LogoutResponse status */
+            status?: (http.ResponseStatus|null);
+
+            /** Unknown fields preserved while decoding when enabled */
+            $unknowns?: Uint8Array[];
+        }
+
+        /** Shape of a LogoutResponse. */
+        type $Shape = http.LogoutResponse.$Properties;
+    }
+
+    /**
      * Properties of a ServerElement.
      * @deprecated Use http.ServerElement.$Properties instead.
      */

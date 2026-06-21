@@ -8681,6 +8681,320 @@ export const http = $root.http = (() => {
         return AuthResponse;
     })();
 
+    http.LogoutResponse = (function() {
+
+        /**
+         * Properties of a LogoutResponse.
+         * @typedef {Object} http.LogoutResponse.$Properties
+         * @property {http.ResponseStatus|null} [status] LogoutResponse status
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a LogoutResponse.
+         * @memberof http
+         * @interface ILogoutResponse
+         * @augments http.LogoutResponse.$Properties
+         * @deprecated Use http.LogoutResponse.$Properties instead.
+         */
+
+        /**
+         * Shape of a LogoutResponse.
+         * @typedef {http.LogoutResponse.$Properties} http.LogoutResponse.$Shape
+         */
+
+        /**
+         * Constructs a new LogoutResponse.
+         * @memberof http
+         * @classdesc Represents a LogoutResponse.
+         * @constructor
+         * @param {http.LogoutResponse.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        const LogoutResponse = function (properties) {
+            if (properties)
+                for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * LogoutResponse status.
+         * @member {http.ResponseStatus} status
+         * @memberof http.LogoutResponse
+         * @instance
+         */
+        LogoutResponse.prototype.status = 200;
+
+        /**
+         * Creates a new LogoutResponse instance using the specified properties.
+         * @function create
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.LogoutResponse.$Properties=} [properties] Properties to set
+         * @returns {http.LogoutResponse} LogoutResponse instance
+         * @type {{
+         *   (properties: http.LogoutResponse.$Shape): http.LogoutResponse & http.LogoutResponse.$Shape;
+         *   (properties?: http.LogoutResponse.$Properties): http.LogoutResponse;
+         * }}
+         */
+        LogoutResponse.create = function(properties) {
+            return new LogoutResponse(properties);
+        };
+
+        /**
+         * Encodes the specified LogoutResponse message. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @function encode
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.LogoutResponse.$Properties} message LogoutResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LogoutResponse.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (let i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LogoutResponse message, length delimited. Does not implicitly {@link http.LogoutResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.LogoutResponse.$Properties} message LogoutResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LogoutResponse.encodeDelimited = function(message, writer) {
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+        };
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LogoutResponse.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.http.LogoutResponse(), value;
+            while (reader.pos < end) {
+                let start = reader.pos;
+                let tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                let wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 0)
+                            break;
+                        if ((value = reader.int32()) !== 200)
+                            message.status = value;
+                        else
+                            delete message.status;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a LogoutResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {http.LogoutResponse & http.LogoutResponse.$Shape} LogoutResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LogoutResponse.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LogoutResponse message.
+         * @function verify
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LogoutResponse.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 200:
+                case 500:
+                case 400:
+                case 401:
+                case 402:
+                case 404:
+                case 450:
+                case 451:
+                case 452:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a LogoutResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {http.LogoutResponse} LogoutResponse
+         */
+        LogoutResponse.fromObject = function (object, _depth) {
+            if (object instanceof $root.http.LogoutResponse)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".http.LogoutResponse: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let message = new $root.http.LogoutResponse();
+            if (object.status !== 200 && (typeof object.status !== "string" || $root.http.ResponseStatus[object.status] !== 200))
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "Ok":
+                case 200:
+                    message.status = 200;
+                    break;
+                case "InternalError":
+                case 500:
+                    message.status = 500;
+                    break;
+                case "InvalidBody":
+                case 400:
+                    message.status = 400;
+                    break;
+                case "NotAuthenticated":
+                case 401:
+                    message.status = 401;
+                    break;
+                case "VerificationFailure":
+                case 402:
+                    message.status = 402;
+                    break;
+                case "NotFound":
+                case 404:
+                    message.status = 404;
+                    break;
+                case "AccountExists":
+                case 450:
+                    message.status = 450;
+                    break;
+                case "AccountNotExists":
+                case 451:
+                    message.status = 451;
+                    break;
+                case "WrongPassword":
+                case 452:
+                    message.status = 452;
+                    break;
+                }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LogoutResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {http.LogoutResponse} message LogoutResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LogoutResponse.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            let object = {};
+            if (options.defaults)
+                object.status = options.enums === $String ? "Ok" : 200;
+            if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+                object.status = options.enums === $String ? $root.http.ResponseStatus[message.status] === $undefined ? message.status : $root.http.ResponseStatus[message.status] : message.status;
+            return object;
+        };
+
+        /**
+         * Converts this LogoutResponse to JSON.
+         * @function toJSON
+         * @memberof http.LogoutResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LogoutResponse.prototype.toJSON = function() {
+            return LogoutResponse.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for LogoutResponse
+         * @function getTypeUrl
+         * @memberof http.LogoutResponse
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        LogoutResponse.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/http.LogoutResponse";
+        };
+
+        return LogoutResponse;
+    })();
+
     http.ServerElement = (function() {
 
         /**

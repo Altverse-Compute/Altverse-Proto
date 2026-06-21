@@ -119,10 +119,10 @@ message WorldProperties {
         uint32 alpha = 2;
     }
 
-    string fillStyle = 1;
-    string strokeStyle = 2;
-    string areaFill = 3;
-    optional uint32 areaAlpha = 4;
+    string fill_style = 1;
+    string stroke_style = 2;
+    string area_fill = 3;
+    optional uint32 area_alpha = 4;
     repeated Background backgrounds = 5;
     optional WorldEffect effect = 6;
 }
@@ -132,8 +132,6 @@ message AreaResponse {
     optional uint32 vp = 2;
     optional string text = 3;
 }
-
-// Just part of code
 
 message WorldResponse {
     WorldProperties properties = 1;

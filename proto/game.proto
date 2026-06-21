@@ -8,8 +8,6 @@ enum Role {
     DEV = 2;
 }
 
-// Change just for build
-
 message Chat {
   uint32 id = 1;
   string content = 2;
@@ -145,11 +143,13 @@ message ClientMousePos {
 }
 
 message ClientMessage {
-  optional string chatMessage = 1;
-  optional ClientKey keyUp = 2;
-  optional ClientKey keyDown = 3;
-  optional bool mouseEnable = 4;
-  optional ClientMousePos mousePos = 5;
-  optional ClientInit init = 6;
-  optional ClientAbility ability = 7; 
+  oneof pkg {
+    optional string chat_message = 1;
+    optional Client_key keyUp = 2;
+    optional Client_key keyDown = 3;
+    optional bool mouse_enable = 4;
+    optional Client_muse_pos mousePos = 5;
+    optional ClientInit init = 6;
+    optional ClientAbility ability = 7; 
+  }
 }

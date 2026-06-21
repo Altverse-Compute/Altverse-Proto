@@ -133,6 +133,8 @@ message AreaResponse {
     optional string text = 3;
 }
 
+// Just part of code
+
 message WorldResponse {
     WorldProperties properties = 1;
     map<string, AreaResponse> areas = 2;

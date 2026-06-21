@@ -1,0 +1,11 @@
+version: v2
+
+plugins:
+  - remote: buf.build/community/stephenh-ts-proto
+    out: gen
+    opt:
+      - esModuleInterop=true
+      - useOptionals=messages
+      - outputServices=none
+      - env=browser
+      - outputIndex=true

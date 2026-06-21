@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package game;
+package altverse.game.frontend.v1;
+
+import "buf/validate/validate.proto";
 
 enum Role {
     USER = 0;
@@ -121,20 +123,22 @@ message UpdatePlayersMap {
 // Client
 
 enum ClientKey {
-  UP = 1;
-  DOWN = 2;
-  LEFT = 3;
-  RIGHT = 4;
-  SHIFT = 5;
+  UP = 0;
+  DOWN = 1;
+  LEFT = 2;
+  RIGHT = 3;
+  SHIFT = 4;
 }
 
 enum ClientAbility {
-  FIRST = 1;
-  SECOND = 2;
+  FIRST = 0;
+  SECOND = 1;
 }
 
 message ClientInit {
-  string hero = 1;
+  string hero = 1 [
+    (buf.validate.field).string.min_len = 1
+   ];
 }
 
 message ClientMousePos {

@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package connection;
+package altverse.game.backend.v1;
+
+import "buf/validate/validate.proto";
 
 service Game {
     rpc Authentication(AuthenticationRequest) returns (AuthenticationResponse) {}
@@ -19,8 +21,14 @@ message PongResponse {
 }
 
 message AuthenticationRequest {
-    string token = 1;
-    string id = 2;
+    string token = 1 [
+        (buf.validate.field).string.min_len = 63,
+        (buf.validate.field).string.max_len = 65
+    ];
+    string id = 2 [
+        (buf.validate.field).string.min_len = 23,
+        (buf.validate.field).string.max_len = 25
+    ];
 }
 
 message AuthenticationResponse {
@@ -28,7 +36,10 @@ message AuthenticationResponse {
 }
 
 message JoinPlayerRequest {
-    string token = 1;
+    string token = 1 [
+        (buf.validate.field).string.min_len = 31,
+        (buf.validate.field).string.max_len = 33
+    ];
 }
 
 message JoinPlayerResponse {
@@ -38,9 +49,14 @@ message JoinPlayerResponse {
 }
 
 message AwardRequest {
-    string id = 1;
+    string id = 1 [
+        (buf.validate.field).string.min_len = 23,
+        (buf.validate.field).string.max_len = 25
+    ];
     optional uint32 vp = 2;
-    optional string accessory = 3; 
+    optional string accessory = 3 [
+        (buf.validate.field).string.min_len = 1
+    ];;
 }
 
 message AwardResponse {

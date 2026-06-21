@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package http;
+package altverse.game.http.v1;
+
+import "buf/validate/validate.proto";
 
 enum AccountRole {
     USER = 0;
@@ -10,6 +12,7 @@ enum AccountRole {
 }
 
 enum ResponseStatus {
+    Trouble = 0;
     Ok = 200;
     InternalError = 500;
 
@@ -32,14 +35,29 @@ message Profile {
 }
 
 message RegisterRequest {
-    string username = 1;
-    string password = 2;
-    string token = 3;
+    string username = 1 [
+        (buf.validate.field).string.min_len = 1,
+        (buf.validate.field).string.max_len = 48
+    ];
+    string password = 2 [
+        (buf.validate.field).string.min_len = 4,
+        (buf.validate.field).string.max_len = 256
+    ];
+    string token = 3 [
+        (buf.validate.field).string.min_len = 31,
+        (buf.validate.field).string.max_len = 33
+    ];
 }
 
 message LoginRequest { 
-    string username = 1;
-    string password = 2;
+    string username = 1 [
+        (buf.validate.field).string.min_len = 1,
+        (buf.validate.field).string.max_len = 48
+    ];
+    string password = 2 [
+        (buf.validate.field).string.min_len = 4,
+        (buf.validate.field).string.max_len = 256
+    ];
 }
 
 message LoginAndRegisterResponse {
@@ -89,28 +107,49 @@ message AdminModeServerTokenResponse {
 }
 
 message AdminModeEditServerRequest {
-    string id = 1;
-    string name = 2;
-    string icon = 3;
-    optional string token = 4;
+    string id = 1 [
+        (buf.validate.field).string.min_len = 23,
+        (buf.validate.field).string.max_len = 25
+    ];
+    string name = 2 [
+        (buf.validate.field).string.min_len = 1,
+        (buf.validate.field).string.max_len = 48
+    ];
+    string icon = 3 [
+        (buf.validate.field).string.min_len = 1,
+        (buf.validate.field).string.max_len = 10
+    ];
+    optional string token = 4 [
+        (buf.validate.field).string.min_len = 63,
+        (buf.validate.field).string.max_len = 65
+    ];
     string domain = 5;
 }
 
 message AdminModeAddServerRequest {
-    string name = 2;
-    string icon = 3;
-    string token = 4;
-    string domain = 5;
+    string name = 1 [
+        (buf.validate.field).string.min_len = 1,
+        (buf.validate.field).string.max_len = 48
+    ];
+    string icon = 2 [
+        (buf.validate.field).string.min_len = 1,
+        (buf.validate.field).string.max_len = 10
+    ];
+    optional string token = 3 [
+        (buf.validate.field).string.min_len = 63,
+        (buf.validate.field).string.max_len = 65
+    ];
+    string domain = 4;
 }
 
 // Server HTTP
 
 enum WorldEffect {
-    RAIN = 1;
-    RAINSTORM = 2;
-    SNOW = 3;
-    SNOWSTORM = 4;
-    AUTUMN = 5;
+    RAIN = 0;
+    RAINSTORM = 1;
+    SNOW = 2;
+    SNOWSTORM = 3;
+    AUTUMN = 4;
 }
 
 message WorldProperties {

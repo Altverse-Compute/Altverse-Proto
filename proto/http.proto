@@ -55,6 +55,10 @@ message AuthResponse {
     optional Profile profile = 2;
 }
 
+message LogoutResponse {
+    ResponseStatus status = 1;
+}
+
 message ServerElement {
     string icon = 1;
     string name = 2;

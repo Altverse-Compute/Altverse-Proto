@@ -51,14 +51,8 @@ message ProfileResponse {
     optional Profile profile = 2;
 }
 
-//Change for workflow
-
 message AuthResponse {
     optional Profile profile = 2;
-}
-
-message LogoutResponse {
-    ResponseStatus status = 1;
 }
 
 message ServerElement {

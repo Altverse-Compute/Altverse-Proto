@@ -147,12 +147,13 @@ message ClientMousePos {
 }
 
 message ClientMessage {
-  option (buf.validate.message).oneof = { fields: ["chat_message", "keyUp", "keyDown", "mouse_enable", "mouse_pos", "ability"] };
-  string chat_message = 1;
-  ClientKey keyUp = 2;
-  ClientKey keyDown = 3;
-  bool mouse_enable = 4;
-  ClientMousePos mouse_pos = 5;
-  ClientInit init = 6;
-  ClientAbility ability = 7; 
+  oneof pkg {
+    string chat_message = 1;
+    ClientKey keyUp = 2;
+    ClientKey keyDown = 3;
+    bool mouse_enable = 4;
+    ClientMousePos mouse_pos = 5;
+    ClientInit init = 6;
+    ClientAbility ability = 7; 
+  }
 }

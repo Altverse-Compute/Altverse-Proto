@@ -7,7 +7,7 @@ enum Role : ubyte {
 }
 
 table Chat {
-  id: uint32;
+  id: ulong;
   content: string;
   author: string;
   role: Role;

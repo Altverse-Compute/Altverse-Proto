@@ -95,11 +95,11 @@ table Entities {
 }
 
 table ClosePlayer {
-  id: uint;
+  id: ulong;
 }
 
 table CloseEntities {
-  ids: [uint];
+  ids: [ulong];
 }
 
 table PartialEntityMap {
@@ -108,7 +108,7 @@ table PartialEntityMap {
 }
 
 table PartialPlayerMap {
-  key: uint;
+  key: ulong;
   value: PartialPlayer;
 }
 

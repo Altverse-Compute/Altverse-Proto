@@ -74,7 +74,7 @@ table PackedEntityMap {
 }
 
 table PackedPlayerMap {
-  key: uint;
+  key: ulong;
   value: PackedPlayer;
 }
 

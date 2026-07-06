@@ -1,0 +1,142 @@
+namespace AltverseServer;
+
+enum Role : ubyte {
+  User = 0,
+  Mod,
+  Dev
+}
+
+table Chat {
+  id: uint32;
+  content: string;
+  author: string;
+  role: Role;
+  world: string;
+}
+
+table PackedEntity {
+  type_id: uint32;
+  x: uint32;
+  y: uint32;
+  radius: ushort;
+  harmless: bool;
+  state: uint8;
+  state_metadata: short;
+  alpha: uint8;
+}
+
+table PackedPlayer {
+  name: string;
+  id: uint32;
+  x: uint32;
+  y: uint32;
+  radius: ushort;
+  speed: uint8;
+  energy: short;
+  max_energy: ushort;
+  death_timer: uint8;
+  state: uint8;
+  state_meta: ushort;
+  area: uint32;
+  world: string;
+  died: bool;
+  hero: uint32;
+}
+
+table PartialEntity {
+  x: int = null;
+  y: int = null;
+  radius: ushort = null;
+  harmless: bool = null;
+  state: uint8 = null;
+  state_metadata: ushort = null;
+  alpha: ubyte = null;
+}
+
+table PartialPlayer {
+  x: int = null;
+  y: int = null;
+  radius: ushort = null;
+  speed: ubyte = null;
+  energy: short  = null;
+  max_energy: ushort = null;
+  death_timer: ubyte = null;
+  state: uint8 = null;
+  state_metadata: ushort = null;
+  area: uint = null;
+  world: string;
+  died: bool = null;
+}
+
+table PackedEntityMap {
+  key: ulong;
+  value: PackedEntity;
+}
+
+table PackedPlayerMap {
+  key: uint;
+  value: PackedPlayer;
+}
+
+table PackedArea {
+  w: float32;
+  h: float32;
+  area: uint32;
+  world: string;
+  entities: [PackedEntityMap];
+}
+
+table Players {
+  players: [PackedPlayerMap];
+}
+
+table Entities {
+   entities: [PackedEntityMap];
+}
+
+table ClosePlayer {
+  id: uint;
+}
+
+table CloseEntities {
+  ids: [uint];
+}
+
+table PartialEntityMap {
+  key: ulong;
+  value: PartialEntity;
+}
+
+table PartialPlayerMap {
+  key: uint;
+  value: PartialPlayer;
+}
+
+table UpdateEntities {
+  items: [PartialEntityMap];
+}
+
+table UpdatePlayers {
+  items: [PartialPlayerMap];
+}
+
+union PackageKind {
+  new_player: PackedPlayer,
+  close_player: ClosePlayer,
+  players: Players,
+  new_entities: Entities,
+  close_entities: CloseEntities,
+  area_init: PackedArea,
+  myself: PackedPlayer,
+  update_entities: UpdateEntities,
+  update_players: UpdatePlayers,
+  chat: Chat
+}
+
+table Package {
+  kind: PackageKind;
+}
+
+table Packages {
+  items: [Package];
+}

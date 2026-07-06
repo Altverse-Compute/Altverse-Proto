@@ -15,19 +15,19 @@ table Chat {
 }
 
 table PackedEntity {
-  type_id: uint32;
-  x: uint32;
-  y: uint32;
-  radius: ushort;
+  type_id: ulong;
+  x: float32;
+  y: float32;
+  radius: float32;
   harmless: bool;
   state: uint8;
-  state_metadata: short;
-  alpha: uint8;
+  state_metadata: float32;
+  alpha: float32;
 }
 
 table PackedPlayer {
   name: string;
-  id: long;
+  id: ulong;
   x: float32;
   y: float32;
   radius: float32;
@@ -37,33 +37,33 @@ table PackedPlayer {
   death_timer: float32;
   state: uint8;
   state_meta: float32;
-  area: uint;
+  area: ulong;
   world: string;
   died: bool;
   hero: uint32;
 }
 
 table PartialEntity {
-  x: int = null;
-  y: int = null;
-  radius: ushort = null;
+  x: float32 = null;
+  y: float32 = null;
+  radius: float32 = null;
   harmless: bool = null;
   state: uint8 = null;
-  state_metadata: ushort = null;
-  alpha: ubyte = null;
+  state_metadata: float32 = null;
+  alpha: float32 = null;
 }
 
 table PartialPlayer {
-  x: int = null;
-  y: int = null;
-  radius: ushort = null;
-  speed: ubyte = null;
-  energy: short  = null;
-  max_energy: ushort = null;
-  death_timer: ubyte = null;
-  state: uint8 = null;
-  state_metadata: ushort = null;
-  area: uint = null;
+  x: float32 = null;
+  y: float32 = null;
+  radius: float32 = null;
+  speed: float32 = null;
+  energy: float32  = null;
+  max_energy: float32 = null;
+  death_timer: float32 = null;
+  state: ubyte = null;
+  state_metadata: float32 = null;
+  area: ulong = null;
   world: string;
   died: bool = null;
 }

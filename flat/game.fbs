@@ -27,17 +27,17 @@ table PackedEntity {
 
 table PackedPlayer {
   name: string;
-  id: uint32;
-  x: uint32;
-  y: uint32;
-  radius: ushort;
-  speed: uint8;
-  energy: short;
-  max_energy: ushort;
-  death_timer: uint8;
+  id: long;
+  x: float32;
+  y: float32;
+  radius: float32;
+  speed: float32;
+  energy: float32;
+  max_energy: float32;
+  death_timer: float32;
   state: uint8;
-  state_meta: ushort;
-  area: uint32;
+  state_meta: float32;
+  area: uint;
   world: string;
   died: bool;
   hero: uint32;

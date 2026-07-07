@@ -50,7 +50,7 @@ table PartialEntity {
   harmless: bool = null;
   state: uint8 = null;
   state_metadata: float32 = null;
-  alpha: float32 = null;
+  alpha: ubyte = null;
 }
 
 table PartialPlayer {

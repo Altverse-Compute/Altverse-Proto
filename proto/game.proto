@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package altverse.game.frontend.v1;
 
-import "buf/validate/validate.proto";
-
 enum Role {
     USER = 0;
     MOD = 1;
@@ -136,9 +134,7 @@ enum ClientAbility {
 }
 
 message ClientInit {
-  string hero = 1 [
-    (buf.validate.field).string.min_len = 1
-   ];
+  string hero = 1;
 }
 
 message ClientMousePos {

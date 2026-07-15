@@ -44,16 +44,11 @@ table PackedPlayer {
 }
 
 table PartialEntity {
-  x: float32 = null;
-  y: float32 = null;
-  radius: float32 = null;
-  harmless: bool = null;
-  state: uint8 = null;
-  state_metadata: float32 = null;
-  alpha: ubyte = null;
+  mask: uint;
+  data: [ubyte];
 }
 
-table PartialPlayer {
+table WarpPlayer {
   x: float32 = null;
   y: float32 = null;
   radius: float32 = null;
@@ -66,6 +61,11 @@ table PartialPlayer {
   area: ulong = null;
   world: string;
   died: bool = null;
+}
+
+table PartialPlayer {
+  mask: uint;
+  data: [ubyte];
 }
 
 table PackedEntityMap {
